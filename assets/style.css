@@ -237,11 +237,13 @@ img {
 }
 
 .brand-text h1 {
-  font-size: 1.35rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
   font-weight: 700;
   line-height: 1.2;
   color: var(--primary-deep);
-  margin-bottom: 0.1rem;
+  letter-spacing: 0.04em;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .brand-text span {
@@ -2825,4 +2827,187 @@ img {
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Community Page Enhanced Media Styles (community.html)
+   ========================================================================== */
+.community-card-media {
+  width: 100%;
+  height: 210px;
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(11, 21, 48, 0.08);
+}
+
+.community-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.institution-card:hover .community-card-media img {
+  transform: scale(1.05);
+}
+
+/* SD Convent Card with Photo */
+.sd-convent-card-enhanced {
+  background: #ffffff;
+  border-radius: var(--radius-lg, 24px);
+  border: 1px solid var(--border-light, #e2e8f0);
+  box-shadow: 0 6px 25px rgba(11, 21, 48, 0.06);
+  padding: 2.4rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sd-convent-card-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--gold-primary, #d4a34b), var(--primary-deep, #0f1c3f));
+}
+
+.sd-convent-enhanced-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.sd-convent-photo-frame {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--radius-md, 14px);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(11, 21, 48, 0.12);
+  border: 3px solid #ffffff;
+  position: relative;
+}
+
+.sd-convent-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.sd-convent-card-enhanced:hover .sd-convent-photo-frame img {
+  transform: scale(1.04);
+}
+
+/* St. Mary's Chemmanakary Grand Showcase Card (Significantly Bigger Image) */
+.filial-church-grand-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg, 24px);
+  border: 1.5px solid var(--border-gold, rgba(212, 163, 75, 0.35));
+  box-shadow: 0 10px 35px rgba(11, 21, 48, 0.08);
+  margin-top: 2.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.filial-church-grand-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #1d4ed8, var(--gold-primary, #d4a34b), #2563eb);
+  z-index: 3;
+}
+
+.filial-grand-image-wrap {
+  width: 100%;
+  height: 420px;
+  position: relative;
+  overflow: hidden;
+  background: #0f1c3f;
+}
+
+.filial-grand-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filial-church-grand-card:hover .filial-grand-image-wrap img {
+  transform: scale(1.03);
+}
+
+.filial-image-overlay-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(11, 21, 48, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 0.6rem 1.3rem;
+  border-radius: var(--radius-full, 999px);
+  border: 1px solid rgba(212, 163, 75, 0.45);
+  color: #ffffff;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.filial-image-overlay-badge .badge-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gold-primary, #d4a34b);
+  color: #0f1c3f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.filial-image-overlay-badge .badge-text h5 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.filial-image-overlay-badge .badge-text p {
+  font-size: 0.78rem;
+  color: var(--gold-glow, #eec578);
+  margin: 0;
+  font-weight: 600;
+}
+
+.filial-grand-content {
+  padding: 2.6rem 2.8rem;
+}
+
+@media (max-width: 860px) {
+  .sd-convent-enhanced-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+  .sd-convent-photo-frame {
+    height: 220px;
+  }
+  .filial-grand-image-wrap {
+    height: 280px;
+  }
+  .filial-grand-content {
+    padding: 2rem 1.6rem;
+  }
 }
