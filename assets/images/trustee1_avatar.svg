@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bgGradT1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141f3d"/>
+      <stop offset="100%" stop-color="#243b78"/>
+    </linearGradient>
+    <linearGradient id="goldGradT1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d77f"/>
+      <stop offset="50%" stop-color="#d4a34b"/>
+      <stop offset="100%" stop-color="#996d1e"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="url(#bgGradT1)" stroke="url(#goldGradT1)" stroke-width="4"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(212,163,75,0.2)" stroke-width="1.5"/>
+  <!-- Head Silhouette -->
+  <circle cx="100" cy="72" r="30" fill="#eedec8"/>
+  <path d="M72 68 Q100 44 128 68 Q125 50 100 48 Q75 50 72 68 Z" fill="#202530"/>
+  <!-- Jubba / Suit / Body -->
+  <path d="M44 186 C47 132 68 116 100 116 C132 116 153 132 156 186 Z" fill="#f8fafc"/>
+  <!-- Coat / Waistcoat -->
+  <path d="M44 186 C47 132 68 116 85 116 L88 186 Z" fill="#1e293b"/>
+  <path d="M156 186 C153 132 132 116 115 116 L112 186 Z" fill="#1e293b"/>
+  <!-- Tie or Cross Accent -->
+  <path d="M96 116 L104 116 L106 142 L100 148 L94 142 Z" fill="#751a2b"/>
+  <!-- Lapel Cross Pin -->
+  <circle cx="78" cy="138" r="4" fill="url(#goldGradT1)"/>
+</svg>

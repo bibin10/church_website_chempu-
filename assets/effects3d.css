@@ -1,0 +1,82 @@
+/* ==========================================================================
+   St. Thomas Church Chempu - 3D Effects, 3D Tilt & Lazy Loading Styles
+   ========================================================================== */
+
+/* 3D Dots Canvas in Hero Section */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.canvas-3d-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.95;
+  mix-blend-mode: screen;
+}
+
+/* 3D Card Tilt with Perspective & Depth */
+.tilt-3d-card {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  will-change: transform;
+  position: relative;
+}
+
+.tilt-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 4;
+}
+
+/* 3D Scroll Reveal Animations */
+.reveal-3d {
+  opacity: 0;
+  transform: perspective(1000px) translateY(42px) rotateX(7deg);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.revealed-3d {
+  opacity: 1;
+  transform: perspective(1000px) translateY(0) rotateX(0deg);
+}
+
+/* Progressive Image Lazy Loading */
+img[loading="lazy"] {
+  opacity: 0.88;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+img[loading="lazy"].img-lazy-ready {
+  opacity: 1;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .canvas-3d-dots {
+    display: none;
+  }
+  .tilt-3d-card {
+    transform: none !important;
+  }
+  .reveal-3d {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

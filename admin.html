@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parish CMS Portal | St. Thomas Church Chempu</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,400&family=Marcellus&family=Merriweather:ital,wght@0,400;0,700;1,300&family=Montserrat:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Anti-cache meta headers -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Security Hardening Meta Tags -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="stylesheet" href="assets/admin.css?v=2">
+</head>
+<body class="admin-body">
+
+  <!-- Admin Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="sidebar-crest"><i class="fas fa-cross"></i></div>
+        <div class="sidebar-meta">
+          <h3>St. Thomas CMS</h3>
+          <span>Chempu Parish Office</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">WEBSITE EDITORS</div>
+      <button class="nav-item active" data-section="navbar-panel">
+        <i class="fas fa-bars"></i> <span>Navigation Menu (Header)</span>
+      </button>
+      <button class="nav-item" data-section="hero-panel">
+        <i class="fas fa-image"></i> <span>Hero &amp; Headlines</span>
+      </button>
+      <button class="nav-item" data-section="mass-panel">
+        <i class="fas fa-clock"></i> <span>Holy Mass Schedules</span>
+      </button>
+      <button class="nav-item" data-section="heritage-panel">
+        <i class="fas fa-monument"></i> <span>Parish Heritage (1307)</span>
+      </button>
+      <button class="nav-item" data-section="feasts-panel">
+        <i class="fas fa-calendar-star"></i> <span>Feasts &amp; Thirunal</span>
+      </button>
+      <button class="nav-item" data-section="gallery-panel">
+        <i class="fas fa-images"></i> <span>Photo Gallery &amp; Media</span>
+      </button>
+      <button class="nav-item" data-section="admin-team-panel">
+        <i class="fas fa-users-cog"></i> <span>Parish Leadership</span>
+      </button>
+      <button class="nav-item" data-section="contact-panel">
+        <i class="fas fa-address-book"></i> <span>Rectory &amp; Contact</span>
+      </button>
+      <div class="nav-section-label" style="margin-top:1rem;">DESIGN &amp; STYLING</div>
+      <button class="nav-item" data-section="typography-panel">
+        <i class="fas fa-font"></i> <span>Typography &amp; Fonts</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" target="_blank" rel="noopener noreferrer" class="sidebar-view-site">
+        <i class="fas fa-external-link-alt"></i> <span>View Live Site</span>
+      </a>
+      <div class="admin-status-indicator">
+        <span class="status-dot"></span> Live Sync Enabled
+      </div>
+    </div>
+  </aside>
+
+  <!-- Admin Main Workspace -->
+  <main class="admin-workspace">
+    <!-- Top Action Toolbar -->
+    <header class="workspace-header">
+      <div class="header-left">
+        <button class="sidebar-toggle-btn" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <h2 id="currentSectionTitle">Navigation Menu (Header)</h2>
+      </div>
+      <div class="header-actions">
+        <button class="btn-secondary" id="resetDefaultsBtn">
+          <i class="fas fa-undo"></i> Reset Defaults
+        </button>
+        <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <i class="fas fa-eye"></i> Preview
+        </a>
+        <button class="btn-primary" id="saveAllChangesBtn">
+          <i class="fas fa-save"></i> Save &amp; Publish
+        </button>
+      </div>
+    </header>
+
+    <!-- Workspace Notification Bar -->
+    <div class="save-toast" id="saveToast">
+      <i class="fas fa-check-circle"></i>
+      <span>Changes successfully published to the live website!</span>
+    </div>
+
+    <!-- Container for dynamic section panels -->
+    <div class="panels-container">
+
+      <!-- ===================================================================
+           0. NAVBAR MENU MANAGER (Add, Edit, Delete, Move Up / Down)
+           =================================================================== -->
+      <section class="admin-panel active" id="navbar-panel">
+        <div class="panel-card">
+          <div class="panel-card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h3>Header Navigation Menu Manager</h3>
+              <p>Add, edit, delete, and reorder (move up/down) menu links in the main website header.</p>
+            </div>
+            <button class="btn-primary" id="openAddNavModalBtn" type="button" style="padding:0.6rem 1.2rem; font-size:0.88rem;">
+              <i class="fas fa-plus"></i> Add New Nav Link
+            </button>
+          </div>
+          <div class="panel-card-body">
+            <div class="nav-manager-table-wrap">
+              <table class="intentions-table" id="navItemsTable">
+                <thead>
+                  <tr>
+                    <th style="width: 60px;">Pos</th>
+                    <th>Link Label</th>
+                    <th>Target URL / Anchor</th>
+                    <th style="width: 140px; text-align: center;">Reorder</th>
+                    <th style="width: 140px; text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="navItemsTableBody">
+                  <!-- Rendered dynamically via admin.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Form to Add / Edit an Item -->
+            <div id="navItemEditorCard" class="sub-form-card" style="display:none; margin-top:1.8rem; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.5rem;">
+              <h4 id="navEditorTitle" style="margin-bottom:1rem; color:var(--admin-navy);"><i class="fas fa-edit"></i> Edit Menu Item</h4>
+              <input type="hidden" id="navEditIndex" value="-1">
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Menu Label (Text)</label>
+                  <input type="text" id="navEditLabel" placeholder="e.g. Holy Mass">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Link Destination (e.g. #mass-timings or external link)</label>
+                  <input type="text" id="navEditUrl" placeholder="e.g. #mass-timings">
+                </div>
+              </div>
+              <div style="display:flex; gap:0.8rem; justify-content:flex-end; margin-top:0.5rem;">
+                <button type="button" class="btn-secondary" id="cancelNavEditBtn">Cancel</button>
+                <button type="button" class="btn-primary" id="saveNavEditBtn"><i class="fas fa-check"></i> Save Item</button>
+              </div>
+            </div>
+
+            <!-- Site Color Theme Studio (52 Themes) -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-top:1.5rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.4rem; font-size:1.05rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-palette" style="color:var(--admin-gold);"></i> Site Color Theme (52 Curated Palettes)
+              </h4>
+              <p style="font-size:0.84rem; color:#64748b; margin-bottom:1rem;">
+                Select the official color palette for the website. Visitors will see this theme by default across all pages.
+              </p>
+              <div class="form-row" style="align-items:flex-end;">
+                <div class="form-group flex-2">
+                  <label>Choose Default Theme</label>
+                  <select id="cfg_site_theme" style="padding:0.6rem 0.9rem; font-size:0.9rem; border-radius:8px; border:1px solid #cbd5e1; width:100%; font-weight:600;">
+                    <!-- Populated dynamically via themes.js -->
+                  </select>
+                </div>
+                <div class="form-group flex-1">
+                  <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding:0.6rem 1rem; width:100%; display:inline-flex; align-items:center; justify-content:center; gap:0.4rem; text-decoration:none;">
+                    <i class="fas fa-external-link-alt"></i> Preview on Website
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           1. HERO & HEADLINES EDITOR
+           =================================================================== -->
+      <section class="admin-panel" id="hero-panel">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Hero Section &amp; Main Headlines</h3>
+            <p>Edit the main banner title, cover photo, Malayalam name, description, and key statistics.</p>
+          </div>
+          <div class="panel-card-body">
+            <!-- Main Cover Photo Uploader -->
+            <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-bottom:1.6rem;">
+              <label style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.6rem;">
+                <span style="font-weight:700; color:var(--admin-navy); font-size:0.95rem;">
+                  <i class="fas fa-camera-retro" style="color:var(--admin-gold); margin-right:6px;"></i> Main Cover Photo (Hero Background)
+                </span>
+                <span style="font-size:0.75rem; color:#64748b; font-weight:normal;">Supported: JPG, PNG, WEBP (Auto-optimized)</span>
+              </label>
+
+              <div style="display:flex; gap:1.2rem; align-items:flex-start; flex-wrap:wrap;">
+                <!-- Cover Photo Live Preview -->
+                <div style="width:220px; height:130px; border-radius:8px; overflow:hidden; border:2px solid #cbd5e1; background:#0f1c3f; position:relative; flex-shrink:0;">
+                  <img id="heroCoverPreview" src="assets/images/st_thomas_chempu_church_facade.jpg" alt="Hero Cover Preview" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+
+                <!-- Upload & Action Controls -->
+                <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:0.6rem; justify-content:center;">
+                  <p style="font-size:0.82rem; color:#64748b; margin:0;">
+                    Upload your high-resolution church facade or feast cover photo. It immediately renders on the homepage hero banner.
+                  </p>
+                  
+                  <div style="display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;">
+                    <label class="btn-primary" style="margin:0; cursor:pointer; font-size:0.85rem; padding:0.55rem 1.1rem;">
+                      <i class="fas fa-cloud-upload-alt"></i> Choose New Photo
+                      <input type="file" id="heroCoverFileInput" accept="image/*" style="display:none;">
+                    </label>
+                    <button type="button" class="btn-secondary" id="resetCoverPhotoBtn" style="font-size:0.85rem; padding:0.55rem 1rem;">
+                      <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                  </div>
+                  <!-- Smart HD Compression Live Feedback Badge -->
+                  <div id="heroCompressionNotice" style="display:none; margin-top:0.4rem;"></div>
+                  <input type="hidden" id="cfg_hero_image" value="">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Archdiocese &amp; Foundation Badge</label>
+              <input type="text" id="cfg_hero_badge" placeholder="Archdiocese of Ernakulam-Angamaly • Estd. 1307 AD">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Main Title Line 1</label>
+                <input type="text" id="cfg_hero_title1" placeholder="St. Thomas Syro-Malabar">
+              </div>
+              <div class="form-group flex-1">
+                <label>Main Title Accent Line 2</label>
+                <input type="text" id="cfg_hero_title2" placeholder="Roman Catholic Church, Chempu">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Malayalam Name &amp; Inscription</label>
+              <input type="text" id="cfg_hero_malayalam" placeholder="വിശുദ്ധ തോമാശ്ലീഹായുടെ നാമത്തിലുള്ള ചെമ്പ് സെന്റ് തോമസ് പള്ളി">
+            </div>
+
+            <div class="form-group">
+              <label>Hero Description Paragraph</label>
+              <textarea id="cfg_hero_desc" rows="3" placeholder="Over 700 years of living Christian faith..."></textarea>
+            </div>
+
+            <h4 class="sub-heading">Hero Quick Stats</h4>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Stat 1 Value</label>
+                <input type="text" id="cfg_stat1_val" placeholder="1307 AD">
+                <label style="margin-top:0.4rem;">Stat 1 Label</label>
+                <input type="text" id="cfg_stat1_lbl" placeholder="Historic Foundation">
+              </div>
+              <div class="form-group flex-1">
+                <label>Stat 2 Value</label>
+                <input type="text" id="cfg_stat2_val" placeholder="700+ Years">
+                <label style="margin-top:0.4rem;">Stat 2 Label</label>
+                <input type="text" id="cfg_stat2_lbl" placeholder="Apostolic Tradition">
+              </div>
+              <div class="form-group flex-1">
+                <label>Stat 3 Value</label>
+                <input type="text" id="cfg_stat3_val" placeholder="Daily Liturgy">
+                <label style="margin-top:0.4rem;">Stat 3 Label</label>
+                <input type="text" id="cfg_stat3_lbl" placeholder="Holy Qurbana & Prayers">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           3. HOLY MASS SCHEDULES & BANNER
+           =================================================================== -->
+      <section class="admin-panel" id="mass-panel">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Holy Mass Timings &amp; Liturgy Ribbon</h3>
+            <p>Update Sunday mass timings, weekday schedules, and sacramental appointments.</p>
+          </div>
+          <div class="panel-card-body">
+            <h4 class="sub-heading">Upcoming Mass Ribbon Quick Timings</h4>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Default Next Mass Display</label>
+                <input type="text" id="cfg_mass_ribbon_display" placeholder="Sunday: 7:00 AM & 9:15 AM">
+              </div>
+              <div class="form-group flex-1">
+                <label>Daily Morning Mass Summary</label>
+                <input type="text" id="cfg_mass_ribbon_daily" placeholder="6:15 AM (Mon - Wed, Fri - Sat)">
+              </div>
+              <div class="form-group flex-1">
+                <label>Thursday Evening Mass Summary</label>
+                <input type="text" id="cfg_mass_ribbon_thu" placeholder="5:30 PM (Thursday)">
+              </div>
+              <div class="form-group flex-1">
+                <label>Sunday Qurbana Summary</label>
+                <input type="text" id="cfg_mass_ribbon_sunday" placeholder="7:00 AM & 9:15 AM">
+              </div>
+            </div>
+
+            <h4 class="sub-heading">Detailed Sunday Mass Schedule</h4>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Sunday First Mass Time</label>
+                <input type="text" id="cfg_mass_sun1_time" placeholder="07:00 AM">
+              </div>
+              <div class="form-group flex-1">
+                <label>Sunday Second Mass Time</label>
+                <input type="text" id="cfg_mass_sun2_time" placeholder="09:15 AM">
+              </div>
+              <div class="form-group flex-1">
+                <label>Sunday Catechism Time</label>
+                <input type="text" id="cfg_mass_catechism_time" placeholder="10:30 AM - 12:15 PM">
+              </div>
+            </div>
+
+            <h4 class="sub-heading">Weekday Mass Schedule</h4>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Mon - Wed Mass Time</label>
+                <input type="text" id="cfg_mass_weekday1_time" placeholder="06:15 AM">
+              </div>
+              <div class="form-group flex-1">
+                <label>Thursday Mass Time</label>
+                <input type="text" id="cfg_mass_thu_time" placeholder="05:30 PM">
+              </div>
+              <div class="form-group flex-1">
+                <label>Friday Novena Mass Time</label>
+                <input type="text" id="cfg_mass_fri_time" placeholder="06:15 AM">
+              </div>
+              <div class="form-group flex-1">
+                <label>Saturday Mass Time</label>
+                <input type="text" id="cfg_mass_sat_time" placeholder="06:15 AM">
+              </div>
+            </div>
+
+            <h4 class="sub-heading">Sacraments &amp; Devotions</h4>
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Confession Timing</label>
+                <input type="text" id="cfg_mass_confession_time" placeholder="Saturdays 05:00 PM">
+              </div>
+              <div class="form-group flex-1">
+                <label>St. Thomas Novena</label>
+                <input type="text" id="cfg_mass_novena_time" placeholder="Every Thursday 06:15 PM">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           4. PARISH HERITAGE (1307 AD)
+           =================================================================== -->
+      <section class="admin-panel" id="heritage-panel">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Parish Heritage &amp; History Content</h3>
+            <p>Customize the historical narrative, milestones, and church origin stories.</p>
+          </div>
+          <div class="panel-card-body">
+            <!-- Heritage & History Section Image Uploader -->
+            <div class="form-group" style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:1.2rem; margin-bottom:1.5rem;">
+              <label style="font-weight:700; color:#0b1938; font-size:0.95rem; display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem;">
+                <i class="fas fa-image" style="color:#b45309;"></i> Heritage Section Main Image ("Seven Centuries of Divine Grace")
+              </label>
+
+              <div style="display:flex; gap:1.2rem; align-items:flex-start; flex-wrap:wrap;">
+                <!-- Heritage Image Live Preview -->
+                <div style="width:160px; height:210px; border-radius:8px; overflow:hidden; border:2px solid #cbd5e1; background:#0f1c3f; position:relative; flex-shrink:0; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                  <img id="historyImagePreview" src="assets/images/st_thomas_chempu_church_vertical.jpg" alt="Heritage Image Preview" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+
+                <!-- Upload & Action Controls -->
+                <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:0.6rem; justify-content:center;">
+                  <p style="font-size:0.82rem; color:#64748b; margin:0;">
+                    Upload the portrait/vertical photo for the <strong>Seven Centuries of Divine Grace</strong> heritage section. If the file size is larger than 1&nbsp;MB, our smart HD engine optimizes it instantly without losing sharpness.
+                  </p>
+                  
+                  <div style="display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;">
+                    <label class="btn-primary" style="margin:0; cursor:pointer; font-size:0.85rem; padding:0.55rem 1.1rem;">
+                      <i class="fas fa-cloud-upload-alt"></i> Choose New Image
+                      <input type="file" id="historyImageFileInput" accept="image/*" style="display:none;">
+                    </label>
+                    <button type="button" class="btn-secondary" id="resetHistoryImageBtn" style="font-size:0.85rem; padding:0.55rem 1rem;">
+                      <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                  </div>
+
+                  <div style="margin-top:0.4rem;">
+                    <label style="font-size:0.78rem; font-weight:600; color:#475569; margin-bottom:0.25rem;">Or Image URL / Path:</label>
+                    <input type="text" id="cfg_history_image_url" placeholder="assets/images/st_thomas_chempu_church_vertical.jpg" style="font-size:0.82rem; padding:0.4rem 0.75rem;">
+                  </div>
+
+                  <!-- Smart HD Compression Live Feedback Badge -->
+                  <div id="historyCompressionNotice" style="display:none; margin-top:0.4rem;"></div>
+                  <input type="hidden" id="cfg_history_image" value="">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Heritage Eyebrow</label>
+              <input type="text" id="cfg_history_eyebrow" placeholder="Apostolic Heritage">
+            </div>
+            <div class="form-group">
+              <label>Section Title</label>
+              <input type="text" id="cfg_history_title" placeholder="Seven Centuries of Divine Grace">
+            </div>
+            <div class="form-group">
+              <label>History Lead Summary</label>
+              <textarea id="cfg_history_lead" rows="2" placeholder="The historic St. Thomas Catholic Church of Chempu..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Main Body Paragraph 1</label>
+              <textarea id="cfg_history_p1" rows="3" placeholder="Established in early fourteenth century (circa 1306–1307 AD)..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Main Body Paragraph 2</label>
+              <textarea id="cfg_history_p2" rows="3" placeholder="Surrounded by coconut groves and picturesque backwaters..."></textarea>
+            </div>
+
+            <h4 class="sub-heading" style="margin-top: 2rem;">Mar Augustine Kandathil Showcase (Archdiocesan Patriarch &amp; Native Son)</h4>
+
+            <!-- Mar Augustine Kandathil Photo Uploader -->
+            <div class="form-group" style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:1.2rem; margin-bottom:1.5rem;">
+              <label style="font-weight:700; color:#0b1938; font-size:0.95rem; display:flex; align-items:center; gap:0.5rem; margin-bottom:0.8rem;">
+                <i class="fas fa-image" style="color:#b45309;"></i> Mar Augustine Kandathil Portrait Photo (Showcase Card)
+              </label>
+
+              <div style="display:flex; gap:1.2rem; align-items:flex-start; flex-wrap:wrap;">
+                <!-- Live Photo Preview -->
+                <div style="width:160px; height:200px; border-radius:10px; overflow:hidden; border:2px solid #cbd5e1; background:linear-gradient(145deg, #fbf9f5, #f1eae0); position:relative; flex-shrink:0; box-shadow:0 4px 12px rgba(0,0,0,0.08); display:flex; align-items:center; justify-content:center; padding:6px;">
+                  <img id="kandathilPhotoPreview" src="assets/images/mar_augustine_kandathil_portrait.jpg" alt="Mar Augustine Kandathil Preview" style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
+                </div>
+
+                <!-- Upload & Action Controls -->
+                <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:0.6rem; justify-content:center;">
+                  <p style="font-size:0.82rem; color:#64748b; margin:0;">
+                    Upload the portrait photo of Mar Augustine Kandathil for the 50/50 showcase card. If larger than 1 MB, it will be automatically optimized without losing quality.
+                  </p>
+                  
+                  <div style="display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;">
+                    <label class="btn-primary" style="margin:0; cursor:pointer; font-size:0.85rem; padding:0.55rem 1.1rem;">
+                      <i class="fas fa-cloud-upload-alt"></i> Choose New Photo
+                      <input type="file" id="kandathilPhotoFileInput" accept="image/*" style="display:none;">
+                    </label>
+                    <button type="button" class="btn-secondary" id="resetKandathilPhotoBtn" style="font-size:0.85rem; padding:0.55rem 1rem;">
+                      <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                  </div>
+
+                  <div style="margin-top:0.4rem;">
+                    <label style="font-size:0.78rem; font-weight:600; color:#475569; margin-bottom:0.25rem;">Or Photo URL / Path:</label>
+                    <input type="text" id="cfg_kandathil_photo_url" placeholder="assets/images/mar_augustine_kandathil_portrait.jpg" style="font-size:0.82rem; padding:0.4rem 0.75rem;">
+                  </div>
+
+                  <!-- Smart HD Compression Live Feedback Badge -->
+                  <div id="kandathilCompressionNotice" style="display:none; margin-top:0.4rem;"></div>
+                  <input type="hidden" id="cfg_kandathil_photo" value="">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Eyebrow</label>
+                <input type="text" id="cfg_kandathil_eyebrow" placeholder="Parish Pride &amp; Archdiocesan Patriarch">
+              </div>
+              <div class="form-group flex-1">
+                <label>Main Title</label>
+                <input type="text" id="cfg_kandathil_title" placeholder="Mar Augustine Kandathil">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Malayalam Subtitle</label>
+              <input type="text" id="cfg_kandathil_malayalam" placeholder="മാർ അഗസ്റ്റിൻ കണ്ടത്തിൽ (1874 – 1956) • പ്രഥമ മെത്രാപ്പോലീത്ത">
+            </div>
+
+            <div class="form-group">
+              <label>Lead Paragraph</label>
+              <textarea id="cfg_kandathil_lead" rows="2" placeholder="Chempu is eternally honored in the history of the Catholic Church..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Early Life in Chempu Parish (Paragraph 1)</label>
+              <textarea id="cfg_kandathil_p1" rows="3" placeholder="Born on August 25, 1874, in the devout Kandathil family of Chempu..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>First Native Indian Metropolitan Archbishop (Paragraph 2)</label>
+              <textarea id="cfg_kandathil_p2" rows="3" placeholder="On December 21, 1923, His Holiness Pope Pius XI issued..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Episcopal Legacy &amp; CSN Founder (Paragraph 3)</label>
+              <textarea id="cfg_kandathil_p3" rows="3" placeholder="During his transformative episcopate spanning more than three decades..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Memorial Inscription / Quote</label>
+              <input type="text" id="cfg_kandathil_quote" placeholder='"St. Thomas Church Chempu stands honored forever in history..."'>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           5. FEASTS & THIRUNAL
+           =================================================================== -->
+      <section class="admin-panel" id="feasts-panel">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Annual Feasts &amp; Thirunal (തിരുനാൾ)</h3>
+            <p>Update patronal feast details, dates, and minor feast schedules.</p>
+          </div>
+          <div class="panel-card-body">
+            <h4 class="sub-heading">Main Patronal Feast</h4>
+            <div class="form-row">
+              <div class="form-group flex-2">
+                <label>Main Feast Name</label>
+                <input type="text" id="cfg_feast_main_name" placeholder="Feast of St. Thomas the Apostle">
+              </div>
+              <div class="form-group flex-1">
+                <label>Feast Date &amp; Tag</label>
+                <input type="text" id="cfg_feast_main_date" placeholder="July 3 (Dukhrana) & Traditional Parish Thirunal">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Main Feast Description</label>
+              <textarea id="cfg_feast_main_desc" rows="3" placeholder="The annual parish festival is marked with high spiritual solemnity..."></textarea>
+            </div>
+
+            <!-- Main Feast Key Highlights Manager -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-top:1.4rem; margin-bottom:1.6rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.8rem;">
+                <div>
+                  <h4 style="margin:0; font-size:1rem; color:var(--admin-navy);">
+                    <i class="fas fa-list-check" style="color:var(--admin-gold); margin-right:6px;"></i> Main Feast Key Highlights &amp; Events
+                  </h4>
+                  <p style="font-size:0.8rem; color:#64748b; margin:0.2rem 0 0 0;">
+                    Manage event tags (e.g. Kodiyettu, Raza, Choir, Snehabhojanam). Appropriate icons are automatically generated based on keyword!
+                  </p>
+                </div>
+                <button class="btn-primary" id="openAddHighlightBtn" type="button" style="padding:0.45rem 0.95rem; font-size:0.82rem;">
+                  <i class="fas fa-plus"></i> Add Highlight Item
+                </button>
+              </div>
+
+              <!-- Highlights Table -->
+              <div class="table-responsive">
+                <table class="intentions-table" id="highlightsTable" style="margin-top:0.5rem; background:#fff;">
+                  <thead>
+                    <tr>
+                      <th style="width: 50px;">Pos</th>
+                      <th style="width: 140px;">Auto Icon</th>
+                      <th>Highlight Name / Event Title</th>
+                      <th style="width: 110px; text-align: center;">Reorder</th>
+                      <th style="width: 120px; text-align: center;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="highlightsTableBody">
+                    <!-- Rendered dynamically via admin.js -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Editor Card for Highlights -->
+              <div id="highlightEditorCard" class="sub-form-card" style="display:none; margin-top:1rem; background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:1.2rem;">
+                <h4 id="highlightEditorTitle" style="margin-bottom:0.8rem; color:var(--admin-navy); font-size:0.95rem;">
+                  <i class="fas fa-edit"></i> Edit Highlight Item
+                </h4>
+                <input type="hidden" id="highlightEditIndex" value="-1">
+
+                <div class="form-row">
+                  <div class="form-group flex-2">
+                    <label>Highlight Title / Event Keyword</label>
+                    <input type="text" id="highlightEditText" placeholder="e.g. Solemn Kodiyettu Ceremony">
+                    <small style="color:#64748b; font-size:0.75rem;">Type keywords like flag/kodiyettu, raza/procession, choir/sing, nercha/food/meal, prayer, cross to auto-match icon.</small>
+                  </div>
+                  <div class="form-group flex-1">
+                    <label>Live Icon Preview</label>
+                    <div style="display:flex; align-items:center; gap:0.6rem; height:42px;">
+                      <span id="highlightIconPreviewBox" style="width:42px; height:42px; border-radius:6px; background:#0f1c3f; color:#fce7b0; display:flex; align-items:center; justify-content:center; font-size:1.1rem; border:1px solid var(--admin-gold);">
+                        <i class="fas fa-check-circle" id="highlightIconPreview"></i>
+                      </span>
+                      <span id="highlightIconPreviewName" style="font-size:0.8rem; color:#475569; font-weight:600;">fa-flag</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex; gap:0.6rem; justify-content:flex-end; margin-top:0.4rem;">
+                  <button type="button" class="btn-secondary" id="cancelHighlightEditBtn" style="font-size:0.85rem; padding:0.45rem 0.9rem;">Cancel</button>
+                  <button type="button" class="btn-primary" id="saveHighlightEditBtn" style="font-size:0.85rem; padding:0.45rem 1rem;"><i class="fas fa-check"></i> Save Item</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-top:2rem; margin-bottom:0.8rem; border-bottom:1px solid var(--admin-border); padding-bottom:0.5rem;">
+              <h4 class="sub-heading" style="margin:0; border-bottom:none; padding-bottom:0;">Other Parish Feasts</h4>
+              <button class="btn-primary" id="openAddFeastBtn" type="button" style="padding:0.5rem 1rem; font-size:0.85rem;">
+                <i class="fas fa-plus"></i> Add New Feast
+              </button>
+            </div>
+            <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.2rem;">Add, edit, delete, and reorder feasts and celebrations displayed in the Parish Thirunal section.</p>
+
+            <!-- Table of Other Feasts -->
+            <div class="table-responsive">
+              <table class="intentions-table" id="feastsTable">
+                <thead>
+                  <tr>
+                    <th style="width: 50px;">Pos</th>
+                    <th style="width: 100px;">Month / Day</th>
+                    <th style="width: 240px;">Feast Title</th>
+                    <th>Feast Description</th>
+                    <th style="width: 110px; text-align: center;">Reorder</th>
+                    <th style="width: 120px; text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="feastsTableBody">
+                  <!-- Rendered dynamically via admin.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Form to Add / Edit a Feast Item -->
+            <div id="feastEditorCard" class="sub-form-card" style="display:none; margin-top:1.8rem; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.5rem;">
+              <h4 id="feastEditorTitle" style="margin-bottom:1rem; color:var(--admin-navy);"><i class="fas fa-edit"></i> Edit Feast Details</h4>
+              <input type="hidden" id="feastEditIndex" value="-1">
+
+              <div class="form-row">
+                <div class="form-group flex-2">
+                  <label>Feast Title / Name</label>
+                  <input type="text" id="feastEditTitle" placeholder="e.g. Danaha Thirunal (Epiphany / Rakkuli)">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Month Badge (e.g. Jan, Apr, Sep)</label>
+                  <input type="text" id="feastEditMonth" placeholder="e.g. Jan" maxlength="4">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Day Badge (e.g. 06, 25, Pass)</label>
+                  <input type="text" id="feastEditDay" placeholder="e.g. 06" maxlength="6">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Feast Description</label>
+                <textarea id="feastEditDesc" rows="3" placeholder="Describe the spiritual significance, traditional prayers, or celebrations..."></textarea>
+              </div>
+
+              <div style="display:flex; gap:0.8rem; justify-content:flex-end; margin-top:0.5rem;">
+                <button type="button" class="btn-secondary" id="cancelFeastEditBtn">Cancel</button>
+                <button type="button" class="btn-primary" id="saveFeastEditBtn"><i class="fas fa-check"></i> Save Feast</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           5.5. PARISH PHOTO GALLERY & MEDIA MANAGER
+           =================================================================== -->
+      <section class="admin-panel" id="gallery-panel">
+        <div class="panel-card">
+          <div class="panel-card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h3>Parish Photo Gallery &amp; Media Manager</h3>
+              <p>Upload new high-definition photos, assign categories, and manage the parish website gallery.</p>
+            </div>
+            <button class="btn-secondary" id="resetGalleryDefaultBtn" type="button" style="font-size:0.85rem; padding:0.5rem 1rem;">
+              <i class="fas fa-undo"></i> Reset to Default Photos
+            </button>
+          </div>
+          <div class="panel-card-body">
+
+            <!-- Add New Image Upload Card -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:1.5rem; margin-bottom:2rem;">
+              <h4 style="color:var(--admin-navy); font-size:1.05rem; margin-bottom:0.4rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-cloud-upload-alt" style="color:var(--admin-gold);"></i> Add New Photo to Gallery
+              </h4>
+              <p style="font-size:0.82rem; color:#64748b; margin-bottom:1.2rem;">
+                Select any photo from your computer or phone. Photos greater than 1 MB are automatically optimized to High Definition without losing pixel clarity!
+              </p>
+
+              <div style="display:flex; gap:1.5rem; align-items:flex-start; flex-wrap:wrap;">
+                <!-- Thumbnail Preview -->
+                <div style="width:200px; height:140px; border-radius:8px; overflow:hidden; border:2px dashed #cbd5e1; background:#0f1c3f; display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative;">
+                  <img id="newGalleryPreview" src="" alt="Photo Preview" style="display:none; width:100%; height:100%; object-fit:cover;">
+                  <div id="newGalleryPlaceholder" style="text-align:center; color:#94a3b8; padding:10px;">
+                    <i class="fas fa-image" style="font-size:2rem; margin-bottom:6px; display:block;"></i>
+                    <span style="font-size:0.75rem;">Select an image to preview</span>
+                  </div>
+                </div>
+
+                <!-- Input Fields -->
+                <div style="flex:1; min-width:280px; display:flex; flex-direction:column; gap:0.9rem;">
+                  <div class="form-row" style="margin:0;">
+                    <div class="form-group flex-1" style="margin:0;">
+                      <label style="font-weight:600; font-size:0.85rem;">Select Photo File</label>
+                      <input type="file" id="newGalleryFileInput" accept="image/*" style="font-size:0.85rem; padding:0.4rem; width:100%; border:1px solid #cbd5e1; border-radius:6px; background:#fff;">
+                    </div>
+                    <div class="form-group flex-1" style="margin:0;">
+                      <label style="font-weight:600; font-size:0.85rem;">Category Filter</label>
+                      <select id="newGalleryCategory" style="padding:0.55rem 0.8rem; font-size:0.85rem; border-radius:6px; border:1px solid #cbd5e1; width:100%; font-weight:600;">
+                        <option value="facade">Church Facade &amp; Grounds</option>
+                        <option value="altar">Sacred Altar (Madbaha)</option>
+                        <option value="thirunal">Thirunal &amp; Liturgical Feasts</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row" style="margin:0;">
+                    <div class="form-group flex-1" style="margin:0;">
+                      <label style="font-weight:600; font-size:0.85rem;">Photo Title</label>
+                      <input type="text" id="newGalleryTitle" placeholder="e.g. Solemn Raza Thirunal Procession" style="font-size:0.85rem;">
+                    </div>
+                    <div class="form-group flex-1" style="margin:0;">
+                      <label style="font-weight:600; font-size:0.85rem;">Subtitle / Caption</label>
+                      <input type="text" id="newGallerySubtitle" placeholder="e.g. Traditional Silk Parasols (Muthukkuda)" style="font-size:0.85rem;">
+                    </div>
+                  </div>
+
+                  <!-- Live HD Compression Feedback Notification -->
+                  <div id="newGalleryCompressionNotice" style="display:none;"></div>
+
+                  <div style="display:flex; justify-content:flex-end; gap:0.8rem; margin-top:0.4rem;">
+                    <button type="button" class="btn-primary" id="addGalleryItemBtn" style="padding:0.6rem 1.4rem; font-size:0.88rem; font-weight:700;">
+                      <i class="fas fa-plus-circle"></i> Add to Parish Gallery
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Existing Live Gallery Grid in Admin -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--admin-border); padding-bottom:0.5rem;">
+              <h4 style="margin:0; font-size:1.05rem; color:var(--admin-navy);">
+                <i class="fas fa-photo-video" style="color:var(--admin-gold); margin-right:6px;"></i> Active Gallery Photos (<span id="adminGalleryCount">0</span>)
+              </h4>
+              <span style="font-size:0.8rem; color:#64748b;">Photos currently shown on the parish website</span>
+            </div>
+
+            <div id="adminGalleryCardsContainer" class="admin-gallery-grid">
+              <!-- Rendered dynamically via admin.js -->
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           6. PARISH LEADERSHIP & MINISTRIES
+           =================================================================== -->
+      <section class="admin-panel" id="admin-team-panel">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Parish Administration &amp; Leadership</h3>
+            <p>Update names, photos, Malayalam titles, designations, and contacts for the Vicar, Kaikkarans (Trustees), and Family Unit Vice Chairman.</p>
+          </div>
+          <div class="panel-card-body">
+
+            <!-- 1. Present Vicar -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-bottom:1.4rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-cross" style="color:var(--admin-gold);"></i> 1. Present Vicar (ഇടവക വികാരി)
+              </h4>
+              <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap;">
+                <img id="vicarPhotoPreview" src="assets/images/vicar_avatar.svg" alt="Vicar Preview" style="width:75px; height:75px; border-radius:50%; object-fit:cover; border:2px solid var(--admin-gold); box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <div style="flex:1; min-width:220px;">
+                  <label style="font-size:0.82rem; font-weight:600; color:#475569;">Upload Vicar Photo</label>
+                  <input type="file" id="vicarFileInput" accept="image/*" style="font-size:0.82rem; display:block; margin-top:0.25rem;">
+                  <div id="vicarCompressionNotice" style="display:none; margin-top:0.3rem;"></div>
+                  <input type="hidden" id="cfg_vicar_photo">
+                  <button type="button" class="btn-secondary" id="resetVicarPhotoBtn" style="padding:0.25rem 0.65rem; font-size:0.75rem; margin-top:0.4rem;">Reset to Default Avatar</button>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Vicar Full Name</label>
+                  <input type="text" id="cfg_vicar_name" placeholder="Rev. Fr. Vicar">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Malayalam Title</label>
+                  <input type="text" id="cfg_vicar_malayalam" placeholder="ഇടവക വികാരി">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Designation</label>
+                  <input type="text" id="cfg_vicar_role" placeholder="Vicar &amp; Pastoral Head">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Telephone / Contact</label>
+                  <input type="text" id="cfg_vicar_phone" placeholder="+91 4829-273176">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Vicar Pastoral Role Description</label>
+                <textarea id="cfg_vicar_desc" rows="2" placeholder="Oversees all liturgical celebrations, sacraments, pastoral care..."></textarea>
+              </div>
+            </div>
+
+            <!-- 2. Trustee 1 (Kaikkaran) -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-bottom:1.4rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-users-cog" style="color:var(--admin-gold);"></i> 2. Parish Trustee 1 (കൈക്കാരൻ)
+              </h4>
+              <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap;">
+                <img id="trustee1PhotoPreview" src="assets/images/trustee1_avatar.svg" alt="Trustee 1 Preview" style="width:75px; height:75px; border-radius:50%; object-fit:cover; border:2px solid var(--admin-gold); box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <div style="flex:1; min-width:220px;">
+                  <label style="font-size:0.82rem; font-weight:600; color:#475569;">Upload Trustee 1 Photo</label>
+                  <input type="file" id="trustee1FileInput" accept="image/*" style="font-size:0.82rem; display:block; margin-top:0.25rem;">
+                  <div id="trustee1CompressionNotice" style="display:none; margin-top:0.3rem;"></div>
+                  <input type="hidden" id="cfg_trustee1_photo">
+                  <button type="button" class="btn-secondary" id="resetTrustee1PhotoBtn" style="padding:0.25rem 0.65rem; font-size:0.75rem; margin-top:0.4rem;">Reset to Default Avatar</button>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Trustee 1 Name</label>
+                  <input type="text" id="cfg_trustee1_name" placeholder="Parish Trustee 1">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Malayalam Title</label>
+                  <input type="text" id="cfg_trustee1_malayalam" placeholder="കൈക്കാരൻ">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Designation</label>
+                  <input type="text" id="cfg_trustee1_role" placeholder="Church Trustee">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Telephone / Contact</label>
+                  <input type="text" id="cfg_trustee1_phone" placeholder="+91 94470 00000">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Trustee 1 Role Description</label>
+                <textarea id="cfg_trustee1_desc" rows="2" placeholder="Managing temporal administration, church assets, accounts..."></textarea>
+              </div>
+            </div>
+
+            <!-- 3. Trustee 2 (Kaikkaran) -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-bottom:1.4rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-users-cog" style="color:var(--admin-gold);"></i> 3. Parish Trustee 2 (കൈക്കാരൻ)
+              </h4>
+              <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap;">
+                <img id="trustee2PhotoPreview" src="assets/images/trustee2_avatar.svg" alt="Trustee 2 Preview" style="width:75px; height:75px; border-radius:50%; object-fit:cover; border:2px solid var(--admin-gold); box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <div style="flex:1; min-width:220px;">
+                  <label style="font-size:0.82rem; font-weight:600; color:#475569;">Upload Trustee 2 Photo</label>
+                  <input type="file" id="trustee2FileInput" accept="image/*" style="font-size:0.82rem; display:block; margin-top:0.25rem;">
+                  <div id="trustee2CompressionNotice" style="display:none; margin-top:0.3rem;"></div>
+                  <input type="hidden" id="cfg_trustee2_photo">
+                  <button type="button" class="btn-secondary" id="resetTrustee2PhotoBtn" style="padding:0.25rem 0.65rem; font-size:0.75rem; margin-top:0.4rem;">Reset to Default Avatar</button>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Trustee 2 Name</label>
+                  <input type="text" id="cfg_trustee2_name" placeholder="Parish Trustee 2">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Malayalam Title</label>
+                  <input type="text" id="cfg_trustee2_malayalam" placeholder="കൈക്കാരൻ">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Designation</label>
+                  <input type="text" id="cfg_trustee2_role" placeholder="Church Trustee">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Telephone / Contact</label>
+                  <input type="text" id="cfg_trustee2_phone" placeholder="+91 94470 00000">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Trustee 2 Role Description</label>
+                <textarea id="cfg_trustee2_desc" rows="2" placeholder="Overseeing parish development projects, development initiatives..."></textarea>
+              </div>
+            </div>
+
+            <!-- 4. Family Unit Vice Chairman -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-hands-helping" style="color:var(--admin-gold);"></i> 4. Family Unit Vice Chairman (കുടുംബകൂട്ടായ്മ വൈസ് ചെയർമാൻ)
+              </h4>
+              <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap;">
+                <img id="viceChairmanPhotoPreview" src="assets/images/vice_chairman_avatar.svg" alt="Vice Chairman Preview" style="width:75px; height:75px; border-radius:50%; object-fit:cover; border:2px solid var(--admin-gold); box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <div style="flex:1; min-width:220px;">
+                  <label style="font-size:0.82rem; font-weight:600; color:#475569;">Upload Vice Chairman Photo</label>
+                  <input type="file" id="viceChairmanFileInput" accept="image/*" style="font-size:0.82rem; display:block; margin-top:0.25rem;">
+                  <div id="viceChairmanCompressionNotice" style="display:none; margin-top:0.3rem;"></div>
+                  <input type="hidden" id="cfg_vice_chairman_photo">
+                  <button type="button" class="btn-secondary" id="resetViceChairmanPhotoBtn" style="padding:0.25rem 0.65rem; font-size:0.75rem; margin-top:0.4rem;">Reset to Default Avatar</button>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Vice Chairman Name</label>
+                  <input type="text" id="cfg_vice_chairman_name" placeholder="Family Unit Vice Chairman">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Malayalam Title</label>
+                  <input type="text" id="cfg_vice_chairman_malayalam" placeholder="കുടുംബകൂട്ടായ്മ വൈസ് ചെയർമാൻ">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Designation</label>
+                  <input type="text" id="cfg_vice_chairman_role" placeholder="Pastoral Council Vice Chairman">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Telephone / Contact</label>
+                  <input type="text" id="cfg_vice_chairman_phone" placeholder="+91 94470 00000">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Family Unit Role Description</label>
+                <textarea id="cfg_vice_chairman_desc" rows="2" placeholder="Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings..."></textarea>
+              </div>
+            </div>
+
+            <!-- 5. Religious Ministry: SD Sisters (Convent) -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-top:1.4rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-cross" style="color:var(--admin-gold);"></i> 5. Religious Congregation: SD Sisters (ദീനദയാലു സന്യാസിനി സമൂഹം)
+              </h4>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Congregation / Convent Title</label>
+                  <input type="text" id="cfg_sd_title" placeholder="Sisters of the Destitute (SD Convent, Chempu)">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Malayalam Title</label>
+                  <input type="text" id="cfg_sd_malayalam" placeholder="ദീനദയാലു സന്യാസിനി സമൂഹം (എസ്.ഡി. കോൺവെന്റ്, ചെമ്പ്)">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Milestone 1 (Parish Presence)</label>
+                  <input type="text" id="cfg_sd_years_chempu" placeholder="75 Years in Chempu">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Milestone 2 (Congregation History)</label>
+                  <input type="text" id="cfg_sd_years_congregation" placeholder="100 Years of Congregation">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>SD Sisters Ministry &amp; History Description</label>
+                <textarea id="cfg_sd_desc" rows="3" placeholder="For over 75 dedicated years, the Sisters of the Destitute (SD) have been an integral spiritual pillar of St. Thomas Church Chempu..."></textarea>
+              </div>
+            </div>
+
+            <!-- 6. Filial Church: St. Mary's Church Chemmanakary (Holyland) -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-top:1.4rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-church" style="color:#2563eb;"></i> 6. Filial Church: St. Mary's Chemmanakary - Holyland (സെന്റ് മേരീസ് പള്ളി, ചെമ്മനാകരി)
+              </h4>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Filial Church Title</label>
+                  <input type="text" id="cfg_chemmanakary_title" placeholder="St. Mary's Church, Chemmanakary (Holyland)">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Malayalam Title</label>
+                  <input type="text" id="cfg_chemmanakary_malayalam" placeholder="സെന്റ് മേരീസ് പള്ളി, ചെമ്മനാകരി (ഹോളിലാൻഡ് ദേവാലയം)">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Tag / Affiliation Badge</label>
+                  <input type="text" id="cfg_chemmanakary_badge1" placeholder="Filial Church (ഫിലിയൽ പള്ളി)">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Location / Area Badge</label>
+                  <input type="text" id="cfg_chemmanakary_badge2" placeholder="Chemmanakary, Chempu">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Filial Church Ministry &amp; History Description</label>
+                <textarea id="cfg_chemmanakary_desc" rows="3" placeholder="Situated along the serene Chemmanakary backwaters, St. Mary's Church, Chemmanakary (Holyland) is a revered filial church and sacred pilgrimage center under the parental parish and pastoral care of St. Thomas Syro-Malabar Church, Chempu..."></textarea>
+              </div>
+            </div>
+
+            <!-- 7. Parish Institutions & Facilities -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-top:1.4rem;">
+              <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                <i class="fas fa-building" style="color:var(--admin-gold);"></i> 7. Parish Institutions &amp; Facilities (ഇടവക സ്ഥാപനങ്ങൾ)
+              </h4>
+
+              <!-- School -->
+              <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:1rem; margin-bottom:1rem;">
+                <h5 style="color:#b45309; margin-bottom:0.6rem; font-size:0.92rem;"><i class="fas fa-graduation-cap"></i> St. Thomas L.P. School (Estd. 1921)</h5>
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label>School Title</label>
+                    <input type="text" id="cfg_inst_school_title" placeholder="St. Thomas L.P. School, Chempu">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label>Malayalam Title</label>
+                    <input type="text" id="cfg_inst_school_malayalam" placeholder="സെന്റ് തോമസ് എൽ.പി. സ്കൂൾ, ചെമ്പ്">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>School Description</label>
+                  <textarea id="cfg_inst_school_desc" rows="2" placeholder="Established in 1921 under the patronage and management of St. Thomas Church Chempu..."></textarea>
+                </div>
+              </div>
+
+              <!-- Cultural Centre -->
+              <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:1rem; margin-bottom:1rem;">
+                <h5 style="color:#6d28d9; margin-bottom:0.6rem; font-size:0.92rem;"><i class="fas fa-landmark"></i> St. Thomas Cultural Centre</h5>
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label>Auditorium / Centre Title</label>
+                    <input type="text" id="cfg_inst_cultural_title" placeholder="St. Thomas Cultural Centre, Chempu">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label>Malayalam Title</label>
+                    <input type="text" id="cfg_inst_cultural_malayalam" placeholder="സെന്റ് തോമസ് കൾച്ചറൽ സെന്റർ, ചെമ്പ്">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Cultural Centre Description</label>
+                  <textarea id="cfg_inst_cultural_desc" rows="2" placeholder="A spacious modern parish auditorium and cultural venue accommodating community gatherings..."></textarea>
+                </div>
+              </div>
+
+              <!-- Shopping Complex -->
+              <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
+                <h5 style="color:#0369a1; margin-bottom:0.6rem; font-size:0.92rem;"><i class="fas fa-store"></i> St. Thomas Shopping Complex</h5>
+                <div class="form-row">
+                  <div class="form-group flex-1">
+                    <label>Commercial Complex Title</label>
+                    <input type="text" id="cfg_inst_complex_title" placeholder="St. Thomas Shopping Complex, Chempu">
+                  </div>
+                  <div class="form-group flex-1">
+                    <label>Malayalam Title</label>
+                    <input type="text" id="cfg_inst_complex_malayalam" placeholder="സെന്റ് തോമസ് ഷോപ്പിംഗ് കോംപ്ലക്സ്, ചെമ്പ്">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Shopping Complex Description</label>
+                  <textarea id="cfg_inst_complex_desc" rows="2" placeholder="Situated in the heart of Chempu, the parish commercial shopping complex provides essential retail spaces..."></textarea>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Save Leadership Button Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.8rem; padding-top:1.2rem; border-top:1px solid #e2e8f0; flex-wrap:wrap; gap:1rem; background:#f8fafc; padding:1.2rem; border-radius:10px; border:1px solid #e2e8f0;">
+              <div style="font-size:0.88rem; color:#475569;">
+                <i class="fas fa-info-circle" style="color:var(--admin-gold, #d97706);"></i> Click <strong>Save Leadership Team</strong> or <strong>Save &amp; Publish</strong> to publish your updates to the live site.
+              </div>
+              <div style="display:flex; gap:0.8rem; align-items:center;">
+                <a href="index.html#administration" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.85rem; padding:0.5rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem;">
+                  <i class="fas fa-external-link-alt"></i> View on Live Site
+                </a>
+                <button type="button" class="btn-primary" id="saveLeadershipBtn" style="padding:0.55rem 1.3rem; font-size:0.9rem; display:inline-flex; align-items:center; gap:0.5rem; background:var(--admin-gold); color:var(--admin-navy); font-weight:700;">
+                  <i class="fas fa-save"></i> Save Leadership Team
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           7. RECTORY & CONTACT
+           =================================================================== -->
+      <section class="admin-panel" id="contact-panel">
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <h3>Parish Office &amp; Contact Information</h3>
+            <p>Update parish address, telephone, email, and office hours.</p>
+          </div>
+          <div class="panel-card-body">
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label>Parish Telephone</label>
+                <input type="text" id="cfg_contact_phone" placeholder="+91 4829-273176">
+              </div>
+              <div class="form-group flex-1">
+                <label>Archdiocese &amp; Forane</label>
+                <input type="text" id="cfg_contact_diocese" placeholder="Archdiocese of Ernakulam-Angamaly • Vaikom Forane">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Full Postal Address</label>
+              <textarea id="cfg_contact_address" rows="3" placeholder="St. Thomas Syro-Malabar Roman Catholic Church, Chempu P.O., Vaikom, Kottayam District, Kerala - 686 615, India"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Office Hours Schedule</label>
+              <input type="text" id="cfg_contact_hours" placeholder="Tuesday - Saturday: 09:00 AM - 12:30 PM • 04:00 PM - 06:00 PM">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           8. TYPOGRAPHY & FONT STUDIO
+           Granular font control for titles, body, navbar, buttons, and badges
+           =================================================================== -->
+      <section class="admin-panel" id="typography-panel">
+        <div class="panel-card">
+          <div class="panel-card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h3><i class="fas fa-font" style="color:var(--admin-gold);"></i> Website Typography &amp; Font Studio</h3>
+              <p>Customize fonts for every field across the website including titles, descriptions, navbar items, buttons, and badges.</p>
+            </div>
+            <div style="display:flex; gap:0.6rem;">
+              <button type="button" class="btn-secondary" id="adminResetTypographyBtn" style="font-size:0.85rem; padding:0.5rem 1rem;">
+                <i class="fas fa-undo"></i> Reset Default Fonts
+              </button>
+              <button type="button" class="btn-primary" id="adminSaveTypographyBtn" style="font-size:0.85rem; padding:0.5rem 1.2rem;">
+                <i class="fas fa-save"></i> Save Typography
+              </button>
+            </div>
+          </div>
+
+          <div class="panel-card-body">
+
+            <!-- 1-Click Curated Presets -->
+            <div style="margin-bottom:1.8rem; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.8rem;">
+                <h4 style="font-size:0.95rem; color:#0f1c3f; margin:0;"><i class="fas fa-sparkles" style="color:#d97706;"></i> 1-Click Curated Typography Presets</h4>
+                <span style="font-size:0.75rem; background:#e0f2fe; color:#0369a1; padding:0.2rem 0.6rem; border-radius:20px; font-weight:700;">Instant Pairing</span>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem;" id="adminPresetCardsContainer">
+                <button type="button" class="admin-preset-btn" data-preset="chempu-heritage" style="text-align:left; padding:0.8rem; border:1.5px solid #cbd5e1; border-radius:8px; background:#fff; cursor:pointer;">
+                  <strong style="display:block; color:#0f1c3f; font-size:0.85rem; margin-bottom:0.2rem;"><i class="fas fa-cross" style="color:#d4a34b;"></i> Chempu Heritage</strong>
+                  <span style="font-size:0.75rem; color:#64748b;">Marcellus + Plus Jakarta + Cinzel</span>
+                </button>
+                <button type="button" class="admin-preset-btn" data-preset="sacred-cathedral" style="text-align:left; padding:0.8rem; border:1.5px solid #cbd5e1; border-radius:8px; background:#fff; cursor:pointer;">
+                  <strong style="display:block; color:#0f1c3f; font-size:0.85rem; margin-bottom:0.2rem;"><i class="fas fa-church" style="color:#d4a34b;"></i> Sacred Cathedral</strong>
+                  <span style="font-size:0.75rem; color:#64748b;">Cinzel Imperial throughout</span>
+                </button>
+                <button type="button" class="admin-preset-btn" data-preset="venerable-classical" style="text-align:left; padding:0.8rem; border:1.5px solid #cbd5e1; border-radius:8px; background:#fff; cursor:pointer;">
+                  <strong style="display:block; color:#0f1c3f; font-size:0.85rem; margin-bottom:0.2rem;"><i class="fas fa-monument" style="color:#d4a34b;"></i> Venerable Classical</strong>
+                  <span style="font-size:0.75rem; color:#64748b;">Marcellus + EB Garamond + Montserrat</span>
+                </button>
+                <button type="button" class="admin-preset-btn" data-preset="historical-liturgical" style="text-align:left; padding:0.8rem; border:1.5px solid #cbd5e1; border-radius:8px; background:#fff; cursor:pointer;">
+                  <strong style="display:block; color:#0f1c3f; font-size:0.85rem; margin-bottom:0.2rem;"><i class="fas fa-book-bible" style="color:#d4a34b;"></i> Historical Liturgical</strong>
+                  <span style="font-size:0.75rem; color:#64748b;">Cormorant + Lora + Raleway</span>
+                </button>
+                <button type="button" class="admin-preset-btn" data-preset="modern-elegant" style="text-align:left; padding:0.8rem; border:1.5px solid #cbd5e1; border-radius:8px; background:#fff; cursor:pointer;">
+                  <strong style="display:block; color:#0f1c3f; font-size:0.85rem; margin-bottom:0.2rem;"><i class="fas fa-crown" style="color:#d4a34b;"></i> Modern Elegant</strong>
+                  <span style="font-size:0.75rem; color:#64748b;">Playfair Display + Plus Jakarta</span>
+                </button>
+                <button type="button" class="admin-preset-btn" data-preset="contemporary-clean" style="text-align:left; padding:0.8rem; border:1.5px solid #cbd5e1; border-radius:8px; background:#fff; cursor:pointer;">
+                  <strong style="display:block; color:#0f1c3f; font-size:0.85rem; margin-bottom:0.2rem;"><i class="fas fa-gem" style="color:#d4a34b;"></i> Contemporary Clean</strong>
+                  <span style="font-size:0.75rem; color:#64748b;">Montserrat + Inter Minimalist</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Live Preview Box -->
+            <div style="margin-bottom:1.8rem; border:2px solid #cbd5e1; border-radius:10px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+              <div style="background:#0f1c3f; color:#fff; padding:0.6rem 1rem; font-size:0.8rem; font-weight:700; display:flex; justify-content:space-between; align-items:center;">
+                <span><i class="fas fa-eye"></i> Live Typography Preview (Updates Instantly)</span>
+                <span style="color:#d4a34b;">Simulated Website Components</span>
+              </div>
+              <div id="typographyLivePreviewBox" style="padding:1.5rem; background:#ffffff;">
+                <!-- Simulated Navbar -->
+                <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:1rem; border-bottom:1px solid #e2e8f0; margin-bottom:1.2rem;">
+                  <div class="preview-nav" style="font-weight:700; font-size:1.05rem; color:#0f1c3f;">
+                    <i class="fas fa-cross" style="color:#d4a34b;"></i> St. Thomas Church Chempu
+                  </div>
+                  <div class="preview-nav" style="display:flex; gap:1.2rem; font-size:0.88rem; color:#475569;">
+                    <span style="color:#d4a34b; font-weight:600;">Home</span>
+                    <span>Heritage</span>
+                    <span>Holy Mass</span>
+                    <span>Feasts</span>
+                    <span>Contact</span>
+                  </div>
+                </div>
+
+                <!-- Simulated Headline & Lead -->
+                <div style="margin-bottom:1.2rem;">
+                  <span class="preview-accent" style="display:inline-block; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:#a27424; font-weight:700; margin-bottom:0.35rem;">
+                    Apostolic Heritage &bull; Estd. 1307 AD
+                  </span>
+                  <h2 class="preview-heading" style="font-size:1.85rem; color:#0f1c3f; line-height:1.2; margin-bottom:0.6rem;">
+                    Seven Centuries of Living Christian Faith
+                  </h2>
+                  <p class="preview-body" style="font-size:0.95rem; color:#475569; line-height:1.6; margin:0;">
+                    St. Thomas Church Chempu represents a venerable legacy of St. Thomas Christians nestled along the serene waterways of Vaikom, nurturing generations of devoted families and apostolic communion.
+                  </p>
+                </div>
+
+                <!-- Simulated Buttons & Badges -->
+                <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+                  <button type="button" class="preview-btn" style="background:#d4a34b; color:#0f1c3f; border:none; padding:0.6rem 1.4rem; border-radius:50px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+                    <i class="fas fa-clock"></i> Holy Mass Timings
+                  </button>
+                  <button type="button" class="preview-btn" style="background:#0f1c3f; color:#fff; border:none; padding:0.6rem 1.4rem; border-radius:50px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+                    <i class="fas fa-landmark"></i> Explore Heritage
+                  </button>
+                  <span class="preview-accent" style="background:#f1f4f9; color:#0f1c3f; border:1px solid #cbd5e1; padding:0.35rem 0.75rem; border-radius:6px; font-weight:700; font-size:0.82rem;">
+                    Sunday Mass: 07:00 AM &amp; 09:15 AM
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Granular Field Form Groups -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.4rem;">
+              
+              <!-- 1. Titles & Headings Font -->
+              <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.2rem;">
+                <label style="font-weight:700; color:#0f1c3f; margin-bottom:0.25rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i class="fas fa-heading" style="color:#d4a34b;"></i> 1. Headings &amp; Titles Font
+                </label>
+                <p style="font-size:0.78rem; color:#64748b; margin-bottom:0.75rem;">
+                  Applies to Hero Title, Section Headings (H2), Card Headers (H3, H4), and Council Names.
+                </p>
+                <select id="cfg_font_heading" class="font-select-field" style="width:100%; padding:0.6rem 0.8rem; border-radius:6px; border:1.5px solid #cbd5e1; font-size:0.9rem;">
+                  <optgroup label="Majestic Serifs &amp; Classical Tradition">
+                    <option value="Marcellus">Marcellus (Classical Roman Inscriptions)</option>
+                    <option value="Cinzel">Cinzel (Majestic Cathedral Roman Capitals)</option>
+                    <option value="Playfair Display">Playfair Display (High-Contrast Luxury Serif)</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond (Traditional Catholic Liturgy)</option>
+                    <option value="EB Garamond">EB Garamond (Historical Renaissance Scripture)</option>
+                    <option value="Lora">Lora (Contemporary Literary Serif)</option>
+                    <option value="Merriweather">Merriweather (Sturdy Classical Serif)</option>
+                    <option value="Cinzel Decorative">Cinzel Decorative (Ornate Ceremonial Capitals)</option>
+                  </optgroup>
+                  <optgroup label="Clean Modern Sans-Serifs">
+                    <option value="Plus Jakarta Sans">Plus Jakarta Sans (Ultra-Crisp Modern Geometric)</option>
+                    <option value="Inter">Inter (Hyper-Legible Contemporary Interface)</option>
+                    <option value="Montserrat">Montserrat (Prestigious Architectural Bold)</option>
+                    <option value="Poppins">Poppins (Friendly Geometric Sans)</option>
+                    <option value="Raleway">Raleway (Refined Sophisticated Sans)</option>
+                    <option value="Outfit">Outfit (Warm Balanced Minimalist)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <!-- 2. Descriptions & Body Text Font -->
+              <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.2rem;">
+                <label style="font-weight:700; color:#0f1c3f; margin-bottom:0.25rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i class="fas fa-paragraph" style="color:#d4a34b;"></i> 2. Descriptions &amp; Body Text Font
+                </label>
+                <p style="font-size:0.78rem; color:#64748b; margin-bottom:0.75rem;">
+                  Applies to Hero description, Section leads, History paragraphs, Institution text, and Notes.
+                </p>
+                <select id="cfg_font_body" class="font-select-field" style="width:100%; padding:0.6rem 0.8rem; border-radius:6px; border:1.5px solid #cbd5e1; font-size:0.9rem;">
+                  <optgroup label="Clean Modern Sans-Serifs (Recommended for Readability)">
+                    <option value="Plus Jakarta Sans">Plus Jakarta Sans (Ultra-Crisp Modern Geometric)</option>
+                    <option value="Inter">Inter (Hyper-Legible Contemporary Interface)</option>
+                    <option value="Montserrat">Montserrat (Architectural Balanced)</option>
+                    <option value="Poppins">Poppins (Friendly Geometric Sans)</option>
+                    <option value="Raleway">Raleway (Refined Elegant Sans)</option>
+                    <option value="Outfit">Outfit (Warm Balanced Minimalist)</option>
+                  </optgroup>
+                  <optgroup label="Classical Serifs (Literary &amp; Book Style)">
+                    <option value="Lora">Lora (Warm Contemporary Literary Serif)</option>
+                    <option value="EB Garamond">EB Garamond (Historical Renaissance Scripture)</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond (Traditional Catholic Liturgy)</option>
+                    <option value="Merriweather">Merriweather (Sturdy Classical Serif)</option>
+                    <option value="Marcellus">Marcellus (Classical Roman)</option>
+                    <option value="Playfair Display">Playfair Display (Editorial Luxury)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <!-- 3. Navbar & Brand Links Font -->
+              <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.2rem;">
+                <label style="font-weight:700; color:#0f1c3f; margin-bottom:0.25rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i class="fas fa-compass" style="color:#d4a34b;"></i> 3. Navbar &amp; Brand Links Font
+                </label>
+                <p style="font-size:0.78rem; color:#64748b; margin-bottom:0.75rem;">
+                  Applies to Main Header menu links, Church brand name, and Header notice bar text.
+                </p>
+                <select id="cfg_font_nav" class="font-select-field" style="width:100%; padding:0.6rem 0.8rem; border-radius:6px; border:1.5px solid #cbd5e1; font-size:0.9rem;">
+                  <optgroup label="Clean Modern Sans-Serifs">
+                    <option value="Plus Jakarta Sans">Plus Jakarta Sans (Ultra-Crisp Modern Geometric)</option>
+                    <option value="Montserrat">Montserrat (Architectural Bold Capital Nav)</option>
+                    <option value="Inter">Inter (Hyper-Legible Interface)</option>
+                    <option value="Poppins">Poppins (Friendly Geometric)</option>
+                    <option value="Raleway">Raleway (Refined Elegant)</option>
+                    <option value="Outfit">Outfit (Warm Minimalist)</option>
+                  </optgroup>
+                  <optgroup label="Classical Serifs &amp; Roman Capitals">
+                    <option value="Cinzel">Cinzel (Majestic Cathedral Roman Capitals)</option>
+                    <option value="Marcellus">Marcellus (Classical Roman)</option>
+                    <option value="Playfair Display">Playfair Display (High-Contrast)</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond (Liturgical)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <!-- 4. Action Buttons & Pills Font -->
+              <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.2rem;">
+                <label style="font-weight:700; color:#0f1c3f; margin-bottom:0.25rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i class="fas fa-toggle-on" style="color:#d4a34b;"></i> 4. Buttons &amp; Action Pills Font
+                </label>
+                <p style="font-size:0.78rem; color:#64748b; margin-bottom:0.75rem;">
+                  Applies to Hero pill buttons, Holy Mass buttons, Call to action buttons, and Ribbon links.
+                </p>
+                <select id="cfg_font_buttons" class="font-select-field" style="width:100%; padding:0.6rem 0.8rem; border-radius:6px; border:1.5px solid #cbd5e1; font-size:0.9rem;">
+                  <optgroup label="Clean Modern Sans-Serifs">
+                    <option value="Plus Jakarta Sans">Plus Jakarta Sans (Ultra-Crisp Modern Geometric)</option>
+                    <option value="Montserrat">Montserrat (Prestigious Architectural Bold)</option>
+                    <option value="Poppins">Poppins (Friendly Geometric)</option>
+                    <option value="Inter">Inter (Contemporary Clean)</option>
+                    <option value="Raleway">Raleway (Refined Sophisticated)</option>
+                  </optgroup>
+                  <optgroup label="Classical Serifs">
+                    <option value="Cinzel">Cinzel (Majestic Cathedral Roman Capitals)</option>
+                    <option value="Marcellus">Marcellus (Classical Roman)</option>
+                    <option value="Playfair Display">Playfair Display (Luxury Serif)</option>
+                    <option value="Lora">Lora (Contemporary Literary)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <!-- 5. Badges, Eyebrows & Liturgical Timings Font -->
+              <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.2rem;">
+                <label style="font-weight:700; color:#0f1c3f; margin-bottom:0.25rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i class="fas fa-clock" style="color:#d4a34b;"></i> 5. Badges, Eyebrows &amp; Timings Font
+                </label>
+                <p style="font-size:0.78rem; color:#64748b; margin-bottom:0.75rem;">
+                  Applies to Section Eyebrows, Holy Mass timing boxes, Feast dates, Quick stats, and Pious associations.
+                </p>
+                <select id="cfg_font_accent" class="font-select-field" style="width:100%; padding:0.6rem 0.8rem; border-radius:6px; border:1.5px solid #cbd5e1; font-size:0.9rem;">
+                  <optgroup label="Classical Serifs &amp; Roman Dignity">
+                    <option value="Cinzel">Cinzel (Majestic Roman Capitals)</option>
+                    <option value="Marcellus">Marcellus (Classical Inscriptions)</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond (Liturgical Dignity)</option>
+                    <option value="EB Garamond">EB Garamond (Historical Scripture)</option>
+                    <option value="Playfair Display">Playfair Display (High-Contrast)</option>
+                  </optgroup>
+                  <optgroup label="Clean Modern Sans-Serifs">
+                    <option value="Plus Jakarta Sans">Plus Jakarta Sans (Modern Geometric)</option>
+                    <option value="Montserrat">Montserrat (Bold Architectural)</option>
+                    <option value="Inter">Inter (Precision Digital)</option>
+                    <option value="Poppins">Poppins (Friendly Clean)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <!-- 6. Base Font Size Scale -->
+              <div class="form-group" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.2rem;">
+                <label style="font-weight:700; color:#0f1c3f; margin-bottom:0.25rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i class="fas fa-text-height" style="color:#d4a34b;"></i> 6. Overall Font Size Scale
+                </label>
+                <p style="font-size:0.78rem; color:#64748b; margin-bottom:0.75rem;">
+                  Adjust the base scaling of text across the entire website for optimal comfort and screen viewing.
+                </p>
+                <select id="cfg_font_base_size" class="font-select-field" style="width:100%; padding:0.6rem 0.8rem; border-radius:6px; border:1.5px solid #cbd5e1; font-size:0.9rem;">
+                  <option value="95%">Compact (95% &bull; Smaller tighter layout)</option>
+                  <option value="100%" selected>Standard (100% &bull; Default 16px base)</option>
+                  <option value="105%">Comfort (105% &bull; Enhanced readability)</option>
+                  <option value="110%">Large (110% &bull; Prominent high-visibility)</option>
+                  <option value="115%">Grand (115% &bull; Majestic cathedral scaling)</option>
+                </select>
+              </div>
+
+            </div>
+
+            <!-- Bottom Save / Action Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2rem; padding-top:1.2rem; border-top:1px solid #e2e8f0; flex-wrap:wrap; gap:1rem;">
+              <div style="font-size:0.88rem; color:#475569;">
+                <i class="fas fa-check-circle" style="color:#10b981;"></i> <strong>Live Typography Sync:</strong> Selected fonts are applied instantly in the preview box and saved directly to the public website.
+              </div>
+              <div style="display:flex; gap:0.8rem; align-items:center;">
+                <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.85rem; padding:0.55rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem;">
+                  <i class="fas fa-external-link-alt"></i> View on Live Site
+                </a>
+                <button type="button" class="btn-primary" id="saveTypographyBottomBtn" style="padding:0.6rem 1.4rem; font-size:0.9rem; display:inline-flex; align-items:center; gap:0.5rem; background:var(--admin-gold); color:var(--admin-navy); font-weight:700;">
+                  <i class="fas fa-save"></i> Save &amp; Publish Fonts
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="assets/themes.js?v=7"></script>
+  <script src="assets/typography.js?v=8"></script>
+  <script src="assets/admin.js?v=7"></script>
+</body>
+</html>

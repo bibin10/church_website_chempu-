@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1c3f"/>
+      <stop offset="100%" stop-color="#182e66"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d77f"/>
+      <stop offset="50%" stop-color="#d4a34b"/>
+      <stop offset="100%" stop-color="#996d1e"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="96" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="4"/>
+  <!-- Halo / Glow Ring -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(212,163,75,0.2)" stroke-width="1.5"/>
+  <!-- Head Silhouette -->
+  <circle cx="100" cy="72" r="30" fill="#e6dbca"/>
+  <!-- Hair / Tonsure / Silhouette accent -->
+  <path d="M70 70 Q100 42 130 70 Q126 50 100 46 Q74 50 70 70 Z" fill="#2d2d2d"/>
+  <!-- Cassock / Body -->
+  <path d="M42 186 C45 130 65 115 88 112 L112 112 C135 115 155 130 158 186 Z" fill="#151b29"/>
+  <!-- Clerical Roman Collar -->
+  <path d="M88 112 L112 112 L110 126 L90 126 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.5"/>
+  <!-- Cassock Buttons Line -->
+  <line x1="100" y1="128" x2="100" y2="186" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  <circle cx="100" cy="138" r="2" fill="#d4a34b"/>
+  <circle cx="100" cy="150" r="2" fill="#d4a34b"/>
+  <circle cx="100" cy="162" r="2" fill="#d4a34b"/>
+  <circle cx="100" cy="174" r="2" fill="#d4a34b"/>
+  <!-- Priest Cross Pendant -->
+  <path d="M98 132 H102 V142 H98 Z M95 135 H105 V138 H95 Z" fill="url(#goldGrad)"/>
+</svg>

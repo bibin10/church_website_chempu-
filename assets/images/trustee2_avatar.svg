@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bgGradT2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141f3d"/>
+      <stop offset="100%" stop-color="#1c336b"/>
+    </linearGradient>
+    <linearGradient id="goldGradT2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d77f"/>
+      <stop offset="50%" stop-color="#d4a34b"/>
+      <stop offset="100%" stop-color="#996d1e"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="url(#bgGradT2)" stroke="url(#goldGradT2)" stroke-width="4"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(212,163,75,0.2)" stroke-width="1.5"/>
+  <circle cx="100" cy="72" r="30" fill="#e8d5be"/>
+  <path d="M72 70 Q100 46 128 70 Q124 52 100 50 Q76 52 72 70 Z" fill="#332c27"/>
+  <!-- Traditional Kurta / Formal Attire -->
+  <path d="M44 186 C47 132 68 116 100 116 C132 116 153 132 156 186 Z" fill="#ffffff"/>
+  <!-- Mandarin Collar -->
+  <path d="M85 116 L115 116 L112 124 L88 124 Z" fill="#e2e8f0"/>
+  <!-- Traditional Shawl / Ponnada Trim -->
+  <path d="M52 186 L74 122 L86 122 L72 186 Z" fill="#751a2b"/>
+  <line x1="73" y1="122" x2="69" y2="186" stroke="url(#goldGradT2)" stroke-width="1.5"/>
+  <circle cx="100" cy="136" r="2" fill="#d4a34b"/>
+  <circle cx="100" cy="150" r="2" fill="#d4a34b"/>
+  <circle cx="100" cy="164" r="2" fill="#d4a34b"/>
+</svg>
