@@ -737,4 +737,213 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // =========================================================================
+  // 7. Interactive 3D Moving Dots Engine for Featured Feast Card
+  // =========================================================================
+  function initFeastCard3DDots() {
+    const canvas = document.getElementById('feast3dDotsCanvas');
+    const card = document.querySelector('.featured-festival-card');
+    if (!canvas || !card) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = 0;
+    let height = 0;
+    let centerX = 0;
+    let centerY = 0;
+    let animId = null;
+    let isRunning = false;
+
+    const numParticles = window.innerWidth < 768 ? 45 : 75;
+    const fov = 340;
+    const maxConnectDist = 95;
+    const particles = [];
+
+    let angleX = 0;
+    let angleY = 0;
+    let targetAngleX = 0;
+    let targetAngleY = 0;
+
+    function resize() {
+      const rect = card.getBoundingClientRect();
+      width = canvas.width = rect.width;
+      height = canvas.height = rect.height;
+      centerX = width / 2;
+      centerY = height / 2;
+    }
+
+    function createParticles() {
+      particles.length = 0;
+      const spreadX = width * 0.95;
+      const spreadY = height * 0.95;
+      const spreadZ = 450;
+
+      for (let i = 0; i < numParticles; i++) {
+        particles.push({
+          x: (Math.random() - 0.5) * spreadX,
+          y: (Math.random() - 0.5) * spreadY,
+          z: (Math.random() - 0.5) * spreadZ,
+          baseRadius: Math.random() * 2 + 1.2,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          vz: (Math.random() - 0.5) * 0.35,
+          pulse: Math.random() * Math.PI * 2,
+          pulseSpeed: Math.random() * 0.03 + 0.015,
+          isGold: Math.random() > 0.25
+        });
+      }
+    }
+
+    function getThemeColors() {
+      const styles = getComputedStyle(document.documentElement);
+      const gold = styles.getPropertyValue('--gold-primary').trim() || '#d4a34b';
+      const glow = styles.getPropertyValue('--gold-glow').trim() || '#eec578';
+      return { gold, glow };
+    }
+
+    function render() {
+      if (!isRunning) return;
+      ctx.clearRect(0, 0, width, height);
+
+      // Smooth damping interpolation + gentle continuous 3D rotation
+      angleX += (targetAngleX - angleX) * 0.05 + 0.0007;
+      angleY += (targetAngleY - angleY) * 0.05 + 0.0011;
+
+      const cosY = Math.cos(angleY);
+      const sinY = Math.sin(angleY);
+      const cosX = Math.cos(angleX);
+      const sinX = Math.sin(angleX);
+
+      const colors = getThemeColors();
+      const projected = [];
+
+      const limitX = width * 0.48;
+      const limitY = height * 0.48;
+      const limitZ = 220;
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.z += p.vz;
+        p.pulse += p.pulseSpeed;
+
+        if (p.x < -limitX || p.x > limitX) p.vx *= -1;
+        if (p.y < -limitY || p.y > limitY) p.vy *= -1;
+        if (p.z < -limitZ || p.z > limitZ) p.vz *= -1;
+
+        // 3D rotation matrix
+        const x1 = p.x * cosY + p.z * sinY;
+        const z1 = -p.x * sinY + p.z * cosY;
+        const y2 = p.y * cosX - z1 * sinX;
+        const z2 = p.y * sinX + z1 * cosX;
+
+        const depth = fov + z2;
+        if (depth <= 10) continue;
+
+        const scale = fov / depth;
+        const projX = centerX + x1 * scale;
+        const projY = centerY + y2 * scale;
+
+        const pulseFactor = 1 + Math.sin(p.pulse) * 0.25;
+        const radius = Math.max(0.6, p.baseRadius * scale * pulseFactor);
+        const alpha = Math.min(0.9, Math.max(0.15, (scale - 0.3) * 0.85));
+
+        projected.push({ x: projX, y: projY, z: z2, scale, radius, alpha, isGold: p.isGold });
+      }
+
+      // 3D Proximity connecting links
+      for (let i = 0; i < projected.length; i++) {
+        for (let j = i + 1; j < projected.length; j++) {
+          const p1 = projected[i];
+          const p2 = projected[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxConnectDist) {
+            const lineAlpha = (1 - dist / maxConnectDist) * Math.min(p1.alpha, p2.alpha) * 0.45;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(238, 197, 120, ${lineAlpha})`;
+            ctx.lineWidth = Math.max(0.4, 1.2 * ((p1.scale + p2.scale) / 2));
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw 3D glowing particles
+      for (let i = 0; i < projected.length; i++) {
+        const p = projected[i];
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+        if (p.isGold) {
+          ctx.fillStyle = colors.glow;
+          ctx.shadowColor = colors.gold;
+          ctx.shadowBlur = p.radius * 3.5;
+        } else {
+          ctx.fillStyle = '#ffffff';
+          ctx.shadowColor = 'rgba(255, 255, 255, 0.7)';
+          ctx.shadowBlur = p.radius * 2;
+        }
+
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      animId = requestAnimationFrame(render);
+    }
+
+    function start() {
+      if (!isRunning) {
+        isRunning = true;
+        animId = requestAnimationFrame(render);
+      }
+    }
+
+    function stop() {
+      isRunning = false;
+      if (animId) cancelAnimationFrame(animId);
+      animId = null;
+    }
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      targetAngleY = ((mouseX - centerX) / centerX) * 0.45;
+      targetAngleX = -((mouseY - centerY) / centerY) * 0.35;
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => {
+      targetAngleX = 0;
+      targetAngleY = 0;
+    });
+
+    window.addEventListener('resize', () => {
+      resize();
+      createParticles();
+    }, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) start();
+          else stop();
+        });
+      }, { threshold: 0.1 });
+      observer.observe(card);
+    }
+
+    resize();
+    createParticles();
+    start();
+  }
+
+  initFeastCard3DDots();
 });

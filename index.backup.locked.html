@@ -347,21 +347,24 @@
       <div class="festivals-layout">
         <!-- Main Featured Feast -->
         <div class="featured-festival-card">
-          <span class="fest-badge">Patronal Solemnity</span>
-          <h3 id="live_feast_main_name">Feast of St. Thomas the Apostle</h3>
-          <div class="fest-date-tag" id="live_feast_main_date">
-            <i class="far fa-calendar-alt"></i> July 3 (Dukhrana) &amp; Traditional Parish Thirunal
+          <canvas id="feast3dDotsCanvas" class="featured-feast-3d-canvas"></canvas>
+          <div class="featured-festival-content">
+            <span class="fest-badge">Patronal Solemnity</span>
+            <h3 id="live_feast_main_name">Feast of St. Thomas the Apostle</h3>
+            <div class="fest-date-tag" id="live_feast_main_date">
+              <i class="far fa-calendar-alt"></i> July 3 (Dukhrana) &amp; Traditional Parish Thirunal
+            </div>
+            <p id="live_feast_main_desc">
+              The annual parish festival is marked with high spiritual solemnity. The traditional "Kodiyettu" (flag hoisting), Raza Qurbana, grand candle-lit processions carrying holy relics and traditional silk parasols (Muthukkuda), and fellowship meals unite the entire village of Chempu.
+            </p>
+            <div class="fest-features" id="live_fest_features">
+              <div class="fest-feat-item"><i class="fas fa-flag"></i> Solemn Kodiyettu Ceremony</div>
+              <div class="fest-feat-item"><i class="fas fa-fire"></i> Grand Evening Raza &amp; Procession</div>
+              <div class="fest-feat-item"><i class="fas fa-music"></i> Melodious Liturgical Choir</div>
+              <div class="fest-feat-item"><i class="fas fa-utensils"></i> Parish Nercha &amp; Snehabhojanam</div>
+            </div>
+            <a href="#contact" class="btn-primary" style="background:#fff; color:var(--primary-deep); font-weight:700;"><i class="fas fa-info-circle"></i> Parish Office Inquiries</a>
           </div>
-          <p id="live_feast_main_desc">
-            The annual parish festival is marked with high spiritual solemnity. The traditional "Kodiyettu" (flag hoisting), Raza Qurbana, grand candle-lit processions carrying holy relics and traditional silk parasols (Muthukkuda), and fellowship meals unite the entire village of Chempu.
-          </p>
-          <div class="fest-features" id="live_fest_features">
-            <div class="fest-feat-item"><i class="fas fa-flag"></i> Solemn Kodiyettu Ceremony</div>
-            <div class="fest-feat-item"><i class="fas fa-fire"></i> Grand Evening Raza &amp; Procession</div>
-            <div class="fest-feat-item"><i class="fas fa-music"></i> Melodious Liturgical Choir</div>
-            <div class="fest-feat-item"><i class="fas fa-utensils"></i> Parish Nercha &amp; Snehabhojanam</div>
-          </div>
-          <a href="#contact" class="btn-primary" style="background:#fff; color:var(--primary-deep); font-weight:700;"><i class="fas fa-info-circle"></i> Parish Office Inquiries</a>
         </div>
 
         <!-- Other Celebrations (Rendered dynamically from Admin CMS) -->
@@ -581,15 +584,90 @@
         </div>
       </div>
 
-      <!-- Pious Associations -->
-      <h3 style="text-align: center; margin-top: 4rem; font-size: 1.5rem; color: var(--primary-deep);">Pious Associations &amp; Wings</h3>
-      <div class="pious-associations-grid">
-        <div class="assoc-card"><i class="fas fa-heart"></i> St. Vincent de Paul Society (SVP)</div>
-        <div class="assoc-card"><i class="fas fa-female"></i> Mathruvedi (Mothers' Forum)</div>
-        <div class="assoc-card"><i class="fas fa-male"></i> Pithruvedi (Fathers' Forum)</div>
-        <div class="assoc-card"><i class="fas fa-child"></i> SMYM (Syro-Malabar Youth Movement)</div>
-        <div class="assoc-card"><i class="fas fa-music"></i> St. Thomas Parish Choir</div>
-        <div class="assoc-card"><i class="fas fa-shield-alt"></i> Legion of Mary</div>
+      <!-- Pious Associations & Wings (Enhanced Layout) -->
+      <div style="margin-top: 4.5rem;">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow"><i class="fas fa-hands-helping"></i> Parish Fellowship &amp; Lay Ministries</span>
+          <h3 class="section-title" style="font-size: 2rem;">Pious Associations &amp; Pastoral Wings</h3>
+          <div class="title-ornament">
+            <span></span><i class="fas fa-cross"></i><span></span>
+          </div>
+          <p class="section-lead">Dedicated lay ministries fostering fellowship, spiritual enrichment, charity, and liturgical participation across our parish community.</p>
+        </div>
+
+        <div class="pious-wings-showcase-grid">
+          <!-- 1. SVP -->
+          <div class="pious-wing-card">
+            <div class="pious-wing-top">
+              <div class="pious-wing-icon"><i class="fas fa-hand-holding-heart"></i></div>
+              <span class="pious-wing-tag">Charity &amp; Relief</span>
+            </div>
+            <h4>St. Vincent de Paul Society</h4>
+            <div class="pious-wing-malayalam">വിൻസെന്റ് ഡി പോൾ സൊസൈറ്റി (SVP)</div>
+            <p>Providing compassionate monthly ration distribution, medical aid, education support, and emergency relief to underprivileged parish families.</p>
+            <div class="pious-wing-footer"><i class="fas fa-check-circle"></i> Weekly Family Care &amp; Mercy Ministry</div>
+          </div>
+
+          <!-- 2. Mathruvedi -->
+          <div class="pious-wing-card">
+            <div class="pious-wing-top">
+              <div class="pious-wing-icon"><i class="fas fa-dove"></i></div>
+              <span class="pious-wing-tag">Family Ministry</span>
+            </div>
+            <h4>Mathruvedi</h4>
+            <div class="pious-wing-malayalam">മാതൃവേദി (Mothers' Guild)</div>
+            <p>Fostering Christian motherhood, domestic prayers, altar floral arrangements, family values, and pastoral solidarity among parish mothers.</p>
+            <div class="pious-wing-footer"><i class="fas fa-check-circle"></i> Domestic Church &amp; Marian Fellowship</div>
+          </div>
+
+          <!-- 3. Pithruvedi -->
+          <div class="pious-wing-card">
+            <div class="pious-wing-top">
+              <div class="pious-wing-icon"><i class="fas fa-shield-alt"></i></div>
+              <span class="pious-wing-tag">Parish Guardians</span>
+            </div>
+            <h4>Pithruvedi</h4>
+            <div class="pious-wing-malayalam">പിതൃവേദി (Fathers' Guild)</div>
+            <p>Catholic fathers committed to spiritual leadership, temporal parish security, feast logistics, and youth mentoring.</p>
+            <div class="pious-wing-footer"><i class="fas fa-check-circle"></i> Temporal Leadership &amp; Feast Support</div>
+          </div>
+
+          <!-- 4. SMYM -->
+          <div class="pious-wing-card">
+            <div class="pious-wing-top">
+              <div class="pious-wing-icon"><i class="fas fa-fire"></i></div>
+              <span class="pious-wing-tag">Youth Wing</span>
+            </div>
+            <h4>SMYM Youth Movement</h4>
+            <div class="pious-wing-malayalam">എസ്.എം.വൈ.എം. യൂത്ത് മൂവ്മെന്റ്</div>
+            <p>Energizing parish youth through gospel values, blood donation drives, sports, creative arts, and leadership conventions.</p>
+            <div class="pious-wing-footer"><i class="fas fa-check-circle"></i> Youth Leadership &amp; Community Service</div>
+          </div>
+
+          <!-- 5. Parish Choir -->
+          <div class="pious-wing-card">
+            <div class="pious-wing-top">
+              <div class="pious-wing-icon"><i class="fas fa-music"></i></div>
+              <span class="pious-wing-tag">Sacred Choral</span>
+            </div>
+            <h4>St. Thomas Liturgical Choir</h4>
+            <div class="pious-wing-malayalam">ദേവാലയ ഗായകസംഘം</div>
+            <p>Leading celestial East-Syriac and Malayalam liturgical hymns, sacred psalms, and solemn choral devotions during Holy Qurbana.</p>
+            <div class="pious-wing-footer"><i class="fas fa-check-circle"></i> Sacred Music &amp; Feast Choral Service</div>
+          </div>
+
+          <!-- 6. Legion of Mary -->
+          <div class="pious-wing-card">
+            <div class="pious-wing-top">
+              <div class="pious-wing-icon"><i class="fas fa-crown"></i></div>
+              <span class="pious-wing-tag">Marian Devotion</span>
+            </div>
+            <h4>Legion of Mary</h4>
+            <div class="pious-wing-malayalam">ലെജിയൻ ഓഫ് മേരി</div>
+            <p>Devoted Marian legionaries engaged in weekly rosary chains, hospital visitations, and comforting the homebound elderly.</p>
+            <div class="pious-wing-footer"><i class="fas fa-check-circle"></i> Weekly Rosary &amp; Spiritual Solace</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -669,56 +747,19 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer (Reduced Minimalist Layout) -->
   <footer class="main-footer">
-    <div class="container footer-grid">
-      <div class="footer-col footer-about">
-        <h4>St. Thomas Church Chempu</h4>
-        <p>
-          An ancient parish established in 1307 AD under the Syro-Malabar Roman Catholic Archdiocese of Ernakulam-Angamaly, and the revered native home parish of Mar Augustine Kandathil, the first Metropolitan Archbishop of the Syro-Malabar Church.
-        </p>
-        <p style="font-size: 0.82rem; color: var(--gold-glow);">
-          <i class="fas fa-cross"></i> "My Lord and my God" (St. John 20:28)
-        </p>
+    <div class="container" style="text-align: center; max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 2.2rem;">
+      <div style="margin-bottom: 1.1rem; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark, #9a6d1a)); color: #0f1c3f; font-size: 1.35rem; box-shadow: 0 4px 15px rgba(212, 163, 75, 0.25);">
+        <i class="fas fa-cross"></i>
       </div>
-
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">Heritage &amp; History</a></li>
-          <li><a href="#archbishop">Mar Augustine Kandathil</a></li>
-          <li><a href="#mass-timings">Holy Mass Timings</a></li>
-          <li><a href="#feasts">Feasts &amp; Thirunal</a></li>
-          <li><a href="#gallery">Parish Gallery</a></li>
-          <li><a href="community.html">Community Establishments</a></li>
-          <li><a href="#contact">Parish Office &amp; Route</a></li>
-          <li><a href="admin.html" style="color:var(--gold-glow); font-weight:700;"><i class="fas fa-lock"></i> Admin Portal</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Liturgical Timings</h4>
-        <ul class="footer-links" style="font-size: 0.88rem;">
-          <li>Sunday: 7:00 AM &amp; 9:15 AM</li>
-          <li>Thursday: 5:30 PM (Evening)</li>
-          <li>Rest of Days: 6:15 AM (Morning)</li>
-          <li>Confession: Sat 5:00 PM</li>
-          <li>Sunday School: Sun 10:30 AM - 12:15 PM</li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Contact &amp; Location</h4>
-        <p style="font-size: 0.9rem; margin-bottom: 0.6rem;">
-          St. Thomas Syro-Malabar Roman Catholic Church<br>
-          Chempu P.O., Vaikom, Kottayam<br>
-          Kerala - 686 615, India
-        </p>
-        <p style="font-size: 0.9rem; color: var(--gold-glow);">
-          <i class="fas fa-phone-alt"></i> +91 4829-273176
-        </p>
-      </div>
+      <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: #ffffff; margin-bottom: 0.75rem; letter-spacing: 0.04em;">ST. THOMAS RC CHURCH CHEMPU</h4>
+      <p style="color: rgba(255, 255, 255, 0.75); line-height: 1.7; font-size: 0.94rem; margin-bottom: 1.1rem;">
+        An ancient parish established in 1307 AD under the Syro-Malabar Roman Catholic Archdiocese of Ernakulam-Angamaly, and the revered native home parish of Mar Augustine Kandathil, the first Metropolitan Archbishop of the Syro-Malabar Church.
+      </p>
+      <p style="font-size: 0.88rem; color: var(--gold-glow); font-weight: 600; margin: 0;">
+        <i class="fas fa-cross"></i> "My Lord and my God" &bull; Mar Thoma Sleeva
+      </p>
     </div>
 
     <div class="footer-bottom">
