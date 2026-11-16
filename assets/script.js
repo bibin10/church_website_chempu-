@@ -965,4 +965,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initAll3DDots();
+
+  // =========================================================================
+  // 8. Distinct Scroll-Triggered Animations for Each Section
+  // =========================================================================
+  function initSectionScrollAnimations() {
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    if (!revealElements.length) return;
+
+    // Check if IntersectionObserver is supported
+    if (!('IntersectionObserver' in window)) {
+      revealElements.forEach(el => el.classList.add('is-revealed'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.getAttribute('data-reveal-delay') || 0;
+          if (delay) {
+            setTimeout(() => {
+              el.classList.add('is-revealed');
+            }, parseInt(delay, 10));
+          } else {
+            el.classList.add('is-revealed');
+          }
+          obs.unobserve(el);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+  }
+
+  initSectionScrollAnimations();
 });

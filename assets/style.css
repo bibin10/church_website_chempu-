@@ -3267,3 +3267,106 @@ img {
     padding: 2rem 1.6rem;
   }
 }
+
+/* ==========================================================================
+   Section Scroll Animations Engine (Distinct Effect per Section)
+   ========================================================================== */
+
+/* Base Scroll Reveal Classes */
+.scroll-reveal {
+  opacity: 0;
+  transition-property: opacity, transform, filter;
+  transition-duration: 0.85s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Section Title & Ornament Entrance */
+.section-title-wrap.scroll-reveal {
+  transform: translateY(28px);
+}
+
+/* 1. Next Mass Ribbon: Floating Elevation Drop */
+.anim-ribbon-drop {
+  transform: translateY(-24px) scale(0.97);
+  transition-duration: 0.75s;
+}
+
+/* 2. History & Heritage: Split Parallax Slip-in */
+.anim-history-text {
+  transform: translateX(-40px);
+  transition-duration: 0.9s;
+}
+
+.anim-history-image {
+  transform: translateX(40px) scale(0.96);
+  transition-duration: 0.95s;
+}
+
+/* 3. Archbishop Kandathil: Majestic Zoom & Warm Aura Rise */
+.anim-archbishop-card {
+  transform: translateY(35px) scale(0.95);
+  transition-duration: 1s;
+}
+
+.anim-archbishop-portrait {
+  transform: scale(0.9) rotate(-1.5deg);
+  transition-duration: 1.1s;
+}
+
+/* 4. Holy Mass Schedule: Staggered Cascade Rise */
+.anim-mass-cascade {
+  transform: translateY(45px);
+  transition-duration: 0.8s;
+}
+
+/* 5. Feasts & Thirunal: Perspective 3D Flip & Slide */
+.anim-feast-lead {
+  transform: perspective(1000px) rotateY(-8deg) translateX(-35px);
+  transition-duration: 0.95s;
+}
+
+.anim-feast-item {
+  transform: perspective(1000px) rotateX(12deg) translateY(25px);
+  transition-duration: 0.75s;
+}
+
+/* 6. Gallery: Soft Zoom Fade & Vignette */
+.anim-gallery-item {
+  transform: scale(0.92) translateY(20px);
+  transition-duration: 0.75s;
+}
+
+/* 7. Parish Council: Staggered Portrait Pop & Gentle Float */
+.anim-admin-card {
+  transform: translateY(35px) scale(0.94);
+  transition-duration: 0.8s;
+}
+
+/* 8. Pious Associations: Staggered Horizontal Squeeze */
+.anim-wing-card {
+  transform: translateY(28px) scale(0.96);
+  transition-duration: 0.75s;
+}
+
+/* 9. Contact & Rectory: Smooth Glide & Map Expand */
+.anim-contact-box {
+  transform: translateY(30px) scale(0.98);
+  transition-duration: 0.9s;
+}
+
+/* Fallback for users preferring reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}

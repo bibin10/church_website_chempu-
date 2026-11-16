@@ -104,7 +104,7 @@
 
   <!-- Next Mass Ribbon Floating Banner -->
   <div class="container">
-    <div class="next-mass-ribbon">
+    <div class="next-mass-ribbon scroll-reveal anim-ribbon-drop">
       <div class="ribbon-grid">
         <div class="ribbon-status" data-3d-dots="true">
           <canvas class="interactive-3d-dots-canvas"></canvas>
@@ -140,7 +140,7 @@
   <!-- History & Heritage Section -->
   <section class="section-wrapper" id="about">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap scroll-reveal">
         <span class="section-eyebrow" id="live_history_eyebrow">Apostolic Heritage</span>
         <h2 class="section-title" id="live_history_title">Seven Centuries of Divine Grace</h2>
         <div class="title-ornament">
@@ -152,7 +152,7 @@
       </div>
 
       <div class="history-layout">
-        <div class="history-image-composition">
+        <div class="history-image-composition scroll-reveal anim-history-image">
           <img src="assets/images/st_thomas_chempu_church_vertical.jpg" alt="Venerable white architectural pediment of St Thomas Church Chempu" class="history-main-img" id="live_history_img" loading="lazy" decoding="async">
           <div class="history-overlay-card">
             <h4>1307 AD</h4>
@@ -160,7 +160,7 @@
           </div>
         </div>
 
-        <div class="history-text">
+        <div class="history-text scroll-reveal anim-history-text">
           <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary-deep);">Centuries of Faith in Central Travancore</h3>
           <p id="live_history_p1">
             Established in early fourteenth century (1307 AD), St. Thomas Church Chempu is one of the revered historical churches under the Syro-Malabar Major Archiepiscopal Archdiocese of Ernakulam-Angamaly.
@@ -200,10 +200,10 @@
   <!-- Mar Augustine Kandathil Section (Square Balanced 50/50 Showcase) -->
   <section class="section-wrapper kandathil-section" id="archbishop">
     <div class="container">
-      <div class="kandathil-square-showcase">
+      <div class="kandathil-square-showcase scroll-reveal anim-archbishop-card">
         
         <!-- Left Side: Photo Area with Light Background & 1/3rd Scaled Image -->
-        <div class="kandathil-photo-side">
+        <div class="kandathil-photo-side scroll-reveal anim-archbishop-portrait" data-reveal-delay="150">
           <div class="kandathil-photo-wrap">
             <div class="kandathil-photo-frame">
               <img src="assets/images/mar_augustine_kandathil_portrait.jpg" alt="Mar Augustine Kandathil (1874-1956) - First Indigenous Metropolitan Archbishop of India" class="kandathil-main-photo" id="live_kandathil_photo" loading="lazy" decoding="async">
@@ -249,7 +249,7 @@
   <!-- Holy Mass & Liturgy Schedule Section -->
   <section class="section-wrapper bg-alt" id="mass-timings">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap scroll-reveal">
         <span class="section-eyebrow">Liturgical Life</span>
         <h2 class="section-title">Holy Mass &amp; Prayer Schedule</h2>
         <div class="title-ornament">
@@ -260,7 +260,7 @@
 
       <div class="mass-cards-grid">
         <!-- Sunday Liturgy -->
-        <div class="mass-card highlight">
+        <div class="mass-card highlight scroll-reveal anim-mass-cascade" data-reveal-delay="0">
           <div class="mass-icon"><i class="fas fa-church"></i></div>
           <h3>Sunday Masses</h3>
           <ul class="mass-schedule-list">
@@ -281,7 +281,7 @@
         </div>
 
         <!-- Weekday Liturgy -->
-        <div class="mass-card">
+        <div class="mass-card scroll-reveal anim-mass-cascade" data-reveal-delay="150">
           <div class="mass-icon"><i class="fas fa-sun"></i></div>
           <h3>Weekday Schedule</h3>
           <ul class="mass-schedule-list">
@@ -306,7 +306,7 @@
         </div>
 
         <!-- Sacraments & Devotions -->
-        <div class="mass-card">
+        <div class="mass-card scroll-reveal anim-mass-cascade" data-reveal-delay="300">
           <div class="mass-icon"><i class="fas fa-hands-praying"></i></div>
           <h3>Sacraments &amp; Novenas</h3>
           <ul class="mass-schedule-list">
@@ -336,7 +336,7 @@
   <!-- Feasts & Festivals Section -->
   <section class="section-wrapper" id="feasts">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap scroll-reveal">
         <span class="section-eyebrow">Parish Celebrations</span>
         <h2 class="section-title">Annual Feasts &amp; Thirunal</h2>
         <div class="title-ornament">
@@ -347,7 +347,7 @@
 
       <div class="festivals-layout">
         <!-- Main Featured Feast -->
-        <div class="featured-festival-card">
+        <div class="featured-festival-card scroll-reveal anim-feast-lead">
           <canvas id="feast3dDotsCanvas" class="featured-feast-3d-canvas"></canvas>
           <div class="featured-festival-content">
             <span class="fest-badge">Patronal Solemnity</span>
@@ -369,7 +369,7 @@
         </div>
 
         <!-- Other Celebrations (Rendered dynamically from Admin CMS) -->
-        <div class="other-feasts-list" id="other-feasts-container">
+        <div class="other-feasts-list scroll-reveal anim-feast-item" id="other-feasts-container" data-reveal-delay="150">
           <div class="feast-mini-card">
             <div class="feast-date-box">
               <span class="date-box-month">Jan</span>
@@ -421,7 +421,7 @@
   <!-- Photo Gallery Section with Real & Atmospheric Imagery -->
   <section class="section-wrapper bg-alt" id="gallery">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap scroll-reveal">
         <span class="section-eyebrow">Visual Tour</span>
         <h2 class="section-title">Church &amp; Community Gallery</h2>
         <div class="title-ornament">
@@ -431,7 +431,7 @@
       </div>
 
       <!-- Filter Tabs -->
-      <div class="gallery-controls">
+      <div class="gallery-controls scroll-reveal" data-reveal-delay="100">
         <button class="gallery-btn active" data-filter="all">All Photos</button>
         <button class="gallery-btn" data-filter="facade">Church Facade</button>
         <button class="gallery-btn" data-filter="altar">Sacred Altar</button>
@@ -440,7 +440,7 @@
 
       <div class="gallery-grid" id="galleryGrid">
         <!-- 1. Real Church Facade Wide -->
-        <div class="gallery-item" data-category="facade" data-title="St. Thomas Church Chempu - Main Facade & Courtyard">
+        <div class="gallery-item scroll-reveal anim-gallery-item" data-category="facade" data-title="St. Thomas Church Chempu - Main Facade & Courtyard" data-reveal-delay="0">
           <img src="assets/images/st_thomas_chempu_church_facade.jpg" alt="St Thomas Catholic Church Chempu Kerala Main Facade" loading="lazy" decoding="async">
           <div class="gallery-item-overlay">
             <h4>Main Facade &amp; Courtyard</h4>
@@ -449,7 +449,7 @@
         </div>
 
         <!-- 2. Real Church Vertical Architecture & Pediment -->
-        <div class="gallery-item" data-category="facade" data-title="Ornate Architectural Pediment & Belfry Tower">
+        <div class="gallery-item scroll-reveal anim-gallery-item" data-category="facade" data-title="Ornate Architectural Pediment & Belfry Tower" data-reveal-delay="100">
           <img src="assets/images/st_thomas_chempu_church_vertical.jpg" alt="Architectural Pediment and Tower of St Thomas Church Chempu" loading="lazy" decoding="async">
           <div class="gallery-item-overlay">
             <h4>Pediment &amp; Sacred Cross</h4>
@@ -458,7 +458,7 @@
         </div>
 
         <!-- 3. Church Altar Madbaha -->
-        <div class="gallery-item" data-category="altar" data-title="Gilded Traditional Altar (Madbaha) & Sanctuary">
+        <div class="gallery-item scroll-reveal anim-gallery-item" data-category="altar" data-title="Gilded Traditional Altar (Madbaha) & Sanctuary" data-reveal-delay="200">
           <img src="assets/images/church_altar.jpg" alt="Sacred Altar of St. Thomas Church" loading="lazy" decoding="async">
           <div class="gallery-item-overlay">
             <h4>Sanctuary &amp; Madbaha</h4>
@@ -467,7 +467,7 @@
         </div>
 
         <!-- 4. Thirunal Procession -->
-        <div class="gallery-item" data-category="thirunal" data-title="Solemn Thirunal Raza Procession with Muthukkuda">
+        <div class="gallery-item scroll-reveal anim-gallery-item" data-category="thirunal" data-title="Solemn Thirunal Raza Procession with Muthukkuda" data-reveal-delay="100">
           <img src="assets/images/church_thirunal.jpg" alt="Thirunal Procession of St. Thomas Church" loading="lazy" decoding="async">
           <div class="gallery-item-overlay">
             <h4>Solemn Thirunal Procession</h4>
@@ -476,7 +476,7 @@
         </div>
 
         <!-- 5. Twilight Serenity Reflection -->
-        <div class="gallery-item" data-category="facade" data-title="Evening Illumination over Chempu Waters">
+        <div class="gallery-item scroll-reveal anim-gallery-item" data-category="facade" data-title="Evening Illumination over Chempu Waters" data-reveal-delay="200">
           <img src="assets/images/church_night.jpg" alt="Chempu Church Illuminated at Twilight" loading="lazy" decoding="async">
           <div class="gallery-item-overlay">
             <h4>Evening Illumination</h4>
@@ -485,7 +485,7 @@
         </div>
 
         <!-- 6. Traditional Kerala Heritage View -->
-        <div class="gallery-item" data-category="facade" data-title="Heritage Facade with Palm Groves">
+        <div class="gallery-item scroll-reveal anim-gallery-item" data-category="facade" data-title="Heritage Facade with Palm Groves" data-reveal-delay="100">
           <img src="assets/images/church_hero.jpg" alt="Kerala Church Heritage View" loading="lazy" decoding="async">
           <div class="gallery-item-overlay">
             <h4>Apostolic Sanctuary Grounds</h4>
@@ -494,7 +494,7 @@
         </div>
 
         <!-- 7. Mar Augustine Kandathil Historical Portrait -->
-        <div class="gallery-item" data-category="facade" data-title="Mar Augustine Kandathil (1874-1956) - First Metropolitan Archbishop of Ernakulam &amp; Native Son of Chempu">
+        <div class="gallery-item scroll-reveal anim-gallery-item" data-category="facade" data-title="Mar Augustine Kandathil (1874-1956) - First Metropolitan Archbishop of Ernakulam &amp; Native Son of Chempu" data-reveal-delay="200">
           <img src="assets/images/mar_augustine_kandathil_square.jpg" alt="Square Portrait of Mar Augustine Kandathil" loading="lazy" decoding="async">
           <div class="gallery-item-overlay">
             <h4>Mar Augustine Kandathil</h4>
@@ -508,7 +508,7 @@
   <!-- Parish Administration & Organizations -->
   <section class="section-wrapper" id="administration">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap scroll-reveal">
         <span class="section-eyebrow">Parish Leadership</span>
         <h2 class="section-title">Administration &amp; Ministries</h2>
         <div class="title-ornament">
@@ -519,7 +519,7 @@
 
       <div class="admin-grid">
         <!-- 1. Present Vicar -->
-        <div class="admin-card highlight-vicar">
+        <div class="admin-card highlight-vicar scroll-reveal anim-admin-card" data-reveal-delay="0">
           <div class="admin-avatar">
             <img src="assets/images/vicar_avatar.svg" alt="Present Vicar" id="live_vicar_photo" loading="lazy" decoding="async">
           </div>
@@ -532,7 +532,7 @@
         </div>
 
         <!-- 2. Trustee 1 -->
-        <div class="admin-card">
+        <div class="admin-card scroll-reveal anim-admin-card" data-reveal-delay="120">
           <div class="admin-avatar">
             <img src="assets/images/trustee1_avatar.svg" alt="Parish Trustee" id="live_trustee1_photo" loading="lazy" decoding="async">
           </div>
@@ -545,7 +545,7 @@
         </div>
 
         <!-- 3. Trustee 2 -->
-        <div class="admin-card">
+        <div class="admin-card scroll-reveal anim-admin-card" data-reveal-delay="240">
           <div class="admin-avatar">
             <img src="assets/images/trustee2_avatar.svg" alt="Parish Trustee" id="live_trustee2_photo" loading="lazy" decoding="async">
           </div>
@@ -558,7 +558,7 @@
         </div>
 
         <!-- 4. Family Unit Vice Chairman -->
-        <div class="admin-card">
+        <div class="admin-card scroll-reveal anim-admin-card" data-reveal-delay="360">
           <div class="admin-avatar">
             <img src="assets/images/vice_chairman_avatar.svg" alt="Family Unit Vice Chairman" id="live_vice_chairman_photo" loading="lazy" decoding="async">
           </div>
@@ -598,7 +598,7 @@
 
         <div class="pious-wings-showcase-grid">
           <!-- 1. SVP -->
-          <div class="pious-wing-card">
+          <div class="pious-wing-card scroll-reveal anim-wing-card" data-reveal-delay="0">
             <div class="pious-wing-top">
               <div class="pious-wing-icon"><i class="fas fa-hand-holding-heart"></i></div>
               <span class="pious-wing-tag">Charity &amp; Relief</span>
@@ -610,7 +610,7 @@
           </div>
 
           <!-- 2. Mathruvedi -->
-          <div class="pious-wing-card">
+          <div class="pious-wing-card scroll-reveal anim-wing-card" data-reveal-delay="100">
             <div class="pious-wing-top">
               <div class="pious-wing-icon"><i class="fas fa-dove"></i></div>
               <span class="pious-wing-tag">Family Ministry</span>
@@ -622,7 +622,7 @@
           </div>
 
           <!-- 3. Pithruvedi -->
-          <div class="pious-wing-card">
+          <div class="pious-wing-card scroll-reveal anim-wing-card" data-reveal-delay="200">
             <div class="pious-wing-top">
               <div class="pious-wing-icon"><i class="fas fa-shield-alt"></i></div>
               <span class="pious-wing-tag">Parish Guardians</span>
@@ -634,7 +634,7 @@
           </div>
 
           <!-- 4. SMYM -->
-          <div class="pious-wing-card">
+          <div class="pious-wing-card scroll-reveal anim-wing-card" data-reveal-delay="100">
             <div class="pious-wing-top">
               <div class="pious-wing-icon"><i class="fas fa-fire"></i></div>
               <span class="pious-wing-tag">Youth Wing</span>
@@ -646,7 +646,7 @@
           </div>
 
           <!-- 5. Parish Choir -->
-          <div class="pious-wing-card">
+          <div class="pious-wing-card scroll-reveal anim-wing-card" data-reveal-delay="200">
             <div class="pious-wing-top">
               <div class="pious-wing-icon"><i class="fas fa-music"></i></div>
               <span class="pious-wing-tag">Sacred Choral</span>
@@ -658,7 +658,7 @@
           </div>
 
           <!-- 6. Legion of Mary -->
-          <div class="pious-wing-card">
+          <div class="pious-wing-card scroll-reveal anim-wing-card" data-reveal-delay="300">
             <div class="pious-wing-top">
               <div class="pious-wing-icon"><i class="fas fa-crown"></i></div>
               <span class="pious-wing-tag">Marian Devotion</span>
@@ -676,7 +676,7 @@
   <!-- Parish Office & Contact Section -->
   <section class="section-wrapper bg-alt" id="contact">
     <div class="container">
-      <div class="section-title-wrap">
+      <div class="section-title-wrap scroll-reveal">
         <span class="section-eyebrow">Location &amp; Inquiries</span>
         <h2 class="section-title">Parish Office &amp; Rectory</h2>
         <div class="title-ornament">
@@ -685,7 +685,7 @@
         <p class="section-lead">Visitors, parishioners, and pilgrims are warmly welcomed to St. Thomas Catholic Church, Chempu.</p>
       </div>
 
-      <div class="contact-info-card-full" data-3d-dots="true">
+      <div class="contact-info-card-full scroll-reveal anim-contact-box" data-3d-dots="true">
         <canvas class="interactive-3d-dots-canvas"></canvas>
         <div class="contact-card-top-grid has-3d-canvas-content">
           <div class="contact-info-list">
