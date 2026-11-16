@@ -1520,7 +1520,8 @@ img {
   overflow: hidden;
 }
 
-.featured-feast-3d-canvas {
+.featured-feast-3d-canvas,
+.interactive-3d-dots-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -1530,9 +1531,30 @@ img {
   z-index: 1;
 }
 
-.featured-festival-content {
+.featured-festival-content,
+.has-3d-canvas-content {
   position: relative;
   z-index: 2;
+}
+
+.contact-info-card-full {
+  position: relative;
+  overflow: hidden;
+}
+
+.main-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.ribbon-status {
+  position: relative;
+  overflow: hidden;
+}
+
+.subpage-hero {
+  position: relative;
+  overflow: hidden;
 }
 
 .featured-festival-card::before {

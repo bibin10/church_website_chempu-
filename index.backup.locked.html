@@ -106,11 +106,12 @@
   <div class="container">
     <div class="next-mass-ribbon">
       <div class="ribbon-grid">
-        <div class="ribbon-status">
-          <div class="status-icon-circle">
+        <div class="ribbon-status" data-3d-dots="true">
+          <canvas class="interactive-3d-dots-canvas"></canvas>
+          <div class="status-icon-circle has-3d-canvas-content">
             <i class="fas fa-bell"></i>
           </div>
-          <div>
+          <div class="has-3d-canvas-content">
             <div class="status-label" id="nextMassLabel">Next Liturgy</div>
             <div class="status-time" id="nextMassDisplay">Sunday: 7:00 AM &amp; 9:15 AM</div>
           </div>
@@ -684,8 +685,9 @@
         <p class="section-lead">Visitors, parishioners, and pilgrims are warmly welcomed to St. Thomas Catholic Church, Chempu.</p>
       </div>
 
-      <div class="contact-info-card-full">
-        <div class="contact-card-top-grid">
+      <div class="contact-info-card-full" data-3d-dots="true">
+        <canvas class="interactive-3d-dots-canvas"></canvas>
+        <div class="contact-card-top-grid has-3d-canvas-content">
           <div class="contact-info-list">
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -748,8 +750,9 @@
   </div>
 
   <!-- Footer (Reduced Minimalist Layout) -->
-  <footer class="main-footer">
-    <div class="container" style="text-align: center; max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 2.2rem;">
+  <footer class="main-footer" data-3d-dots="true">
+    <canvas class="interactive-3d-dots-canvas"></canvas>
+    <div class="container has-3d-canvas-content" style="text-align: center; max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 2.2rem;">
       <div style="margin-bottom: 1.1rem; display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark, #9a6d1a)); color: #0f1c3f; font-size: 1.35rem; box-shadow: 0 4px 15px rgba(212, 163, 75, 0.25);">
         <i class="fas fa-cross"></i>
       </div>
