@@ -1847,29 +1847,102 @@ img {
   box-shadow: var(--shadow-md);
 }
 
-.admin-avatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  margin: 0 auto 1.2rem;
+.admin-avatar,
+.admin-photo-wrap {
+  width: 140px;
+  height: 175px;
+  border-radius: var(--radius-md, 12px);
+  margin: 0 auto 1.3rem;
   background: linear-gradient(135deg, var(--bg-card-subtle), #e2dfd2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.2rem;
-  color: var(--primary);
   border: 3px solid var(--gold-primary);
-  box-shadow: 0 6px 18px rgba(15, 28, 63, 0.12);
+  box-shadow: 0 8px 22px rgba(15, 28, 63, 0.16);
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
+  transition: var(--transition-smooth);
 }
 
-.admin-avatar img {
+.admin-card:hover .admin-avatar,
+.admin-member-card:hover .admin-photo-wrap {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(212, 163, 75, 0.25);
+  border-color: var(--gold-glow);
+}
+
+.admin-avatar img,
+.admin-photo-wrap img,
+.admin-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
+}
+
+.admin-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.admin-member-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.8rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: var(--transition-smooth);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.admin-member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold-primary);
+}
+
+.admin-member-card.vicar-card {
+  border: 2px solid var(--gold-primary);
+  background: linear-gradient(180deg, #ffffff 0%, #fdfbf7 100%);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-member-card .admin-name {
+  font-size: 1.25rem;
+  font-family: var(--font-heading);
+  color: var(--primary-deep);
+  margin-bottom: 0.35rem;
+}
+
+.admin-member-card .admin-malayalam {
+  font-family: var(--font-malayalam);
+  font-size: 0.95rem;
+  color: var(--maroon);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.admin-member-card .admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(212, 163, 75, 0.15);
+  color: var(--gold-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
 }
 
 .admin-card h4,
