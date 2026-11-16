@@ -106,7 +106,7 @@ const DEFAULT_NAV_ITEMS = [
   { label: 'Gallery', url: '#gallery' },
   { label: 'Parish Council', url: '#administration' },
   { label: 'Community', url: 'community.html' },
-  { label: 'Contact', url: '#contact' }
+  { label: 'Contact', url: 'contact.html' }
 ];
 
 // Default Parish Website Content
