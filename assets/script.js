@@ -1239,4 +1239,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initMassCards3DTilt();
+
+  // =========================================================================
+  // 12. Contact Form Handler (contact.html)
+  // =========================================================================
+  function initContactForm() {
+    const form = document.getElementById('parishContactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const alertBox = document.getElementById('contactFormAlert');
+      const submitBtn = form.querySelector('.contact-submit-btn');
+
+      if (submitBtn) {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+      }
+
+      setTimeout(() => {
+        if (alertBox) {
+          alertBox.className = 'contact-form-alert success';
+          alertBox.style.display = 'block';
+        }
+        form.reset();
+        if (submitBtn) {
+          submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent';
+          setTimeout(() => {
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            submitBtn.disabled = false;
+          }, 3000);
+        }
+      }, 700);
+    });
+  }
+
+  initContactForm();
 });
