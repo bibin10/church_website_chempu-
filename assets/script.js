@@ -1163,4 +1163,80 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initKandathil3DTilt();
+
+  // =========================================================================
+  // 11. Interactive 3D Perspective Tilt for Holy Mass Schedule Cards
+  // =========================================================================
+  function initMassCards3DTilt() {
+    const wrappers = document.querySelectorAll('.mass-card-3d-wrapper');
+    if (!wrappers.length) return;
+
+    wrappers.forEach(wrap => {
+      const card = wrap.querySelector('.mass-card');
+      const glare = wrap.querySelector('.mass-card-glare');
+      const icon = wrap.querySelector('.mass-icon');
+      if (!card) return;
+
+      let reqId = null;
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let isHovered = false;
+
+      function onMouseMove(e) {
+        const rect = wrap.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        targetY = ((x - centerX) / centerX) * 10;
+        targetX = -((y - centerY) / centerY) * 10;
+
+        if (glare) {
+          const glareX = (x / rect.width) * 100;
+          const glareY = (y / rect.height) * 100;
+          glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.6) 0%, rgba(212, 163, 75, 0.2) 45%, transparent 75%)`;
+          glare.style.opacity = '1';
+        }
+      }
+
+      function animate() {
+        currentX += (targetX - currentX) * 0.12;
+        currentY += (targetY - currentY) * 0.12;
+
+        wrap.style.transform = `perspective(1000px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) translateZ(10px)`;
+        wrap.style.boxShadow = `${(-currentY * 1.5).toFixed(1)}px ${(currentX * 1.5 + 18).toFixed(1)}px 35px rgba(15, 28, 63, 0.18)`;
+
+        if (icon) {
+          icon.style.transform = `translateZ(30px) rotateX(${(-currentX * 0.2).toFixed(2)}deg) rotateY(${(-currentY * 0.2).toFixed(2)}deg)`;
+        }
+
+        if (isHovered || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+          reqId = requestAnimationFrame(animate);
+        } else {
+          cancelAnimationFrame(reqId);
+          reqId = null;
+        }
+      }
+
+      wrap.addEventListener('mouseenter', () => {
+        isHovered = true;
+        if (!reqId) reqId = requestAnimationFrame(animate);
+      });
+
+      wrap.addEventListener('mousemove', onMouseMove);
+
+      wrap.addEventListener('mouseleave', () => {
+        isHovered = false;
+        targetX = 0;
+        targetY = 0;
+        if (glare) glare.style.opacity = '0';
+        if (!reqId) reqId = requestAnimationFrame(animate);
+      });
+    });
+  }
+
+  initMassCards3DTilt();
 });
