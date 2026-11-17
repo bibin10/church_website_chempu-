@@ -1123,7 +1123,25 @@ document.addEventListener('DOMContentLoaded', () => {
       rootMargin: '0px 0px -40px 0px'
     });
 
-    revealElements.forEach(el => observer.observe(el));
+    revealElements.forEach(el => {
+      // If element is the Next Mass Ribbon, give it an explicit observer with higher threshold and strict rootMargin so it only rotates when user actually scrolls down and sees it
+      if (el.id === 'nextMass3dRibbon') {
+        const ribbonObserver = new IntersectionObserver((entries, rObs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              rObs.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.25,
+          rootMargin: '0px 0px -80px 0px'
+        });
+        ribbonObserver.observe(el);
+      } else {
+        observer.observe(el);
+      }
+    });
   }
 
   initSectionScrollAnimations();
