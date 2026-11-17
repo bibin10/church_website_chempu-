@@ -62,6 +62,9 @@
       <button class="nav-item" data-section="admin-team-panel">
         <i class="fas fa-users-cog"></i> <span>Parish Leadership</span>
       </button>
+      <button class="nav-item" data-section="pious-wings-panel">
+        <i class="fas fa-hands-helping"></i> <span>Lay Ministries &amp; Wings</span>
+      </button>
       <button class="nav-item" data-section="contact-panel">
         <i class="fas fa-address-book"></i> <span>Rectory &amp; Contact</span>
       </button>
@@ -1073,6 +1076,143 @@
                 </a>
                 <button type="button" class="btn-primary" id="saveLeadershipBtn" style="padding:0.55rem 1.3rem; font-size:0.9rem; display:inline-flex; align-items:center; gap:0.5rem; background:var(--admin-gold); color:var(--admin-navy); font-weight:700;">
                   <i class="fas fa-save"></i> Save Leadership Team
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           6.5. PARISH FELLOWSHIP & LAY MINISTRIES (PIOUS ASSOCIATIONS & WINGS)
+           Full CRUD Manager: Add, Edit, Delete, Reorder, Change Icons & Tags
+           =================================================================== -->
+      <section class="admin-panel" id="pious-wings-panel">
+        <div class="panel-card">
+          <div class="panel-card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h3><i class="fas fa-hands-helping" style="color:var(--admin-gold);"></i> Pious Associations &amp; Pastoral Wings</h3>
+              <p>Manage, add, edit, reorder, or remove parish lay organizations, ministry titles, Malayalam names, icons, tags, descriptions, and highlights.</p>
+            </div>
+            <div style="display:flex; gap:0.6rem; align-items:center;">
+              <button class="btn-secondary" id="resetWingsBtn" type="button" style="padding:0.6rem 1rem; font-size:0.85rem;">
+                <i class="fas fa-undo"></i> Reset Default Wings
+              </button>
+              <button class="btn-primary" id="openAddWingModalBtn" type="button" style="padding:0.6rem 1.2rem; font-size:0.88rem;">
+                <i class="fas fa-plus"></i> Add New Association / Wing
+              </button>
+            </div>
+          </div>
+          <div class="panel-card-body">
+            
+            <!-- Section Header Content Form -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1.2rem; margin-bottom:1.5rem;">
+              <h4 style="font-size:0.92rem; color:var(--admin-navy); margin-bottom:0.75rem;"><i class="fas fa-heading" style="color:var(--admin-gold);"></i> Section Heading &amp; Introduction</h4>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>Section Eyebrow</label>
+                  <input type="text" id="cfg_wings_eyebrow" placeholder="Parish Fellowship & Lay Ministries">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Main Section Title</label>
+                  <input type="text" id="cfg_wings_title" placeholder="Pious Associations & Pastoral Wings">
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Section Sub-Lead Description</label>
+                <textarea id="cfg_wings_lead" rows="2" placeholder="Dedicated lay ministries fostering fellowship, spiritual enrichment, charity, and liturgical participation across our parish community."></textarea>
+              </div>
+            </div>
+
+            <!-- Table or Grid of Wings -->
+            <div class="table-responsive">
+              <table class="intentions-table" id="wingsTable">
+                <thead>
+                  <tr>
+                    <th style="width: 50px;">Pos</th>
+                    <th style="width: 60px; text-align:center;">Icon</th>
+                    <th>Ministry / Organization</th>
+                    <th>Malayalam Title</th>
+                    <th>Category Tag</th>
+                    <th>Description &amp; Footer</th>
+                    <th style="width: 110px; text-align: center;">Reorder</th>
+                    <th style="width: 120px; text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="wingsTableBody">
+                  <!-- Rendered dynamically via admin.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Add / Edit Wing Sub-Form Card -->
+            <div id="wingEditorCard" class="sub-form-card" style="display:none; margin-top:1.8rem; background:#f8fafc; border:1px solid #cbd5e1; border-radius:12px; padding:1.6rem; box-shadow:0 8px 24px rgba(15, 28, 63, 0.08);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; border-bottom:1px solid #e2e8f0; padding-bottom:0.75rem;">
+                <h4 id="wingEditorTitle" style="color:var(--admin-navy); margin:0; font-size:1.05rem;">
+                  <i class="fas fa-edit" style="color:var(--admin-gold);"></i> Edit Ministry
+                </h4>
+                <button type="button" id="cancelWingEditorBtn" style="background:none; border:none; font-size:1.1rem; color:#64748b; cursor:pointer;">&times;</button>
+              </div>
+
+              <input type="hidden" id="wingEditIndex" value="-1">
+
+              <div class="form-row">
+                <div class="form-group flex-2">
+                  <label>Ministry / Association Name (English) *</label>
+                  <input type="text" id="wingEditTitle" placeholder="e.g. St. Vincent de Paul Society (SVP)" required>
+                </div>
+                <div class="form-group flex-2">
+                  <label>Malayalam Name</label>
+                  <input type="text" id="wingEditMalayalam" placeholder="e.g. വിൻസെന്റ് ഡി പോൾ സൊസൈറ്റി (SVP)">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label>FontAwesome Icon Class *</label>
+                  <div style="display:flex; gap:0.5rem; align-items:center;">
+                    <span id="wingIconPreview" style="width:38px; height:38px; border-radius:8px; background:#0f1c3f; color:#eec578; display:inline-flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">
+                      <i class="fas fa-hand-holding-heart"></i>
+                    </span>
+                    <input type="text" id="wingEditIcon" placeholder="fa-hand-holding-heart" value="fa-hand-holding-heart" style="flex:1;">
+                  </div>
+                  <span style="font-size:0.75rem; color:#64748b; display:block; margin-top:0.3rem;">Examples: fa-dove, fa-fire, fa-music, fa-crown, fa-shield-alt, fa-cross</span>
+                </div>
+                <div class="form-group flex-1">
+                  <label>Category Tag / Badge</label>
+                  <input type="text" id="wingEditTag" placeholder="e.g. Charity & Relief">
+                </div>
+                <div class="form-group flex-1">
+                  <label>Footer Highlight Pill</label>
+                  <input type="text" id="wingEditFooter" placeholder="e.g. Weekly Family Care & Mercy Ministry">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Mission &amp; Activity Description *</label>
+                <textarea id="wingEditDesc" rows="3" placeholder="Describe the ministry mission, regular activities, and community impact..." required></textarea>
+              </div>
+
+              <div style="display:flex; justify-content:flex-end; gap:0.8rem; margin-top:1.2rem;">
+                <button type="button" class="btn-secondary" id="cancelWingFormBtn">Cancel</button>
+                <button type="button" class="btn-primary" id="saveWingItemBtn">
+                  <i class="fas fa-check"></i> Save Ministry Wing
+                </button>
+              </div>
+            </div>
+
+            <!-- Bottom Save / Publish Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2rem; padding-top:1.2rem; border-top:1px solid #e2e8f0; flex-wrap:wrap; gap:1rem;">
+              <div style="font-size:0.88rem; color:#475569;">
+                <i class="fas fa-check-circle" style="color:#10b981;"></i> Changes sync instantly across <strong>index.html</strong> &amp; <strong>community.html</strong>.
+              </div>
+              <div style="display:flex; gap:0.8rem; align-items:center;">
+                <a href="index.html#administration" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size:0.85rem; padding:0.55rem 1rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem;">
+                  <i class="fas fa-external-link-alt"></i> View on Live Site
+                </a>
+                <button type="button" class="btn-primary" id="saveWingsPanelBtn" style="padding:0.6rem 1.4rem; font-size:0.9rem; display:inline-flex; align-items:center; gap:0.5rem; background:var(--admin-gold); color:var(--admin-navy); font-weight:700;">
+                  <i class="fas fa-save"></i> Save &amp; Publish Ministries
                 </button>
               </div>
             </div>

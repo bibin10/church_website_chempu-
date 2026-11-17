@@ -235,6 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
       setText('live_inst_complex_malayalam', cfg.inst_complex_malayalam, 'സെന്റ് തോമസ് ഷോപ്പിംഗ് കോംപ്ലക്സ്, ചെമ്പ്');
       setText('live_inst_complex_desc', cfg.inst_complex_desc);
 
+      // 7.8. Pious Associations & Pastoral Wings Header
+      if (cfg.wings_eyebrow) {
+        setHTML('live_wings_eyebrow', `<i class="fas fa-hands-helping"></i> ${escapeHtml(cfg.wings_eyebrow)}`);
+      }
+      setText('live_wings_title', cfg.wings_title, 'Pious Associations & Pastoral Wings');
+      setText('live_wings_lead', cfg.wings_lead);
+
       // 8. Contact
       if (cfg.contact_phone) {
         const cpEl = document.getElementById('live_contact_phone');
@@ -523,6 +530,105 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   applyHighlightsConfig();
+
+  // =========================================================================
+  // 0.8. Dynamic Pious Associations & Pastoral Wings Hydration from Admin CMS
+  // =========================================================================
+  const WINGS_KEY = 'st_thomas_pious_wings';
+  const DEFAULT_PIOUS_WINGS = [
+    {
+      icon: 'fa-hand-holding-heart',
+      tag: 'Charity & Relief',
+      title: 'St. Vincent de Paul Society',
+      malayalam: 'വിൻസെന്റ് ഡി പോൾ സൊസൈറ്റി (SVP)',
+      desc: 'Providing compassionate monthly ration distribution, medical aid, education support, and emergency relief to underprivileged parish families.',
+      footer: 'Weekly Family Care & Mercy Ministry'
+    },
+    {
+      icon: 'fa-dove',
+      tag: 'Family Ministry',
+      title: 'Mathruvedi',
+      malayalam: "മാതൃവേദി (Mothers' Guild)",
+      desc: 'Fostering Christian motherhood, domestic prayers, altar floral arrangements, family values, and pastoral solidarity among parish mothers.',
+      footer: 'Domestic Church & Marian Fellowship'
+    },
+    {
+      icon: 'fa-shield-alt',
+      tag: 'Parish Guardians',
+      title: 'Pithruvedi',
+      malayalam: "പിതൃവേദി (Fathers' Guild)",
+      desc: 'Catholic fathers committed to spiritual leadership, temporal parish security, feast logistics, and youth mentoring.',
+      footer: 'Temporal Leadership & Feast Support'
+    },
+    {
+      icon: 'fa-fire',
+      tag: 'Youth Wing',
+      title: 'SMYM Youth Movement',
+      malayalam: 'എസ്.എം.വൈ.എം. യൂത്ത് മൂവ്മെന്റ്',
+      desc: 'Energizing parish youth through gospel values, blood donation drives, sports, creative arts, and leadership conventions.',
+      footer: 'Youth Leadership & Community Service'
+    },
+    {
+      icon: 'fa-music',
+      tag: 'Sacred Choral',
+      title: 'St. Thomas Liturgical Choir',
+      malayalam: 'ദേവാലയ ഗായകസംഘം',
+      desc: 'Leading celestial East-Syriac and Malayalam liturgical hymns, sacred psalms, and solemn choral devotions during Holy Qurbana.',
+      footer: 'Sacred Music & Feast Choral Service'
+    },
+    {
+      icon: 'fa-crown',
+      tag: 'Marian Devotion',
+      title: 'Legion of Mary',
+      malayalam: 'ലെജിയൻ ഓഫ് മേരി',
+      desc: 'Devoted Marian legionaries engaged in weekly rosary chains, hospital visitations, and comforting the homebound elderly.',
+      footer: 'Weekly Rosary & Spiritual Solace'
+    }
+  ];
+
+  function applyPiousWingsConfig() {
+    const container = document.getElementById('piousWingsContainer');
+    if (!container) return;
+
+    let items = DEFAULT_PIOUS_WINGS;
+    try {
+      const saved = localStorage.getItem(WINGS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) items = parsed;
+      }
+    } catch (e) {
+      console.warn('Pious wings config error', e);
+    }
+
+    container.innerHTML = '';
+    const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+
+    items.forEach((item, index) => {
+      const card = document.createElement('div');
+      card.className = isIndex ? 'pious-wing-card scroll-reveal anim-wing-card' : 'pious-wing-card';
+      if (isIndex) {
+        const delay = (index % 4) * 100;
+        card.setAttribute('data-reveal-delay', delay.toString());
+      }
+
+      const iconClass = (item.icon || 'fa-hands-helping').replace(/^fa[srbld]?\s+/, '').trim();
+
+      card.innerHTML = `
+        <div class="pious-wing-top">
+          <div class="pious-wing-icon"><i class="fas ${iconClass}"></i></div>
+          <span class="pious-wing-tag">${escapeHtml(item.tag || 'Ministry')}</span>
+        </div>
+        <h4>${escapeHtml(item.title)}</h4>
+        ${item.malayalam ? `<div class="pious-wing-malayalam">${escapeHtml(item.malayalam)}</div>` : ''}
+        <p>${escapeHtml(item.desc)}</p>
+        ${item.footer ? `<div class="pious-wing-footer"><i class="fas fa-check-circle"></i> ${escapeHtml(item.footer)}</div>` : ''}
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  applyPiousWingsConfig();
 
   // =========================================================================
   // 1. Mobile Menu Toggle

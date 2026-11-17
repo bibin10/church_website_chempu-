@@ -6,7 +6,60 @@ const INTENTIONS_KEY = 'st_thomas_prayer_intentions';
 const NAV_ITEMS_KEY = 'st_thomas_nav_items';
 const FEASTS_KEY = 'st_thomas_parish_feasts';
 const HIGHLIGHTS_KEY = 'st_thomas_feast_highlights';
+const WINGS_KEY = 'st_thomas_pious_wings';
 const GALLERY_KEY = 'st_thomas_gallery';
+
+// Default Pious Associations & Pastoral Wings (Lay Ministries)
+const DEFAULT_PIOUS_WINGS = [
+  {
+    icon: 'fa-hand-holding-heart',
+    tag: 'Charity & Relief',
+    title: 'St. Vincent de Paul Society',
+    malayalam: 'വിൻസെന്റ് ഡി പോൾ സൊസൈറ്റി (SVP)',
+    desc: 'Providing compassionate monthly ration distribution, medical aid, education support, and emergency relief to underprivileged parish families.',
+    footer: 'Weekly Family Care & Mercy Ministry'
+  },
+  {
+    icon: 'fa-dove',
+    tag: 'Family Ministry',
+    title: 'Mathruvedi',
+    malayalam: "മാതൃവേദി (Mothers' Guild)",
+    desc: 'Fostering Christian motherhood, domestic prayers, altar floral arrangements, family values, and pastoral solidarity among parish mothers.',
+    footer: 'Domestic Church & Marian Fellowship'
+  },
+  {
+    icon: 'fa-shield-alt',
+    tag: 'Parish Guardians',
+    title: 'Pithruvedi',
+    malayalam: "പിതൃവേദി (Fathers' Guild)",
+    desc: 'Catholic fathers committed to spiritual leadership, temporal parish security, feast logistics, and youth mentoring.',
+    footer: 'Temporal Leadership & Feast Support'
+  },
+  {
+    icon: 'fa-fire',
+    tag: 'Youth Wing',
+    title: 'SMYM Youth Movement',
+    malayalam: 'എസ്.എം.വൈ.എം. യൂത്ത് മൂവ്മെന്റ്',
+    desc: 'Energizing parish youth through gospel values, blood donation drives, sports, creative arts, and leadership conventions.',
+    footer: 'Youth Leadership & Community Service'
+  },
+  {
+    icon: 'fa-music',
+    tag: 'Sacred Choral',
+    title: 'St. Thomas Liturgical Choir',
+    malayalam: 'ദേവാലയ ഗായകസംഘം',
+    desc: 'Leading celestial East-Syriac and Malayalam liturgical hymns, sacred psalms, and solemn choral devotions during Holy Qurbana.',
+    footer: 'Sacred Music & Feast Choral Service'
+  },
+  {
+    icon: 'fa-crown',
+    tag: 'Marian Devotion',
+    title: 'Legion of Mary',
+    malayalam: 'ലെജിയൻ ഓഫ് മേരി',
+    desc: 'Devoted Marian legionaries engaged in weekly rosary chains, hospital visitations, and comforting the homebound elderly.',
+    footer: 'Weekly Rosary & Spiritual Solace'
+  }
+];
 
 // Default Parish Photo Gallery Items
 const DEFAULT_GALLERY_ITEMS = [
@@ -231,6 +284,11 @@ const DEFAULT_CONFIG = {
   inst_complex_title: 'St. Thomas Shopping Complex, Chempu',
   inst_complex_malayalam: 'സെന്റ് തോമസ് ഷോപ്പിംഗ് കോംപ്ലക്സ്, ചെമ്പ്',
   inst_complex_desc: 'Situated in the heart of Chempu, the parish commercial shopping complex provides essential retail spaces, local businesses, and community utilities, contributing to village commerce and supporting church temporal ministries.',
+
+  // 6.8. Pious Associations & Pastoral Wings Header
+  wings_eyebrow: 'Parish Fellowship & Lay Ministries',
+  wings_title: 'Pious Associations & Pastoral Wings',
+  wings_lead: 'Dedicated lay ministries fostering fellowship, spiritual enrichment, charity, and liturgical participation across our parish community.',
 
   // 7. Contact
   contact_phone: '+91 4829-273176',
@@ -1549,6 +1607,274 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // =========================================================================
+  // 6.5. Pious Associations & Pastoral Wings (Lay Ministries) Manager
+  // =========================================================================
+  const wingsTableBody = document.getElementById('wingsTableBody');
+  const wingEditorCard = document.getElementById('wingEditorCard');
+  const wingEditorTitle = document.getElementById('wingEditorTitle');
+  const wingEditIndex = document.getElementById('wingEditIndex');
+  const wingEditTitle = document.getElementById('wingEditTitle');
+  const wingEditMalayalam = document.getElementById('wingEditMalayalam');
+  const wingEditIcon = document.getElementById('wingEditIcon');
+  const wingIconPreview = document.getElementById('wingIconPreview');
+  const wingEditTag = document.getElementById('wingEditTag');
+  const wingEditFooter = document.getElementById('wingEditFooter');
+  const wingEditDesc = document.getElementById('wingEditDesc');
+  const openAddWingBtn = document.getElementById('openAddWingModalBtn');
+  const cancelWingBtn = document.getElementById('cancelWingFormBtn');
+  const cancelWingEditorBtn = document.getElementById('cancelWingEditorBtn');
+  const saveWingBtn = document.getElementById('saveWingItemBtn');
+  const resetWingsBtn = document.getElementById('resetWingsBtn');
+  const saveWingsPanelBtn = document.getElementById('saveWingsPanelBtn');
+
+  let currentWingItems = loadWingItems();
+
+  function loadWingItems() {
+    try {
+      const saved = localStorage.getItem(WINGS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.warn('Error reading pious wings', e);
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_PIOUS_WINGS));
+  }
+
+  function persistWingItems(items) {
+    localStorage.setItem(WINGS_KEY, JSON.stringify(items));
+    renderWingsTable();
+  }
+
+  function renderWingsTable() {
+    if (!wingsTableBody) return;
+    wingsTableBody.innerHTML = '';
+
+    if (currentWingItems.length === 0) {
+      wingsTableBody.innerHTML = `
+        <tr>
+          <td colspan="8" style="text-align:center; padding:1.8rem; color:#94a3b8;">
+            No lay ministries configured. Click "Add New Association / Wing" to create one.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    currentWingItems.forEach((wing, idx) => {
+      const iconClass = (wing.icon || 'fa-hand-holding-heart').replace(/^fa[srbld]?\s+/, '').trim();
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><span style="font-weight:700; color:#64748b;">#${idx + 1}</span></td>
+        <td style="text-align:center;">
+          <span style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, #0f1c3f, #1e3a8a); color:#eec578; display:inline-flex; align-items:center; justify-content:center; font-size:1.1rem; border:1px solid rgba(212,163,75,0.35);">
+            <i class="fas ${iconClass}"></i>
+          </span>
+        </td>
+        <td>
+          <strong style="color:var(--admin-navy); font-size:0.95rem;">${escapeHtml(wing.title)}</strong>
+        </td>
+        <td>
+          <span style="color:#800020; font-weight:600; font-size:0.85rem;">${escapeHtml(wing.malayalam || '—')}</span>
+        </td>
+        <td>
+          <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; padding:0.25rem 0.6rem; border-radius:999px; background:#fef3c7; color:#92400e; border:1px solid #fde68a;">
+            ${escapeHtml(wing.tag || 'Ministry')}
+          </span>
+        </td>
+        <td>
+          <p style="font-size:0.82rem; color:#475569; margin:0 0 0.3rem 0; max-width:320px; white-space:normal; line-height:1.4;">${escapeHtml(wing.desc)}</p>
+          ${wing.footer ? `<span style="font-size:0.75rem; color:#b45309; font-weight:600;"><i class="fas fa-check-circle"></i> ${escapeHtml(wing.footer)}</span>` : ''}
+        </td>
+        <td style="text-align:center;">
+          <button type="button" class="btn-icon-action move-wing-up-btn" data-index="${idx}" ${idx === 0 ? 'disabled' : ''} title="Move Up">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+          <button type="button" class="btn-icon-action move-wing-down-btn" data-index="${idx}" ${idx === currentWingItems.length - 1 ? 'disabled' : ''} title="Move Down" style="margin-left:4px;">
+            <i class="fas fa-arrow-down"></i>
+          </button>
+        </td>
+        <td style="text-align:center;">
+          <button type="button" class="btn-icon-action btn-icon-edit edit-wing-btn" data-index="${idx}" title="Edit Ministry">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button type="button" class="btn-icon-action btn-icon-delete delete-wing-btn" data-index="${idx}" title="Delete Ministry" style="margin-left:4px;">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      `;
+      wingsTableBody.appendChild(tr);
+    });
+
+    // Move Up
+    wingsTableBody.querySelectorAll('.move-wing-up-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        if (i > 0) {
+          const temp = currentWingItems[i];
+          currentWingItems[i] = currentWingItems[i - 1];
+          currentWingItems[i - 1] = temp;
+          persistWingItems(currentWingItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+
+    // Move Down
+    wingsTableBody.querySelectorAll('.move-wing-down-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        if (i < currentWingItems.length - 1) {
+          const temp = currentWingItems[i];
+          currentWingItems[i] = currentWingItems[i + 1];
+          currentWingItems[i + 1] = temp;
+          persistWingItems(currentWingItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+
+    // Edit Wing
+    wingsTableBody.querySelectorAll('.edit-wing-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        const item = currentWingItems[i];
+        if (item) {
+          wingEditIndex.value = i;
+          wingEditTitle.value = item.title || '';
+          wingEditMalayalam.value = item.malayalam || '';
+          wingEditIcon.value = item.icon || 'fa-hand-holding-heart';
+          if (wingIconPreview) {
+            const cleanIcon = (item.icon || 'fa-hand-holding-heart').replace(/^fa[srbld]?\s+/, '').trim();
+            wingIconPreview.innerHTML = `<i class="fas ${cleanIcon}"></i>`;
+          }
+          wingEditTag.value = item.tag || '';
+          wingEditFooter.value = item.footer || '';
+          wingEditDesc.value = item.desc || '';
+          wingEditorTitle.innerHTML = `<i class="fas fa-edit"></i> Edit Ministry #${i + 1}: ${escapeHtml(item.title)}`;
+          wingEditorCard.style.display = 'block';
+          wingEditTitle.focus();
+        }
+      });
+    });
+
+    // Delete Wing
+    wingsTableBody.querySelectorAll('.delete-wing-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        const item = currentWingItems[i];
+        if (confirm(`Are you sure you want to delete the lay ministry "${item.title}"?`)) {
+          currentWingItems.splice(i, 1);
+          persistWingItems(currentWingItems);
+          triggerSaveNotice();
+          if (wingEditorCard) wingEditorCard.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // Update Icon preview on type
+  if (wingEditIcon && wingIconPreview) {
+    wingEditIcon.addEventListener('input', () => {
+      const iconVal = wingEditIcon.value.trim().replace(/^fa[srbld]?\s+/, '').trim() || 'fa-circle-check';
+      wingIconPreview.innerHTML = `<i class="fas ${iconVal}"></i>`;
+    });
+  }
+
+  // Open Add Wing Form
+  if (openAddWingBtn) {
+    openAddWingBtn.addEventListener('click', () => {
+      wingEditIndex.value = '-1';
+      wingEditTitle.value = '';
+      wingEditMalayalam.value = '';
+      wingEditIcon.value = 'fa-hands-helping';
+      if (wingIconPreview) wingIconPreview.innerHTML = '<i class="fas fa-hands-helping"></i>';
+      wingEditTag.value = 'Parish Ministry';
+      wingEditFooter.value = '';
+      wingEditDesc.value = '';
+      wingEditorTitle.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Association / Pastoral Wing';
+      wingEditorCard.style.display = 'block';
+      wingEditTitle.focus();
+    });
+  }
+
+  // Cancel Wing Form
+  if (cancelWingBtn) {
+    cancelWingBtn.addEventListener('click', () => {
+      wingEditorCard.style.display = 'none';
+    });
+  }
+  if (cancelWingEditorBtn) {
+    cancelWingEditorBtn.addEventListener('click', () => {
+      wingEditorCard.style.display = 'none';
+    });
+  }
+
+  // Reset Wings to Default
+  if (resetWingsBtn) {
+    resetWingsBtn.addEventListener('click', () => {
+      if (confirm('Reset all Pious Associations and Lay Ministries back to original defaults?')) {
+        currentWingItems = JSON.parse(JSON.stringify(DEFAULT_PIOUS_WINGS));
+        persistWingItems(currentWingItems);
+        triggerSaveNotice();
+        if (wingEditorCard) wingEditorCard.style.display = 'none';
+      }
+    });
+  }
+
+  // Save Wing Item
+  if (saveWingBtn) {
+    saveWingBtn.addEventListener('click', () => {
+      const title = wingEditTitle.value.trim();
+      const malayalam = wingEditMalayalam.value.trim();
+      const icon = wingEditIcon.value.trim() || 'fa-hands-helping';
+      const tag = wingEditTag.value.trim() || 'Parish Ministry';
+      const footer = wingEditFooter.value.trim();
+      const desc = wingEditDesc.value.trim();
+      const index = parseInt(wingEditIndex.value, 10);
+
+      if (!title) {
+        alert('Please enter a Ministry / Association Name.');
+        wingEditTitle.focus();
+        return;
+      }
+      if (!desc) {
+        alert('Please enter a Description of activities.');
+        wingEditDesc.focus();
+        return;
+      }
+
+      const wingData = {
+        title,
+        malayalam,
+        icon,
+        tag,
+        footer,
+        desc
+      };
+
+      if (index >= 0 && index < currentWingItems.length) {
+        currentWingItems[index] = wingData;
+      } else {
+        currentWingItems.push(wingData);
+      }
+
+      persistWingItems(currentWingItems);
+      wingEditorCard.style.display = 'none';
+      triggerSaveNotice();
+    });
+  }
+
+  if (saveWingsPanelBtn) {
+    saveWingsPanelBtn.addEventListener('click', () => {
+      saveConfig();
+    });
+  }
+
+  renderWingsTable();
+
   // 3. Save All Changes to LocalStorage
   const saveBtn = document.getElementById('saveAllChangesBtn');
   const saveLeadershipBtn = document.getElementById('saveLeadershipBtn');
@@ -1567,6 +1893,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(NAV_ITEMS_KEY, JSON.stringify(currentNavItems));
       localStorage.setItem(FEASTS_KEY, JSON.stringify(currentFeastItems));
       localStorage.setItem(HIGHLIGHTS_KEY, JSON.stringify(currentHighlightItems));
+      localStorage.setItem(WINGS_KEY, JSON.stringify(currentWingItems));
 
       triggerSaveNotice();
       console.log('Site configuration & leadership team successfully saved to LocalStorage:', updated);
@@ -1592,9 +1919,12 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem(NAV_ITEMS_KEY);
         localStorage.removeItem(FEASTS_KEY);
         localStorage.removeItem(HIGHLIGHTS_KEY);
+        localStorage.removeItem(WINGS_KEY);
         currentNavItems = [...DEFAULT_NAV_ITEMS];
         currentFeastItems = [...DEFAULT_FEASTS];
         currentHighlightItems = [...DEFAULT_HIGHLIGHTS];
+        currentWingItems = JSON.parse(JSON.stringify(DEFAULT_PIOUS_WINGS));
+        renderWingsTable();
         loadFormValues();
         alert('All fields, highlights, feasts, and menu items reset to original defaults! Click Save & Publish to apply.');
       }
