@@ -1082,4 +1082,85 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initHistory3DTilt();
+
+  // =========================================================================
+  // 10. Interactive 3D Card Tilt Engine for Mar Augustine Kandathil
+  // =========================================================================
+  function initKandathil3DTilt() {
+    const card = document.getElementById('kandathil3dCard');
+    if (!card) return;
+
+    const wrap = card.querySelector('.kandathil-photo-wrap');
+    const glare = card.querySelector('.kandathil-3d-glare');
+    const crest = card.querySelector('.photo-crest');
+    const caption = card.querySelector('.kandathil-photo-caption');
+    if (!wrap) return;
+
+    let reqId = null;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovered = false;
+
+    function onMouseMove(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      targetY = ((x - centerX) / centerX) * 11;
+      targetX = -((y - centerY) / centerY) * 11;
+
+      if (glare) {
+        const frameRect = glare.parentElement.getBoundingClientRect();
+        const glareX = ((e.clientX - frameRect.left) / frameRect.width) * 100;
+        const glareY = ((e.clientY - frameRect.top) / frameRect.height) * 100;
+        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.5) 0%, rgba(212, 163, 75, 0.22) 40%, transparent 70%)`;
+        glare.style.opacity = '1';
+      }
+    }
+
+    function animate() {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+
+      if (wrap) {
+        wrap.style.transform = `perspective(1000px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) translateZ(12px)`;
+      }
+
+      if (crest) {
+        crest.style.transform = `translateZ(55px) rotateX(${(-currentX * 0.3).toFixed(2)}deg) rotateY(${(-currentY * 0.3).toFixed(2)}deg)`;
+      }
+
+      if (caption) {
+        caption.style.transform = `translateZ(30px) rotateX(${(-currentX * 0.2).toFixed(2)}deg) rotateY(${(-currentY * 0.2).toFixed(2)}deg)`;
+      }
+
+      if (isHovered || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+        reqId = requestAnimationFrame(animate);
+      } else {
+        cancelAnimationFrame(reqId);
+        reqId = null;
+      }
+    }
+
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+      if (!reqId) reqId = requestAnimationFrame(animate);
+    });
+
+    card.addEventListener('mousemove', onMouseMove);
+
+    card.addEventListener('mouseleave', () => {
+      isHovered = false;
+      targetX = 0;
+      targetY = 0;
+      if (glare) glare.style.opacity = '0';
+      if (!reqId) reqId = requestAnimationFrame(animate);
+    });
+  }
+
+  initKandathil3DTilt();
 });

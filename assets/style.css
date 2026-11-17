@@ -843,6 +843,9 @@ img {
   justify-content: center;
   padding: 2.4rem 1.6rem;
   text-align: center;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  cursor: pointer;
 }
 
 .kandathil-photo-wrap {
@@ -852,6 +855,9 @@ img {
   justify-content: center;
   gap: 1.1rem;
   width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 /* 1/3rd Scaled Image Frame */
@@ -859,42 +865,57 @@ img {
   position: relative;
   display: inline-block;
   line-height: 0;
+  transform-style: preserve-3d;
 }
 
 .kandathil-main-photo {
-  width: 175px;
-  height: 225px;
+  width: 185px;
+  height: 238px;
   max-width: 100%;
   object-fit: cover;
   object-position: top center;
   border-radius: 14px;
   border: 3.5px solid #ffffff;
-  box-shadow: 0 10px 26px rgba(15, 28, 63, 0.12), 0 0 0 1px rgba(212, 163, 75, 0.45);
+  box-shadow: 0 14px 34px rgba(15, 28, 63, 0.16), 0 0 0 1px rgba(212, 163, 75, 0.45);
   display: block;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transition: box-shadow 0.3s ease;
+  transform: translateZ(20px);
 }
 
-.kandathil-square-showcase:hover .kandathil-main-photo {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 30px rgba(15, 28, 63, 0.16), 0 0 0 1.5px var(--gold-primary);
+.kandathil-3d-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45) 0%, rgba(212, 163, 75, 0.2) 45%, transparent 75%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: overlay;
+  z-index: 3;
+  transform: translateZ(35px);
 }
 
 .photo-crest {
   position: absolute;
   bottom: -10px;
   right: -8px;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--gold-primary, #d4a34b);
   color: #0f1c3f;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   border: 2px solid #ffffff;
-  box-shadow: 0 4px 10px rgba(15, 28, 63, 0.18);
-  z-index: 2;
+  box-shadow: 0 6px 14px rgba(15, 28, 63, 0.22);
+  z-index: 4;
+  transform: translateZ(55px);
+  transition: transform 0.25s ease;
 }
 
 /* Light Background Photo Caption */
@@ -904,6 +925,9 @@ img {
   align-items: center;
   gap: 0.35rem;
   text-align: center;
+  transform-style: preserve-3d;
+  transform: translateZ(30px);
+  transition: transform 0.25s ease;
 }
 
 .kandathil-photo-caption h4 {
