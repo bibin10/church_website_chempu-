@@ -1241,6 +1241,88 @@ document.addEventListener('DOMContentLoaded', () => {
   initMassCards3DTilt();
 
   // =========================================================================
+  // 11b. Interactive 3D Perspective Tilt for Featured Feast of St. Thomas Card
+  // =========================================================================
+  function initFeastFeatured3DTilt() {
+    const card = document.getElementById('feastFeatured3dCard');
+    if (!card) return;
+
+    const glare = card.querySelector('.featured-festival-card-glare');
+    const badge = card.querySelector('.fest-badge');
+    const dateTag = card.querySelector('.fest-date-tag');
+    const btn = card.querySelector('.btn-primary');
+
+    let reqId = null;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovered = false;
+
+    function onMouseMove(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Calculate tilt angles (smooth realistic 3D perspective ~10-12 deg)
+      targetY = ((x - centerX) / centerX) * 11;
+      targetX = -((y - centerY) / centerY) * 11;
+
+      if (glare) {
+        const glareX = (x / rect.width) * 100;
+        const glareY = (y / rect.height) * 100;
+        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.5) 0%, rgba(212, 163, 75, 0.22) 40%, transparent 72%)`;
+        glare.style.opacity = '1';
+      }
+    }
+
+    function animate() {
+      // Damped smooth spring physics
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+
+      card.style.transform = `perspective(1100px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) translateZ(12px)`;
+      card.style.boxShadow = `${(-currentY * 2).toFixed(1)}px ${(currentX * 2 + 20).toFixed(1)}px 45px rgba(11, 21, 48, 0.38), 0 0 35px rgba(212, 163, 75, 0.32)`;
+
+      if (badge) {
+        badge.style.transform = `translateZ(30px) rotateX(${(-currentX * 0.2).toFixed(2)}deg) rotateY(${(-currentY * 0.2).toFixed(2)}deg)`;
+      }
+      if (dateTag) {
+        dateTag.style.transform = `translateZ(25px)`;
+      }
+      if (btn) {
+        btn.style.transform = `translateZ(28px)`;
+      }
+
+      if (isHovered || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+        reqId = requestAnimationFrame(animate);
+      } else {
+        cancelAnimationFrame(reqId);
+        reqId = null;
+      }
+    }
+
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+      if (!reqId) reqId = requestAnimationFrame(animate);
+    });
+
+    card.addEventListener('mousemove', onMouseMove);
+
+    card.addEventListener('mouseleave', () => {
+      isHovered = false;
+      targetX = 0;
+      targetY = 0;
+      if (glare) glare.style.opacity = '0';
+      if (!reqId) reqId = requestAnimationFrame(animate);
+    });
+  }
+
+  initFeastFeatured3DTilt();
+
+  // =========================================================================
   // 12. Contact Form Handler (contact.html)
   // =========================================================================
   function initContactForm() {
