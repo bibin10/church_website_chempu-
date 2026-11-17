@@ -5,6 +5,32 @@
 
 const CHURCH_THEMES = [
   // -------------------------------------------------------------
+  // 0. FEATURED CELESTIAL THEME
+  // -------------------------------------------------------------
+  {
+    id: 'heavenly-celestial',
+    name: 'Heavenly Celestial Angels & Clouds',
+    malayalam: 'സ്വർഗ്ഗീയ പ്രഭ (മാലാഖമാരും മേഘങ്ങളും)',
+    category: 'cathedral',
+    isDark: false,
+    colors: {
+      primaryDeep: '#0d2042',
+      primary: '#1c3d73',
+      primaryLight: '#3661a8',
+      goldPrimary: '#dfb15b',
+      goldGlow: '#fae39b',
+      goldDark: '#b0832c',
+      maroon: '#8a233b',
+      bgMain: '#f5f9ff',
+      bgCard: '#ffffff',
+      bgCardSubtle: '#edf4fd',
+      textMain: '#132038',
+      textMuted: '#526685',
+      borderLight: '#dbe7f6',
+      borderGold: 'rgba(223, 177, 91, 0.45)'
+    }
+  },
+  // -------------------------------------------------------------
   // 1. CATHEDRAL & LITURGICAL TRADITIONS (10 Themes)
   // -------------------------------------------------------------
   {
@@ -1260,6 +1286,14 @@ function applyChurchTheme(themeId, save = true) {
   root.style.setProperty('--border-gold', c.borderGold);
 
   root.setAttribute('data-theme', theme.id);
+
+  if (theme.id === 'heavenly-celestial') {
+    root.classList.add('theme-heavenly-celestial');
+    if (document.body) document.body.classList.add('theme-heavenly-celestial');
+  } else {
+    root.classList.remove('theme-heavenly-celestial');
+    if (document.body) document.body.classList.remove('theme-heavenly-celestial');
+  }
 
   if (theme.isDark) {
     root.classList.add('dark-theme');
