@@ -1464,7 +1464,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentY = 0;
     let isHovered = false;
 
+    let landingCompleted = false;
+
+    // Check when entrance rotation animation completes so mouse movement doesn't disrupt landing
+    ribbon.addEventListener('transitionend', (e) => {
+      if (e.propertyName === 'transform') {
+        landingCompleted = true;
+      }
+    });
+
+    // Fallback timer if transitionend is missed
+    setTimeout(() => { landingCompleted = true; }, 1400);
+
     function onMouseMove(e) {
+      if (!landingCompleted) return;
       const rect = ribbon.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
