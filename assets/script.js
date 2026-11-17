@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { label: 'Gallery', url: '#gallery' },
     { label: 'Parish Council', url: '#administration' },
     { label: 'Community', url: 'community.html' },
-    { label: 'Contact', url: '#contact' }
+    { label: 'Contact', url: 'contact.html' }
   ];
 
   function applyNavConfig() {
@@ -291,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!navUl) return;
 
     const isCommunityPage = window.location.pathname.endsWith('community.html');
+    const isContactPage = window.location.pathname.endsWith('contact.html');
 
     let items = DEFAULT_NAV_ITEMS;
     try {
@@ -307,9 +308,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!Array.isArray(items) || items.length === 0) return;
 
+    // Normalize any legacy stored #contact or index.html#contact links to contact.html
+    items = items.map(item => {
+      if (item.label.toLowerCase() === 'contact' || item.url === '#contact' || item.url === 'index.html#contact') {
+        return { label: item.label, url: 'contact.html' };
+      }
+      return item;
+    });
+
     // Ensure Community link exists in menu
     if (!items.some(i => i.url === 'community.html')) {
-      const contactIdx = items.findIndex(i => i.url === '#contact' || i.url === 'index.html#contact');
+      const contactIdx = items.findIndex(i => i.url === 'contact.html');
       if (contactIdx >= 0) {
         items.splice(contactIdx, 0, { label: 'Community', url: 'community.html' });
       } else {
@@ -334,8 +343,17 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (item.url.startsWith('#')) {
           targetUrl = `index.html${item.url}`;
         }
+      } else if (isContactPage) {
+        if (item.url === 'contact.html') {
+          isActive = true;
+          targetUrl = '#top';
+        } else if (item.url.startsWith('#')) {
+          targetUrl = `index.html${item.url}`;
+        }
       } else {
-        if (item.url === currentHash || (index === 0 && (!window.location.hash || window.location.hash === '#'))) {
+        if (item.url === 'contact.html') {
+          targetUrl = 'contact.html';
+        } else if (item.url === currentHash || (index === 0 && (!window.location.hash || window.location.hash === '#'))) {
           isActive = true;
         }
       }
