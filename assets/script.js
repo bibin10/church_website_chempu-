@@ -1124,18 +1124,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     revealElements.forEach(el => {
-      // If element is the Next Mass Ribbon, give it an explicit observer with higher threshold and strict rootMargin so it only rotates when user actually scrolls down and sees it
+      // If element is the Next Mass Ribbon, trigger rotation strictly when the ribbon is FULLY (100%) in view
       if (el.id === 'nextMass3dRibbon') {
         const ribbonObserver = new IntersectionObserver((entries, rObs) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            // Require the ribbon to be completely inside the viewport (intersectionRatio >= 0.95)
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.95) {
               entry.target.classList.add('is-revealed');
               rObs.unobserve(entry.target);
             }
           });
         }, {
-          threshold: 0.25,
-          rootMargin: '0px 0px -80px 0px'
+          threshold: [0.95, 1.0],
+          rootMargin: '0px 0px 0px 0px'
         });
         ribbonObserver.observe(el);
       } else {
