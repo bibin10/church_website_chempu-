@@ -1447,6 +1447,84 @@ document.addEventListener('DOMContentLoaded', () => {
   initFeastFeatured3DTilt();
 
   // =========================================================================
+  // 11c. Interactive 3D Perspective Tilt for Next Mass Ribbon Block
+  // =========================================================================
+  function initNextMassRibbon3D() {
+    const ribbon = document.getElementById('nextMass3dRibbon');
+    if (!ribbon) return;
+
+    const glare = ribbon.querySelector('.next-mass-ribbon-glare');
+    const statusCircle = ribbon.querySelector('.status-icon-circle');
+    const actionBtn = ribbon.querySelector('.ribbon-action .btn-primary');
+
+    let reqId = null;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovered = false;
+
+    function onMouseMove(e) {
+      const rect = ribbon.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Realistic subtle 3D tilt angles for wide rectangular bar (~6 deg X, ~7 deg Y)
+      targetY = ((x - centerX) / centerX) * 7.5;
+      targetX = -((y - centerY) / centerY) * 6;
+
+      if (glare) {
+        const glareX = (x / rect.width) * 100;
+        const glareY = (y / rect.height) * 100;
+        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.45) 0%, rgba(212, 163, 75, 0.18) 45%, transparent 75%)`;
+        glare.style.opacity = '1';
+      }
+    }
+
+    function animate() {
+      // Smooth lerp damping
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+
+      ribbon.style.transform = `perspective(1200px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) translateZ(10px)`;
+      ribbon.style.boxShadow = `${(-currentY * 2).toFixed(1)}px ${(currentX * 1.5 + 26).toFixed(1)}px 50px rgba(10, 20, 47, 0.22), 0 8px 24px rgba(212, 163, 75, 0.16)`;
+
+      if (statusCircle) {
+        statusCircle.style.transform = `translateZ(24px) rotateX(${(-currentX * 0.2).toFixed(2)}deg) rotateY(${(-currentY * 0.2).toFixed(2)}deg)`;
+      }
+      if (actionBtn) {
+        actionBtn.style.transform = `translateZ(20px)`;
+      }
+
+      if (isHovered || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+        reqId = requestAnimationFrame(animate);
+      } else {
+        cancelAnimationFrame(reqId);
+        reqId = null;
+      }
+    }
+
+    ribbon.addEventListener('mouseenter', () => {
+      isHovered = true;
+      if (!reqId) reqId = requestAnimationFrame(animate);
+    });
+
+    ribbon.addEventListener('mousemove', onMouseMove);
+
+    ribbon.addEventListener('mouseleave', () => {
+      isHovered = false;
+      targetX = 0;
+      targetY = 0;
+      if (glare) glare.style.opacity = '0';
+      if (!reqId) reqId = requestAnimationFrame(animate);
+    });
+  }
+
+  initNextMassRibbon3D();
+
+  // =========================================================================
   // 12. Contact Form Handler (contact.html)
   // =========================================================================
   function initContactForm() {

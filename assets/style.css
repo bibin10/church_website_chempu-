@@ -533,23 +533,54 @@ img {
   }
 }
 
-/* Mass Schedule Banner Float */
+/* Mass Schedule Banner Float & 3D Stage */
+.next-mass-ribbon-stage {
+  perspective: 1200px;
+  position: relative;
+  z-index: 25;
+}
+
 .next-mass-ribbon {
   background: #ffffff;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  margin-top: -2rem;
-  margin-bottom: 2rem;
+  border-radius: var(--radius-lg, 18px);
+  box-shadow: 0 24px 50px rgba(10, 20, 47, 0.16), 0 8px 24px rgba(212, 163, 75, 0.12);
+  margin-top: -3.5rem;
+  margin-bottom: 2.5rem;
   position: relative;
   z-index: 10;
-  border: 1px solid var(--border-light);
+  border: 1.5px solid rgba(212, 163, 75, 0.35);
   overflow: hidden;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+  will-change: transform, box-shadow, opacity;
+}
+
+.next-mass-ribbon:hover {
+  border-color: var(--gold-primary, #d4a34b);
+  box-shadow: 0 32px 65px rgba(10, 20, 47, 0.24), 0 12px 30px rgba(212, 163, 75, 0.22);
+}
+
+.next-mass-ribbon-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+  border-radius: inherit;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  transition: opacity 0.3s ease;
 }
 
 .ribbon-grid {
   display: grid;
-  grid-template-columns: 1.2fr 2fr 1fr;
+  grid-template-columns: 1.25fr 2fr 1fr;
   align-items: center;
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
 }
 
 .ribbon-status {
@@ -3458,10 +3489,18 @@ img {
   transform: translateY(28px);
 }
 
-/* 1. Next Mass Ribbon: Floating Elevation Drop */
+/* 1. Next Mass Ribbon: 3D Descending & Smooth Landing Physics */
 .anim-ribbon-drop {
-  transform: translateY(-24px) scale(0.97);
-  transition-duration: 0.75s;
+  opacity: 0;
+  transform: perspective(1200px) translateY(-75px) rotateX(16deg) scale(0.92);
+  transform-origin: 50% 0%;
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.1s ease;
+}
+
+.anim-ribbon-drop.is-revealed {
+  opacity: 1;
+  transform: perspective(1200px) translateY(0) rotateX(0deg) scale(1) !important;
+  box-shadow: 0 24px 50px rgba(10, 20, 47, 0.16), 0 8px 24px rgba(212, 163, 75, 0.12);
 }
 
 /* 2. History & Heritage: Split Parallax Slip-in */
