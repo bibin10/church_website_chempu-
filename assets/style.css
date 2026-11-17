@@ -1665,15 +1665,48 @@ img {
   align-items: center;
 }
 
+/* 3D Moving / Glowing Golden Border Wrapper for Featured Festival Card */
+.featured-festival-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2.5px;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 16px 40px rgba(11, 21, 48, 0.28), 0 0 25px rgba(212, 163, 75, 0.22);
+}
+
+.featured-festival-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 160deg,
+    rgba(212, 163, 75, 0.3) 220deg,
+    var(--gold-primary, #d4a34b) 280deg,
+    var(--gold-glow, #eec578) 330deg,
+    #ffffff 355deg,
+    transparent 360deg
+  );
+  animation: borderRun3D 4s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .featured-festival-card {
   background: linear-gradient(135deg, var(--primary-deep), var(--primary));
-  border-radius: var(--radius-lg);
+  border-radius: calc(var(--radius-lg) - 2px);
   color: #ffffff;
   padding: 3rem;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(212, 163, 75, 0.4);
+  box-shadow: none;
+  border: none;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  z-index: 1;
 }
 
 .featured-feast-3d-canvas,
