@@ -1148,79 +1148,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionScrollAnimations();
 
   // =========================================================================
-  // 9. Interactive 3D Card Tilt & Projection Engine (History Image Card)
+  // 9. History Image Card (Static & Stable - No Hover Tilt Movement)
   // =========================================================================
-  function initHistory3DTilt() {
-    const card = document.getElementById('history3dCard');
-    if (!card) return;
-
-    const inner = card.querySelector('.history-3d-card-inner');
-    const glare = card.querySelector('.history-3d-glare');
-    const overlay = card.querySelector('.history-overlay-card');
-    if (!inner) return;
-
-    let reqId = null;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let isHovered = false;
-
-    function onMouseMove(e) {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      // Calculate tilt angles (max ~14 deg)
-      targetY = ((x - centerX) / centerX) * 12;
-      targetX = -((y - centerY) / centerY) * 12;
-
-      // Update glare position
-      if (glare) {
-        const glareX = (x / rect.width) * 100;
-        const glareY = (y / rect.height) * 100;
-        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.45) 0%, rgba(212, 163, 75, 0.2) 40%, transparent 70%)`;
-        glare.style.opacity = '1';
-      }
-    }
-
-    function animate() {
-      // Smooth lerp damping
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
-
-      if (inner) {
-        inner.style.transform = `perspective(1000px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) translateZ(15px)`;
-        inner.style.boxShadow = `${(-currentY * 1.5).toFixed(1)}px ${(currentX * 1.5 + 20).toFixed(1)}px 45px rgba(15, 28, 63, 0.24)`;
-      }
-
-      if (isHovered || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
-        reqId = requestAnimationFrame(animate);
-      } else {
-        cancelAnimationFrame(reqId);
-        reqId = null;
-      }
-    }
-
-    card.addEventListener('mouseenter', () => {
-      isHovered = true;
-      if (!reqId) reqId = requestAnimationFrame(animate);
-    });
-
-    card.addEventListener('mousemove', onMouseMove);
-
-    card.addEventListener('mouseleave', () => {
-      isHovered = false;
-      targetX = 0;
-      targetY = 0;
-      if (glare) glare.style.opacity = '0';
-      if (!reqId) reqId = requestAnimationFrame(animate);
-    });
-  }
-
-  initHistory3DTilt();
+  // initHistory3DTilt removed upon user request to keep the image card stable and static on cursor hover.
 
   // =========================================================================
   // 10. Interactive 3D Card Tilt Engine for Mar Augustine Kandathil

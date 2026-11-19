@@ -713,18 +713,12 @@ img {
 
 .history-image-composition {
   position: relative;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  cursor: pointer;
 }
 
 .history-3d-card-inner {
   position: relative;
   width: 100%;
   border-radius: var(--radius-lg);
-  transform-style: preserve-3d;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-  will-change: transform;
 }
 
 .history-main-img {
@@ -735,23 +729,10 @@ img {
   box-shadow: 0 16px 40px rgba(15, 28, 63, 0.18);
   display: block;
   border: 1px solid rgba(212, 163, 75, 0.35);
-  transition: filter 0.4s ease;
 }
 
 .history-3d-glare {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: var(--radius-lg);
-  pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(212, 163, 75, 0.15) 45%, transparent 75%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  mix-blend-mode: overlay;
-  z-index: 2;
-  transform: translateZ(25px);
+  display: none;
 }
 
 .history-overlay-card {
@@ -767,15 +748,9 @@ img {
   border-right: 1px solid rgba(212, 163, 75, 0.2);
   border-bottom: 1px solid rgba(212, 163, 75, 0.2);
   max-width: 260px;
-  transition: box-shadow 0.3s ease;
   z-index: 10;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  backface-visibility: hidden;
-}
-
-.history-image-composition:hover .history-overlay-card {
-  box-shadow: 0 20px 48px rgba(15, 28, 63, 0.3);
 }
 
 .history-overlay-card h4 {
