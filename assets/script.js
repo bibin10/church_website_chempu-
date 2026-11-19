@@ -1196,10 +1196,6 @@ document.addEventListener('DOMContentLoaded', () => {
         inner.style.boxShadow = `${(-currentY * 1.5).toFixed(1)}px ${(currentX * 1.5 + 20).toFixed(1)}px 45px rgba(15, 28, 63, 0.24)`;
       }
 
-      if (overlay) {
-        overlay.style.transform = `translateZ(55px) rotateX(${(-currentX * 0.25).toFixed(2)}deg) rotateY(${(-currentY * 0.25).toFixed(2)}deg)`;
-      }
-
       if (isHovered || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
         reqId = requestAnimationFrame(animate);
       } else {

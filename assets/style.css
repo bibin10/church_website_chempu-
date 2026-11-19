@@ -767,16 +767,14 @@ img {
   border-right: 1px solid rgba(212, 163, 75, 0.2);
   border-bottom: 1px solid rgba(212, 163, 75, 0.2);
   max-width: 260px;
-  transform-style: preserve-3d;
-  transform: translateZ(55px);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
   z-index: 10;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
 }
 
 .history-image-composition:hover .history-overlay-card {
-  transform: translateZ(65px) translateY(-3px);
   box-shadow: 0 20px 48px rgba(15, 28, 63, 0.3);
 }
 
