@@ -3187,7 +3187,7 @@ img {
 .subpage-hero-inner {
   position: relative;
   z-index: 2;
-  max-width: 840px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -3197,7 +3197,7 @@ img {
   gap: 0.55rem;
   font-size: 0.85rem;
   color: var(--gold-glow, #eec578);
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   background: rgba(255, 255, 255, 0.08);
@@ -3218,18 +3218,25 @@ img {
 
 .subpage-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.1rem, 4.2vw, 2.9rem);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
   color: #ffffff;
   line-height: 1.2;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.75rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .subpage-title {
+    white-space: normal;
+  }
 }
 
 .subpage-subtitle {
-  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-size: clamp(0.92rem, 1.6vw, 1.05rem);
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.65;
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 760px;
 }
 
 .community-cta-box {
