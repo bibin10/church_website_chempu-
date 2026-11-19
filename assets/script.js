@@ -1517,4 +1517,76 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initContactForm();
+
+  // =========================================================================
+  // 13. Dedicated Devotional Hymn Audio Player
+  // =========================================================================
+  function initDevotionalAudioPlayer() {
+    const audio = document.getElementById('muthappanAudio');
+    const playBtn = document.getElementById('muthappanPlayBtn');
+    const playIcon = document.getElementById('muthappanPlayIcon');
+    const progressBar = document.getElementById('muthappanProgressBar');
+    const currentTimeEl = document.getElementById('muthappanCurrentTime');
+    const durationEl = document.getElementById('muthappanDuration');
+    const discVisual = document.getElementById('hymnDiscVisual');
+
+    if (!audio || !playBtn) return;
+
+    function formatTime(sec) {
+      if (isNaN(sec) || sec < 0) return '0:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          if (playIcon) {
+            playIcon.classList.remove('fa-play');
+            playIcon.classList.add('fa-pause');
+          }
+          if (discVisual) discVisual.classList.add('is-playing');
+        }).catch(err => console.log('Audio play error:', err));
+      } else {
+        audio.pause();
+        if (playIcon) {
+          playIcon.classList.remove('fa-pause');
+          playIcon.classList.add('fa-play');
+        }
+        if (discVisual) discVisual.classList.remove('is-playing');
+      }
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      if (durationEl) durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+      if (progressBar && audio.duration) {
+        progressBar.value = (audio.currentTime / audio.duration) * 100;
+      }
+    });
+
+    if (progressBar) {
+      progressBar.addEventListener('input', () => {
+        if (audio.duration) {
+          audio.currentTime = (progressBar.value / 100) * audio.duration;
+        }
+      });
+    }
+
+    audio.addEventListener('ended', () => {
+      if (playIcon) {
+        playIcon.classList.remove('fa-pause');
+        playIcon.classList.add('fa-play');
+      }
+      if (discVisual) discVisual.classList.remove('is-playing');
+      if (progressBar) progressBar.value = 0;
+      if (currentTimeEl) currentTimeEl.textContent = '0:00';
+    });
+  }
+
+  initDevotionalAudioPlayer();
 });

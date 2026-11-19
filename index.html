@@ -435,6 +435,60 @@
     </div>
   </section>
 
+  <!-- Dedicated Parish Devotional Hymn Player -->
+  <section class="section-wrapper" id="devotional-hymn" style="padding-top: 3.5rem; padding-bottom: 3.5rem;">
+    <div class="container">
+      <div class="devotional-hymn-card scroll-reveal" data-3d-dots="true">
+        <canvas class="interactive-3d-dots-canvas"></canvas>
+        <div class="devotional-hymn-grid has-3d-canvas-content">
+          <!-- Left: Rotating Devotional Vinyl Record Emblem -->
+          <div class="devotional-art-wrapper">
+            <div class="devotional-disc-visual" id="hymnDiscVisual">
+              <div class="devotional-disc-center">
+                <i class="fas fa-cross"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Track Details & Interactive Player -->
+          <div class="devotional-content-wrapper">
+            <div class="devotional-hymn-badge">
+              <i class="fas fa-music"></i> Parish Devotional Hymn &bull; St. Thomas
+            </div>
+            <h3 class="devotional-hymn-title">Hymn to Muthappan</h3>
+            <div class="devotional-hymn-quote">
+              &ldquo;Ayirangal ninte sannidhi thedi varunnu... ashrayam nee mathram anente ponnu muthappo&rdquo;
+            </div>
+            <p class="devotional-hymn-desc">
+              A sacred devotional hymn dedicated to our heavenly patron, Apostle St. Thomas (Chempu Muthappan), sung in heartfelt prayer, adoration, and complete surrender. Listen directly:
+            </p>
+
+            <!-- Custom Clean HTML5 Audio Player -->
+            <div class="devotional-player-controls">
+              <audio id="muthappanAudio" preload="metadata" src="assets/audio/muthappan_devotional_song.mp3"></audio>
+              
+              <div class="devotional-play-row">
+                <button type="button" class="devotional-play-btn" id="muthappanPlayBtn" aria-label="Play Devotional Hymn">
+                  <i class="fas fa-play" id="muthappanPlayIcon"></i>
+                </button>
+                <div class="devotional-track-meta">
+                  <h5>Ponnu Muthappo Devotional Hymn</h5>
+                  <span>St. Thomas RC Church Chempu &bull; Sacred Audio</span>
+                </div>
+              </div>
+
+              <div class="devotional-progress-wrapper">
+                <span class="devotional-time" id="muthappanCurrentTime">0:00</span>
+                <input type="range" class="devotional-progress-bar" id="muthappanProgressBar" value="0" min="0" max="100" step="0.1" aria-label="Audio progress">
+                <span class="devotional-time" id="muthappanDuration">0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Photo Gallery Section with Real & Atmospheric Imagery -->
   <section class="section-wrapper bg-alt" id="gallery">
     <div class="container">
