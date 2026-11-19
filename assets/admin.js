@@ -15,7 +15,7 @@ const DEFAULT_PIOUS_WINGS = [
     icon: 'fa-hand-holding-heart',
     tag: 'Charity & Relief',
     title: 'St. Vincent de Paul Society',
-    malayalam: 'വിൻസെന്റ് ഡി പോൾ സൊസൈറ്റി (SVP)',
+    malayalam: 'St. Vincent de Paul Society (SVP)',
     desc: 'Providing compassionate monthly ration distribution, medical aid, education support, and emergency relief to underprivileged parish families.',
     footer: 'Weekly Family Care & Mercy Ministry'
   },
@@ -23,7 +23,7 @@ const DEFAULT_PIOUS_WINGS = [
     icon: 'fa-dove',
     tag: 'Family Ministry',
     title: 'Mathruvedi',
-    malayalam: "മാതൃവേദി (Mothers' Guild)",
+    malayalam: "Mothers' Guild",
     desc: 'Fostering Christian motherhood, domestic prayers, altar floral arrangements, family values, and pastoral solidarity among parish mothers.',
     footer: 'Domestic Church & Marian Fellowship'
   },
@@ -31,7 +31,7 @@ const DEFAULT_PIOUS_WINGS = [
     icon: 'fa-shield-alt',
     tag: 'Parish Guardians',
     title: 'Pithruvedi',
-    malayalam: "പിതൃവേദി (Fathers' Guild)",
+    malayalam: "Fathers' Guild",
     desc: 'Catholic fathers committed to spiritual leadership, temporal parish security, feast logistics, and youth mentoring.',
     footer: 'Temporal Leadership & Feast Support'
   },
@@ -39,7 +39,7 @@ const DEFAULT_PIOUS_WINGS = [
     icon: 'fa-fire',
     tag: 'Youth Wing',
     title: 'SMYM Youth Movement',
-    malayalam: 'എസ്.എം.വൈ.എം. യൂത്ത് മൂവ്മെന്റ്',
+    malayalam: 'Syro-Malabar Youth Movement',
     desc: 'Energizing parish youth through gospel values, blood donation drives, sports, creative arts, and leadership conventions.',
     footer: 'Youth Leadership & Community Service'
   },
@@ -47,7 +47,7 @@ const DEFAULT_PIOUS_WINGS = [
     icon: 'fa-music',
     tag: 'Sacred Choral',
     title: 'St. Thomas Liturgical Choir',
-    malayalam: 'ദേവാലയ ഗായകസംഘം',
+    malayalam: 'Parish Liturgical Choir',
     desc: 'Leading celestial East-Syriac and Malayalam liturgical hymns, sacred psalms, and solemn choral devotions during Holy Qurbana.',
     footer: 'Sacred Music & Feast Choral Service'
   },
@@ -55,7 +55,7 @@ const DEFAULT_PIOUS_WINGS = [
     icon: 'fa-crown',
     tag: 'Marian Devotion',
     title: 'Legion of Mary',
-    malayalam: 'ലെജിയൻ ഓഫ് മേരി',
+    malayalam: 'Legion of Mary',
     desc: 'Devoted Marian legionaries engaged in weekly rosary chains, hospital visitations, and comforting the homebound elderly.',
     footer: 'Weekly Rosary & Spiritual Solace'
   }
@@ -133,19 +133,19 @@ const DEFAULT_FEASTS = [
   {
     month: 'Apr',
     day: 'Pass',
-    title: 'Holy Week & Easter (ഉയിർപ്പ് തിരുനാൾ)',
+    title: 'Holy Week & Easter',
     desc: 'Solemn liturgical services of Pesaha, Passion Friday, and Glorious Easter Resurrection.'
   },
   {
     month: 'Sep',
     day: '08',
-    title: 'Nativity of Mother Mary (എട്ടുനോമ്പ്)',
+    title: 'Nativity of Mother Mary (8 Days Lent)',
     desc: 'Eight days of devotion, harvest offerings (Puthari), and Marian prayers.'
   },
   {
     month: 'Dec',
     day: '25',
-    title: 'Christmas (പിറവി തിരുനാൾ)',
+    title: 'Christmas (Feast of Nativity)',
     desc: 'Midnight Holy Qurbana, Christmas carol visits across parish wards, and community joy.'
   }
 ];
@@ -178,7 +178,7 @@ const DEFAULT_CONFIG = {
   hero_badge: 'Archdiocese of Ernakulam-Angamaly • Estd. 1307 AD',
   hero_title1: 'St. Thomas Syro-Malabar',
   hero_title2: 'Roman Catholic Church, Chempu',
-  hero_malayalam: 'വിശുദ്ധ തോമാശ്ലീഹായുടെ നാമത്തിലുള്ള ചെമ്പ് സെന്റ് തോമസ് പള്ളി',
+  hero_malayalam: 'St. Thomas Church Chempu Dedicated to Apostle St. Thomas',
   hero_desc: 'Over 700 years of living Christian faith, apostolic communion, and spiritual brotherhood rooted along the serene waters of Chempu, Vaikom.',
   stat1_val: '1307 AD',
   stat1_lbl: 'Historic Foundation',
@@ -214,7 +214,7 @@ const DEFAULT_CONFIG = {
   kandathil_photo: 'assets/images/mar_augustine_kandathil_portrait.jpg',
   kandathil_eyebrow: 'Parish Pride & Archdiocesan Patriarch',
   kandathil_title: 'Mar Augustine Kandathil',
-  kandathil_malayalam: 'മാർ അഗസ്റ്റിൻ കണ്ടത്തിൽ (1874 – 1956) • പ്രഥമ മെത്രാപ്പോലീത്ത',
+  kandathil_malayalam: 'Mar Augustine Kandathil (1874 – 1956) • First Metropolitan Archbishop',
   kandathil_lead: 'Chempu is eternally honored in the history of the Catholic Church as the native parish and birthplace of Mar Augustine Kandathil — the first indigenous Metropolitan Archbishop of India and the founding father of the Syro-Malabar Hierarchy.',
   kandathil_p1: 'Born on August 25, 1874, in the devout Kandathil family of Chempu to parents Kandathil Varkey and Thressia, young Augustine was baptized, nourished in Christian faith, and formed spiritually right here at St. Thomas Church, Chempu. The quiet backwaters and devout parish community of Chempu provided the spiritual cradle that nurtured his early call to priestly service.',
   kandathil_p2: 'On December 21, 1923, His Holiness Pope Pius XI issued the historic apostolic constitution Romani Pontifices, re-establishing the indigenous Syro-Malabar Catholic Hierarchy and elevating the Vicariate of Ernakulam into a Metropolitan Archdiocese. Mar Augustine Kandathil was consecrated as its first Metropolitan Archbishop, creating history as the very first native Indian to hold the rank and exercise the authority of a Catholic Metropolitan Archbishop.',
@@ -223,33 +223,33 @@ const DEFAULT_CONFIG = {
 
   // 5. Feasts
   feast_main_name: 'Feast of St. Thomas the Apostle',
-  feast_main_date: 'July 3 (Dukhrana) & Traditional Parish Thirunal',
+  feast_main_date: 'July 3 (Dukhrana) & Traditional Parish Feast',
   feast_main_desc: 'The annual parish festival is marked with high spiritual solemnity. The traditional "Kodiyettu" (flag hoisting), Raza Qurbana, grand candle-lit processions carrying holy relics and traditional silk parasols (Muthukkuda), and fellowship meals unite the entire village of Chempu.',
 
   // 6. Administration & Leadership
   vicar_name: 'Rev. Fr. Vicar',
-  vicar_malayalam: 'ഇടവക വികാരി',
+  vicar_malayalam: 'Parish Vicar',
   vicar_role: 'Vicar & Pastoral Head',
   vicar_phone: '+91 4829-273176',
   vicar_photo: 'assets/images/vicar_avatar.svg',
   vicar_desc: 'Oversees all liturgical celebrations, sacraments, pastoral care, and spiritual guidance of St. Thomas Church Chempu.',
 
   trustee1_name: 'Parish Trustee 1',
-  trustee1_malayalam: 'കൈക്കാരൻ',
+  trustee1_malayalam: 'Parish Trustee',
   trustee1_role: 'Church Trustee',
   trustee1_phone: '+91 94470 00000',
   trustee1_photo: 'assets/images/trustee1_avatar.svg',
   trustee1_desc: 'Managing temporal administration, church assets, accounts, and festive celebrations.',
 
   trustee2_name: 'Parish Trustee 2',
-  trustee2_malayalam: 'കൈക്കാരൻ',
+  trustee2_malayalam: 'Parish Trustee',
   trustee2_role: 'Church Trustee',
   trustee2_phone: '+91 94470 00000',
   trustee2_photo: 'assets/images/trustee2_avatar.svg',
   trustee2_desc: 'Overseeing parish development projects, development initiatives, and community logistics.',
 
   vice_chairman_name: 'Family Unit Vice Chairman',
-  vice_chairman_malayalam: 'കുടുംബകൂട്ടായ്മ വൈസ് ചെയർമാൻ',
+  vice_chairman_malayalam: 'Family Units Vice Chairman',
   vice_chairman_role: 'Pastoral Council Vice Chairman',
   vice_chairman_phone: '+91 94470 00000',
   vice_chairman_photo: 'assets/images/vice_chairman_avatar.svg',
@@ -262,27 +262,27 @@ const DEFAULT_CONFIG = {
 
   // 6.5. SD Sisters (Convent)
   sd_title: 'Sisters of the Destitute (SD Convent, Chempu)',
-  sd_malayalam: 'ദീനദയാലു സന്യാസിനി സമൂഹം (എസ്.ഡി. കോൺവെന്റ്, ചെമ്പ്)',
+  sd_malayalam: 'Sisters of the Destitute (SD Convent)',
   sd_years_chempu: '75 Years in Chempu',
   sd_years_congregation: '100 Years of Congregation',
   sd_desc: 'For over 75 dedicated years, the Sisters of the Destitute (SD) have been an integral spiritual pillar of St. Thomas Church Chempu. Formed nearly 100 years ago (1927) by Venerable Fr. Varghese Payyappilly with the charism of compassionate love for the poor and marginalized, the SD Sisters in Chempu tirelessly serve our parish community through nursery education (Carmel Nursery), Sunday catechism, home visitations of the sick and elderly, liturgical altar service, and continual Eucharistic adoration.',
 
   // 6.6. Filial Church: St. Mary's Church Chemmanakary (Holyland)
   chemmanakary_title: "St. Mary's Church, Chemmanakary (Holyland)",
-  chemmanakary_malayalam: 'സെന്റ് മേരീസ് പള്ളി, ചെമ്മനാകരി (ഹോളിലാൻഡ് ദേവാലയം)',
-  chemmanakary_badge1: 'Filial Church (ഫിലിയൽ പള്ളി)',
+  chemmanakary_malayalam: "St. Mary's Church, Chemmanakary (Holyland)",
+  chemmanakary_badge1: 'Filial Church',
   chemmanakary_badge2: 'Chemmanakary, Chempu',
-  chemmanakary_desc: "Situated along the serene Chemmanakary backwaters, St. Mary's Church, Chemmanakary (Holyland) is a revered filial church and sacred pilgrimage center under the parental parish and pastoral care of St. Thomas Syro-Malabar Church, Chempu. Under the direct pastoral guidance of the Chempu parish vicar, the church ministers to the spiritual life of the Chemmanakary community with Holy Qurbana, Marian devotions, and the solemn celebration of its annual parish feast (തിരുനാൾ).",
+  chemmanakary_desc: "Situated along the serene Chemmanakary backwaters, St. Mary's Church, Chemmanakary (Holyland) is a revered filial church and sacred pilgrimage center under the parental parish and pastoral care of St. Thomas Syro-Malabar Church, Chempu. Under the direct pastoral guidance of the Chempu parish vicar, the church ministers to the spiritual life of the Chemmanakary community with Holy Qurbana, Marian devotions, and the solemn celebration of its annual parish feast.",
 
   // 6.7. Parish Institutions & Facilities
   inst_school_title: 'St. Thomas L.P. School, Chempu',
-  inst_school_malayalam: 'സെന്റ് തോമസ് എൽ.പി. സ്കൂൾ, ചെമ്പ്',
+  inst_school_malayalam: 'St. Thomas L.P. School, Chempu',
   inst_school_desc: 'Established in 1921 under the patronage and management of St. Thomas Church Chempu, this centenary educational institution has nurtured generations of children across Chempu and neighbouring villages with primary education, moral discipline, and values.',
   inst_cultural_title: 'St. Thomas Cultural Centre, Chempu',
-  inst_cultural_malayalam: 'സെന്റ് തോമസ് കൾച്ചറൽ സെന്റർ, ചെമ്പ്',
+  inst_cultural_malayalam: 'St. Thomas Cultural Centre, Chempu',
   inst_cultural_desc: 'A spacious modern parish auditorium and cultural venue accommodating community gatherings, solemn wedding banquets, parish general assemblies, youth festivals, and cultural events for all residents of Chempu.',
   inst_complex_title: 'St. Thomas Shopping Complex, Chempu',
-  inst_complex_malayalam: 'സെന്റ് തോമസ് ഷോപ്പിംഗ് കോംപ്ലക്സ്, ചെമ്പ്',
+  inst_complex_malayalam: 'St. Thomas Shopping Complex, Chempu',
   inst_complex_desc: 'Situated in the heart of Chempu, the parish commercial shopping complex provides essential retail spaces, local businesses, and community utilities, contributing to village commerce and supporting church temporal ministries.',
 
   // 6.8. Pious Associations & Pastoral Wings Header
