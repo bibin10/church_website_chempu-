@@ -197,16 +197,15 @@ img {
   opacity: 0.9;
 }
 
-/* Modern Sticky Header (Slim Dark Ecclesiastical Design matching Footer with 3D dots canvas) */
+/* Modern Sticky Header */
 .main-header {
   position: sticky;
   top: 0;
-  background: var(--primary-deep, #0f1c3f);
-  color: #c0c6d4;
-  border-bottom: 3px solid var(--gold-primary, #d4a34b);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
   z-index: 100;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(10, 19, 44, 0.45);
   transition: var(--transition-smooth);
 }
 
@@ -214,50 +213,44 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 0;
+  padding: 0.85rem 0;
 }
 
 .church-brand {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  text-decoration: none;
+  gap: 1rem;
 }
 
 .church-emblem {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, var(--gold-primary, #d4a34b), var(--gold-dark, #9a6d1a));
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--primary-deep), var(--primary));
+  border: 2px solid var(--gold-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0f1c3f;
-  font-size: 1.25rem;
-  box-shadow: 0 4px 15px rgba(212, 163, 75, 0.35);
-  transition: transform 0.3s ease;
-}
-
-.church-brand:hover .church-emblem {
-  transform: rotate(15deg) scale(1.05);
+  color: var(--gold-glow);
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(212, 163, 75, 0.25);
 }
 
 .brand-text h1 {
-  font-size: clamp(0.92rem, 1.6vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
   font-weight: 700;
   line-height: 1.2;
-  color: #ffffff;
+  color: var(--primary-deep);
   letter-spacing: 0.04em;
   margin: 0;
   white-space: nowrap;
 }
 
 .brand-text span {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--gold-glow, #eec578);
+  color: var(--gold-dark);
   font-weight: 600;
   display: block;
 }
@@ -266,17 +259,15 @@ img {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 1.35rem;
+  gap: 1.5rem;
 }
 
 .nav-links a {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--text-main);
   position: relative;
-  padding: 0.35rem 0;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  padding: 0.4rem 0;
 }
 
 .nav-links a::after {
@@ -286,19 +277,18 @@ img {
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--gold-primary, #d4a34b);
+  background: var(--gold-primary);
   transition: var(--transition-smooth);
   transform: translateX(-50%);
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: #ffffff;
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
   width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
 }
 
 .header-actions {
@@ -355,7 +345,7 @@ img {
   background: none;
   border: none;
   font-size: 1.6rem;
-  color: var(--gold-glow, #eec578);
+  color: var(--primary-deep);
   cursor: pointer;
 }
 
@@ -2781,11 +2771,10 @@ img {
   }
   .nav-links {
     position: fixed;
-    top: 60px;
+    top: 70px;
     left: 0;
     width: 100%;
-    background: var(--primary-deep, #0f1c3f);
-    border-top: 1px solid rgba(212, 163, 75, 0.25);
+    background: #ffffff;
     flex-direction: column;
     padding: 2rem;
     box-shadow: var(--shadow-lg);
