@@ -209,6 +209,25 @@ img {
   transition: var(--transition-smooth);
 }
 
+/* Reduced width for header on Community page (reduced by 20mm / ~75px with auto margins) */
+body.community-page .main-header {
+  max-width: calc(100% - 20mm);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-left: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
+  box-shadow: 0 4px 20px rgba(15, 28, 63, 0.08);
+}
+
+body.community-page .subpage-hero {
+  max-width: calc(100% - 20mm);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
