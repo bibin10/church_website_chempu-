@@ -6,25 +6,25 @@ const INTENTIONS_KEY = 'st_thomas_prayer_intentions';
 
 const DEFAULT_ADMIN_CONFIG = {
   vicar_name: 'Rev. Fr. Vicar',
-  vicar_malayalam: 'ഇടവക വികാരി',
+  vicar_malayalam: 'Parish Vicar',
   vicar_role: 'Vicar & Pastoral Head',
   vicar_phone: '+91 4829-273176',
   vicar_photo: 'assets/images/vicar_avatar.svg',
   vicar_desc: 'Oversees all liturgical celebrations, sacraments, pastoral care, and spiritual guidance of St. Thomas Church Chempu.',
   trustee1_name: 'Parish Trustee 1',
-  trustee1_malayalam: 'കൈക്കാരൻ',
+  trustee1_malayalam: 'Parish Trustee',
   trustee1_role: 'Church Trustee',
   trustee1_phone: '+91 94470 00000',
   trustee1_photo: 'assets/images/trustee1_avatar.svg',
   trustee1_desc: 'Managing temporal administration, church assets, accounts, and festive celebrations.',
   trustee2_name: 'Parish Trustee 2',
-  trustee2_malayalam: 'കൈക്കാരൻ',
+  trustee2_malayalam: 'Parish Trustee',
   trustee2_role: 'Church Trustee',
   trustee2_phone: '+91 94470 00000',
   trustee2_photo: 'assets/images/trustee2_avatar.svg',
   trustee2_desc: 'Overseeing parish development projects, development initiatives, and community logistics.',
   vice_chairman_name: 'Family Unit Vice Chairman',
-  vice_chairman_malayalam: 'കുടുംബകൂട്ടായ്മ വൈസ് ചെയർമാൻ',
+  vice_chairman_malayalam: 'Family Units Vice Chairman',
   vice_chairman_role: 'Pastoral Council Vice Chairman',
   vice_chairman_phone: '+91 94470 00000',
   vice_chairman_photo: 'assets/images/vice_chairman_avatar.svg',
@@ -173,28 +173,28 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       setText('live_vicar_name', cfg.vicar_name, 'Rev. Fr. Vicar');
-      setText('live_vicar_malayalam', cfg.vicar_malayalam, 'ഇടവക വികാരി');
+      setText('live_vicar_malayalam', cfg.vicar_malayalam, 'Parish Vicar');
       setText('live_vicar_role', cfg.vicar_role, 'Vicar & Pastoral Head');
       setText('live_vicar_desc', cfg.vicar_desc || cfg.admin_vicar_desc, 'Oversees all liturgical celebrations, sacraments, pastoral care, and spiritual guidance of St. Thomas Church Chempu.');
       setContactPhone('live_vicar_phone_wrap', 'live_vicar_phone', cfg.vicar_phone, '+91 4829-273176');
       setImage('live_vicar_photo', cfg.vicar_photo, 'assets/images/vicar_avatar.svg');
 
       setText('live_trustee1_name', cfg.trustee1_name, 'Parish Trustee 1');
-      setText('live_trustee1_malayalam', cfg.trustee1_malayalam, 'കൈക്കാരൻ');
+      setText('live_trustee1_malayalam', cfg.trustee1_malayalam, 'Parish Trustee');
       setText('live_trustee1_role', cfg.trustee1_role, 'Church Trustee');
       setText('live_trustee1_desc', cfg.trustee1_desc || cfg.admin_trustees_desc, 'Managing temporal administration, church assets, accounts, and festive celebrations.');
       setContactPhone('live_trustee1_phone_wrap', 'live_trustee1_phone', cfg.trustee1_phone, '+91 94470 00000');
       setImage('live_trustee1_photo', cfg.trustee1_photo, 'assets/images/trustee1_avatar.svg');
 
       setText('live_trustee2_name', cfg.trustee2_name, 'Parish Trustee 2');
-      setText('live_trustee2_malayalam', cfg.trustee2_malayalam, 'കൈക്കാരൻ');
+      setText('live_trustee2_malayalam', cfg.trustee2_malayalam, 'Parish Trustee');
       setText('live_trustee2_role', cfg.trustee2_role, 'Church Trustee');
       setText('live_trustee2_desc', cfg.trustee2_desc || cfg.admin_trustees_desc, 'Overseeing parish development projects, development initiatives, and community logistics.');
       setContactPhone('live_trustee2_phone_wrap', 'live_trustee2_phone', cfg.trustee2_phone, '+91 94470 00000');
       setImage('live_trustee2_photo', cfg.trustee2_photo, 'assets/images/trustee2_avatar.svg');
 
       setText('live_vice_chairman_name', cfg.vice_chairman_name, 'Family Unit Vice Chairman');
-      setText('live_vice_chairman_malayalam', cfg.vice_chairman_malayalam, 'കുടുംബകൂട്ടായ്മ വൈസ് ചെയർമാൻ');
+      setText('live_vice_chairman_malayalam', cfg.vice_chairman_malayalam, 'Family Units Vice Chairman');
       setText('live_vice_chairman_role', cfg.vice_chairman_role, 'Pastoral Council Vice Chairman');
       setText('live_vice_chairman_desc', cfg.vice_chairman_desc || cfg.admin_council_desc, 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.');
       setContactPhone('live_vice_chairman_phone_wrap', 'live_vice_chairman_phone', cfg.vice_chairman_phone, '+91 94470 00000');
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 7.5. SD Sisters & Convent
       setText('live_sd_title', cfg.sd_title, 'Sisters of the Destitute (SD Convent, Chempu)');
-      setText('live_sd_malayalam', cfg.sd_malayalam, 'ദീനദയാലു സന്യാസിനി സമൂഹം (എസ്.ഡി. കോൺവെന്റ്, ചെമ്പ്)');
+      setText('live_sd_malayalam', cfg.sd_malayalam, 'Sisters of the Destitute (SD Convent)');
       if (cfg.sd_years_chempu) {
         setHTML('live_sd_years_chempu', `<i class="fas fa-medal"></i> ${cfg.sd_years_chempu}`);
       }
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 7.6. Filial Church: St. Mary's Chemmanakary (Holyland)
       setText('live_chemmanakary_title', cfg.chemmanakary_title, "St. Mary's Church, Chemmanakary (Holyland)");
-      setText('live_chemmanakary_malayalam', cfg.chemmanakary_malayalam, 'സെന്റ് മേരീസ് പള്ളി, ചെമ്മനാകരി (ഹോളിലാൻഡ് ദേവാലയം)');
+      setText('live_chemmanakary_malayalam', cfg.chemmanakary_malayalam, "St. Mary's Church, Chemmanakary (Holyland)");
       if (cfg.chemmanakary_badge1) {
         setHTML('live_chemmanakary_badge1', `<i class="fas fa-landmark"></i> ${cfg.chemmanakary_badge1}`);
       }
@@ -224,15 +224,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 7.7. Parish Institutions & Facilities
       setText('live_inst_school_title', cfg.inst_school_title, 'St. Thomas L.P. School, Chempu');
-      setText('live_inst_school_malayalam', cfg.inst_school_malayalam, 'സെന്റ് തോമസ് എൽ.പി. സ്കൂൾ, ചെമ്പ്');
+      setText('live_inst_school_malayalam', cfg.inst_school_malayalam, 'St. Thomas L.P. School, Chempu');
       setText('live_inst_school_desc', cfg.inst_school_desc);
 
       setText('live_inst_cultural_title', cfg.inst_cultural_title, 'St. Thomas Cultural Centre, Chempu');
-      setText('live_inst_cultural_malayalam', cfg.inst_cultural_malayalam, 'സെന്റ് തോമസ് കൾച്ചറൽ സെന്റർ, ചെമ്പ്');
+      setText('live_inst_cultural_malayalam', cfg.inst_cultural_malayalam, 'St. Thomas Cultural Centre, Chempu');
       setText('live_inst_cultural_desc', cfg.inst_cultural_desc);
 
       setText('live_inst_complex_title', cfg.inst_complex_title, 'St. Thomas Shopping Complex, Chempu');
-      setText('live_inst_complex_malayalam', cfg.inst_complex_malayalam, 'സെന്റ് തോമസ് ഷോപ്പിംഗ് കോംപ്ലക്സ്, ചെമ്പ്');
+      setText('live_inst_complex_malayalam', cfg.inst_complex_malayalam, 'St. Thomas Shopping Complex, Chempu');
       setText('live_inst_complex_desc', cfg.inst_complex_desc);
 
       // 7.8. Pious Associations & Pastoral Wings Header
@@ -403,19 +403,19 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       month: 'Apr',
       day: 'Pass',
-      title: 'Holy Week & Easter (ഉയിർപ്പ് തിരുനാൾ)',
+      title: 'Holy Week & Easter',
       desc: 'Solemn liturgical services of Pesaha, Passion Friday, and Glorious Easter Resurrection.'
     },
     {
       month: 'Sep',
       day: '08',
-      title: 'Nativity of Mother Mary (എട്ടുനോമ്പ്)',
+      title: 'Nativity of Mother Mary (8 Days Lent)',
       desc: 'Eight days of devotion, harvest offerings (Puthari), and Marian prayers.'
     },
     {
       month: 'Dec',
       day: '25',
-      title: 'Christmas (പിറവി തിരുനാൾ)',
+      title: 'Christmas (Feast of Nativity)',
       desc: 'Midnight Holy Qurbana, Christmas carol visits across parish wards, and community joy.'
     }
   ];
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: 'fa-hand-holding-heart',
       tag: 'Charity & Relief',
       title: 'St. Vincent de Paul Society',
-      malayalam: 'വിൻസെന്റ് ഡി പോൾ സൊസൈറ്റി (SVP)',
+      malayalam: 'St. Vincent de Paul Society (SVP)',
       desc: 'Providing compassionate monthly ration distribution, medical aid, education support, and emergency relief to underprivileged parish families.',
       footer: 'Weekly Family Care & Mercy Ministry'
     },
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: 'fa-dove',
       tag: 'Family Ministry',
       title: 'Mathruvedi',
-      malayalam: "മാതൃവേദി (Mothers' Guild)",
+      malayalam: "Mothers' Guild",
       desc: 'Fostering Christian motherhood, domestic prayers, altar floral arrangements, family values, and pastoral solidarity among parish mothers.',
       footer: 'Domestic Church & Marian Fellowship'
     },
@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: 'fa-shield-alt',
       tag: 'Parish Guardians',
       title: 'Pithruvedi',
-      malayalam: "പിതൃവേദി (Fathers' Guild)",
+      malayalam: "Fathers' Guild",
       desc: 'Catholic fathers committed to spiritual leadership, temporal parish security, feast logistics, and youth mentoring.',
       footer: 'Temporal Leadership & Feast Support'
     },
@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: 'fa-fire',
       tag: 'Youth Wing',
       title: 'SMYM Youth Movement',
-      malayalam: 'എസ്.എം.വൈ.എം. യൂത്ത് മൂവ്മെന്റ്',
+      malayalam: 'Syro-Malabar Youth Movement',
       desc: 'Energizing parish youth through gospel values, blood donation drives, sports, creative arts, and leadership conventions.',
       footer: 'Youth Leadership & Community Service'
     },
@@ -572,7 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: 'fa-music',
       tag: 'Sacred Choral',
       title: 'St. Thomas Liturgical Choir',
-      malayalam: 'ദേവാലയ ഗായകസംഘം',
+      malayalam: 'Parish Liturgical Choir',
       desc: 'Leading celestial East-Syriac and Malayalam liturgical hymns, sacred psalms, and solemn choral devotions during Holy Qurbana.',
       footer: 'Sacred Music & Feast Choral Service'
     },
@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
       icon: 'fa-crown',
       tag: 'Marian Devotion',
       title: 'Legion of Mary',
-      malayalam: 'ലെജിയൻ ഓഫ് മേരി',
+      malayalam: 'Legion of Mary',
       desc: 'Devoted Marian legionaries engaged in weekly rosary chains, hospital visitations, and comforting the homebound elderly.',
       footer: 'Weekly Rosary & Spiritual Solace'
     }
