@@ -261,6 +261,7 @@ const DEFAULT_CONFIG = {
   admin_faith_desc: 'Dedicated animators and teachers imparting Catholic faith, catechism, and moral values to parish children.',
 
   // 6.5. SD Sisters (Convent)
+  sd_img: 'assets/images/sd_convent_chempu.jpg',
   sd_title: 'Sisters of the Destitute (SD Convent, Chempu)',
   sd_malayalam: 'Sisters of the Destitute (SD Convent)',
   sd_years_chempu: '75 Years in Chempu',
@@ -268,6 +269,7 @@ const DEFAULT_CONFIG = {
   sd_desc: 'For over 75 dedicated years, the Sisters of the Destitute (SD) have been an integral spiritual pillar of St. Thomas Church Chempu. Formed nearly 100 years ago (1927) by Venerable Fr. Varghese Payyappilly with the charism of compassionate love for the poor and marginalized, the SD Sisters in Chempu tirelessly serve our parish community through nursery education (Carmel Nursery), Sunday catechism, home visitations of the sick and elderly, liturgical altar service, and continual Eucharistic adoration.',
 
   // 6.6. Filial Church: St. Mary's Church Chemmanakary (Holyland)
+  chemmanakary_img: 'assets/images/st_mary_chemmanakary_church.jpg',
   chemmanakary_title: "St. Mary's Church, Chemmanakary (Holyland)",
   chemmanakary_malayalam: "St. Mary's Church, Chemmanakary (Holyland)",
   chemmanakary_badge1: 'Filial Church',
@@ -275,12 +277,15 @@ const DEFAULT_CONFIG = {
   chemmanakary_desc: "Situated along the serene Chemmanakary backwaters, St. Mary's Church, Chemmanakary (Holyland) is a revered filial church and sacred pilgrimage center under the parental parish and pastoral care of St. Thomas Syro-Malabar Church, Chempu. Under the direct pastoral guidance of the Chempu parish vicar, the church ministers to the spiritual life of the Chemmanakary community with Holy Qurbana, Marian devotions, and the solemn celebration of its annual parish feast.",
 
   // 6.7. Parish Institutions & Facilities
+  inst_school_img: 'assets/images/st_thomas_lp_school.jpg',
   inst_school_title: 'St. Thomas L.P. School, Chempu',
   inst_school_malayalam: 'St. Thomas L.P. School, Chempu',
   inst_school_desc: 'Established in 1921 under the patronage and management of St. Thomas Church Chempu, this centenary educational institution has nurtured generations of children across Chempu and neighbouring villages with primary education, moral discipline, and values.',
+  inst_cultural_img: 'assets/images/st_thomas_cultural_centre.jpg',
   inst_cultural_title: 'St. Thomas Cultural Centre, Chempu',
   inst_cultural_malayalam: 'St. Thomas Cultural Centre, Chempu',
   inst_cultural_desc: 'A spacious modern parish auditorium and cultural venue accommodating community gatherings, solemn wedding banquets, parish general assemblies, youth festivals, and cultural events for all residents of Chempu.',
+  inst_complex_img: 'assets/images/st_thomas_shopping_complex.jpg',
   inst_complex_title: 'St. Thomas Shopping Complex, Chempu',
   inst_complex_malayalam: 'St. Thomas Shopping Complex, Chempu',
   inst_complex_desc: 'Situated in the heart of Chempu, the parish commercial shopping complex provides essential retail spaces, local businesses, and community utilities, contributing to village commerce and supporting church temporal ministries.',
@@ -869,6 +874,13 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLeaderImageUploader('trustee2FileInput', 'trustee2PhotoPreview', 'cfg_trustee2_photo', 'resetTrustee2PhotoBtn', 'trustee2CompressionNotice', 'assets/images/trustee2_avatar.svg');
   setupLeaderImageUploader('viceChairmanFileInput', 'viceChairmanPhotoPreview', 'cfg_vice_chairman_photo', 'resetViceChairmanPhotoBtn', 'viceChairmanCompressionNotice', 'assets/images/vice_chairman_avatar.svg');
 
+  // Community Establishments & Facilities Image Uploaders
+  setupLeaderImageUploader('sdImgFileInput', 'sdImgPreview', 'cfg_sd_img', 'resetSdImgBtn', 'sdImgCompressionNotice', 'assets/images/sd_convent_chempu.jpg');
+  setupLeaderImageUploader('chemmanakaryImgFileInput', 'chemmanakaryImgPreview', 'cfg_chemmanakary_img', 'resetChemmanakaryImgBtn', 'chemmanakaryImgCompressionNotice', 'assets/images/st_mary_chemmanakary_church.jpg');
+  setupLeaderImageUploader('instSchoolImgFileInput', 'instSchoolImgPreview', 'cfg_inst_school_img', 'resetInstSchoolImgBtn', 'instSchoolImgCompressionNotice', 'assets/images/st_thomas_lp_school.jpg');
+  setupLeaderImageUploader('instCulturalImgFileInput', 'instCulturalImgPreview', 'cfg_inst_cultural_img', 'resetInstCulturalImgBtn', 'instCulturalImgCompressionNotice', 'assets/images/st_thomas_cultural_centre.jpg');
+  setupLeaderImageUploader('instComplexImgFileInput', 'instComplexImgPreview', 'cfg_inst_complex_img', 'resetInstComplexImgBtn', 'instComplexImgCompressionNotice', 'assets/images/st_thomas_shopping_complex.jpg');
+
   // =========================================================================
   // GALLERY MANAGEMENT SYSTEM
   // =========================================================================
@@ -1125,6 +1137,13 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePreview('trustee1PhotoPreview', config.trustee1_photo, DEFAULT_CONFIG.trustee1_photo);
     updatePreview('trustee2PhotoPreview', config.trustee2_photo, DEFAULT_CONFIG.trustee2_photo);
     updatePreview('viceChairmanPhotoPreview', config.vice_chairman_photo, DEFAULT_CONFIG.vice_chairman_photo);
+
+    // Update community establishments & facilities photo previews
+    updatePreview('sdImgPreview', config.sd_img, DEFAULT_CONFIG.sd_img);
+    updatePreview('chemmanakaryImgPreview', config.chemmanakary_img, DEFAULT_CONFIG.chemmanakary_img);
+    updatePreview('instSchoolImgPreview', config.inst_school_img, DEFAULT_CONFIG.inst_school_img);
+    updatePreview('instCulturalImgPreview', config.inst_cultural_img, DEFAULT_CONFIG.inst_cultural_img);
+    updatePreview('instComplexImgPreview', config.inst_complex_img, DEFAULT_CONFIG.inst_complex_img);
 
     currentNavItems = getNavItems();
     renderNavItemsTable();

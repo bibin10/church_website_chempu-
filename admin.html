@@ -943,6 +943,17 @@
               <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
                 <i class="fas fa-cross" style="color:var(--admin-gold);"></i> 5. Religious Congregation: SD Sisters
               </h4>
+              <!-- SD Sisters Photo Upload -->
+              <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap; background:#ffffff; padding:0.85rem; border-radius:8px; border:1px solid #e2e8f0;">
+                <img id="sdImgPreview" src="assets/images/sd_convent_chempu.jpg" alt="SD Convent Preview" style="width:120px; height:80px; border-radius:6px; object-fit:cover; border:2px solid var(--admin-gold); box-shadow:0 3px 10px rgba(0,0,0,0.12);">
+                <div style="flex:1; min-width:220px;">
+                  <label style="font-size:0.82rem; font-weight:600; color:#475569;">Change SD Convent Photo</label>
+                  <input type="file" id="sdImgFileInput" accept="image/*" style="font-size:0.82rem; display:block; margin-top:0.25rem;">
+                  <div id="sdImgCompressionNotice" style="display:none; margin-top:0.3rem;"></div>
+                  <input type="hidden" id="cfg_sd_img">
+                  <button type="button" class="btn-secondary" id="resetSdImgBtn" style="padding:0.25rem 0.65rem; font-size:0.75rem; margin-top:0.4rem;">Reset to Default Image</button>
+                </div>
+              </div>
               <div class="form-row">
                 <div class="form-group flex-1">
                   <label>Congregation / Convent Title</label>
@@ -974,6 +985,17 @@
               <h4 style="color:var(--admin-navy); margin-bottom:0.8rem; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
                 <i class="fas fa-church" style="color:#2563eb;"></i> 6. Filial Church: St. Mary's Chemmanakary - Holyland
               </h4>
+              <!-- Chemmanakary Church Photo Upload -->
+              <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap; background:#ffffff; padding:0.85rem; border-radius:8px; border:1px solid #e2e8f0;">
+                <img id="chemmanakaryImgPreview" src="assets/images/st_mary_chemmanakary_church.jpg" alt="Chemmanakary Church Preview" style="width:120px; height:80px; border-radius:6px; object-fit:cover; border:2px solid #2563eb; box-shadow:0 3px 10px rgba(0,0,0,0.12);">
+                <div style="flex:1; min-width:220px;">
+                  <label style="font-size:0.82rem; font-weight:600; color:#475569;">Change Chemmanakary Church Photo</label>
+                  <input type="file" id="chemmanakaryImgFileInput" accept="image/*" style="font-size:0.82rem; display:block; margin-top:0.25rem;">
+                  <div id="chemmanakaryImgCompressionNotice" style="display:none; margin-top:0.3rem;"></div>
+                  <input type="hidden" id="cfg_chemmanakary_img">
+                  <button type="button" class="btn-secondary" id="resetChemmanakaryImgBtn" style="padding:0.25rem 0.65rem; font-size:0.75rem; margin-top:0.4rem;">Reset to Default Image</button>
+                </div>
+              </div>
               <div class="form-row">
                 <div class="form-group flex-1">
                   <label>Filial Church Title</label>
@@ -1009,6 +1031,17 @@
               <!-- School -->
               <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:1rem; margin-bottom:1rem;">
                 <h5 style="color:#b45309; margin-bottom:0.6rem; font-size:0.92rem;"><i class="fas fa-graduation-cap"></i> St. Thomas L.P. School (Estd. 1921)</h5>
+                <!-- School Photo Upload -->
+                <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:0.8rem; flex-wrap:wrap; background:#f8fafc; padding:0.75rem; border-radius:6px; border:1px solid #e2e8f0;">
+                  <img id="instSchoolImgPreview" src="assets/images/st_thomas_lp_school.jpg" alt="School Preview" style="width:110px; height:75px; border-radius:6px; object-fit:cover; border:2px solid #b45309; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                  <div style="flex:1; min-width:200px;">
+                    <label style="font-size:0.8rem; font-weight:600; color:#475569;">Change L.P. School Photo</label>
+                    <input type="file" id="instSchoolImgFileInput" accept="image/*" style="font-size:0.8rem; display:block; margin-top:0.2rem;">
+                    <div id="instSchoolImgCompressionNotice" style="display:none; margin-top:0.25rem;"></div>
+                    <input type="hidden" id="cfg_inst_school_img">
+                    <button type="button" class="btn-secondary" id="resetInstSchoolImgBtn" style="padding:0.2rem 0.6rem; font-size:0.72rem; margin-top:0.35rem;">Reset to Default Image</button>
+                  </div>
+                </div>
                 <div class="form-row">
                   <div class="form-group flex-1">
                     <label>School Title</label>
@@ -1028,6 +1061,17 @@
               <!-- Cultural Centre -->
               <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:1rem; margin-bottom:1rem;">
                 <h5 style="color:#6d28d9; margin-bottom:0.6rem; font-size:0.92rem;"><i class="fas fa-landmark"></i> St. Thomas Cultural Centre</h5>
+                <!-- Cultural Centre Photo Upload -->
+                <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:0.8rem; flex-wrap:wrap; background:#f8fafc; padding:0.75rem; border-radius:6px; border:1px solid #e2e8f0;">
+                  <img id="instCulturalImgPreview" src="assets/images/st_thomas_cultural_centre.jpg" alt="Cultural Centre Preview" style="width:110px; height:75px; border-radius:6px; object-fit:cover; border:2px solid #6d28d9; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                  <div style="flex:1; min-width:200px;">
+                    <label style="font-size:0.8rem; font-weight:600; color:#475569;">Change Cultural Centre Photo</label>
+                    <input type="file" id="instCulturalImgFileInput" accept="image/*" style="font-size:0.8rem; display:block; margin-top:0.2rem;">
+                    <div id="instCulturalImgCompressionNotice" style="display:none; margin-top:0.25rem;"></div>
+                    <input type="hidden" id="cfg_inst_cultural_img">
+                    <button type="button" class="btn-secondary" id="resetInstCulturalImgBtn" style="padding:0.2rem 0.6rem; font-size:0.72rem; margin-top:0.35rem;">Reset to Default Image</button>
+                  </div>
+                </div>
                 <div class="form-row">
                   <div class="form-group flex-1">
                     <label>Auditorium / Centre Title</label>
@@ -1047,6 +1091,17 @@
               <!-- Shopping Complex -->
               <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:1rem;">
                 <h5 style="color:#0369a1; margin-bottom:0.6rem; font-size:0.92rem;"><i class="fas fa-store"></i> St. Thomas Shopping Complex</h5>
+                <!-- Shopping Complex Photo Upload -->
+                <div style="display:flex; gap:1.2rem; align-items:center; margin-bottom:0.8rem; flex-wrap:wrap; background:#f8fafc; padding:0.75rem; border-radius:6px; border:1px solid #e2e8f0;">
+                  <img id="instComplexImgPreview" src="assets/images/st_thomas_shopping_complex.jpg" alt="Shopping Complex Preview" style="width:110px; height:75px; border-radius:6px; object-fit:cover; border:2px solid #0369a1; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                  <div style="flex:1; min-width:200px;">
+                    <label style="font-size:0.8rem; font-weight:600; color:#475569;">Change Shopping Complex Photo</label>
+                    <input type="file" id="instComplexImgFileInput" accept="image/*" style="font-size:0.8rem; display:block; margin-top:0.2rem;">
+                    <div id="instComplexImgCompressionNotice" style="display:none; margin-top:0.25rem;"></div>
+                    <input type="hidden" id="cfg_inst_complex_img">
+                    <button type="button" class="btn-secondary" id="resetInstComplexImgBtn" style="padding:0.2rem 0.6rem; font-size:0.72rem; margin-top:0.35rem;">Reset to Default Image</button>
+                  </div>
+                </div>
                 <div class="form-row">
                   <div class="form-group flex-1">
                     <label>Commercial Complex Title</label>

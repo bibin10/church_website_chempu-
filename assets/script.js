@@ -31,7 +31,12 @@ const DEFAULT_ADMIN_CONFIG = {
   vice_chairman_desc: 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.',
   history_image: 'assets/images/st_thomas_chempu_church_vertical.jpg',
   kandathil_photo: 'assets/images/mar_augustine_kandathil_portrait.jpg',
-  mass_novena_time: 'Every Thursday 06:15 PM'
+  mass_novena_time: 'Every Thursday 06:15 PM',
+  sd_img: 'assets/images/sd_convent_chempu.jpg',
+  chemmanakary_img: 'assets/images/st_mary_chemmanakary_church.jpg',
+  inst_school_img: 'assets/images/st_thomas_lp_school.jpg',
+  inst_cultural_img: 'assets/images/st_thomas_cultural_centre.jpg',
+  inst_complex_img: 'assets/images/st_thomas_shopping_complex.jpg'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -210,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setHTML('live_sd_years_congregation', `<i class="fas fa-star"></i> ${cfg.sd_years_congregation}`);
       }
       setText('live_sd_desc', cfg.sd_desc);
+      setImage('live_sd_img', cfg.sd_img, 'assets/images/sd_convent_chempu.jpg');
 
       // 7.6. Filial Church: St. Mary's Chemmanakary (Holyland)
       setText('live_chemmanakary_title', cfg.chemmanakary_title, "St. Mary's Church, Chemmanakary (Holyland)");
@@ -221,19 +227,23 @@ document.addEventListener('DOMContentLoaded', () => {
         setHTML('live_chemmanakary_badge2', `<i class="fas fa-map-marker-alt"></i> ${cfg.chemmanakary_badge2}`);
       }
       setText('live_chemmanakary_desc', cfg.chemmanakary_desc);
+      setImage('live_chemmanakary_img', cfg.chemmanakary_img, 'assets/images/st_mary_chemmanakary_church.jpg');
 
       // 7.7. Parish Institutions & Facilities
       setText('live_inst_school_title', cfg.inst_school_title, 'St. Thomas L.P. School, Chempu');
       setText('live_inst_school_malayalam', cfg.inst_school_malayalam, 'St. Thomas L.P. School, Chempu');
       setText('live_inst_school_desc', cfg.inst_school_desc);
+      setImage('live_inst_school_img', cfg.inst_school_img, 'assets/images/st_thomas_lp_school.jpg');
 
       setText('live_inst_cultural_title', cfg.inst_cultural_title, 'St. Thomas Cultural Centre, Chempu');
       setText('live_inst_cultural_malayalam', cfg.inst_cultural_malayalam, 'St. Thomas Cultural Centre, Chempu');
       setText('live_inst_cultural_desc', cfg.inst_cultural_desc);
+      setImage('live_inst_cultural_img', cfg.inst_cultural_img, 'assets/images/st_thomas_cultural_centre.jpg');
 
       setText('live_inst_complex_title', cfg.inst_complex_title, 'St. Thomas Shopping Complex, Chempu');
       setText('live_inst_complex_malayalam', cfg.inst_complex_malayalam, 'St. Thomas Shopping Complex, Chempu');
       setText('live_inst_complex_desc', cfg.inst_complex_desc);
+      setImage('live_inst_complex_img', cfg.inst_complex_img, 'assets/images/st_thomas_shopping_complex.jpg');
 
       // 7.8. Pious Associations & Pastoral Wings Header
       if (cfg.wings_eyebrow) {
@@ -1204,7 +1214,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (caption) {
-        caption.style.transform = `translateZ(30px) rotateX(${(-currentX * 0.2).toFixed(2)}deg) rotateY(${(-currentY * 0.2).toFixed(2)}deg)`;
+        caption.style.transform = 'none';
       }
 
       if (isHovered || Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
