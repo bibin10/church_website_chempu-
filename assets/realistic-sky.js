@@ -6,7 +6,12 @@
  */
 (function() {
   function initRealisticSky() {
-    const isTargetPage = document.body.classList.contains('community-page') || document.body.classList.contains('contact-page');
+    const isTargetPage = document.body.classList.contains('community-page') || 
+                         document.body.classList.contains('contact-page') ||
+                         document.body.classList.contains('index-page') ||
+                         window.location.pathname.endsWith('index.html') ||
+                         window.location.pathname === '/' ||
+                         window.location.pathname.endsWith('/');
     if (!isTargetPage) return;
     if (document.getElementById('realisticSkyCanvas')) return;
 

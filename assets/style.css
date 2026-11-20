@@ -3170,10 +3170,11 @@ img {
 }
 
 /* ==========================================================================
-   Subpage Hero Banner & Community Layouts (community.html & contact.html)
+   Subpage Hero Banner & Community Layouts (community.html & contact.html & index.html)
    ========================================================================== */
 body.community-page,
-body.contact-page {
+body.contact-page,
+body.index-page {
   background: 
     linear-gradient(180deg, rgba(20, 70, 150, 0.45) 0%, rgba(54, 123, 214, 0.3) 250px, rgba(184, 219, 251, 0.2) 600px, rgba(235, 245, 255, 0.6) 100%),
     url("images/sky_background.jpg") center center / cover no-repeat fixed;
@@ -3183,7 +3184,8 @@ body.contact-page {
 }
 
 body.community-page #realisticSkyContainer,
-body.contact-page #realisticSkyContainer {
+body.contact-page #realisticSkyContainer,
+body.index-page #realisticSkyContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -3194,14 +3196,16 @@ body.contact-page #realisticSkyContainer {
 }
 
 body.community-page .section-wrapper,
-body.contact-page .section-wrapper {
+body.contact-page .section-wrapper,
+body.index-page .section-wrapper {
   background-color: transparent;
   position: relative;
   z-index: 1;
 }
 
 body.community-page .section-wrapper.bg-alt,
-body.contact-page .section-wrapper.bg-alt {
+body.contact-page .section-wrapper.bg-alt,
+body.index-page .section-wrapper.bg-alt {
   background-color: rgba(255, 255, 255, 0.38) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
