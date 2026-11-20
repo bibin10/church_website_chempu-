@@ -3240,16 +3240,15 @@ body.community-page .filial-church-grand-card {
 
 .subpage-hero {
   background: 
-    linear-gradient(180deg, rgba(14, 40, 85, 0.78) 0%, rgba(25, 75, 140, 0.72) 55%, rgba(45, 105, 180, 0.65) 100%),
-    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+    linear-gradient(135deg, rgba(10, 18, 42, 0.90) 0%, rgba(15, 28, 63, 0.82) 50%, rgba(10, 24, 56, 0.94) 100%),
+    url("images/feast_night_sky.jpg") center center / cover no-repeat;
   padding: calc(5rem - 15mm) 0 calc(3.8rem - 15mm);
   color: #ffffff;
   position: relative;
   overflow: hidden;
   text-align: center;
   border-bottom: 3px solid var(--gold-primary, #d4a34b);
+  box-shadow: 0 10px 30px rgba(8, 16, 36, 0.35);
 }
 
 .subpage-hero::before {
