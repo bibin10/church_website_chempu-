@@ -4148,7 +4148,9 @@ body.community-page .filial-church-grand-card {
    ========================================================================== */
 .devotional-hymn-card {
   position: relative;
-  background: radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.35) 0%, rgba(15, 28, 63, 0.98) 60%), #060c1d;
+  background: 
+    linear-gradient(135deg, rgba(10, 18, 42, 0.88) 0%, rgba(15, 28, 63, 0.78) 50%, rgba(10, 24, 56, 0.92) 100%),
+    url("images/feast_night_sky.jpg") center center / cover no-repeat;
   border: 1.5px solid var(--border-gold, rgba(212, 163, 75, 0.45));
   border-radius: var(--radius-lg, 24px);
   padding: 3.2rem 2.5rem;
