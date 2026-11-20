@@ -694,6 +694,35 @@
       }
 
       glowDiv.style.background = `radial-gradient(circle at 75% 18%, ${preset.sunGlow} 0%, rgba(255,255,255,0.08) 35%, transparent 65%)`;
+
+      // Dynamically compute and inject matching footer background & atmospheric styling
+      applyMatchingFooterColor(preset);
+    }
+
+    function applyMatchingFooterColor(preset) {
+      const stops = preset.skyGradient || [];
+      const primaryDeep = stops[0] || '#0f1c3f';
+      const secondaryDeep = stops[1] || stops[0] || '#172a5a';
+
+      // Create rich, harmonized gradient based on the sky atmosphere
+      let footerBg = '';
+      if (preset.category === 'daylight') {
+        footerBg = `linear-gradient(180deg, rgba(14, 38, 82, 0.92) 0%, rgba(8, 22, 52, 0.98) 100%)`;
+      } else if (preset.category === 'sunrise') {
+        footerBg = `linear-gradient(180deg, rgba(76, 20, 15, 0.92) 0%, rgba(42, 10, 8, 0.98) 100%)`;
+      } else if (preset.category === 'sunset') {
+        footerBg = `linear-gradient(180deg, rgba(46, 16, 85, 0.92) 0%, rgba(24, 8, 48, 0.98) 100%)`;
+      } else if (preset.category === 'night') {
+        footerBg = `linear-gradient(180deg, rgba(6, 12, 28, 0.95) 0%, rgba(2, 6, 16, 0.99) 100%)`;
+      } else if (preset.category === 'aurora') {
+        footerBg = `linear-gradient(180deg, rgba(4, 38, 30, 0.92) 0%, rgba(2, 22, 18, 0.98) 100%)`;
+      } else if (preset.category === 'monsoon') {
+        footerBg = `linear-gradient(180deg, rgba(22, 32, 48, 0.94) 0%, rgba(12, 18, 28, 0.98) 100%)`;
+      } else {
+        footerBg = `linear-gradient(180deg, ${primaryDeep}ee 0%, ${secondaryDeep}fa 100%)`;
+      }
+
+      document.documentElement.style.setProperty('--sky-footer-bg', footerBg);
     }
 
     applySkyPreset(activeSky);
