@@ -1,4 +1,174 @@
-// St. Thomas Church Chempu - Admin Panel CMS Logic
+// Smart Auto-Inference for Pious Associations / Pastoral Wings
+function inferPiousWingDetails(name) {
+  if (!name || typeof name !== 'string') {
+    return {
+      icon: 'fa-hands-helping',
+      tag: 'Parish Ministry',
+      subtitle: '',
+      desc: 'Dedicated parish organization serving spiritual life, fellowship, and community ministry.'
+    };
+  }
+
+  const s = name.toLowerCase();
+
+  // 1. Charity / St Vincent de Paul
+  if (s.includes('vincent') || s.includes('svp') || s.includes('charity') || s.includes('relief') || s.includes('poor') || s.includes('mercy') || s.includes('samaritan') || s.includes('care')) {
+    return {
+      icon: 'fa-hand-holding-heart',
+      tag: 'Charity & Relief',
+      subtitle: s.includes('vincent') ? 'St. Vincent de Paul Society (SVP)' : 'Parish Charity & Mercy Outreach',
+      desc: 'Providing compassionate care, medical aid, sustenance support, and emergency relief to parish and local community families in need.'
+    };
+  }
+
+  // 2. Mothers / Women / Mathruvedi
+  if (s.includes('mathru') || s.includes('mother') || s.includes('women') || s.includes('ladies') || s.includes('vanitha') || s.includes('st. anne') || s.includes('st anne') || s.includes('monica')) {
+    return {
+      icon: 'fa-dove',
+      tag: 'Family Ministry',
+      subtitle: "Mothers' Guild & Marian Family Fellowship",
+      desc: 'Fostering Christian motherhood, domestic prayers, altar support, family sanctification, and pastoral solidarity among parish mothers.'
+    };
+  }
+
+  // 3. Fathers / Men / Pithruvedi
+  if (s.includes('pithru') || s.includes('father') || s.includes('men') || s.includes('joseph') || s.includes('purusha')) {
+    return {
+      icon: 'fa-shield-alt',
+      tag: 'Parish Guardians',
+      subtitle: "Fathers' Guild & Temporal Leadership",
+      desc: 'Catholic fathers committed to spiritual leadership, temporal parish guardianship, feast coordination, and youth mentoring.'
+    };
+  }
+
+  // 4. Youth / SMYM / KCYM / Teens / Young Adults
+  if (s.includes('smym') || s.includes('kcym') || s.includes('youth') || s.includes('teen') || s.includes('young') || s.includes('yuva') || s.includes('yuvathi') || s.includes('yuvajanam')) {
+    return {
+      icon: 'fa-fire',
+      tag: 'Youth Movement',
+      subtitle: s.includes('smym') ? 'Syro-Malabar Youth Movement' : 'Parish Catholic Youth Wing',
+      desc: 'Energizing parish youth through active gospel witness, humanitarian service, sports, creative arts, and leadership conventions.'
+    };
+  }
+
+  // 5. Choir / Music / Choral
+  if (s.includes('choir') || s.includes('music') || s.includes('choral') || s.includes('sing') || s.includes('hymn') || s.includes('voice') || s.includes('organ') || s.includes('band')) {
+    return {
+      icon: 'fa-music',
+      tag: 'Sacred Choral',
+      subtitle: 'Parish Liturgical Choir & Sacred Melody',
+      desc: 'Leading celestial East-Syriac and liturgical hymns, sacred choral psalms, and solemn devotion during Holy Qurbana and festive liturgies.'
+    };
+  }
+
+  // 6. Legion of Mary / Marian / Rosary / Our Lady
+  if (s.includes('legion') || s.includes('mary') || s.includes('marian') || s.includes('rosary') || s.includes('matha') || s.includes('our lady') || s.includes('madonna') || s.includes('immaculate')) {
+    return {
+      icon: 'fa-crown',
+      tag: 'Marian Devotion',
+      subtitle: s.includes('legion') ? 'Legion of Mary' : 'Marian Devotional Guild',
+      desc: 'Dedicated to prayer, spiritual warfare through the Holy Rosary, home visitations, and comforting elderly and homebound parishioners.'
+    };
+  }
+
+  // 7. Mission League / CML / Children's Mission
+  if (s.includes('mission') || s.includes('cml') || s.includes('cherupushpa') || s.includes('therese') || s.includes('theresa') || s.includes('little flower')) {
+    return {
+      icon: 'fa-child-reaching',
+      tag: 'Mission League',
+      subtitle: 'Cherupushpa Mission League (CML)',
+      desc: 'Inspiring children and adolescents with love for world missions, spiritual self-sacrifice, and evangelical charity in the spirit of St. Thérèse.'
+    };
+  }
+
+  // 8. Catechism / Sunday School / Faith Formation
+  if (s.includes('catechism') || s.includes('sunday school') || s.includes('faith') || s.includes('formation') || s.includes('teacher') || s.includes('bible')) {
+    return {
+      icon: 'fa-book-bible',
+      tag: 'Faith Formation',
+      subtitle: 'Parish Catechetical & Scripture Ministry',
+      desc: 'Nurturing children and youth in Catholic doctrine, Sacred Scripture, moral teachings, and deep sacramental initiation.'
+    };
+  }
+
+  // 9. Altar Servers / Alter Boys / Knights of the Altar
+  if (s.includes('altar') || s.includes('server') || s.includes('acolyte') || s.includes('sacristan')) {
+    return {
+      icon: 'fa-cross',
+      tag: 'Liturgical Service',
+      subtitle: 'Knights of the Altar & Sacramental Guild',
+      desc: 'Assisting the priests reverently during Holy Mass, novenas, liturgical processions, and Eucharistic celebrations.'
+    };
+  }
+
+  // 10. Senior Citizens / Elders / Grandparents
+  if (s.includes('elder') || s.includes('senior') || s.includes('grandparent') || s.includes('pensioner') || s.includes('golden')) {
+    return {
+      icon: 'fa-heart',
+      tag: 'Senior Ministry',
+      subtitle: 'Elders & Senior Parishioners Fellowship',
+      desc: 'Honoring senior parishioners with pastoral care, fellowship circles, spiritual retreats, and companionship.'
+    };
+  }
+
+  // 11. Family Units / Ward Prayer / Kudumbakootayma
+  if (s.includes('ward') || s.includes('unit') || s.includes('kootayma') || s.includes('bhavan') || s.includes('family unit')) {
+    return {
+      icon: 'fa-people-roof',
+      tag: 'Family Units',
+      subtitle: 'Basic Christian Community (BCC)',
+      desc: 'Promoting grassroots Christian fellowship, weekly ward rosaries, mutual assistance, and vibrant neighborhood fraternity.'
+    };
+  }
+
+  // 12. Eucharistic / Adoration / Blessed Sacrament
+  if (s.includes('eucharist') || s.includes('adoration') || s.includes('sacrament') || s.includes('monstrance') || s.includes('perpetual')) {
+    return {
+      icon: 'fa-sun',
+      tag: 'Eucharistic Adoration',
+      subtitle: 'Perpetual Adoration & Intercession Wing',
+      desc: 'Fostering continuous prayer, silent contemplation, and adoration before the Most Blessed Sacrament for church and world intentions.'
+    };
+  }
+
+  // 13. Health / Medical / Healing Ministry
+  if (s.includes('health') || s.includes('medical') || s.includes('doctor') || s.includes('nurse') || s.includes('clinic') || s.includes('healing')) {
+    return {
+      icon: 'fa-kit-medical',
+      tag: 'Health & Wellness',
+      subtitle: 'Parish Health & Medical Guild',
+      desc: 'Organizing medical camps, emergency health support, free health screenings, and wellness counsel for parishioners.'
+    };
+  }
+
+  // 14. Media / Communication / Tech / IT Wing
+  if (s.includes('media') || s.includes('press') || s.includes('tech') || s.includes('broadcast') || s.includes('communication') || s.includes('it wing')) {
+    return {
+      icon: 'fa-video',
+      tag: 'Media & Digital',
+      subtitle: 'Parish Digital & Media Communications',
+      desc: 'Managing parish digital outreach, livestreaming sacred liturgies, website updates, event photography, and bulletin publication.'
+    };
+  }
+
+  // 15. St. Thomas / Apostles / Patron
+  if (s.includes('thomas') || s.includes('apostle') || s.includes('patron')) {
+    return {
+      icon: 'fa-landmark',
+      tag: 'Apostolic Guild',
+      subtitle: 'Apostle St. Thomas Patronal Fellowship',
+      desc: 'Preserving the deep heritage, spiritual fervor, and apostolic traditions inherited from our patron Saint Thomas the Apostle.'
+    };
+  }
+
+  // Default fallback for any other holy / lay society
+  return {
+    icon: 'fa-hands-helping',
+    tag: 'Parish Ministry',
+    subtitle: name,
+    desc: `Active pastoral association dedicated to prayer, Christian service, and fellowship in St. Thomas Parish Chempu.`
+  };
+}
 // Controls full section content synchronization with LocalStorage
 
 const STORAGE_KEY = 'st_thomas_chempu_site_config';
@@ -1794,6 +1964,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Auto-fill Icon, Category, Subtitle & Description dynamically as the user types Society Name
+  if (wingEditTitle) {
+    wingEditTitle.addEventListener('input', () => {
+      // Only auto-suggest if in "Add New" mode or if fields are empty/pristine
+      const isNew = wingEditIndex.value === '-1';
+      const nameVal = wingEditTitle.value.trim();
+      if (!nameVal) return;
+
+      const inferred = inferPiousWingDetails(nameVal);
+
+      if (isNew || !wingEditIcon.value || wingEditIcon.value === 'fa-hands-helping') {
+        wingEditIcon.value = inferred.icon;
+        if (wingIconPreview) {
+          wingIconPreview.innerHTML = `<i class="fas ${inferred.icon}"></i>`;
+        }
+      }
+      if (isNew || !wingEditTag.value || wingEditTag.value === 'Parish Ministry') {
+        wingEditTag.value = inferred.tag;
+      }
+      if (isNew || !wingEditMalayalam.value) {
+        wingEditMalayalam.value = inferred.subtitle;
+      }
+      if (isNew || !wingEditDesc.value) {
+        wingEditDesc.value = inferred.desc;
+      }
+    });
+  }
+
   // Update Icon preview on type
   if (wingEditIcon && wingIconPreview) {
     wingEditIcon.addEventListener('input', () => {
@@ -1847,11 +2045,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (saveWingBtn) {
     saveWingBtn.addEventListener('click', () => {
       const title = wingEditTitle.value.trim();
-      const malayalam = wingEditMalayalam.value.trim();
-      const icon = wingEditIcon.value.trim() || 'fa-hands-helping';
-      const tag = wingEditTag.value.trim() || 'Parish Ministry';
-      const footer = wingEditFooter.value.trim();
-      const desc = wingEditDesc.value.trim();
       const index = parseInt(wingEditIndex.value, 10);
 
       if (!title) {
@@ -1859,11 +2052,14 @@ document.addEventListener('DOMContentLoaded', () => {
         wingEditTitle.focus();
         return;
       }
-      if (!desc) {
-        alert('Please enter a Description of activities.');
-        wingEditDesc.focus();
-        return;
-      }
+
+      // Auto-infer defaults if any field was left blank by user
+      const inferred = inferPiousWingDetails(title);
+      const malayalam = wingEditMalayalam.value.trim() || inferred.subtitle;
+      const icon = wingEditIcon.value.trim() || inferred.icon || 'fa-hands-helping';
+      const tag = wingEditTag.value.trim() || inferred.tag || 'Parish Ministry';
+      const footer = wingEditFooter.value.trim();
+      const desc = wingEditDesc.value.trim() || inferred.desc;
 
       const wingData = {
         title,
