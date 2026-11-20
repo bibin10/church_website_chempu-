@@ -3170,18 +3170,20 @@ img {
 }
 
 /* ==========================================================================
-   Subpage Hero Banner & Community Layouts (community.html)
+   Subpage Hero Banner & Community Layouts (community.html & contact.html)
    ========================================================================== */
-body.community-page {
+body.community-page,
+body.contact-page {
   background: 
-    linear-gradient(180deg, rgba(54, 123, 214, 0.92) 0%, rgba(86, 151, 230, 0.88) 250px, rgba(184, 219, 251, 0.75) 600px, rgba(235, 245, 255, 0.85) 100%),
-    #458ae0;
+    linear-gradient(180deg, rgba(20, 70, 150, 0.45) 0%, rgba(54, 123, 214, 0.3) 250px, rgba(184, 219, 251, 0.2) 600px, rgba(235, 245, 255, 0.6) 100%),
+    url("images/sky_background.jpg") center center / cover no-repeat fixed;
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;
 }
 
-body.community-page #realisticSkyContainer {
+body.community-page #realisticSkyContainer,
+body.contact-page #realisticSkyContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -3191,18 +3193,31 @@ body.community-page #realisticSkyContainer {
   pointer-events: none;
 }
 
-body.community-page .section-wrapper {
+body.community-page .section-wrapper,
+body.contact-page .section-wrapper {
   background-color: transparent;
   position: relative;
   z-index: 1;
 }
 
-body.community-page .section-wrapper.bg-alt {
+body.community-page .section-wrapper.bg-alt,
+body.contact-page .section-wrapper.bg-alt {
   background-color: rgba(255, 255, 255, 0.38) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+body.contact-page .contact-split-map,
+body.contact-page .contact-split-form-card {
+  box-shadow: 0 16px 40px rgba(10, 30, 70, 0.22);
+}
+
+body.contact-page .contact-split-form-card {
+  background: linear-gradient(145deg, rgba(14, 26, 56, 0.94) 0%, rgba(21, 39, 84, 0.92) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 body.community-page .institution-card,

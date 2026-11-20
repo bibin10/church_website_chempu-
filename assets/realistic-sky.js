@@ -6,7 +6,8 @@
  */
 (function() {
   function initRealisticSky() {
-    if (!document.body.classList.contains('community-page')) return;
+    const isTargetPage = document.body.classList.contains('community-page') || document.body.classList.contains('contact-page');
+    if (!isTargetPage) return;
     if (document.getElementById('realisticSkyCanvas')) return;
 
     // Create fixed background sky container and canvas
@@ -14,6 +15,12 @@
     skyWrap.id = 'realisticSkyContainer';
     skyWrap.setAttribute('aria-hidden', 'true');
     skyWrap.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;overflow:hidden;';
+
+    // Sky backdrop image layer matching deep blue cumulus sky
+    const skyImgLayer = document.createElement('div');
+    skyImgLayer.className = 'sky-backdrop-image';
+    skyImgLayer.style.cssText = 'position:absolute;inset:0;background:url("assets/images/sky_background.jpg") center center / cover no-repeat;opacity:0.88;pointer-events:none;';
+    skyWrap.appendChild(skyImgLayer);
 
     const canvas = document.createElement('canvas');
     canvas.id = 'realisticSkyCanvas';
@@ -28,7 +35,7 @@
 
     document.body.insertBefore(skyWrap, document.body.firstChild);
 
-    const ctx = canvas.getContext('2d', { alpha: false });
+    const ctx = canvas.getContext('2d', { alpha: true });
     let width = 0;
     let height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -182,18 +189,10 @@
       const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
       lastTime = currentTime;
 
-      // Realistic Azure Sky Natural Gradient
-      const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
-      skyGrad.addColorStop(0.0, '#367bd6');  // Deep natural cerulean overhead
-      skyGrad.addColorStop(0.25, '#5697e6'); // Vibrant midday sky
-      skyGrad.addColorStop(0.55, '#87bdf5'); // Soft atmospheric blue
-      skyGrad.addColorStop(0.82, '#b8dbfb'); // Radiant horizon glow
-      skyGrad.addColorStop(1.0, '#e4f1fc');  // Gentle warm light mist at horizon
+      // Clear canvas so the photo-realistic deep blue sky backdrop shows through seamlessly
+      ctx.clearRect(0, 0, width, height);
 
-      ctx.fillStyle = skyGrad;
-      ctx.fillRect(0, 0, width, height);
-
-      // Render drifting clouds
+      // Render drifting clouds over the deep blue sky
       for (let i = 0; i < clouds.length; i++) {
         clouds[i].update(dt);
         clouds[i].draw(ctx);
