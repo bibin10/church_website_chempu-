@@ -2465,7 +2465,6 @@ img {
   position: relative;
   overflow: hidden;
   box-shadow: 0 -10px 30px rgba(8, 16, 36, 0.35);
-  margin-bottom: 0 !important;
   transition: border-color 0.4s ease;
 }
 
@@ -2476,7 +2475,6 @@ body.index-page .main-footer {
     linear-gradient(135deg, rgba(10, 18, 42, 0.90) 0%, rgba(15, 28, 63, 0.82) 50%, rgba(10, 24, 56, 0.94) 100%),
     url("images/feast_night_sky.jpg") center center / cover no-repeat;
   border-top: 2px solid rgba(212, 163, 75, 0.45);
-  margin-bottom: 0 !important;
 }
 
 .footer-bottom {
@@ -3355,7 +3353,6 @@ body.community-page .filial-church-grand-card {
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.65;
   margin: 0 auto;
-  padding-bottom: 1.25rem;
   max-width: 760px;
 }
 
