@@ -438,15 +438,21 @@
   <!-- Dedicated Parish Devotional Hymn Player -->
   <section class="section-wrapper" id="devotional-hymn" style="padding-top: 3.5rem; padding-bottom: 3.5rem;">
     <div class="container">
-      <div class="devotional-hymn-card scroll-reveal" data-3d-dots="true">
-        <canvas class="interactive-3d-dots-canvas"></canvas>
-        <div class="devotional-hymn-grid has-3d-canvas-content">
-          <!-- Left: Rotating Devotional Vinyl Record Emblem -->
+      <div class="devotional-hymn-card scroll-reveal" id="devotionalHymnCard">
+        <canvas class="hymn-visualizer-canvas" id="hymnVisualizerCanvas"></canvas>
+        <div class="devotional-hymn-glare" id="devotionalHymnGlare"></div>
+        <div class="devotional-hymn-grid">
+          <!-- Left: 3D Floating Sacred Vinyl Emblem -->
           <div class="devotional-art-wrapper">
             <div class="devotional-disc-visual" id="hymnDiscVisual">
               <div class="devotional-disc-center">
                 <i class="fas fa-cross"></i>
               </div>
+            </div>
+            <!-- Credits Pill below Vinyl -->
+            <div class="devotional-credits-pills">
+              <span class="credit-pill"><i class="fas fa-feather-alt"></i> <strong>Lyrics &amp; Music:</strong> Fr. John Painumkal</span>
+              <span class="credit-pill"><i class="fas fa-microphone-alt"></i> <strong>Singer:</strong> Wilson Piravom</span>
             </div>
           </div>
 
@@ -459,6 +465,12 @@
             <div class="devotional-hymn-quote">
               &ldquo;Ayirangal ninte sannidhi thedi varunnu... ashrayam nee mathram anente ponnu muthappo&rdquo;
             </div>
+            
+            <div class="devotional-meta-bar">
+              <div class="meta-item"><i class="fas fa-pen-nib"></i> <span><strong>Lyrics &amp; Music:</strong> Fr. John Painumkal</span></div>
+              <div class="meta-item"><i class="fas fa-microphone"></i> <span><strong>Singer:</strong> Wilson Piravom</span></div>
+            </div>
+
             <p class="devotional-hymn-desc">
               A sacred devotional hymn dedicated to our heavenly patron, Apostle St. Thomas (Chempu Muthappan), sung in heartfelt prayer, adoration, and complete surrender. Listen directly:
             </p>
@@ -473,7 +485,7 @@
                 </button>
                 <div class="devotional-track-meta">
                   <h5>Ponnu Muthappo Devotional Hymn</h5>
-                  <span>St. Thomas RC Church Chempu &bull; Sacred Audio</span>
+                  <span>Fr. John Painumkal &bull; Wilson Piravom</span>
                 </div>
               </div>
 

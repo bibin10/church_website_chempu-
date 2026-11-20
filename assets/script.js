@@ -1519,7 +1519,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
 
   // =========================================================================
-  // 13. Dedicated Devotional Hymn Audio Player
+  // 13. Dedicated Devotional Hymn Audio Player & Interactive 3D Soundwaves
   // =========================================================================
   function initDevotionalAudioPlayer() {
     const audio = document.getElementById('muthappanAudio');
@@ -1529,6 +1529,105 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTimeEl = document.getElementById('muthappanCurrentTime');
     const durationEl = document.getElementById('muthappanDuration');
     const discVisual = document.getElementById('hymnDiscVisual');
+    const hymnCard = document.getElementById('devotionalHymnCard');
+    const hymnGlare = document.getElementById('devotionalHymnGlare');
+    const canvas = document.getElementById('hymnVisualizerCanvas');
+
+    // 1. Smooth 3D Card Tilt with Dynamic Glare
+    if (hymnCard) {
+      let isHovered = false;
+      let rotX = 0, rotY = 0;
+      let targetRotX = 0, targetRotY = 0;
+      let animFrame = null;
+
+      function updateTilt() {
+        rotX += (targetRotX - rotX) * 0.12;
+        rotY += (targetRotY - rotY) * 0.12;
+        hymnCard.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+
+        if (isHovered || Math.abs(rotX) > 0.05 || Math.abs(rotY) > 0.05) {
+          animFrame = requestAnimationFrame(updateTilt);
+        } else {
+          hymnCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+          animFrame = null;
+        }
+      }
+
+      hymnCard.addEventListener('mousemove', (e) => {
+        isHovered = true;
+        const rect = hymnCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        targetRotX = -((y - centerY) / centerY) * 7;
+        targetRotY = ((x - centerX) / centerX) * 7;
+
+        if (hymnGlare) {
+          hymnGlare.style.opacity = '1';
+          hymnGlare.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(255, 255, 255, 0.22) 0%, rgba(212, 163, 75, 0.1) 40%, transparent 70%)`;
+        }
+
+        if (!animFrame) animFrame = requestAnimationFrame(updateTilt);
+      });
+
+      hymnCard.addEventListener('mouseleave', () => {
+        isHovered = false;
+        targetRotX = 0;
+        targetRotY = 0;
+        if (hymnGlare) hymnGlare.style.opacity = '0';
+        if (!animFrame) animFrame = requestAnimationFrame(updateTilt);
+      });
+    }
+
+    // 2. Ambient 3D Sacred Waveform Flow Canvas (Replaces generic moving dots)
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let w = 0, h = 0;
+      let waveStep = 0;
+
+      function resizeCanvas() {
+        w = canvas.width = canvas.parentElement.offsetWidth;
+        h = canvas.height = canvas.parentElement.offsetHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      function renderWaves() {
+        ctx.clearRect(0, 0, w, h);
+        waveStep += audio && !audio.paused ? 0.045 : 0.015;
+
+        const isPlaying = audio && !audio.paused;
+        const numWaves = 4;
+        const colors = [
+          'rgba(212, 163, 75, 0.25)',
+          'rgba(74, 144, 226, 0.22)',
+          'rgba(238, 197, 120, 0.18)',
+          'rgba(30, 58, 138, 0.35)'
+        ];
+
+        for (let i = 0; i < numWaves; i++) {
+          ctx.beginPath();
+          ctx.strokeStyle = colors[i];
+          ctx.lineWidth = isPlaying ? 2.5 : 1.5;
+
+          const baseAmp = (isPlaying ? 35 : 12) + i * 6;
+          const freq = 0.005 + i * 0.0018;
+          const yCenter = h * 0.65 + Math.sin(waveStep * 0.5 + i) * 15;
+
+          for (let x = 0; x <= w; x += 6) {
+            const y = yCenter + Math.sin(x * freq + waveStep + i * 1.8) * baseAmp * Math.sin((x / w) * Math.PI);
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+
+        requestAnimationFrame(renderWaves);
+      }
+      renderWaves();
+    }
 
     if (!audio || !playBtn) return;
 
