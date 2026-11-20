@@ -4,19 +4,22 @@ import sys
 
 class SecureNoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # 1. Anti-caching headers for rapid development updates
-        self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-        self.send_header('Pragma', 'no-cache')
-        self.send_header('Expires', '0')
+        # Allow static assets (images, audio, fonts) to cache efficiently for snappy reloads
+        path = self.path.lower()
+        if any(path.endswith(ext) for ext in ('.jpg', '.jpeg', '.png', '.webp', '.svg', '.mp3', '.woff', '.woff2', '.ttf')):
+            self.send_header('Cache-Control', 'public, max-age=86400')
+        else:
+            # HTML, CSS and JS check freshness with 304 or reload as needed
+            self.send_header('Cache-Control', 'no-cache, must-revalidate')
         
-        # 2. Comprehensive Security Headers
+        # Comprehensive Security Headers
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('X-Frame-Options', 'SAMEORIGIN')
         self.send_header('X-XSS-Protection', '1; mode=block')
         self.send_header('Referrer-Policy', 'strict-origin-when-cross-origin')
         self.send_header('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()')
         
-        # 3. Content Security Policy (Allows required CDNs for Fonts & Icons, disallows untrusted scripts)
+        # Content Security Policy
         csp = (
             "default-src 'self'; "
             "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; "
@@ -33,11 +36,15 @@ class SecureNoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         
         super().end_headers()
 
+# Use ThreadingTCPServer for simultaneous, non-blocking multi-asset downloads
+class ThreadedTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    daemon_threads = True
+    allow_reuse_address = True
+
 if __name__ == '__main__':
     PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 2323
-    socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(('0.0.0.0', PORT), SecureNoCacheHTTPRequestHandler) as httpd:
-        print(f"Serving at http://0.0.0.0:{PORT} with NO-CACHE & FULL SECURITY headers", flush=True)
+    with ThreadedTCPServer(('0.0.0.0', PORT), SecureNoCacheHTTPRequestHandler) as httpd:
+        print(f"High-Speed Threaded Server running at http://0.0.0.0:{PORT}", flush=True)
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
