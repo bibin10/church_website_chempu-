@@ -36,8 +36,8 @@ class SecureNoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 if __name__ == '__main__':
     PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 2323
     socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(('127.0.0.1', PORT), SecureNoCacheHTTPRequestHandler) as httpd:
-        print(f"Serving at http://127.0.0.1:{PORT} with NO-CACHE & FULL SECURITY headers", flush=True)
+    with socketserver.TCPServer(('0.0.0.0', PORT), SecureNoCacheHTTPRequestHandler) as httpd:
+        print(f"Serving at http://0.0.0.0:{PORT} with NO-CACHE & FULL SECURITY headers", flush=True)
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

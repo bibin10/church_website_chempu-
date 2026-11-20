@@ -631,7 +631,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <h4>${escapeHtml(item.title)}</h4>
         ${item.malayalam ? `<div class="pious-wing-malayalam">${escapeHtml(item.malayalam)}</div>` : ''}
-        <p>${escapeHtml(item.desc)}</p>
         ${item.footer ? `<div class="pious-wing-footer"><i class="fas fa-check-circle"></i> ${escapeHtml(item.footer)}</div>` : ''}
       `;
       container.appendChild(card);
