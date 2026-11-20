@@ -399,14 +399,36 @@ img {
   background: rgba(212, 163, 75, 0.18);
   border: 1px solid var(--gold-primary);
   color: var(--gold-glow);
-  padding: 0.35rem 1.25rem;
+  padding: 0.45rem 1.35rem;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  max-width: 92%;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero-subtitle-badge {
+    padding: 0.65rem 1.15rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    gap: 0.45rem;
+    line-height: 1.45;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .hero-subtitle-badge i {
+    display: inline-block;
+    margin-right: 0.35rem;
+    vertical-align: middle;
+  }
 }
 
 .hero-title {
