@@ -492,3 +492,30 @@ function initTypographyEngine() {
 // Auto-run immediately so CSS variables are active before page paint
 initTypographyEngine();
 
+// Real-time synchronization when Typography or CMS storage updates from Admin tab or other windows
+window.addEventListener('storage', (e) => {
+  if (e.key === TYPOGRAPHY_STORAGE_KEY || e.key === CMS_STORAGE_KEY || !e.key) {
+    const updatedCfg = getTypographyConfig();
+    applyTypography(updatedCfg, false);
+
+    // Sync drawer select elements if drawer is present on the page
+    const hSelect = document.getElementById('liveFontHeadingSelect');
+    const bSelect = document.getElementById('liveFontBodySelect');
+    const nSelect = document.getElementById('liveFontNavSelect');
+    const btnSelect = document.getElementById('liveFontButtonsSelect');
+    const aSelect = document.getElementById('liveFontAccentSelect');
+    if (hSelect) hSelect.value = updatedCfg.heading;
+    if (bSelect) bSelect.value = updatedCfg.body;
+    if (nSelect) nSelect.value = updatedCfg.nav;
+    if (btnSelect) btnSelect.value = updatedCfg.buttons;
+    if (aSelect) aSelect.value = updatedCfg.accent;
+
+    const drawer = document.getElementById('fontDrawer');
+    if (drawer) {
+      drawer.querySelectorAll('.font-scale-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-scale') === (updatedCfg.baseSize || '100%'));
+      });
+    }
+  }
+});
+
