@@ -1873,10 +1873,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ${escapeHtml(wing.tag || 'Ministry')}
           </span>
         </td>
-        <td>
-          <p style="font-size:0.82rem; color:#475569; margin:0 0 0.3rem 0; max-width:320px; white-space:normal; line-height:1.4;">${escapeHtml(wing.desc)}</p>
-          ${wing.footer ? `<span style="font-size:0.75rem; color:#b45309; font-weight:600;"><i class="fas fa-check-circle"></i> ${escapeHtml(wing.footer)}</span>` : ''}
-        </td>
         <td style="text-align:center;">
           <button type="button" class="btn-icon-action move-wing-up-btn" data-index="${idx}" ${idx === 0 ? 'disabled' : ''} title="Move Up">
             <i class="fas fa-arrow-up"></i>
@@ -1940,8 +1936,8 @@ document.addEventListener('DOMContentLoaded', () => {
             wingIconPreview.innerHTML = `<i class="fas ${cleanIcon}"></i>`;
           }
           wingEditTag.value = item.tag || '';
-          wingEditFooter.value = item.footer || '';
-          wingEditDesc.value = item.desc || '';
+          if (wingEditFooter) wingEditFooter.value = item.footer || '';
+          if (wingEditDesc) wingEditDesc.value = item.desc || '';
           wingEditorTitle.innerHTML = `<i class="fas fa-edit"></i> Edit Ministry #${i + 1}: ${escapeHtml(item.title)}`;
           wingEditorCard.style.display = 'block';
           wingEditTitle.focus();
@@ -2009,8 +2005,8 @@ document.addEventListener('DOMContentLoaded', () => {
       wingEditIcon.value = 'fa-hands-helping';
       if (wingIconPreview) wingIconPreview.innerHTML = '<i class="fas fa-hands-helping"></i>';
       wingEditTag.value = 'Parish Ministry';
-      wingEditFooter.value = '';
-      wingEditDesc.value = '';
+      if (wingEditFooter) wingEditFooter.value = '';
+      if (wingEditDesc) wingEditDesc.value = '';
       wingEditorTitle.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Association / Pastoral Wing';
       wingEditorCard.style.display = 'block';
       wingEditTitle.focus();
@@ -2058,8 +2054,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const malayalam = wingEditMalayalam.value.trim() || inferred.subtitle;
       const icon = wingEditIcon.value.trim() || inferred.icon || 'fa-hands-helping';
       const tag = wingEditTag.value.trim() || inferred.tag || 'Parish Ministry';
-      const footer = wingEditFooter.value.trim();
-      const desc = wingEditDesc.value.trim() || inferred.desc;
+      const footer = (wingEditFooter ? wingEditFooter.value.trim() : '') || '';
+      const desc = (wingEditDesc ? wingEditDesc.value.trim() : '') || inferred.desc;
 
       const wingData = {
         title,

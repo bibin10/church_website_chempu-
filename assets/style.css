@@ -3527,36 +3527,15 @@ body.index-page .main-footer {
 /* ==========================================================================
    Subpage Hero Banner & Community Layouts (community.html & contact.html & index.html)
    ========================================================================== */
-/* Leftward Drifting Sky Image Animation */
-@keyframes skyDriftLeft {
-  0% {
-    background-position: 100% center;
-  }
-  100% {
-    background-position: 0% center;
-  }
-}
-
 body.community-page,
 body.contact-page,
 body.index-page {
   background: 
     linear-gradient(180deg, rgba(20, 70, 150, 0.45) 0%, rgba(54, 123, 214, 0.3) 250px, rgba(184, 219, 251, 0.2) 600px, rgba(235, 245, 255, 0.6) 100%),
-    url("images/sky_background.jpg") repeat-x fixed;
+    url("images/sky_background.jpg") center center / cover no-repeat fixed;
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;
-  animation: skyDriftLeft 140s linear infinite;
-}
-
-#skyBackdropImgLayer {
-  position: absolute;
-  inset: -20px -200px -20px 0;
-  width: calc(100% + 200px);
-  background: url("images/sky_background.jpg") repeat-x center center / cover;
-  opacity: 0.88;
-  pointer-events: none;
-  animation: skyDriftLeft 120s linear infinite;
 }
 
 body.community-page #realisticSkyContainer,

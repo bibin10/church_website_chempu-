@@ -555,7 +555,7 @@
     // Sky backdrop image layer (for presets with photo backdrop)
     const skyImgLayer = document.createElement('div');
     skyImgLayer.id = 'skyBackdropImgLayer';
-    skyImgLayer.style.cssText = 'position:absolute;top:0;left:0;width:300vw;height:100vh;background:url("assets/images/sky_background.jpg") repeat-x left center;background-size:auto 100%;opacity:0.88;transition:opacity 0.6s ease;pointer-events:none;will-change:transform;';
+    skyImgLayer.style.cssText = 'position:absolute;inset:0;background:url("assets/images/sky_background.jpg") center center / cover no-repeat;opacity:0.88;transition:opacity 0.6s ease;pointer-events:none;';
     skyWrap.appendChild(skyImgLayer);
 
     const canvas = document.createElement('canvas');
@@ -605,8 +605,8 @@
         this.y = y;
         this.baseY = y;
         this.scale = scale;
-        // Make base speed visibly active (between 25px and 70px per second)
-        this.baseSpeed = speed * 22;
+        // Gentle, calm drift speed (slow and majestic)
+        this.baseSpeed = speed * 4.5;
         this.opacity = opacity;
         this.layer = layer;
         this.puffs = [];
@@ -731,17 +731,10 @@
     applySkyPreset(activeSky);
 
     let lastTime = performance.now();
-    let skyBackdropOffset = 0;
 
     function render(currentTime) {
       const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
       lastTime = currentTime;
-
-      // Continuously slide the backdrop image layer to the left
-      if (skyImgLayer && activeSky.backdrop) {
-        skyBackdropOffset = (skyBackdropOffset + 35 * dt) % (width || 1920);
-        skyImgLayer.style.transform = `translateX(-${skyBackdropOffset}px)`;
-      }
 
       ctx.clearRect(0, 0, width, height);
 
