@@ -359,6 +359,7 @@ img {
   color: #ffffff;
   background: #081124;
   overflow: hidden;
+  z-index: 10;
 }
 
 .hero-bg-media {
