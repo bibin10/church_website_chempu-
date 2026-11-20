@@ -634,12 +634,14 @@
       }
 
       update(dt, speedMult) {
-        this.x += (this.baseSpeed * speedMult) * dt;
+        // Move steadily towards the left side
+        this.x -= (this.baseSpeed * speedMult) * dt;
         this.y = this.baseY + Math.sin(this.x * 0.003) * (6 * this.scale);
 
         const wrapBoundary = 400 * this.scale;
-        if (this.x - wrapBoundary > width) {
-          this.x = -wrapBoundary;
+        // When clouds exit completely off the left edge, wrap them to the right edge
+        if (this.x + wrapBoundary < 0) {
+          this.x = width + wrapBoundary;
           this.baseY = Math.random() * (height * 0.7);
         }
       }
