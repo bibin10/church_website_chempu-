@@ -1,0 +1,15 @@
+# Netlify & Cloudflare Clean URLs Redirects
+/index.html    /              301!
+/clergy.html   /clergy        301!
+/community.html /community    301!
+/history.html  /history       301!
+/magazine.html /magazine      301!
+/contact.html  /contact       301!
+/admin.html    /admin         301!
+
+/clergy        /clergy.html   200
+/community     /community.html 200
+/history       /history.html  200
+/magazine      /magazine.html 200
+/contact       /contact.html  200
+/admin         /admin.html    200

@@ -5,38 +5,151 @@ const STORAGE_KEY = 'st_thomas_chempu_site_config';
 const INTENTIONS_KEY = 'st_thomas_prayer_intentions';
 
 const DEFAULT_ADMIN_CONFIG = {
-  vicar_name: 'Rev. Fr. Vicar',
+  // 0. Site Theme
+  site_theme: 'chempu-classic',
+
+  // 1. Notice Bar
+  notice_badge: 'Annual Feast',
+  notice_text: 'Feast of St. Thomas the Apostle (Dukhrana) celebrated with traditional Raza & solemn prayers',
+  notice_phone: '+91 4829-273176',
+  notice_address: 'Chempu P.O., Vaikom, Kottayam',
+
+  // 2. Hero Section
+  hero_image: 'assets/images/st_thomas_chempu_church_facade_v3.jpg',
+  hero_badge: 'Archdiocese of Ernakulam-Angamaly • Estd. 1307 AD',
+  hero_title1: 'St. Thomas Syro-Malabar',
+  hero_title2: 'Roman Catholic Church, Chempu',
+  hero_malayalam: 'St. Thomas Church Chempu Dedicated to Apostle St. Thomas',
+  hero_desc: 'Over 700 years of living Christian faith, apostolic communion, and spiritual brotherhood rooted along the serene waters of Chempu, Vaikom.',
+  stat1_val: '1307 AD',
+  stat1_lbl: 'Historic Foundation',
+  stat2_val: '700+ Years',
+  stat2_lbl: 'Apostolic Tradition',
+  stat3_val: 'Daily Liturgy',
+  stat3_lbl: 'Holy Qurbana & Prayers',
+
+  // 3. Mass Schedules & Ribbon
+  mass_ribbon_display: 'Sunday: 7:00 AM & 9:15 AM',
+  mass_ribbon_daily: '6:15 AM (Mon - Wed, Fri - Sat)',
+  mass_ribbon_thu: '5:15 PM (Thursday)',
+  mass_ribbon_sunday: '7:00 AM &<br><span style="white-space: nowrap;">9:15 AM</span>',
+  mass_sun1_time: '07:00 AM',
+  mass_sun2_time: '09:15 AM',
+  mass_catechism_time: '10:30 AM - 12:15 PM',
+  mass_weekday1_time: '06:15 AM',
+  mass_thu_time: '05:15 PM',
+  mass_fri_time: '06:15 AM',
+  mass_sat_time: '06:15 AM',
+  mass_confession_time: 'Saturdays 05:00 PM',
+  mass_novena_time: 'Every Thursday 06:15 PM',
+
+  // 4. History
+  history_image: 'assets/images/st_thomas_chempu_church_vertical.jpg',
+  history_eyebrow: 'Apostolic Heritage',
+  history_title: 'Seven Centuries of Divine Grace',
+  history_lead: 'The historic St. Thomas Catholic Church of Chempu represents a venerable legacy of St. Thomas Christians (Nasranis) nestled in Kottayam district.',
+  history_p1: 'Established in early fourteenth century (1307 AD), St. Thomas Church Chempu is one of the revered historical churches under the Syro-Malabar Major Archiepiscopal Archdiocese of Ernakulam-Angamaly.',
+  history_p2: 'Surrounded by coconut groves and picturesque backwaters of the Vembanad region near Vaikom, the parish has nurtured generations of devoted families, preserved authentic East-Syriac liturgical customs, and sustained community welfare for centuries.',
+
+  // 4.5. Mar Augustine Kandathil Showcase
+  kandathil_photo: 'assets/images/mar_augustine_kandathil_portrait.jpg',
+  kandathil_eyebrow: 'Parish Pride & Archdiocesan Patriarch',
+  kandathil_title: 'Mar Augustine Kandathil',
+  kandathil_malayalam: 'Mar Augustine Kandathil (1874 – 1956) • First Metropolitan Archbishop',
+  kandathil_lead: 'Chempu is eternally honored in the history of the Catholic Church as the native parish and birthplace of Mar Augustine Kandathil — the first indigenous Metropolitan Archbishop of India and the founding father of the Syro-Malabar Hierarchy.',
+  kandathil_p1: 'Born on August 25, 1874, in the devout Kandathil family of Chempu to parents Kandathil Varkey and Thressia, young Augustine was baptized, nourished in Christian faith, and formed spiritually right here at St. Thomas Church, Chempu. The quiet backwaters and devout parish community of Chempu provided the spiritual cradle that nurtured his early call to priestly service.',
+  kandathil_p2: 'On December 21, 1923, His Holiness Pope Pius XI issued the historic apostolic constitution Romani Pontifices, re-establishing the indigenous Syro-Malabar Catholic Hierarchy and elevating the Vicariate of Ernakulam into a Metropolitan Archdiocese. Mar Augustine Kandathil was consecrated as its first Metropolitan Archbishop, creating history as the very first native Indian to hold the rank and exercise the authority of a Catholic Metropolitan Archbishop.',
+  kandathil_p3: 'During his transformative episcopate spanning more than three decades as Metropolitan (and 44 years as a Bishop), Mar Augustine guided the Syro-Malabar Church into a flourishing golden era. He founded the Congregation of the Sisters of Nazareth (CSN) in 1948, pioneered colleges, high schools, and orphanages, and championed social uplift across Kerala. When he was called to eternal rest on January 10, 1956, his mortal remains were entombed in the sanctuary of St. Mary\'s Cathedral Basilica, Ernakulam.',
+  kandathil_quote: '"St. Thomas Church Chempu stands honored forever in history as the spiritual fountainhead that gave the universal Church one of its greatest archbishops and visionaries."',
+
+  // 5. Feasts
+  feast_main_name: 'Feast of St. Thomas the Apostle',
+  feast_main_date: 'July 3 (Dukhrana) & Traditional Parish Feast',
+  feast_main_desc: 'The annual parish festival is marked with high spiritual solemnity. The traditional "Kodiyettu" (flag hoisting), Raza Qurbana, grand candle-lit processions carrying holy relics and traditional silk parasols (Muthukkuda), and fellowship meals unite the entire village of Chempu.',
+
+  // 6. Administration & Leadership
+  vicar_name: 'Rev. Fr. Varghese Painumkal',
   vicar_malayalam: 'Parish Vicar',
   vicar_role: 'Vicar & Pastoral Head',
-  vicar_phone: '+91 4829-273176',
-  vicar_photo: 'assets/images/vicar_avatar.svg',
+  vicar_phone: '+91 94475 08299',
+  vicar_photo: 'assets/images/fr_varghese_painumkal.jpg',
   vicar_desc: 'Oversees all liturgical celebrations, sacraments, pastoral care, and spiritual guidance of St. Thomas Church Chempu.',
-  trustee1_name: 'Parish Trustee 1',
+
+  trustee1_name: 'Thomas Mathai Maniyela',
   trustee1_malayalam: 'Parish Trustee',
   trustee1_role: 'Church Trustee',
-  trustee1_phone: '+91 94470 00000',
+  trustee1_phone: '+91 94463 04922',
   trustee1_photo: 'assets/images/trustee1_avatar.svg',
   trustee1_desc: 'Managing temporal administration, church assets, accounts, and festive celebrations.',
-  trustee2_name: 'Parish Trustee 2',
+
+  trustee2_name: 'Paul Thomas<br>Kunnathu',
   trustee2_malayalam: 'Parish Trustee',
   trustee2_role: 'Church Trustee',
-  trustee2_phone: '+91 94470 00000',
+  trustee2_phone: '+91 98957 94773',
   trustee2_photo: 'assets/images/trustee2_avatar.svg',
   trustee2_desc: 'Overseeing parish development projects, development initiatives, and community logistics.',
-  vice_chairman_name: 'Family Unit Vice Chairman',
-  vice_chairman_malayalam: 'Family Units Vice Chairman',
-  vice_chairman_role: 'Pastoral Council Vice Chairman',
-  vice_chairman_phone: '+91 94470 00000',
+
+  vice_chairman_name: 'Siju Jose<br>Kandathil',
+  vice_chairman_malayalam: 'കുടുംബകൂട്ടായ്മ വൈസ് ചെയർമാൻ',
+  vice_chairman_role: 'Vice Chairman',
+  vice_chairman_phone: '+91 86060 40293',
   vice_chairman_photo: 'assets/images/vice_chairman_avatar.svg',
   vice_chairman_desc: 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.',
-  history_image: 'assets/images/st_thomas_chempu_church_vertical.jpg',
-  kandathil_photo: 'assets/images/mar_augustine_kandathil_portrait.jpg',
-  mass_novena_time: 'Every Thursday 06:15 PM',
+
+  admin_vicar_desc: 'Oversees liturgical celebrations, spiritual welfare, sacraments, and pastoral guidance of all parishioners.',
+  admin_trustees_desc: 'Elected parish representatives managing church assets, annual feast logistics, and development initiatives.',
+  admin_council_desc: 'Coordinating 12+ Kudumba Kootayma (Family Units) fostering fellowship, charity, and mutual support.',
+  admin_faith_desc: 'Dedicated animators and teachers imparting Catholic faith, catechism, and moral values to parish children.',
+
+  // 6.5. SD Sisters (Convent)
   sd_img: 'assets/images/sd_convent_chempu.jpg',
+  sd_title: 'Sisters of the Destitute (SD Convent, Chempu)',
+  sd_malayalam: 'Sisters of the Destitute (SD Convent)',
+  sd_years_chempu: '75 Years in Chempu',
+  sd_years_congregation: '100 Years of Congregation',
+  sd_desc: 'For over 75 dedicated years, the Sisters of the Destitute (SD) have been an integral spiritual pillar of St. Thomas Church Chempu. Formed nearly 100 years ago (1927) by Venerable Fr. Varghese Payyappilly with the charism of compassionate love for the poor and marginalized, the SD Sisters in Chempu tirelessly serve our parish community through nursery education (Carmel Nursery), Sunday catechism, home visitations of the sick and elderly, liturgical altar service, and continual Eucharistic adoration.',
+
+  // 6.6. Filial Church: St. Mary's Church Chemmanakary (Holyland)
   chemmanakary_img: 'assets/images/st_mary_chemmanakary_church.jpg',
+  chemmanakary_title: "St. Mary's Church, Chemmanakary (Holyland)",
+  chemmanakary_malayalam: "St. Mary's Church, Chemmanakary (Holyland)",
+  chemmanakary_badge1: 'Filial Church',
+  chemmanakary_badge2: 'Chemmanakary, Chempu',
+  chemmanakary_desc: "Situated along the serene Chemmanakary backwaters, St. Mary's Church, Chemmanakary (Holyland) is a revered filial church and sacred pilgrimage center under the parental parish and pastoral care of St. Thomas Syro-Malabar Church, Chempu. Under the direct pastoral guidance of the Chempu parish vicar, the church ministers to the spiritual life of the Chemmanakary community with Holy Qurbana, Marian devotions, and the solemn celebration of its annual parish feast.",
+
+  // 6.7. Parish Institutions & Facilities
   inst_school_img: 'assets/images/st_thomas_lp_school.jpg',
+  inst_school_title: 'St. Thomas L.P. School, Chempu',
+  inst_school_malayalam: 'St. Thomas L.P. School, Chempu',
+  inst_school_desc: 'Established in 1921 under the patronage and management of St. Thomas Church Chempu, this centenary educational institution has nurtured generations of children across Chempu and neighbouring villages with primary education, moral discipline, and values.',
   inst_cultural_img: 'assets/images/st_thomas_cultural_centre.jpg',
-  inst_complex_img: 'assets/images/st_thomas_shopping_complex.jpg'
+  inst_cultural_title: 'St. Thomas Cultural Centre, Chempu',
+  inst_cultural_malayalam: 'St. Thomas Cultural Centre, Chempu',
+  inst_cultural_desc: 'A spacious modern parish auditorium and cultural venue accommodating community gatherings, solemn wedding banquets, parish general assemblies, youth festivals, and cultural events for all residents of Chempu.',
+  inst_complex_img: 'assets/images/st_thomas_shopping_complex.jpg',
+  inst_complex_title: 'St. Thomas Shopping Complex, Chempu',
+  inst_complex_malayalam: 'St. Thomas Shopping Complex, Chempu',
+  inst_complex_desc: 'Situated in the heart of Chempu, the parish commercial shopping complex provides essential retail spaces, local businesses, and community utilities, contributing to village commerce and supporting church temporal ministries.',
+
+  // 6.8. Pious Associations & Pastoral Wings Header
+  wings_eyebrow: 'Parish Fellowship & Lay Ministries',
+  wings_title: 'Pious Associations & Pastoral Wings',
+  wings_lead: 'Dedicated lay ministries fostering fellowship, spiritual enrichment, charity, and liturgical participation across our parish community.',
+
+  // 7. Contact
+  contact_phone: '+91 4829-273176',
+  contact_diocese: 'Archdiocese of Ernakulam-Angamaly • Vaikom Forane',
+  contact_address: 'St. Thomas Syro-Malabar Roman Catholic Church, Chempu P.O., Vaikom, Kottayam District, Kerala - 686 615, India',
+  contact_hours: 'Tuesday - Saturday: 09:00 AM - 12:30 PM • 04:00 PM - 06:00 PM | Sunday: After Holy Qurbana',
+
+  // 8. Typography & Font Customizer (Permanent Locked Defaults)
+  font_heading: 'Marcellus',
+  font_body: 'Cinzel',
+  font_nav: 'Cinzel',
+  font_buttons: 'Cinzel',
+  accent: 'Cinzel',
+  caption: 'Marcellus',
+  font_base_size: '16px'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -120,7 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // 3. Mass Ribbon
       setText('live_ribbon_daily', cfg.mass_ribbon_daily);
       setText('live_ribbon_thu', cfg.mass_ribbon_thu);
-      setText('live_ribbon_sunday', cfg.mass_ribbon_sunday);
+      if (cfg.mass_ribbon_sunday) {
+        setHTML('live_ribbon_sunday', cfg.mass_ribbon_sunday.includes('<br>') ? cfg.mass_ribbon_sunday : cfg.mass_ribbon_sunday.replace('&', '&<br><span style="white-space: nowrap;">') + (cfg.mass_ribbon_sunday.includes('&') ? '</span>' : ''));
+      }
 
       // 4. Detailed Mass Timings
       setText('live_mass_sun1', cfg.mass_sun1_time);
@@ -184,23 +299,23 @@ document.addEventListener('DOMContentLoaded', () => {
       setContactPhone('live_vicar_phone_wrap', 'live_vicar_phone', cfg.vicar_phone, '+91 4829-273176');
       setImage('live_vicar_photo', cfg.vicar_photo, 'assets/images/vicar_avatar.svg');
 
-      setText('live_trustee1_name', cfg.trustee1_name, 'Parish Trustee 1');
+      setHTML('live_trustee1_name', cfg.trustee1_name ? cfg.trustee1_name.replace('Maniyela', '<br>Maniyela') : 'Thomas Mathai<br>Maniyela');
       setText('live_trustee1_malayalam', cfg.trustee1_malayalam, 'Parish Trustee');
       setText('live_trustee1_role', cfg.trustee1_role, 'Church Trustee');
       setText('live_trustee1_desc', cfg.trustee1_desc || cfg.admin_trustees_desc, 'Managing temporal administration, church assets, accounts, and festive celebrations.');
       setContactPhone('live_trustee1_phone_wrap', 'live_trustee1_phone', cfg.trustee1_phone, '+91 94470 00000');
       setImage('live_trustee1_photo', cfg.trustee1_photo, 'assets/images/trustee1_avatar.svg');
 
-      setText('live_trustee2_name', cfg.trustee2_name, 'Parish Trustee 2');
+      setHTML('live_trustee2_name', cfg.trustee2_name ? (cfg.trustee2_name.includes('<br>') ? cfg.trustee2_name : cfg.trustee2_name.replace('Kunnathu', '<br>Kunnathu')) : 'Paul Thomas<br>Kunnathu');
       setText('live_trustee2_malayalam', cfg.trustee2_malayalam, 'Parish Trustee');
       setText('live_trustee2_role', cfg.trustee2_role, 'Church Trustee');
       setText('live_trustee2_desc', cfg.trustee2_desc || cfg.admin_trustees_desc, 'Overseeing parish development projects, development initiatives, and community logistics.');
       setContactPhone('live_trustee2_phone_wrap', 'live_trustee2_phone', cfg.trustee2_phone, '+91 94470 00000');
       setImage('live_trustee2_photo', cfg.trustee2_photo, 'assets/images/trustee2_avatar.svg');
 
-      setText('live_vice_chairman_name', cfg.vice_chairman_name, 'Family Unit Vice Chairman');
+      setHTML('live_vice_chairman_name', cfg.vice_chairman_name ? (cfg.vice_chairman_name.includes('<br>') ? cfg.vice_chairman_name : cfg.vice_chairman_name.replace('Kandathil', '<br>Kandathil')) : 'Siju Jose<br>Kandathil');
       setText('live_vice_chairman_malayalam', cfg.vice_chairman_malayalam, 'Family Units Vice Chairman');
-      setText('live_vice_chairman_role', cfg.vice_chairman_role, 'Pastoral Council Vice Chairman');
+      setText('live_vice_chairman_role', 'Vice Chairman');
       setText('live_vice_chairman_desc', cfg.vice_chairman_desc || cfg.admin_council_desc, 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.');
       setContactPhone('live_vice_chairman_phone_wrap', 'live_vice_chairman_phone', cfg.vice_chairman_phone, '+91 94470 00000');
       setImage('live_vice_chairman_photo', cfg.vice_chairman_photo, 'assets/images/vice_chairman_avatar.svg');
@@ -293,22 +408,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const NAV_ITEMS_KEY = 'st_thomas_nav_items';
   const DEFAULT_NAV_ITEMS = [
-    { label: 'Home', url: '#home' },
-    { label: 'Heritage & History', url: '#about' },
+    { label: 'History', url: '#about' },
     { label: 'Holy Mass', url: '#mass-timings' },
     { label: 'Feasts', url: '#feasts' },
     { label: 'Gallery', url: '#gallery' },
-    { label: 'Parish Council', url: '#administration' },
-    { label: 'Community', url: 'community.html' },
-    { label: 'Contact', url: 'contact.html' }
+    { label: 'Community', url: 'community' },
+    { label: 'Santhom Maria', url: 'magazine' },
+    { label: 'Contact', url: 'contact' }
   ];
 
   function applyNavConfig() {
     const navUl = document.getElementById('navLinks');
     if (!navUl) return;
 
-    const isCommunityPage = window.location.pathname.endsWith('community.html');
-    const isContactPage = window.location.pathname.endsWith('contact.html');
+    const path = window.location.pathname.toLowerCase();
+    const isIndexPage = path === '/' || path.endsWith('/index.html') || path.endsWith('/index') || path === '';
+    const isSubPage = !isIndexPage;
 
     let items = DEFAULT_NAV_ITEMS;
     try {
@@ -325,21 +440,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!Array.isArray(items) || items.length === 0) return;
 
-    // Normalize any legacy stored #contact or index.html#contact links to contact.html
+    // Normalize any legacy stored #contact or index.html#contact links to contact
     items = items.map(item => {
       if (item.label.toLowerCase() === 'contact' || item.url === '#contact' || item.url === 'index.html#contact') {
-        return { label: item.label, url: 'contact.html' };
+        return { label: item.label, url: 'contact' };
       }
       return item;
     });
 
-    // Ensure Community link exists in menu
-    if (!items.some(i => i.url === 'community.html')) {
-      const contactIdx = items.findIndex(i => i.url === 'contact.html');
+    // Ensure Community link exists in menu without duplicate
+    if (!items.some(i => i.url === 'community' || i.url === 'community.html')) {
+      const contactIdx = items.findIndex(i => i.url === 'contact' || i.url === 'contact.html');
       if (contactIdx >= 0) {
-        items.splice(contactIdx, 0, { label: 'Community', url: 'community.html' });
+        items.splice(contactIdx, 0, { label: 'Community', url: 'community' });
       } else {
-        items.push({ label: 'Community', url: 'community.html' });
+        items.push({ label: 'Community', url: 'community' });
       }
     }
 
@@ -353,30 +468,31 @@ document.addEventListener('DOMContentLoaded', () => {
       let targetUrl = item.url;
       let isActive = false;
 
-      if (isCommunityPage) {
-        if (item.url === 'community.html') {
-          isActive = true;
-          targetUrl = '#top';
-        } else if (item.url.startsWith('#')) {
-          targetUrl = `index.html${item.url}`;
+      if (isSubPage) {
+        if (targetUrl.startsWith('#')) {
+          targetUrl = `index.html${targetUrl}`;
         }
-      } else if (isContactPage) {
-        if (item.url === 'contact.html') {
+        if (path.includes('community') && (item.url === 'community' || item.url === 'community.html')) {
           isActive = true;
-          targetUrl = '#top';
-        } else if (item.url.startsWith('#')) {
-          targetUrl = `index.html${item.url}`;
+        } else if (path.includes('contact') && (item.url === 'contact' || item.url === 'contact.html')) {
+          isActive = true;
+        } else if (path.includes('clergy') && (item.url === 'clergy' || item.url === 'clergy.html')) {
+          isActive = true;
+        } else if (path.includes('magazine') && (item.url === 'magazine' || item.url === 'magazine.html')) {
+          isActive = true;
         }
       } else {
-        if (item.url === 'contact.html') {
-          targetUrl = 'contact.html';
-        } else if (item.url === currentHash || (index === 0 && (!window.location.hash || window.location.hash === '#'))) {
+        if (item.url === currentHash || (index === 0 && (!window.location.hash || window.location.hash === '#'))) {
           isActive = true;
         }
       }
 
       a.href = targetUrl;
-      a.textContent = item.label;
+      if (item.label.toLowerCase().includes('santhom maria') || item.url.includes('magazine')) {
+        a.innerHTML = '<i class="fas fa-book-open" style="margin-right: 5px; color: var(--gold-glow);"></i> ' + item.label;
+      } else {
+        a.textContent = item.label;
+      }
       if (isActive) a.classList.add('active');
 
       // Close mobile menu on click
@@ -815,6 +931,284 @@ document.addEventListener('DOMContentLoaded', () => {
   applyPiousWingsConfig();
 
   // =========================================================================
+  // 0.9. Former Parish Vicars 3-in-a-Row Carousel (Dynamic from Admin CMS)
+  // =========================================================================
+  const VICARS_KEY = 'st_thomas_former_vicars';
+  const DEFAULT_FORMER_VICARS = [
+  {
+    name: 'Rev. Fr. Sebastian Thottappilly',
+    years: '1971 – 1980',
+    photo: 'assets/images/fr_sebastian_thottappilly.jpg',
+    note: 'Pastoral ministry, spiritual shepherd & church renovation visionary'
+  },
+  {
+    name: 'Rev. Fr. Joseph Chakiyath',
+    years: '1980 – 1982',
+    photo: 'assets/images/fr_joseph_chakiyath.jpg',
+    note: 'Vicar at 1981 Blessing & Dedication of Renovated Church'
+  },
+  {
+    name: 'Rev. Fr. George Pananjickal',
+    years: '1982 – 1989',
+    photo: 'assets/images/fr_george_pananjickal.jpg',
+    note: 'Pastoral care, spiritual leadership, and parish ministry'
+  },
+  {
+    name: 'Rev. Fr. George Payyappally',
+    years: '1989',
+    photo: 'assets/images/fr_george_payyappally.jpg',
+    note: 'Devoted pastoral ministry and sacramental service'
+  },
+  {
+    name: 'Mar Jacob Manathodath',
+    years: '1989 – 1990',
+    photo: 'assets/images/fr_jacob_manathodath.jpg',
+    note: 'Parish Vicar; subsequently consecrated Bishop of Palakkad'
+  },
+  {
+    name: 'Rev. Fr. Hormis Mynatti',
+    years: '1990 – 1991',
+    photo: 'assets/images/fr_hormis_mynatti.jpg',
+    note: 'Spiritual guidance, pastoral shepherding, and community devotion'
+  },
+  {
+    name: 'Rev. Fr. George Manguzhikari',
+    years: '1991 – 1996',
+    photo: 'assets/images/fr_george_manguzhikari.jpg',
+    note: 'Pastoral governance, family welfare, and parish fellowship'
+  },
+  {
+    name: 'Rev. Fr. Paul Kanjirakkattukari',
+    years: '1996 – 1999',
+    photo: 'assets/images/fr_paul_kanjirakkattukari.jpg',
+    note: 'Faith leadership, pastoral guidance, and liturgical life'
+  },
+  {
+    name: 'Rev. Fr. John Thekkanathu',
+    years: '1999 – 2000',
+    photo: 'assets/images/fr_john_thekkanath.jpg',
+    note: 'Devoted pastoral ministry and sacramental leadership'
+  },
+  {
+    name: 'Rev. Fr. Jose Vailikodathu',
+    years: '2000 – 2005',
+    photo: 'assets/images/fr_jose_vailikodathu.jpg',
+    note: 'Pastoral shepherding, youth ministry, and spiritual renewal'
+  },
+  {
+    name: 'Rev. Fr. Xavier Avallil',
+    years: '2005 – 2012',
+    photo: 'assets/images/fr_xavier_avallil.jpg',
+    note: 'Church renovation & front Portico (mondalam) blessed by Cardinal Mar Varkey Vithayathil (2007)'
+  },
+  {
+    name: 'Rev. Fr. Varghese Mampilly',
+    years: '2012 – 2018',
+    photo: 'assets/images/fr_varghese_mampilly.jpg',
+    note: 'Church renovation re-dedicated by Mar Jacob Manathodath (Bishop of Palakkad & Former Vicar, 2018)'
+  },
+  {
+    name: 'Rev. Fr. Antony Paravara',
+    years: '2018 – 2020',
+    photo: 'assets/images/fr_antony_paravara.jpg',
+    note: 'Venerable pastoral care, spiritual leadership, and devoted service'
+  },
+  {
+    name: 'Rev. Fr. Hormis Thottakara',
+    years: '2020 – 2025',
+    photo: 'assets/images/fr_hormis_thottakara.jpg',
+    note: 'Pastoral guidance, spiritual leadership, and parish community ministry'
+  },
+  {
+    name: 'Rev. Fr. Varghese Painumkal',
+    years: '2025 – PRESENT',
+    photo: 'assets/images/fr_varghese_painumkal.jpg',
+    note: 'Present Vicar and Pastoral Head of St. Thomas Church Chempu'
+  }
+];
+
+  function initFormerVicarsCarousel() {
+    const stage = document.getElementById('vicarsTrioStage');
+    const dotsWrap = document.getElementById('vicarDots');
+    const prevBtn = document.getElementById('vicarPrevBtn');
+    const nextBtn = document.getElementById('vicarNextBtn');
+    const wrapper = document.getElementById('vicarsCarouselWrapper');
+
+    if (!stage) return;
+
+    let vicars = DEFAULT_FORMER_VICARS;
+    try {
+      const saved = localStorage.getItem(VICARS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) vicars = parsed;
+      }
+    } catch (e) {
+      console.warn('Could not read former vicars from storage', e);
+    }
+
+    if (vicars.length === 0) {
+      stage.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:2rem;">No former vicar records available.</p>';
+      return;
+    }
+
+    // Default center card to Present Vicar (the last item)
+    let activeIndex = vicars.length - 1;
+
+    function renderTrio() {
+      stage.innerHTML = '';
+      const total = vicars.length;
+
+      // Determine Left (Previous), Center (Active), and Right (Next) indices
+      const prevIdx = (activeIndex - 1 + total) % total;
+      const currIdx = activeIndex;
+      const nextIdx = (activeIndex + 1) % total;
+
+      const itemsToRender = [
+        { data: vicars[prevIdx], role: 'prev', index: prevIdx },
+        { data: vicars[currIdx], role: 'center', index: currIdx },
+        { data: vicars[nextIdx], role: 'next', index: nextIdx }
+      ];
+
+      itemsToRender.forEach(slot => {
+        const card = document.createElement('div');
+        card.className = `vicar-trio-card vicar-${slot.role}`;
+        card.setAttribute('data-index', slot.index.toString());
+
+        const photoUrl = slot.data.photo || 'assets/images/vicar_avatar.svg';
+        const isCenter = slot.role === 'center';
+        const isPresent = (slot.data.years || '').toUpperCase().includes('PRESENT');
+        const badgeText = isPresent ? 'Present Vicar' : 'Former Vicar';
+        const badgeClass = isPresent ? 'vicar-badge-present' : 'vicar-badge-former';
+
+        card.innerHTML = `
+          <div class="vicar-photo-wrap">
+            <img src="${escapeHtml(photoUrl)}" alt="${escapeHtml(slot.data.name)}" loading="lazy" decoding="async">
+            ${isCenter ? `<span class="vicar-center-badge ${badgeClass}"><i class="fas fa-cross"></i> ${badgeText}</span>` : ''}
+          </div>
+          <div class="vicar-details">
+            <h4 class="vicar-name">${escapeHtml(slot.data.name)}</h4>
+            <div class="vicar-years-pill ${isPresent ? 'pill-present' : ''}"><i class="${isPresent ? 'fas fa-certificate' : 'fas fa-calendar-alt'}"></i> ${escapeHtml(slot.data.years || '')}</div>
+            ${slot.data.note ? `<p class="vicar-note">${escapeHtml(slot.data.note)}</p>` : ''}
+          </div>
+        `;
+
+        // Clicking side cards shifts them to center
+        card.addEventListener('click', () => {
+          if (slot.role === 'prev') {
+            goPrev();
+          } else if (slot.role === 'next') {
+            goNext();
+          }
+        });
+
+        stage.appendChild(card);
+      });
+
+      renderDots();
+    }
+
+    function renderDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      vicars.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = `vicar-dot ${i === activeIndex ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `Go to Vicar ${i + 1}`);
+        dot.addEventListener('click', () => {
+          activeIndex = i;
+          renderTrio();
+        });
+        dotsWrap.appendChild(dot);
+      });
+    }
+
+    function goNext() {
+      activeIndex = (activeIndex + 1) % vicars.length;
+      renderTrio();
+    }
+
+    function goPrev() {
+      activeIndex = (activeIndex - 1 + vicars.length) % vicars.length;
+      renderTrio();
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', goNext);
+    if (prevBtn) prevBtn.addEventListener('click', goPrev);
+
+    // Keyboard support when hovering carousel
+    if (wrapper) {
+      wrapper.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') goNext();
+        if (e.key === 'ArrowLeft') goPrev();
+      });
+
+      // Touch swipe support for mobile devices
+      let touchStartX = 0;
+      wrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      wrapper.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 45) goNext();
+        if (touchEndX > touchStartX + 45) goPrev();
+      }, { passive: true });
+    }
+
+    renderTrio();
+  }
+
+  initFormerVicarsCarousel();
+
+  // =========================================================================
+  // 0.95. Vocations Filter Bar (Priests & Religious Sisters from Parish)
+  // =========================================================================
+  function initVocationsFilter() {
+    const filterBtns = document.querySelectorAll('.vocations-filter-btn');
+    const cards = document.querySelectorAll('.vocation-member-card');
+    if (!filterBtns.length || !cards.length) return;
+
+    let priestCount = 0;
+    let sisterCount = 0;
+
+    cards.forEach(card => {
+      const type = (card.getAttribute('data-vocation-type') || '').toLowerCase();
+      if (type === 'priest') priestCount++;
+      else if (type === 'sister') sisterCount++;
+    });
+
+    const totalCount = priestCount + sisterCount;
+
+    // Update count labels inside filter button chips
+    filterBtns.forEach(btn => {
+      const filter = btn.getAttribute('data-vocation-filter');
+      const span = btn.querySelector('span');
+      if (span) {
+        if (filter === 'all') span.textContent = totalCount.toString();
+        else if (filter === 'priest') span.textContent = priestCount.toString();
+        else if (filter === 'sister') span.textContent = sisterCount.toString();
+      }
+
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const activeFilter = btn.getAttribute('data-vocation-filter');
+        cards.forEach(card => {
+          const type = (card.getAttribute('data-vocation-type') || '').toLowerCase();
+          if (activeFilter === 'all' || type === activeFilter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  initVocationsFilter();
+
+  // =========================================================================
   // 1. Mobile Menu Toggle
   // =========================================================================
   const mobileToggle = document.getElementById('mobileNavToggle');
@@ -928,28 +1322,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const GALLERY_KEY = 'st_thomas_gallery';
   const galleryGrid = document.getElementById('galleryGrid');
 
+  const DEFAULT_GALLERY_ITEMS = [];
+
   function initGallery() {
     if (!galleryGrid) return;
 
+    let items = [];
     try {
       const saved = localStorage.getItem(GALLERY_KEY);
       if (saved) {
-        const items = JSON.parse(saved);
-        if (Array.isArray(items) && items.length > 0) {
-          galleryGrid.innerHTML = items.map(item => `
-            <div class="gallery-item" data-category="${item.category}" data-title="${item.title}">
-              <img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async">
-              <div class="gallery-item-overlay">
-                <h4>${item.title}</h4>
-                <p><i class="fas fa-search-plus"></i> ${item.subtitle || 'St. Thomas Church Chempu'}</p>
-              </div>
-            </div>
-          `).join('');
-        }
+        items = JSON.parse(saved);
       }
     } catch (e) {
       console.warn('Could not hydrate gallery from storage:', e);
     }
+
+    if (!Array.isArray(items) || items.length === 0) {
+      galleryGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1.5rem; background: rgba(255, 255, 255, 0.5); border: 1.5px dashed var(--border-gold, rgba(212, 163, 75, 0.4)); border-radius: var(--radius-lg, 18px); margin: 1rem auto; max-width: 600px;">
+          <i class="fas fa-camera-retro" style="font-size: 2.2rem; color: var(--gold-primary, #d4a34b); margin-bottom: 0.8rem; display: block;"></i>
+          <h4 style="font-family: var(--font-heading); color: var(--primary-deep, #0f1c3f); font-size: 1.25rem; margin-bottom: 0.4rem;">Photo Gallery Coming Soon</h4>
+          <p style="color: var(--text-muted, #5d6778); font-size: 0.92rem; margin: 0; line-height: 1.6;">Parish gallery photographs will appear here once uploaded via the administration panel.</p>
+        </div>
+      `;
+      return;
+    }
+
+    galleryGrid.innerHTML = items.map(q => `
+      <div class="gallery-item" data-category="${q.category}" data-title="${q.title}">
+        <img src="${q.src}" alt="${q.title}" loading="lazy" decoding="async">
+        <div class="gallery-item-overlay">
+          <h4>${q.title}</h4>
+          <p><i class="fas fa-search-plus"></i> ${q.subtitle || 'St. Thomas Church Chempu'}</p>
+        </div>
+      </div>
+    `).join('');
 
     bindGalleryFiltersAndLightbox();
   }
@@ -1308,19 +1715,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     revealElements.forEach(el => {
-      // If element is the Next Mass Ribbon, trigger rotation strictly when the ribbon is FULLY (100%) in view
       if (el.id === 'nextMass3dRibbon') {
         const ribbonObserver = new IntersectionObserver((entries, rObs) => {
           entries.forEach(entry => {
-            // Require the ribbon to be completely inside the viewport (intersectionRatio >= 0.95)
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.95) {
+            if (entry.isIntersecting) {
               entry.target.classList.add('is-revealed');
               rObs.unobserve(entry.target);
             }
           });
         }, {
-          threshold: [0.95, 1.0],
-          rootMargin: '0px 0px 0px 0px'
+          threshold: 0.25,
+          rootMargin: '0px 0px -30px 0px'
         });
         ribbonObserver.observe(el);
       } else {
@@ -1366,12 +1771,10 @@ document.addEventListener('DOMContentLoaded', () => {
       targetY = ((x - centerX) / centerX) * 11;
       targetX = -((y - centerY) / centerY) * 11;
 
+      // Glare disabled
       if (glare) {
-        const frameRect = glare.parentElement.getBoundingClientRect();
-        const glareX = ((e.clientX - frameRect.left) / frameRect.width) * 100;
-        const glareY = ((e.clientY - frameRect.top) / frameRect.height) * 100;
-        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.5) 0%, rgba(212, 163, 75, 0.22) 40%, transparent 70%)`;
-        glare.style.opacity = '1';
+        glare.style.opacity = '0';
+        glare.style.display = 'none';
       }
     }
 
@@ -1447,11 +1850,10 @@ document.addEventListener('DOMContentLoaded', () => {
         targetY = ((x - centerX) / centerX) * 10;
         targetX = -((y - centerY) / centerY) * 10;
 
+        // Glare disabled
         if (glare) {
-          const glareX = (x / rect.width) * 100;
-          const glareY = (y / rect.height) * 100;
-          glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.6) 0%, rgba(212, 163, 75, 0.2) 45%, transparent 75%)`;
-          glare.style.opacity = '1';
+          glare.style.opacity = '0';
+          glare.style.display = 'none';
         }
       }
 
@@ -1523,11 +1925,10 @@ document.addEventListener('DOMContentLoaded', () => {
       targetY = ((x - centerX) / centerX) * 11;
       targetX = -((y - centerY) / centerY) * 11;
 
+      // White glare effect removed per user request
       if (glare) {
-        const glareX = (x / rect.width) * 100;
-        const glareY = (y / rect.height) * 100;
-        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.5) 0%, rgba(212, 163, 75, 0.22) 40%, transparent 72%)`;
-        glare.style.opacity = '1';
+        glare.style.opacity = '0';
+        glare.style.display = 'none';
       }
     }
 
@@ -1617,11 +2018,10 @@ document.addEventListener('DOMContentLoaded', () => {
       targetY = ((x - centerX) / centerX) * 7.5;
       targetX = -((y - centerY) / centerY) * 6;
 
+      // Glare disabled
       if (glare) {
-        const glareX = (x / rect.width) * 100;
-        const glareY = (y / rect.height) * 100;
-        glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.45) 0%, rgba(212, 163, 75, 0.18) 45%, transparent 75%)`;
-        glare.style.opacity = '1';
+        glare.style.opacity = '0';
+        glare.style.display = 'none';
       }
     }
 
@@ -1748,9 +2148,10 @@ document.addEventListener('DOMContentLoaded', () => {
         targetRotX = -((y - centerY) / centerY) * 7;
         targetRotY = ((x - centerX) / centerX) * 7;
 
+        // Glare disabled
         if (hymnGlare) {
-          hymnGlare.style.opacity = '1';
-          hymnGlare.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(255, 255, 255, 0.22) 0%, rgba(212, 163, 75, 0.1) 40%, transparent 70%)`;
+          hymnGlare.style.opacity = '0';
+          hymnGlare.style.display = 'none';
         }
 
         if (!animFrame) animFrame = requestAnimationFrame(updateTilt);
@@ -1765,30 +2166,57 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 2. Ambient 3D Sacred Waveform Flow Canvas (Replaces generic moving dots)
+    // 2. Ambient 3D Sacred Waveform Flow Canvas with Floating Golden Music Notes & Glittering Stars
     if (canvas) {
       const ctx = canvas.getContext('2d');
       let w = 0, h = 0;
       let waveStep = 0;
 
+      // Golden music symbols and glittering stars
+      const symbols = ['♪', '♫', '♬', '♩', '𝄞', '✨', '✦', '★', '⋆'];
+      const particles = [];
+      const numParticles = 28;
+
+      function createParticle(initial = false) {
+        return {
+          x: Math.random() * (w || 800),
+          y: initial ? Math.random() * (h || 400) : (h || 400) + 20,
+          size: Math.random() * 12 + 10, // 10px to 22px
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: -(Math.random() * 0.65 + 0.3), // gentle floating upwards
+          maxAlpha: Math.random() * 0.55 + 0.35,
+          twinkleSpeed: Math.random() * 0.04 + 0.015,
+          twinklePhase: Math.random() * Math.PI * 2,
+          rotation: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.02
+        };
+      }
+
       function resizeCanvas() {
         w = canvas.width = canvas.parentElement.offsetWidth;
         h = canvas.height = canvas.parentElement.offsetHeight;
+        if (particles.length === 0) {
+          for (let i = 0; i < numParticles; i++) {
+            particles.push(createParticle(true));
+          }
+        }
       }
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
 
       function renderWaves() {
         ctx.clearRect(0, 0, w, h);
-        waveStep += audio && !audio.paused ? 0.045 : 0.015;
-
         const isPlaying = audio && !audio.paused;
+        waveStep += isPlaying ? 0.045 : 0.015;
+
+        // Soundwave curves
         const numWaves = 4;
         const colors = [
-          'rgba(212, 163, 75, 0.25)',
-          'rgba(74, 144, 226, 0.22)',
-          'rgba(238, 197, 120, 0.18)',
-          'rgba(30, 58, 138, 0.35)'
+          'rgba(212, 163, 75, 0.22)',
+          'rgba(74, 144, 226, 0.20)',
+          'rgba(238, 197, 120, 0.16)',
+          'rgba(30, 58, 138, 0.30)'
         ];
 
         for (let i = 0; i < numWaves; i++) {
@@ -1806,6 +2234,46 @@ document.addEventListener('DOMContentLoaded', () => {
             else ctx.lineTo(x, y);
           }
           ctx.stroke();
+        }
+
+        // Render floating golden musical notes & glittering stars
+        const speedMultiplier = isPlaying ? 1.5 : 1.0;
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx * speedMultiplier;
+          p.y += p.vy * speedMultiplier;
+          p.rotation += p.vRot * speedMultiplier;
+          p.twinklePhase += p.twinkleSpeed * speedMultiplier;
+
+          // Horizontal drift
+          p.x += Math.sin(p.twinklePhase) * 0.3;
+
+          const currentAlpha = Math.max(0.12, p.maxAlpha * (0.5 + 0.5 * Math.sin(p.twinklePhase)));
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+
+          // Golden glow
+          ctx.shadowColor = 'rgba(238, 197, 120, 0.85)';
+          ctx.shadowBlur = isPlaying ? 12 : 7;
+          ctx.fillStyle = `rgba(245, 212, 122, ${currentAlpha.toFixed(3)})`;
+
+          if (p.symbol === '★' || p.symbol === '✦' || p.symbol === '✨') {
+            ctx.font = `${Math.round(p.size * 0.9)}px "Segoe UI Symbol", sans-serif`;
+          } else {
+            ctx.font = `bold ${Math.round(p.size)}px "Cinzel", "Segoe UI Symbol", serif`;
+          }
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(p.symbol, 0, 0);
+
+          ctx.restore();
+
+          // Respawn particle at bottom
+          if (p.y < -30 || p.x < -30 || p.x > w + 30) {
+            particles[i] = createParticle(false);
+          }
         }
 
         requestAnimationFrame(renderWaves);

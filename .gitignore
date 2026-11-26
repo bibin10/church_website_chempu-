@@ -1,0 +1,11 @@
+# Large uncompressed magazine scans & media dumps
+Santhom_Maria.pdf
+*.backup.pdf
+
+# Python caches
+__pycache__/
+*.pyc
+
+# OS & Editor artifacts
+.DS_Store
+Thumbs.db

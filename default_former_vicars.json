@@ -1,0 +1,92 @@
+const DEFAULT_FORMER_VICARS = [
+  {
+    name: 'Rev. Fr. Sebastian Thottappilly',
+    years: '1971 – 1980',
+    photo: 'assets/images/fr_sebastian_thottappilly.jpg',
+    note: 'Pastoral ministry, spiritual shepherd & church renovation visionary'
+  },
+  {
+    name: 'Rev. Fr. Joseph Chakiyath',
+    years: '1980 – 1982',
+    photo: 'assets/images/fr_joseph_chakiyath.jpg',
+    note: 'Vicar at 1981 Blessing & Dedication of Renovated Church'
+  },
+  {
+    name: 'Rev. Fr. George Pananjickal',
+    years: '1982 – 1989',
+    photo: 'assets/images/fr_george_pananjickal.jpg',
+    note: 'Pastoral care, spiritual leadership, and parish ministry'
+  },
+  {
+    name: 'Rev. Fr. George Payyappally',
+    years: '1989',
+    photo: 'assets/images/fr_george_payyappally.jpg',
+    note: 'Devoted pastoral ministry and sacramental service'
+  },
+  {
+    name: 'Mar Jacob Manathodath',
+    years: '1989 – 1990',
+    photo: 'assets/images/fr_jacob_manathodath.jpg',
+    note: 'Parish Vicar; subsequently consecrated Bishop of Palakkad'
+  },
+  {
+    name: 'Rev. Fr. Hormis Mynatti',
+    years: '1990 – 1991',
+    photo: 'assets/images/fr_hormis_mynatti.jpg',
+    note: 'Spiritual guidance, pastoral shepherding, and community devotion'
+  },
+  {
+    name: 'Rev. Fr. George Manguzhikari',
+    years: '1991 – 1996',
+    photo: 'assets/images/fr_george_manguzhikari.jpg',
+    note: 'Pastoral governance, family welfare, and parish fellowship'
+  },
+  {
+    name: 'Rev. Fr. Paul Kanjirakkattukari',
+    years: '1996 – 1999',
+    photo: 'assets/images/fr_paul_kanjirakkattukari.jpg',
+    note: 'Faith leadership, pastoral guidance, and liturgical life'
+  },
+  {
+    name: 'Rev. Fr. John Thekkanathu',
+    years: '1999 – 2000',
+    photo: 'assets/images/fr_john_thekkanath.jpg',
+    note: 'Devoted pastoral ministry and sacramental leadership'
+  },
+  {
+    name: 'Rev. Fr. Jose Vailikodathu',
+    years: '2000 – 2005',
+    photo: 'assets/images/fr_jose_vailikodathu.jpg',
+    note: 'Pastoral shepherding, youth ministry, and spiritual renewal'
+  },
+  {
+    name: 'Rev. Fr. Xavier Avallil',
+    years: '2005 – 2012',
+    photo: 'assets/images/fr_xavier_avallil.jpg',
+    note: 'Church renovation & front Portico (mondalam) blessed by Cardinal Mar Varkey Vithayathil (2007)'
+  },
+  {
+    name: 'Rev. Fr. Varghese Mampilly',
+    years: '2012 – 2018',
+    photo: 'assets/images/fr_varghese_mampilly.jpg',
+    note: 'Church renovation re-dedicated by Mar Jacob Manathodath (Bishop of Palakkad & Former Vicar, 2018)'
+  },
+  {
+    name: 'Rev. Fr. Antony Paravara',
+    years: '2018 – 2020',
+    photo: 'assets/images/fr_antony_paravara.jpg',
+    note: 'Venerable pastoral care, spiritual leadership, and devoted service'
+  },
+  {
+    name: 'Rev. Fr. Hormis Thottakara',
+    years: '2020 – 2025',
+    photo: 'assets/images/fr_hormis_thottakara.jpg',
+    note: 'Pastoral guidance, spiritual leadership, and parish community ministry'
+  },
+  {
+    name: 'Rev. Fr. Varghese Painumkal',
+    years: '2025 – PRESENT',
+    photo: 'assets/images/fr_varghese_painumkal.jpg',
+    note: 'Present Vicar and Pastoral Head of St. Thomas Church Chempu'
+  }
+];

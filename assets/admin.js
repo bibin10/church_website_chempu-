@@ -177,112 +177,432 @@ const NAV_ITEMS_KEY = 'st_thomas_nav_items';
 const FEASTS_KEY = 'st_thomas_parish_feasts';
 const HIGHLIGHTS_KEY = 'st_thomas_feast_highlights';
 const WINGS_KEY = 'st_thomas_pious_wings';
+const VICARS_KEY = 'st_thomas_former_vicars';
+const VOCATIONS_KEY = 'st_thomas_parish_vocations';
 const GALLERY_KEY = 'st_thomas_gallery';
+
+// Default Former Parish Vicars (Chronological pastoral lineage)
+const DEFAULT_FORMER_VICARS = [
+  {
+    name: 'Rev. Fr. Sebastian Thottappilly',
+    years: '1971 – 1980',
+    photo: 'assets/images/fr_sebastian_thottappilly.jpg',
+    note: 'Pastoral ministry, spiritual shepherd & church renovation visionary'
+  },
+  {
+    name: 'Rev. Fr. Joseph Chakiyath',
+    years: '1980 – 1982',
+    photo: 'assets/images/fr_joseph_chakiyath.jpg',
+    note: 'Vicar at 1981 Blessing & Dedication of Renovated Church'
+  },
+  {
+    name: 'Rev. Fr. George Pananjickal',
+    years: '1982 – 1989',
+    photo: 'assets/images/fr_george_pananjickal.jpg',
+    note: 'Pastoral care, spiritual leadership, and parish ministry'
+  },
+  {
+    name: 'Rev. Fr. George Payyappally',
+    years: '1989',
+    photo: 'assets/images/fr_george_payyappally.jpg',
+    note: 'Devoted pastoral ministry and sacramental service'
+  },
+  {
+    name: 'Mar Jacob Manathodath',
+    years: '1989 – 1990',
+    photo: 'assets/images/fr_jacob_manathodath.jpg',
+    note: 'Parish Vicar; subsequently consecrated Bishop of Palakkad'
+  },
+  {
+    name: 'Rev. Fr. Hormis Mynatti',
+    years: '1990 – 1991',
+    photo: 'assets/images/fr_hormis_mynatti.jpg',
+    note: 'Spiritual guidance, pastoral shepherding, and community devotion'
+  },
+  {
+    name: 'Rev. Fr. George Manguzhikari',
+    years: '1991 – 1996',
+    photo: 'assets/images/fr_george_manguzhikari.jpg',
+    note: 'Pastoral governance, family welfare, and parish fellowship'
+  },
+  {
+    name: 'Rev. Fr. Paul Kanjirakkattukari',
+    years: '1996 – 1999',
+    photo: 'assets/images/fr_paul_kanjirakkattukari.jpg',
+    note: 'Faith leadership, pastoral guidance, and liturgical life'
+  },
+  {
+    name: 'Rev. Fr. John Thekkanathu',
+    years: '1999 – 2000',
+    photo: 'assets/images/fr_john_thekkanath.jpg',
+    note: 'Devoted pastoral ministry and sacramental leadership'
+  },
+  {
+    name: 'Rev. Fr. Jose Vailikodathu',
+    years: '2000 – 2005',
+    photo: 'assets/images/fr_jose_vailikodathu.jpg',
+    note: 'Pastoral shepherding, youth ministry, and spiritual renewal'
+  },
+  {
+    name: 'Rev. Fr. Xavier Avallil',
+    years: '2005 – 2012',
+    photo: 'assets/images/fr_xavier_avallil.jpg',
+    note: 'Church renovation & front Portico (mondalam) blessed by Cardinal Mar Varkey Vithayathil (2007)'
+  },
+  {
+    name: 'Rev. Fr. Varghese Mampilly',
+    years: '2012 – 2018',
+    photo: 'assets/images/fr_varghese_mampilly.jpg',
+    note: 'Church renovation re-dedicated by Mar Jacob Manathodath (Bishop of Palakkad & Former Vicar, 2018)'
+  },
+  {
+    name: 'Rev. Fr. Antony Paravara',
+    years: '2018 – 2020',
+    photo: 'assets/images/fr_antony_paravara.jpg',
+    note: 'Venerable pastoral care, spiritual leadership, and devoted service'
+  },
+  {
+    name: 'Rev. Fr. Hormis Thottakara',
+    years: '2020 – 2025',
+    photo: 'assets/images/fr_hormis_thottakara.jpg',
+    note: 'Pastoral guidance, spiritual leadership, and parish community ministry'
+  },
+  {
+    name: 'Rev. Fr. Varghese Painumkal',
+    years: '2025 – PRESENT',
+    photo: 'assets/images/fr_varghese_painumkal.jpg',
+    note: 'Present Vicar and Pastoral Head of St. Thomas Church Chempu'
+  }
+];
+
+// Default Priests and Religious Sisters from St. Thomas Church Chempu
+const DEFAULT_PARISH_VOCATIONS = [
+  {
+    type: 'priest',
+    name: 'Rev. Fr. John Therezhathu',
+    congregation: 'Carmelites of Mary Immaculate (CMI)',
+    house: 'Therezhathu Family, Chempu',
+    year: 'Ordination: 12 April 1980',
+    photo: 'assets/images/fr_john_therezhathu.jpg',
+    note: 'Devoted pastoral and religious ministry in the Carmelites of Mary Immaculate (CMI) congregation'
+  },
+  {
+    type: 'priest',
+    name: 'Rev. Fr. Jacob Puthenpura',
+    congregation: 'Diocese of Bijnor',
+    house: 'Puthenpura Family, Chempu',
+    year: 'Ordination: 18 April 2007',
+    photo: 'assets/images/fr_jacob_puthenpura.jpg',
+    note: 'Ordained on 18 April 2007; dedicated pastoral shepherd and priest ministering in the Diocese of Bijnor'
+  },
+  {
+    type: 'priest',
+    name: 'Rev. Fr. Tony Blayil',
+    congregation: 'Rogationists of the Heart of Jesus (RCJ)',
+    house: 'Blayil Family, Chempu',
+    year: 'Ordination: 18 Jan 2018',
+    photo: 'assets/images/fr_tony_blayil.jpg',
+    note: 'Consecrated missionary and pastoral ministry in the Rogationists of the Heart of Jesus (RCJ) congregation'
+  },
+  {
+    type: 'priest',
+    name: 'Rev. Fr. Joseph Chirayil',
+    congregation: 'Missionary Congregation of the Blessed Sacrament (MCBS)',
+    house: 'Chirayil Family, Chempu',
+    year: 'Ordination: 02 Jan 2021',
+    photo: 'assets/images/fr_joseph_chirayil.jpg',
+    note: 'Consecrated Eucharistic and pastoral ministry in the Missionary Congregation of the Blessed Sacrament (MCBS)'
+  },
+  {
+    type: 'priest',
+    name: 'Rev. Fr. George Kandathil',
+    congregation: 'Catholic Archdiocese / Congregation',
+    house: 'Kandathil Family, Chempu',
+    year: 'Ordained Priest',
+    photo: 'assets/images/fr_george_kandathil.jpg',
+    note: 'Dedicated pastoral shepherd and consecrated priest from the historic Kandathil family, Chempu, ministering in faithful sacramental service.'
+  },
+  {
+    type: 'sister',
+    name: 'Sr. Preethy Varghese',
+    congregation: 'Sisters of St. Charles Borromeo (SCCG)',
+    house: 'Kodavelil Family, Chempu',
+    year: 'First Profession of Vows: 01 Nov 1994',
+    photo: 'assets/images/sr_preethy_varghese.jpg',
+    note: 'First Profession of Vows (ആദ്യ വ്രത വാഗ്ദാനം): 01/11/1994. Dedicated in lifelong religious service and compassionate care in the Sisters of St. Charles Borromeo (SCCG)'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Dr. Claris',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Kandathil Family, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_claris_kandathil.jpg',
+    note: 'Dedicated consecrated life and distinguished intellectual & pastoral service in the Sisters of the Destitute (SD) from Kandathil family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Stephiny',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Kandathil Family, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_stephiny_kandathil.jpg',
+    note: 'Lifelong consecrated religious devotion, prayer, and compassionate service in the Sisters of the Destitute (SD) from Kandathil family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Luciya',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Kandathil Family, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_luciya_kandathil.jpg',
+    note: 'Venerable pioneer religious sister from the historic Kandathil family, consecrated in selfless apostolic prayer and charity in the Sisters of the Destitute (SD).'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Clemancy',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Kariyil Puthenpura Family, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_clemancy_kariyil.jpg',
+    note: 'Devoted religious sister dedicated to humble Christian charity, prayer, and service in the Sisters of the Destitute (SD) from Kariyil Puthenpura family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Austin',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kandathil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_austin_kandathil.jpg',
+    note: 'Lifelong consecrated religious sister from Kandathil family, Chempu, dedicated to joyous gospel witness, pastoral care, and prayer.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Alexius',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Therezhathu Family, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_alexius_therezhathu.jpg',
+    note: 'Devoted religious sister from the esteemed Therezhathu family, consecrated in compassionate healing, prayer, and service in the Sisters of the Destitute (SD).'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Alex Theresa',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Therezhathu Family, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_alex_theresa_therezhathu.jpg',
+    note: 'Reverend religious sister from Therezhathu family, Chempu, consecrated in lifelong apostolic devotion, charity, and prayer in the Sisters of the Destitute (SD).'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Rani Grace',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Kariyil MariyaBhavan, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_rani_grace.jpg',
+    note: 'Consecrated in joyous religious witness, radiant pastoral service, and prayer in the Sisters of the Destitute (SD) from Kariyil MariyaBhavan, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Betty Mathew',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Chempu Parish',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_betty_mathew.jpg',
+    note: 'Dedicated to lifelong religious contemplation, faithful prayer, and compassionate Christian ministry from Chempu parish.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Ani Grace',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Poovathingal Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_ani_grace_poovathingal.jpg',
+    note: 'Consecrated religious sister from the Poovathingal family, dedicated to faithful apostolic ministry, teaching, and prayer.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Jophin',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Azhikakathu Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_jophin_azhikakathu.jpg',
+    note: 'Dedicated to lifelong consecrated religious life, apostolic prayer, and compassionate Christian service from Azhikakathu family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Jansilin Francis',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Chalumkadavil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_jansilin_francis_chalumkadavil.jpg',
+    note: 'Lifelong consecrated religious devotion, faithful prayer, and dedicated Christian service from Chalumkadavil family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Liny Francis',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Chalumkadavil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_liny_francis_chalumkadavil.jpg',
+    note: 'Devoted religious sister from Chalumkadavil family, Chempu, consecrated in lifelong apostolic prayer, humility, and Christian charity.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Treesa Jose',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kunnathu Kuthirathara Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_treesa_jose_kunnathu.jpg',
+    note: 'Consecrated in joyous religious witness, radiant prayer, and compassionate pastoral service from Kunnathu Kuthirathara family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Mary Rosely',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Thachappallil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_mary_rosely_thachappallil.jpg',
+    note: 'Lifelong consecrated religious devotion, prayerful contemplation, and faithful Christian witness from Thachappallil family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Jessin',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kaitholil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_jessin_kaitholil.jpg',
+    note: 'Devoted religious sister from Kaitholil family, Chempu, consecrated in joyous apostolic witness, compassionate charity, and prayer.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Ancy John',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Mundackal Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_ancy_john_mundackal.jpg',
+    note: 'Lifelong consecrated religious devotion, prayerful service, and humble Christian witness from Mundackal family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Mercy Paul',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kollammattel Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_mercy_paul_kollammattel.jpg',
+    note: 'Consecrated in contemplative prayer, pastoral charity, and selfless religious witness from Kollammattel family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Divya',
+    congregation: 'Sisters of the Destitute (SD)',
+    house: 'Mundackal Family, Chempu',
+    year: 'Sisters of the Destitute (SD)',
+    photo: 'assets/images/sr_divya_mundackal.jpg',
+    note: 'Devoted religious sister from Mundackal family, Chempu, consecrated in lifelong apostolic devotion, charity, and prayer in the Sisters of the Destitute (SD).'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Titty Fransis',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kandathil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_titty_fransis_kandathil.jpg',
+    note: 'Consecrated in joyous religious witness, radiant prayer, and compassionate pastoral service from Kandathil family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Colomba',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kandathil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_colomba_kandathil.jpg',
+    note: 'Venerable pioneer religious sister from the historic Kandathil family, consecrated in selfless apostolic prayer, wisdom, and lifelong service.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Daisy',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kandathil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_daisy_kandathil.jpg',
+    note: 'Dedicated to lifelong consecrated religious life, apostolic prayer, and compassionate Christian service from Kandathil family, Chempu.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Jemma',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Kandathil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_jemma_kandathil.jpg',
+    note: 'Venerable pioneer religious sister from the historic Kandathil family, consecrated in lifelong apostolic devotion, prayer, and loving Christian service.'
+  },
+  {
+    type: 'sister',
+    name: 'Rev. Sr. Gabriel',
+    congregation: 'Consecrated Religious Sister',
+    house: 'Maniyalayil Family, Chempu',
+    year: 'Consecrated Vocation',
+    photo: 'assets/images/sr_gabriel_maniyalayil.jpg',
+    note: 'Venerable senior religious sister from Maniyalayil family, Chempu, consecrated in lifelong prayer, wisdom, and devoted apostolic service.'
+  }
+];
 
 // Default Pious Associations & Pastoral Wings (Lay Ministries)
 const DEFAULT_PIOUS_WINGS = [
   {
-    icon: 'fa-hand-holding-heart',
-    tag: 'Charity & Relief',
-    title: 'St. Vincent de Paul Society',
-    malayalam: 'St. Vincent de Paul Society (SVP)',
-    desc: 'Providing compassionate monthly ration distribution, medical aid, education support, and emergency relief to underprivileged parish families.',
-    footer: 'Weekly Family Care & Mercy Ministry'
+    icon: 'fa-child',
+    tag: "Children's Ministry",
+    title: 'THIRUBALASAGHYAM',
+    malayalam: 'Holy Childhood Association (തിരുബാലസഖ്യം)',
+    desc: 'Inspiring Catholic children towards deep devotion to Infant Jesus, prayer, solidarity with global children, and missionary spirit.',
+    footer: 'Parish Holy Childhood Fellowship'
   },
   {
-    icon: 'fa-dove',
-    tag: 'Family Ministry',
-    title: 'Mathruvedi',
-    malayalam: "Mothers' Guild",
-    desc: 'Fostering Christian motherhood, domestic prayers, altar floral arrangements, family values, and pastoral solidarity among parish mothers.',
-    footer: 'Domestic Church & Marian Fellowship'
+    icon: 'fa-cross',
+    tag: 'Spiritual Fellowship',
+    title: 'CLC',
+    malayalam: 'Christian Life Community (CLC)',
+    desc: 'Ignatian-inspired community fostering personal sanctification, silent prayer, spiritual discernment, and active lay apostolic outreach.',
+    footer: 'Ignatian Lay Apostolic Community'
   },
   {
-    icon: 'fa-shield-alt',
-    tag: 'Parish Guardians',
-    title: 'Pithruvedi',
-    malayalam: "Fathers' Guild",
-    desc: 'Catholic fathers committed to spiritual leadership, temporal parish security, feast logistics, and youth mentoring.',
-    footer: 'Temporal Leadership & Feast Support'
+    icon: 'fa-users',
+    tag: 'Youth Movement',
+    title: 'KCYM',
+    malayalam: 'Kerala Catholic Youth Movement (KCYM)',
+    desc: 'Empowering young Catholic men and women through faith leadership, community empowerment, social action, and parish service.',
+    footer: 'Kerala Catholic Youth Movement'
   },
   {
     icon: 'fa-fire',
     tag: 'Youth Wing',
-    title: 'SMYM Youth Movement',
-    malayalam: 'Syro-Malabar Youth Movement',
-    desc: 'Energizing parish youth through gospel values, blood donation drives, sports, creative arts, and leadership conventions.',
-    footer: 'Youth Leadership & Community Service'
+    title: 'SCYM',
+    malayalam: 'Syro-Malabar Catholic Youth Movement (SCYM)',
+    desc: 'Dynamic youth apostolate dedicated to the preservation of liturgical traditions, apostolic fervor, and vibrant parish involvement.',
+    footer: 'Parish Catholic Youth Wing'
   },
   {
-    icon: 'fa-music',
-    tag: 'Sacred Choral',
-    title: 'St. Thomas Liturgical Choir',
-    malayalam: 'Parish Liturgical Choir',
-    desc: 'Leading celestial East-Syriac and Malayalam liturgical hymns, sacred psalms, and solemn choral devotions during Holy Qurbana.',
-    footer: 'Sacred Music & Feast Choral Service'
+    icon: 'fa-female',
+    tag: "Women's Guild",
+    title: 'WOMENS WELFARE',
+    malayalam: "Mathruvedhi & Women's Welfare (മാതൃവേദി)",
+    desc: 'Fostering Christian motherhood, domestic sanctity, family prayer support, altar decoration, and parish pastoral solidarity.',
+    footer: "Mathruvedhi & Women's Fellowship"
   },
   {
-    icon: 'fa-crown',
-    tag: 'Marian Devotion',
-    title: 'Legion of Mary',
-    malayalam: 'Legion of Mary',
-    desc: 'Devoted Marian legionaries engaged in weekly rosary chains, hospital visitations, and comforting the homebound elderly.',
-    footer: 'Weekly Rosary & Spiritual Solace'
+    icon: 'fa-hand-holding-heart',
+    tag: 'Charity & Relief',
+    title: 'ST. VINCENT DE PAUL SOCIETY',
+    malayalam: 'St. Vincent de Paul Society (SVP)',
+    desc: 'Providing compassionate monthly ration distribution, medical aid, education support, and emergency relief to underprivileged parish families.',
+    footer: 'Weekly Family Care & Mercy Ministry'
   }
 ];
 
-// Default Parish Photo Gallery Items
-const DEFAULT_GALLERY_ITEMS = [
-  {
-    id: 'gal-1',
-    src: 'assets/images/st_thomas_chempu_church_facade.jpg',
-    category: 'facade',
-    title: 'St. Thomas Church Chempu - Main Facade & Courtyard',
-    subtitle: 'St. Thomas Church Chempu'
-  },
-  {
-    id: 'gal-2',
-    src: 'assets/images/st_thomas_chempu_church_vertical.jpg',
-    category: 'facade',
-    title: 'Ornate Architectural Pediment & Belfry Tower',
-    subtitle: 'Architectural Detail'
-  },
-  {
-    id: 'gal-3',
-    src: 'assets/images/church_altar.jpg',
-    category: 'altar',
-    title: 'Gilded Traditional Altar (Madbaha) & Sanctuary',
-    subtitle: 'Sacred Altar'
-  },
-  {
-    id: 'gal-4',
-    src: 'assets/images/church_thirunal.jpg',
-    category: 'thirunal',
-    title: 'Solemn Thirunal Raza Procession with Muthukkuda',
-    subtitle: 'Raza Celebration'
-  },
-  {
-    id: 'gal-5',
-    src: 'assets/images/church_night.jpg',
-    category: 'facade',
-    title: 'Evening Illumination over Chempu Waters',
-    subtitle: 'Serene Backwaters'
-  },
-  {
-    id: 'gal-6',
-    src: 'assets/images/church_hero.jpg',
-    category: 'facade',
-    title: 'Heritage Facade with Palm Groves',
-    subtitle: 'Parish Grounds'
-  },
-  {
-    id: 'gal-7',
-    src: 'assets/images/mar_augustine_kandathil_square.jpg',
-    category: 'facade',
-    title: 'Mar Augustine Kandathil (1874-1956) - First Metropolitan Archbishop of Ernakulam',
-    subtitle: 'Born in Chempu Parish (1874–1956)'
-  }
-];
+// Default Parish Photo Gallery Items (Empty by default until user uploads)
+const DEFAULT_GALLERY_ITEMS = [];
 
 // Default Main Feast Highlights
 const DEFAULT_HIGHLIGHTS = [
@@ -292,25 +612,75 @@ const DEFAULT_HIGHLIGHTS = [
   'Parish Nercha & Snehabhojanam'
 ];
 
+function computeGregorianEaster(year) {
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31);
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(year, month - 1, day);
+}
+
+function getUpcomingHolyWeekDates() {
+  const now = new Date();
+  let yr = now.getFullYear();
+  let easter = computeGregorianEaster(yr);
+  if (now > easter) {
+    yr += 1;
+    easter = computeGregorianEaster(yr);
+  }
+  const palmSunday = new Date(easter.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  let monthLabel = '';
+  let dayLabel = '';
+  const pad = n => (n < 10 ? '0' + n : '' + n);
+
+  if (palmSunday.getMonth() === easter.getMonth()) {
+    monthLabel = monthNames[easter.getMonth()];
+    dayLabel = `${pad(palmSunday.getDate())}-${pad(easter.getDate())}`;
+  } else {
+    monthLabel = `${monthNames[palmSunday.getMonth()]}/${monthNames[easter.getMonth()]}`;
+    dayLabel = `${palmSunday.getDate()}-${pad(easter.getDate())}`;
+  }
+  return {
+    year: yr,
+    month: monthLabel,
+    day: dayLabel,
+    palmDateStr: `${palmSunday.getDate()} ${monthNames[palmSunday.getMonth()]} ${yr}`,
+    easterDateStr: `${easter.getDate()} ${monthNames[easter.getMonth()]} ${yr}`
+  };
+}
+
+const upcomingHolyWeek = getUpcomingHolyWeekDates();
+
 // Default Other Parish Feasts
 const DEFAULT_FEASTS = [
   {
     month: 'Jan',
-    day: '06',
-    title: 'Danaha Thirunal (Epiphany / Rakkuli)',
-    desc: 'Commemoration of the Baptism of Jesus with water blessing and festive prayers.'
+    day: 'Sun*',
+    title: 'Feast of St. Sebastian (അമ്പു തിരുനാൾ)',
+    desc: 'Celebrated on the Sunday following January 20th. Features the solemn Ambu Pradakshinam (arrow procession) traversing all 12 parish ward units, followed by solemn Holy Mass in the morning.'
   },
   {
-    month: 'Apr',
-    day: 'Pass',
+    month: 'Mar',
+    day: '19',
+    title: 'Feast of St. Joseph (ഊട്ടുനേർച്ച)',
+    desc: 'Solemn Feast of St. Joseph featuring festive Holy Mass and the traditional grand Oottu Nercha fellowship banquet served lovingly to over 1,500+ faithful and pilgrims every year.'
+  },
+  {
+    month: upcomingHolyWeek.month,
+    day: upcomingHolyWeek.day,
     title: 'Holy Week & Easter',
-    desc: 'Solemn liturgical services of Pesaha, Passion Friday, and Glorious Easter Resurrection.'
-  },
-  {
-    month: 'Sep',
-    day: '08',
-    title: 'Nativity of Mother Mary (8 Days Lent)',
-    desc: 'Eight days of devotion, harvest offerings (Puthari), and Marian prayers.'
+    desc: `Solemn liturgical services of Palm Sunday (${upcomingHolyWeek.palmDateStr}), Pesaha Holy Thursday, Good Friday, and the Glorious Resurrection of Easter (${upcomingHolyWeek.easterDateStr}).`
   },
   {
     month: 'Dec',
@@ -320,16 +690,15 @@ const DEFAULT_FEASTS = [
   }
 ];
 
-// Default Navigation Menu Items
+// Default Navigation Menu Items (Home removed; clicking brand emblem/title navigates home)
 const DEFAULT_NAV_ITEMS = [
-  { label: 'Home', url: '#home' },
-  { label: 'Heritage & History', url: '#about' },
+  { label: 'History', url: '#about' },
   { label: 'Holy Mass', url: '#mass-timings' },
   { label: 'Feasts', url: '#feasts' },
   { label: 'Gallery', url: '#gallery' },
-  { label: 'Parish Council', url: '#administration' },
-  { label: 'Community', url: 'community.html' },
-  { label: 'Contact', url: 'contact.html' }
+  { label: 'Community', url: 'community' },
+  { label: 'Santhom Maria', url: 'magazine' },
+  { label: 'Contact', url: 'contact' }
 ];
 
 // Default Parish Website Content
@@ -344,7 +713,7 @@ const DEFAULT_CONFIG = {
   notice_address: 'Chempu P.O., Vaikom, Kottayam',
 
   // 2. Hero Section
-  hero_image: 'assets/images/st_thomas_chempu_church_facade.jpg',
+  hero_image: 'assets/images/st_thomas_chempu_church_facade_v3.jpg',
   hero_badge: 'Archdiocese of Ernakulam-Angamaly • Estd. 1307 AD',
   hero_title1: 'St. Thomas Syro-Malabar',
   hero_title2: 'Roman Catholic Church, Chempu',
@@ -360,13 +729,13 @@ const DEFAULT_CONFIG = {
   // 3. Mass Schedules & Ribbon
   mass_ribbon_display: 'Sunday: 7:00 AM & 9:15 AM',
   mass_ribbon_daily: '6:15 AM (Mon - Wed, Fri - Sat)',
-  mass_ribbon_thu: '5:30 PM (Thursday)',
+  mass_ribbon_thu: '5:15 PM (Thursday)',
   mass_ribbon_sunday: '7:00 AM & 9:15 AM',
   mass_sun1_time: '07:00 AM',
   mass_sun2_time: '09:15 AM',
   mass_catechism_time: '10:30 AM - 12:15 PM',
   mass_weekday1_time: '06:15 AM',
-  mass_thu_time: '05:30 PM',
+  mass_thu_time: '05:15 PM',
   mass_fri_time: '06:15 AM',
   mass_sat_time: '06:15 AM',
   mass_confession_time: 'Saturdays 05:00 PM',
@@ -397,31 +766,31 @@ const DEFAULT_CONFIG = {
   feast_main_desc: 'The annual parish festival is marked with high spiritual solemnity. The traditional "Kodiyettu" (flag hoisting), Raza Qurbana, grand candle-lit processions carrying holy relics and traditional silk parasols (Muthukkuda), and fellowship meals unite the entire village of Chempu.',
 
   // 6. Administration & Leadership
-  vicar_name: 'Rev. Fr. Vicar',
+  vicar_name: 'Rev. Fr. Varghese Painumkal',
   vicar_malayalam: 'Parish Vicar',
   vicar_role: 'Vicar & Pastoral Head',
-  vicar_phone: '+91 4829-273176',
-  vicar_photo: 'assets/images/vicar_avatar.svg',
+  vicar_phone: '+91 94475 08299',
+  vicar_photo: 'assets/images/fr_varghese_painumkal.jpg',
   vicar_desc: 'Oversees all liturgical celebrations, sacraments, pastoral care, and spiritual guidance of St. Thomas Church Chempu.',
 
-  trustee1_name: 'Parish Trustee 1',
+  trustee1_name: 'Thomas Mathai Maniyela',
   trustee1_malayalam: 'Parish Trustee',
   trustee1_role: 'Church Trustee',
-  trustee1_phone: '+91 94470 00000',
+  trustee1_phone: '+91 94463 04922',
   trustee1_photo: 'assets/images/trustee1_avatar.svg',
   trustee1_desc: 'Managing temporal administration, church assets, accounts, and festive celebrations.',
 
-  trustee2_name: 'Parish Trustee 2',
+  trustee2_name: 'Paul Thomas Kunnathu',
   trustee2_malayalam: 'Parish Trustee',
   trustee2_role: 'Church Trustee',
-  trustee2_phone: '+91 94470 00000',
+  trustee2_phone: '+91 98957 94773',
   trustee2_photo: 'assets/images/trustee2_avatar.svg',
   trustee2_desc: 'Overseeing parish development projects, development initiatives, and community logistics.',
 
-  vice_chairman_name: 'Family Unit Vice Chairman',
+  vice_chairman_name: 'Siju Jose Kandathil',
   vice_chairman_malayalam: 'Family Units Vice Chairman',
   vice_chairman_role: 'Pastoral Council Vice Chairman',
-  vice_chairman_phone: '+91 94470 00000',
+  vice_chairman_phone: '+91 86060 40293',
   vice_chairman_photo: 'assets/images/vice_chairman_avatar.svg',
   vice_chairman_desc: 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.',
 
@@ -471,13 +840,14 @@ const DEFAULT_CONFIG = {
   contact_address: 'St. Thomas Syro-Malabar Roman Catholic Church, Chempu P.O., Vaikom, Kottayam District, Kerala - 686 615, India',
   contact_hours: 'Tuesday - Saturday: 09:00 AM - 12:30 PM • 04:00 PM - 06:00 PM\nSunday: After Holy Qurbana',
 
-  // 8. Typography & Font Customizer
+  // 8. Typography & Font Customizer (Permanent Locked Defaults)
   font_heading: 'Marcellus',
-  font_body: 'Plus Jakarta Sans',
-  font_nav: 'Plus Jakarta Sans',
-  font_buttons: 'Plus Jakarta Sans',
-  font_accent: 'Cinzel',
-  font_base_size: '100%'
+  font_body: 'Cinzel',
+  font_nav: 'Cinzel',
+  font_buttons: 'Cinzel',
+  accent: 'Cinzel',
+  caption: 'Marcellus',
+  font_base_size: '16px'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -529,8 +899,13 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const saved = localStorage.getItem(NAV_ITEMS_KEY);
       if (saved) {
-        const parsed = JSON.parse(saved);
+        let parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
+          // Remove Chronicle or Clergy if previously saved in localStorage
+          parsed = parsed.filter(i => {
+            const u = (i.url || '').toLowerCase();
+            return !u.includes('history.html') && !u.includes('clergy.html');
+          });
           return parsed;
         }
       }
@@ -736,10 +1111,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const ONE_MB = 1024 * 1024;
       const originalBytes = file.size;
-      const isOver1MB = originalBytes > ONE_MB;
-      const maxDim = options.maxDim || 2560; // 2.5K Ultra-HD boundary for high definition
-      const targetMaxBytes = options.targetMaxBytes || (950 * 1024); // Strictly under 1MB for localStorage safety
-      const initialQuality = options.initialQuality || 0.92; // Studio high-definition quality
+      const maxDim = options.maxDim || 1600; // Optimal Full-HD gallery dimension
+      const targetMaxBytes = options.targetMaxBytes || (280 * 1024); // Keep around 250-300KB so dozens of photos fit safely
+      const initialQuality = options.initialQuality || 0.85; // Crisp HD quality
 
       const formatBytes = (bytes) => {
         if (bytes < 1024) return bytes + ' B';
@@ -771,8 +1145,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
 
-          // If file is already under 1MB and within dimensions, retain with 100% original fidelity
-          if (!isOver1MB && !shouldResizeResolution) {
+          // Always compress and optimize for web storage safety
+          if (originalBytes < targetMaxBytes && !shouldResizeResolution) {
             return resolve({
               dataUrl: rawDataUrl,
               originalBytes,
@@ -783,7 +1157,7 @@ document.addEventListener('DOMContentLoaded', () => {
               width,
               height,
               wasCompressed: false,
-              message: `High Definition (${width} × ${height}px) - Original size under 1MB retained.`
+              message: `High Definition (${width} × ${height}px) - Compact size retained.`
             });
           }
 
@@ -796,12 +1170,12 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(img, 0, 0, width, height);
 
-          // Adaptive HD compression: start at 0.92, step down slightly only if needed to guarantee < 1MB
+          // Adaptive HD compression: start at initialQuality, step down to ensure it fits safely
           let quality = initialQuality;
           let outputDataUrl = canvas.toDataURL('image/jpeg', quality);
           let approxBytes = Math.round((outputDataUrl.length - 22) * 0.75);
 
-          const qualitySteps = [0.88, 0.84, 0.80];
+          const qualitySteps = [0.80, 0.75, 0.70, 0.65, 0.60];
           let stepIdx = 0;
           while (approxBytes > targetMaxBytes && stepIdx < qualitySteps.length) {
             quality = qualitySteps[stepIdx];
@@ -875,6 +1249,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cover Photo Uploader Elements
   const heroCoverFileInput = document.getElementById('heroCoverFileInput');
   const heroCoverPreview = document.getElementById('heroCoverPreview');
+  const heroCoverEmptyPlaceholder = document.getElementById('heroCoverEmptyPlaceholder');
   const resetCoverPhotoBtn = document.getElementById('resetCoverPhotoBtn');
   const cfgHeroImageInput = document.getElementById('cfg_hero_image');
 
@@ -886,7 +1261,11 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const result = await processImageWithSmartHDCompression(file, { maxDim: 2560 });
         if (cfgHeroImageInput) cfgHeroImageInput.value = result.dataUrl;
-        if (heroCoverPreview) heroCoverPreview.src = result.dataUrl;
+        if (heroCoverPreview) {
+          heroCoverPreview.src = result.dataUrl;
+          heroCoverPreview.style.display = 'block';
+        }
+        if (heroCoverEmptyPlaceholder) heroCoverEmptyPlaceholder.style.display = 'none';
         renderCompressionNotice('heroCompressionNotice', result);
         triggerSaveNotice();
       } catch (err) {
@@ -897,9 +1276,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (resetCoverPhotoBtn) {
     resetCoverPhotoBtn.addEventListener('click', () => {
-      const defaultImg = DEFAULT_CONFIG.hero_image || 'assets/images/st_thomas_chempu_church_facade.jpg';
+      const defaultImg = DEFAULT_CONFIG.hero_image || 'assets/images/st_thomas_chempu_church_facade_v3.jpg';
       if (cfgHeroImageInput) cfgHeroImageInput.value = defaultImg;
-      if (heroCoverPreview) heroCoverPreview.src = defaultImg;
+      if (heroCoverPreview) {
+        heroCoverPreview.src = defaultImg;
+        heroCoverPreview.style.display = 'block';
+      }
+      if (heroCoverEmptyPlaceholder) heroCoverEmptyPlaceholder.style.display = 'none';
       if (heroCoverFileInput) heroCoverFileInput.value = '';
       renderCompressionNotice('heroCompressionNotice', null);
       triggerSaveNotice();
@@ -1052,8 +1435,59 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLeaderImageUploader('instComplexImgFileInput', 'instComplexImgPreview', 'cfg_inst_complex_img', 'resetInstComplexImgBtn', 'instComplexImgCompressionNotice', 'assets/images/st_thomas_shopping_complex.jpg');
 
   // =========================================================================
-  // GALLERY MANAGEMENT SYSTEM
+  // GALLERY MANAGEMENT SYSTEM (IndexedDB Storage for Unlimited 50+ to 500+ Photos)
   // =========================================================================
+  const IDB_NAME = 'st_thomas_chempu_db';
+  const IDB_STORE = 'gallery_store';
+  const IDB_KEY = 'parish_gallery_photos';
+
+  function openGalleryIDB() {
+    return new Promise((resolve, reject) => {
+      if (!window.indexedDB) return resolve(null);
+      const req = indexedDB.open(IDB_NAME, 1);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(IDB_STORE)) {
+          db.createObjectStore(IDB_STORE);
+        }
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => resolve(null);
+    });
+  }
+
+  async function loadGalleryFromIDB() {
+    try {
+      const db = await openGalleryIDB();
+      if (!db) return null;
+      return new Promise((resolve) => {
+        const tx = db.transaction(IDB_STORE, 'readonly');
+        const store = tx.objectStore(IDB_STORE);
+        const req = store.get(IDB_KEY);
+        req.onsuccess = () => resolve(req.result || null);
+        req.onerror = () => resolve(null);
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function saveGalleryToIDB(items) {
+    try {
+      const db = await openGalleryIDB();
+      if (!db) return false;
+      return new Promise((resolve) => {
+        const tx = db.transaction(IDB_STORE, 'readwrite');
+        const store = tx.objectStore(IDB_STORE);
+        store.put(items, IDB_KEY);
+        tx.oncomplete = () => resolve(true);
+        tx.onerror = () => resolve(false);
+      });
+    } catch (e) {
+      return false;
+    }
+  }
+
   function getGalleryItems() {
     try {
       const saved = localStorage.getItem(GALLERY_KEY);
@@ -1064,19 +1498,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return [...DEFAULT_GALLERY_ITEMS];
   }
 
-  function saveGalleryItems(items) {
+  async function saveGalleryItems(items) {
+    currentGalleryItems = items;
+    // 1. Save to high-capacity IndexedDB (stores hundreds of MBs safely)
+    await saveGalleryToIDB(items);
+    // 2. Mirror to localStorage (if quota permits, ignore if full)
     try {
       localStorage.setItem(GALLERY_KEY, JSON.stringify(items));
-      triggerSaveNotice();
     } catch (e) {
-      console.error('Failed to save gallery items:', e);
-      if (e.name === 'QuotaExceededError') {
-        alert('Storage quota reached. Please optimize images before adding.');
-      }
+      // LocalStorage is full, but IndexedDB safely holds all photos!
+      console.info('Saved smoothly to IndexedDB unlimited photo storage.');
     }
+    triggerSaveNotice();
   }
 
   let currentGalleryItems = getGalleryItems();
+  // Hydrate from IndexedDB on startup
+  loadGalleryFromIDB().then(idbItems => {
+    if (Array.isArray(idbItems) && idbItems.length > 0) {
+      currentGalleryItems = idbItems;
+      renderAdminGalleryGrid();
+    }
+  });
 
   function renderAdminGalleryGrid() {
     const container = document.getElementById('adminGalleryCardsContainer');
@@ -1095,8 +1538,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     container.innerHTML = currentGalleryItems.map((item, idx) => {
       const catLabel = item.category === 'facade' ? 'Church Facade' :
-                       item.category === 'altar' ? 'Sacred Altar' :
-                       item.category === 'thirunal' ? 'Thirunal & Feast' : 'Parish Heritage';
+        item.category === 'altar' ? 'Sacred Altar' :
+          item.category === 'thirunal' ? 'Thirunal & Feast' : 'Parish Heritage';
       return `
         <div class="admin-gallery-card">
           <div class="admin-gallery-thumb-wrap">
@@ -1144,7 +1587,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!file) return;
 
       try {
-        const result = await processImageWithSmartHDCompression(file, { maxDim: 2560 });
+        const result = await processImageWithSmartHDCompression(file, { maxDim: 1600, targetMaxBytes: 250 * 1024 });
         currentNewGalleryDataUrl = result.dataUrl;
         if (newGalleryPreview) {
           newGalleryPreview.src = result.dataUrl;
@@ -1206,8 +1649,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (resetGalleryDefaultBtn) {
     resetGalleryDefaultBtn.addEventListener('click', () => {
-      if (confirm('Reset gallery to the 7 original authentic church photos?')) {
-        currentGalleryItems = [...DEFAULT_GALLERY_ITEMS];
+      if (confirm('Clear all gallery photos?')) {
+        currentGalleryItems = [];
         saveGalleryItems(currentGalleryItems);
         renderAdminGalleryGrid();
       }
@@ -1224,6 +1667,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (config.mass_novena_time === 'First Fridays 06:00 PM' || config.mass_novena_time === 'Thursdays 06:00 PM') {
           config.mass_novena_time = 'Every Thursday 06:15 PM';
         }
+        // Purge old church_hero.jpg from browser memory
+        if (!config.hero_image || config.hero_image.includes('church_hero.jpg') || config.hero_image.includes('st_thomas_chempu_church_facade.jpg')) {
+          config.hero_image = 'assets/images/st_thomas_chempu_church_facade_v3.jpg';
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+        }
       }
     } catch (e) {
       console.warn('Using default config', e);
@@ -1236,36 +1684,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Populate and sync Theme selector (52 Themes)
-    const themeSelect = document.getElementById('cfg_site_theme');
-    if (themeSelect && typeof CHURCH_THEMES !== 'undefined') {
-      const currentTheme = config.site_theme || 'chempu-classic';
-      const categoryLabels = {
-        cathedral: 'Cathedral & Liturgical Traditions',
-        heritage: 'Heritage & Royal Aristocracy',
-        kerala: 'Kerala Landscapes & Backwaters',
-        modern: 'Modern Elegant & Contemporary',
-        dark: 'Dark & Midnight Basilica'
-      };
-
-      const groups = ['cathedral', 'heritage', 'kerala', 'modern', 'dark'];
-      themeSelect.innerHTML = groups.map(grp => {
-        const themes = CHURCH_THEMES.filter(t => t.category === grp);
-        const opts = themes.map(t =>
-          `<option value="${t.id}" ${t.id === currentTheme ? 'selected' : ''}>${t.name} (${t.malayalam})</option>`
-        ).join('');
-        return `<optgroup label="${categoryLabels[grp] || grp}">${opts}</optgroup>`;
-      }).join('');
-
-      themeSelect.value = currentTheme;
-    }
-
     // Update cover photo preview
-    if (heroCoverPreview) {
-      heroCoverPreview.src = config.hero_image || DEFAULT_CONFIG.hero_image;
+    if (heroCoverPreview && heroCoverEmptyPlaceholder) {
+      if (config.hero_image) {
+        heroCoverPreview.src = config.hero_image;
+        heroCoverPreview.style.display = 'block';
+        heroCoverEmptyPlaceholder.style.display = 'none';
+      } else {
+        heroCoverPreview.src = '';
+        heroCoverPreview.style.display = 'none';
+        heroCoverEmptyPlaceholder.style.display = 'block';
+      }
     }
     if (cfgHeroImageInput) {
-      cfgHeroImageInput.value = config.hero_image || DEFAULT_CONFIG.hero_image;
+      cfgHeroImageInput.value = config.hero_image || '';
     }
 
     // Update heritage photo preview
@@ -1286,17 +1718,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (kandathilHidden) kandathilHidden.value = currentKandathilImg;
     if (kandathilUrl) kandathilUrl.value = currentKandathilImg.startsWith('data:') ? '(Uploaded image file)' : currentKandathilImg;
 
-    // Update Typography Studio Live Preview
-    if (typeof updateAdminTypographyPreview === 'function') {
-      updateAdminTypographyPreview({
-        heading: config.font_heading || DEFAULT_CONFIG.font_heading,
-        body: config.font_body || DEFAULT_CONFIG.font_body,
-        nav: config.font_nav || DEFAULT_CONFIG.font_nav,
-        buttons: config.font_buttons || DEFAULT_CONFIG.font_buttons,
-        accent: config.font_accent || DEFAULT_CONFIG.font_accent,
-        baseSize: config.font_base_size || DEFAULT_CONFIG.font_base_size
-      });
-    }
+    // Typography locked to permanent defaults
 
     // Update leader photo previews
     const updatePreview = (previewId, val, defaultVal) => {
@@ -1614,7 +2036,59 @@ document.addEventListener('DOMContentLoaded', () => {
   function getFeastItems() {
     try {
       const saved = localStorage.getItem(FEASTS_KEY);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Automatic migration: If position #1 has the obsolete placeholder or baptism description for St. Sebastian, upgrade to canonical definition
+          const sebastianDesc = 'Celebrated on the Sunday following January 20th. Features the solemn Ambu Pradakshinam (arrow procession) traversing all 12 parish ward units, followed by solemn Holy Mass in the morning.';
+          parsed.forEach(item => {
+            if (item && item.title && item.title.toLowerCase().includes('sebastian')) {
+              item.desc = sebastianDesc;
+              if (!item.month) item.month = 'Jan';
+              if (item.day === '20') item.day = 'Sun*';
+              if (!item.title.includes('അമ്പു തിരുനാൾ')) item.title = 'Feast of St. Sebastian (അമ്പു തിരുനാൾ)';
+            }
+          });
+          // Ensure St. Sebastian is #1
+          const sebIdx = parsed.findIndex(item => item && item.title && item.title.toLowerCase().includes('sebastian'));
+          if (sebIdx > 0) {
+            const sebItem = parsed.splice(sebIdx, 1)[0];
+            parsed.unshift(sebItem);
+          } else if (sebIdx === -1) {
+            parsed.unshift({ ...DEFAULT_FEASTS[0] });
+          }
+
+          // Ensure St. Joseph (ഊട്ടുനേർച്ച) is placed at #2
+          const josephItem = {
+            month: 'Mar',
+            day: '19',
+            title: 'Feast of St. Joseph (ഊട്ടുനേർച്ച)',
+            desc: 'Solemn Feast of St. Joseph featuring festive Holy Mass and the traditional grand Oottu Nercha fellowship banquet served lovingly to over 1,500+ faithful and pilgrims every year.'
+          };
+          const josephIdx = parsed.findIndex(item => item && item.title && item.title.toLowerCase().includes('joseph'));
+          if (josephIdx > -1) {
+            parsed[josephIdx] = josephItem;
+            if (josephIdx !== 1) {
+              const j = parsed.splice(josephIdx, 1)[0];
+              parsed.splice(1, 0, j);
+            }
+          } else {
+            parsed.splice(1, 0, josephItem);
+          }
+
+          // Ensure Holy Week item has dynamically computed upcoming dates
+          const holyWeekIdx = parsed.findIndex(item => item && item.title && item.title.toLowerCase().includes('holy week'));
+          if (holyWeekIdx > -1) {
+            parsed[holyWeekIdx].month = upcomingHolyWeek.month;
+            parsed[holyWeekIdx].day = upcomingHolyWeek.day;
+            parsed[holyWeekIdx].title = 'Holy Week & Easter';
+            parsed[holyWeekIdx].desc = `Solemn liturgical services of Palm Sunday (${upcomingHolyWeek.palmDateStr}), Pesaha Holy Thursday, Good Friday, and the Glorious Resurrection of Easter (${upcomingHolyWeek.easterDateStr}).`;
+          }
+
+          localStorage.setItem(FEASTS_KEY, JSON.stringify(parsed));
+          return parsed;
+        }
+      }
     } catch (e) {
       console.warn('Error reading feasts', e);
     }
@@ -1795,6 +2269,550 @@ document.addEventListener('DOMContentLoaded', () => {
       triggerSaveNotice();
     });
   }
+
+  // =========================================================================
+  // 6.3. FORMER PARISH VICARS MANAGER (Add, Edit, Delete, Reorder, Image Upload)
+  // =========================================================================
+  const vicarsTableBody = document.getElementById('vicarsTableBody');
+  const vicarEditorCard = document.getElementById('vicarEditorCard');
+  const vicarEditorTitle = document.getElementById('vicarEditorTitle');
+  const vicarEditIndex = document.getElementById('vicarEditIndex');
+  const vicarEditName = document.getElementById('vicarEditName');
+  const vicarEditYears = document.getElementById('vicarEditYears');
+  const vicarEditNote = document.getElementById('vicarEditNote');
+  const vicarEditPreview = document.getElementById('vicarEditPreview');
+  const vicarEditFileInput = document.getElementById('vicarEditFileInput');
+  const vicarEditPhotoVal = document.getElementById('vicarEditPhotoVal');
+  const openAddVicarModalBtn = document.getElementById('openAddVicarModalBtn');
+  const cancelVicarFormBtn = document.getElementById('cancelVicarFormBtn');
+  const cancelVicarEditorBtn = document.getElementById('cancelVicarEditorBtn');
+  const saveVicarItemBtn = document.getElementById('saveVicarItemBtn');
+  const resetVicarsBtn = document.getElementById('resetVicarsBtn');
+  const saveVicarsPanelBtn = document.getElementById('saveVicarsPanelBtn');
+
+  let currentVicarItems = loadVicarItems();
+
+  function loadVicarItems() {
+    try {
+      const saved = localStorage.getItem(VICARS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.warn('Error reading vicars', e);
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_FORMER_VICARS));
+  }
+
+  function persistVicarItems(items) {
+    currentVicarItems = items;
+    localStorage.setItem(VICARS_KEY, JSON.stringify(items));
+    renderVicarsTable();
+  }
+
+  function renderVicarsTable() {
+    if (!vicarsTableBody) return;
+    vicarsTableBody.innerHTML = '';
+
+    if (currentVicarItems.length === 0) {
+      vicarsTableBody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center; padding:1.8rem; color:#94a3b8;">
+            No former vicars added yet. Click "Add Former Vicar" to create one.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    currentVicarItems.forEach((vic, idx) => {
+      const tr = document.createElement('tr');
+      const photoSrc = vic.photo || 'assets/images/vicar_avatar.svg';
+      tr.innerHTML = `
+        <td><span style="font-weight:700; color:#64748b;">#${idx + 1}</span></td>
+        <td style="text-align:center;">
+          <img src="${escapeHtml(photoSrc)}" alt="${escapeHtml(vic.name)}" style="width:40px; height:48px; border-radius:6px; object-fit:cover; border:1px solid #cbd5e1;">
+        </td>
+        <td>
+          <strong style="color:var(--admin-navy); font-size:0.95rem;">${escapeHtml(vic.name)}</strong>
+        </td>
+        <td>
+          <span style="display:inline-block; padding:0.25rem 0.6rem; border-radius:6px; background:#eff6ff; color:#1d4ed8; font-weight:700; font-size:0.85rem; border:1px solid #bfdbfe;">
+            ${escapeHtml(vic.years || 'Pastoral Term')}
+          </span>
+        </td>
+        <td>
+          <span style="color:#64748b; font-size:0.85rem;">${escapeHtml(vic.note || '—')}</span>
+        </td>
+        <td style="text-align:center;">
+          <button type="button" class="btn-icon-action move-vicar-up-btn" data-index="${idx}" ${idx === 0 ? 'disabled' : ''} title="Move Up">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+          <button type="button" class="btn-icon-action move-vicar-down-btn" data-index="${idx}" ${idx === currentVicarItems.length - 1 ? 'disabled' : ''} title="Move Down" style="margin-left:4px;">
+            <i class="fas fa-arrow-down"></i>
+          </button>
+        </td>
+        <td style="text-align:center;">
+          <button type="button" class="btn-icon-action btn-icon-edit edit-vicar-btn" data-index="${idx}" title="Edit Vicar">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button type="button" class="btn-icon-action btn-icon-delete delete-vicar-btn" data-index="${idx}" title="Delete Vicar" style="margin-left:4px;">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      `;
+      vicarsTableBody.appendChild(tr);
+    });
+
+    // Move Up
+    vicarsTableBody.querySelectorAll('.move-vicar-up-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        if (i > 0) {
+          const temp = currentVicarItems[i];
+          currentVicarItems[i] = currentVicarItems[i - 1];
+          currentVicarItems[i - 1] = temp;
+          persistVicarItems(currentVicarItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+
+    // Move Down
+    vicarsTableBody.querySelectorAll('.move-vicar-down-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        if (i < currentVicarItems.length - 1) {
+          const temp = currentVicarItems[i];
+          currentVicarItems[i] = currentVicarItems[i + 1];
+          currentVicarItems[i + 1] = temp;
+          persistVicarItems(currentVicarItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+
+    // Edit
+    vicarsTableBody.querySelectorAll('.edit-vicar-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        const item = currentVicarItems[i];
+        if (item) {
+          vicarEditIndex.value = i;
+          vicarEditName.value = item.name || '';
+          vicarEditYears.value = item.years || '';
+          vicarEditNote.value = item.note || '';
+          vicarEditPhotoVal.value = item.photo || 'assets/images/vicar_avatar.svg';
+          if (vicarEditPreview) vicarEditPreview.src = item.photo || 'assets/images/vicar_avatar.svg';
+          if (vicarEditorTitle) vicarEditorTitle.innerHTML = '<i class="fas fa-edit" style="color:var(--admin-gold);"></i> Edit Former Vicar';
+          if (vicarEditorCard) vicarEditorCard.style.display = 'block';
+          vicarEditName.focus();
+        }
+      });
+    });
+
+    // Delete
+    vicarsTableBody.querySelectorAll('.delete-vicar-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        const item = currentVicarItems[i];
+        if (confirm(`Remove "${item.name}" from former vicars list?`)) {
+          currentVicarItems.splice(i, 1);
+          persistVicarItems(currentVicarItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+  }
+
+  // Vicar Image Uploader
+  if (vicarEditFileInput) {
+    vicarEditFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      try {
+        const result = await processImageWithSmartHDCompression(file, { maxDim: 600, targetMaxBytes: 300 * 1024 });
+        if (vicarEditPhotoVal) vicarEditPhotoVal.value = result.dataUrl;
+        if (vicarEditPreview) vicarEditPreview.src = result.dataUrl;
+        renderCompressionNotice('vicarEditCompressionNotice', result);
+      } catch (err) {
+        alert('Failed to process vicar photo: ' + err.message);
+      }
+    });
+  }
+
+  // Open Add Vicar Modal
+  if (openAddVicarModalBtn) {
+    openAddVicarModalBtn.addEventListener('click', () => {
+      vicarEditIndex.value = '-1';
+      vicarEditName.value = '';
+      vicarEditYears.value = '';
+      vicarEditNote.value = '';
+      vicarEditPhotoVal.value = 'assets/images/vicar_avatar.svg';
+      if (vicarEditPreview) vicarEditPreview.src = 'assets/images/vicar_avatar.svg';
+      if (vicarEditFileInput) vicarEditFileInput.value = '';
+      renderCompressionNotice('vicarEditCompressionNotice', null);
+      if (vicarEditorTitle) vicarEditorTitle.innerHTML = '<i class="fas fa-plus-circle" style="color:var(--admin-gold);"></i> Add Former Vicar';
+      if (vicarEditorCard) vicarEditorCard.style.display = 'block';
+      vicarEditName.focus();
+    });
+  }
+
+  if (cancelVicarFormBtn) {
+    cancelVicarFormBtn.addEventListener('click', () => {
+      if (vicarEditorCard) vicarEditorCard.style.display = 'none';
+    });
+  }
+  if (cancelVicarEditorBtn) {
+    cancelVicarEditorBtn.addEventListener('click', () => {
+      if (vicarEditorCard) vicarEditorCard.style.display = 'none';
+    });
+  }
+
+  // Reset Vicars to Defaults
+  if (resetVicarsBtn) {
+    resetVicarsBtn.addEventListener('click', () => {
+      if (confirm('Reset Former Vicars to default records?')) {
+        currentVicarItems = JSON.parse(JSON.stringify(DEFAULT_FORMER_VICARS));
+        persistVicarItems(currentVicarItems);
+        triggerSaveNotice();
+        if (vicarEditorCard) vicarEditorCard.style.display = 'none';
+      }
+    });
+  }
+
+  // Save Vicar Item
+  if (saveVicarItemBtn) {
+    saveVicarItemBtn.addEventListener('click', () => {
+      const name = vicarEditName.value.trim();
+      const years = vicarEditYears.value.trim();
+      const note = vicarEditNote.value.trim();
+      const photo = vicarEditPhotoVal.value || 'assets/images/vicar_avatar.svg';
+      const index = parseInt(vicarEditIndex.value, 10);
+
+      if (!name) {
+        alert('Please enter the Vicar Name.');
+        vicarEditName.focus();
+        return;
+      }
+      if (!years) {
+        alert('Please enter Service Duration (years).');
+        vicarEditYears.focus();
+        return;
+      }
+
+      const vicarData = { name, years, note, photo };
+
+      if (index >= 0 && index < currentVicarItems.length) {
+        currentVicarItems[index] = vicarData;
+      } else {
+        currentVicarItems.push(vicarData);
+      }
+
+      persistVicarItems(currentVicarItems);
+      if (vicarEditorCard) vicarEditorCard.style.display = 'none';
+      triggerSaveNotice();
+    });
+  }
+
+  if (saveVicarsPanelBtn) {
+    saveVicarsPanelBtn.addEventListener('click', () => {
+      saveConfig();
+    });
+  }
+
+  renderVicarsTable();
+
+  // =========================================================================
+  // 6.4. PRIESTS & RELIGIOUS SISTERS FROM PARISH MANAGER (Full CRUD)
+  // =========================================================================
+  const vocationsTableBody = document.getElementById('vocationsTableBody');
+  const vocationEditorCard = document.getElementById('vocationEditorCard');
+  const vocationEditorTitle = document.getElementById('vocationEditorTitle');
+  const vocationEditIndex = document.getElementById('vocationEditIndex');
+  const vocationEditType = document.getElementById('vocationEditType');
+  const vocationEditName = document.getElementById('vocationEditName');
+  const vocationEditCongregation = document.getElementById('vocationEditCongregation');
+  const vocationEditHouse = document.getElementById('vocationEditHouse');
+  const vocationEditYear = document.getElementById('vocationEditYear');
+  const vocationEditNote = document.getElementById('vocationEditNote');
+  const vocationEditPreview = document.getElementById('vocationEditPreview');
+  const vocationEditFileInput = document.getElementById('vocationEditFileInput');
+  const vocationEditPhotoVal = document.getElementById('vocationEditPhotoVal');
+  const openAddVocationModalBtn = document.getElementById('openAddVocationModalBtn');
+  const cancelVocationFormBtn = document.getElementById('cancelVocationFormBtn');
+  const cancelVocationEditorBtn = document.getElementById('cancelVocationEditorBtn');
+  const saveVocationItemBtn = document.getElementById('saveVocationItemBtn');
+  const resetVocationsBtn = document.getElementById('resetVocationsBtn');
+  const saveVocationsPanelBtn = document.getElementById('saveVocationsPanelBtn');
+
+  let currentVocationItems = loadVocationItems();
+
+  function loadVocationItems() {
+    try {
+      const saved = localStorage.getItem(VOCATIONS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.warn('Error reading vocations', e);
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_PARISH_VOCATIONS));
+  }
+
+  function persistVocationItems(items) {
+    currentVocationItems = items;
+    localStorage.setItem(VOCATIONS_KEY, JSON.stringify(items));
+    renderVocationsTable();
+  }
+
+  function renderVocationsTable() {
+    if (!vocationsTableBody) return;
+    vocationsTableBody.innerHTML = '';
+
+    if (currentVocationItems.length === 0) {
+      vocationsTableBody.innerHTML = `
+        <tr>
+          <td colspan="9" style="text-align:center; padding:1.8rem; color:#94a3b8;">
+            No priests or religious sisters listed yet. Click "Add Priest / Sister" to add.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    currentVocationItems.forEach((voc, idx) => {
+      const isPriest = voc.type === 'priest';
+      const defaultPhoto = isPriest ? 'assets/images/vicar_avatar.svg' : 'assets/images/sister_avatar.svg';
+      const photoSrc = voc.photo || defaultPhoto;
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><span style="font-weight:700; color:#64748b;">#${idx + 1}</span></td>
+        <td style="text-align:center;">
+          <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; padding:0.2rem 0.55rem; border-radius:999px; ${isPriest ? 'background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;' : 'background:#fdf2f8; color:#be185d; border:1px solid #fbcfe8;'}">
+            <i class="fas ${isPriest ? 'fa-cross' : 'fa-dove'}"></i> ${isPriest ? 'Priest' : 'Sister'}
+          </span>
+        </td>
+        <td style="text-align:center;">
+          <img src="${escapeHtml(photoSrc)}" alt="${escapeHtml(voc.name)}" style="width:36px; height:44px; border-radius:6px; object-fit:cover; border:1px solid #cbd5e1;">
+        </td>
+        <td>
+          <strong style="color:var(--admin-navy); font-size:0.95rem;">${escapeHtml(voc.name)}</strong>
+        </td>
+        <td>
+          <span style="color:#0f172a; font-size:0.86rem; font-weight:600;">${escapeHtml(voc.congregation || '—')}</span>
+        </td>
+        <td>
+          <span style="color:#64748b; font-size:0.84rem;">${escapeHtml(voc.house || '—')}</span>
+        </td>
+        <td>
+          <span style="display:inline-block; font-size:0.82rem; color:#475569; font-weight:600;">${escapeHtml(voc.year || '—')}</span>
+        </td>
+        <td style="text-align:center;">
+          <button type="button" class="btn-icon-action move-vocation-up-btn" data-index="${idx}" ${idx === 0 ? 'disabled' : ''} title="Move Up">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+          <button type="button" class="btn-icon-action move-vocation-down-btn" data-index="${idx}" ${idx === currentVocationItems.length - 1 ? 'disabled' : ''} title="Move Down" style="margin-left:4px;">
+            <i class="fas fa-arrow-down"></i>
+          </button>
+        </td>
+        <td style="text-align:center;">
+          <button type="button" class="btn-icon-action btn-icon-edit edit-vocation-btn" data-index="${idx}" title="Edit Member">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button type="button" class="btn-icon-action btn-icon-delete delete-vocation-btn" data-index="${idx}" title="Delete Member" style="margin-left:4px;">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      `;
+      vocationsTableBody.appendChild(tr);
+    });
+
+    // Move Up
+    vocationsTableBody.querySelectorAll('.move-vocation-up-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        if (i > 0) {
+          const temp = currentVocationItems[i];
+          currentVocationItems[i] = currentVocationItems[i - 1];
+          currentVocationItems[i - 1] = temp;
+          persistVocationItems(currentVocationItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+
+    // Move Down
+    vocationsTableBody.querySelectorAll('.move-vocation-down-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        if (i < currentVocationItems.length - 1) {
+          const temp = currentVocationItems[i];
+          currentVocationItems[i] = currentVocationItems[i + 1];
+          currentVocationItems[i + 1] = temp;
+          persistVocationItems(currentVocationItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+
+    // Edit
+    vocationsTableBody.querySelectorAll('.edit-vocation-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        const item = currentVocationItems[i];
+        if (item) {
+          vocationEditIndex.value = i;
+          vocationEditType.value = item.type || 'priest';
+          vocationEditName.value = item.name || '';
+          vocationEditCongregation.value = item.congregation || '';
+          vocationEditHouse.value = item.house || '';
+          vocationEditYear.value = item.year || '';
+          vocationEditNote.value = item.note || '';
+          const defaultAvatar = item.type === 'sister' ? 'assets/images/sister_avatar.svg' : 'assets/images/vicar_avatar.svg';
+          vocationEditPhotoVal.value = item.photo || defaultAvatar;
+          if (vocationEditPreview) vocationEditPreview.src = item.photo || defaultAvatar;
+          if (vocationEditorTitle) vocationEditorTitle.innerHTML = '<i class="fas fa-edit" style="color:var(--admin-gold);"></i> Edit Consecrated Member';
+          if (vocationEditorCard) vocationEditorCard.style.display = 'block';
+          vocationEditName.focus();
+        }
+      });
+    });
+
+    // Delete
+    vocationsTableBody.querySelectorAll('.delete-vocation-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-index'), 10);
+        const item = currentVocationItems[i];
+        if (confirm(`Remove "${item.name}" from consecrated list?`)) {
+          currentVocationItems.splice(i, 1);
+          persistVocationItems(currentVocationItems);
+          triggerSaveNotice();
+        }
+      });
+    });
+  }
+
+  // Auto-switch default avatar on type change
+  if (vocationEditType) {
+    vocationEditType.addEventListener('change', () => {
+      const isSister = vocationEditType.value === 'sister';
+      const curPhoto = vocationEditPhotoVal.value;
+      if (!curPhoto || curPhoto.includes('_avatar.svg')) {
+        const newAvatar = isSister ? 'assets/images/sister_avatar.svg' : 'assets/images/vicar_avatar.svg';
+        vocationEditPhotoVal.value = newAvatar;
+        if (vocationEditPreview) vocationEditPreview.src = newAvatar;
+      }
+    });
+  }
+
+  // Vocation Image Uploader
+  if (vocationEditFileInput) {
+    vocationEditFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      try {
+        const result = await processImageWithSmartHDCompression(file, { maxDim: 600, targetMaxBytes: 300 * 1024 });
+        if (vocationEditPhotoVal) vocationEditPhotoVal.value = result.dataUrl;
+        if (vocationEditPreview) vocationEditPreview.src = result.dataUrl;
+        renderCompressionNotice('vocationEditCompressionNotice', result);
+      } catch (err) {
+        alert('Failed to process photo: ' + err.message);
+      }
+    });
+  }
+
+  // Open Add Vocation Modal
+  if (openAddVocationModalBtn) {
+    openAddVocationModalBtn.addEventListener('click', () => {
+      vocationEditIndex.value = '-1';
+      vocationEditType.value = 'priest';
+      vocationEditName.value = '';
+      vocationEditCongregation.value = '';
+      vocationEditHouse.value = '';
+      vocationEditYear.value = '';
+      vocationEditNote.value = '';
+      vocationEditPhotoVal.value = 'assets/images/vicar_avatar.svg';
+      if (vocationEditPreview) vocationEditPreview.src = 'assets/images/vicar_avatar.svg';
+      if (vocationEditFileInput) vocationEditFileInput.value = '';
+      renderCompressionNotice('vocationEditCompressionNotice', null);
+      if (vocationEditorTitle) vocationEditorTitle.innerHTML = '<i class="fas fa-plus-circle" style="color:var(--admin-gold);"></i> Add Priest / Sister';
+      if (vocationEditorCard) vocationEditorCard.style.display = 'block';
+      vocationEditName.focus();
+    });
+  }
+
+  if (cancelVocationFormBtn) {
+    cancelVocationFormBtn.addEventListener('click', () => {
+      if (vocationEditorCard) vocationEditorCard.style.display = 'none';
+    });
+  }
+  if (cancelVocationEditorBtn) {
+    cancelVocationEditorBtn.addEventListener('click', () => {
+      if (vocationEditorCard) vocationEditorCard.style.display = 'none';
+    });
+  }
+
+  // Reset Vocations to Defaults
+  if (resetVocationsBtn) {
+    resetVocationsBtn.addEventListener('click', () => {
+      if (confirm('Reset Priests & Sisters to default parish list?')) {
+        currentVocationItems = JSON.parse(JSON.stringify(DEFAULT_PARISH_VOCATIONS));
+        persistVocationItems(currentVocationItems);
+        triggerSaveNotice();
+        if (vocationEditorCard) vocationEditorCard.style.display = 'none';
+      }
+    });
+  }
+
+  // Save Vocation Item
+  if (saveVocationItemBtn) {
+    saveVocationItemBtn.addEventListener('click', () => {
+      const type = vocationEditType.value;
+      const name = vocationEditName.value.trim();
+      const congregation = vocationEditCongregation.value.trim();
+      const house = vocationEditHouse.value.trim();
+      const year = vocationEditYear.value.trim();
+      const note = vocationEditNote.value.trim();
+      const defaultAvatar = type === 'sister' ? 'assets/images/sister_avatar.svg' : 'assets/images/vicar_avatar.svg';
+      const photo = vocationEditPhotoVal.value || defaultAvatar;
+      const index = parseInt(vocationEditIndex.value, 10);
+
+      if (!name) {
+        alert('Please enter the Name.');
+        vocationEditName.focus();
+        return;
+      }
+      if (!congregation) {
+        alert('Please enter Diocese or Religious Congregation.');
+        vocationEditCongregation.focus();
+        return;
+      }
+
+      const vocData = { type, name, congregation, house, year, note, photo };
+
+      if (index >= 0 && index < currentVocationItems.length) {
+        currentVocationItems[index] = vocData;
+      } else {
+        currentVocationItems.push(vocData);
+      }
+
+      persistVocationItems(currentVocationItems);
+      if (vocationEditorCard) vocationEditorCard.style.display = 'none';
+      triggerSaveNotice();
+    });
+  }
+
+  if (saveVocationsPanelBtn) {
+    saveVocationsPanelBtn.addEventListener('click', () => {
+      saveConfig();
+    });
+  }
+
+  renderVocationsTable();
 
   // =========================================================================
   // 6.5. Pious Associations & Pastoral Wings (Lay Ministries) Manager
@@ -1982,7 +3000,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isNew || !wingEditMalayalam.value) {
         wingEditMalayalam.value = inferred.subtitle;
       }
-      if (isNew || !wingEditDesc.value) {
+      if (wingEditDesc && (isNew || !wingEditDesc.value)) {
         wingEditDesc.value = inferred.desc;
       }
     });
@@ -2105,6 +3123,8 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(FEASTS_KEY, JSON.stringify(currentFeastItems));
       localStorage.setItem(HIGHLIGHTS_KEY, JSON.stringify(currentHighlightItems));
       localStorage.setItem(WINGS_KEY, JSON.stringify(currentWingItems));
+      localStorage.setItem(VICARS_KEY, JSON.stringify(currentVicarItems));
+      localStorage.setItem(VOCATIONS_KEY, JSON.stringify(currentVocationItems));
 
       triggerSaveNotice();
       console.log('Site configuration & leadership team successfully saved to LocalStorage:', updated);
@@ -2121,6 +3141,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (saveBtn) saveBtn.addEventListener('click', saveConfig);
   if (saveLeadershipBtn) saveLeadershipBtn.addEventListener('click', saveConfig);
 
+  // Initialize and populate all form fields and managers on page load
+  loadFormValues();
+  renderWingsTable();
+  renderVicarsTable();
+  renderVocationsTable();
+
   // 4. Reset to Defaults
   const resetBtn = document.getElementById('resetDefaultsBtn');
   if (resetBtn) {
@@ -2131,116 +3157,22 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem(FEASTS_KEY);
         localStorage.removeItem(HIGHLIGHTS_KEY);
         localStorage.removeItem(WINGS_KEY);
+        localStorage.removeItem(VICARS_KEY);
+        localStorage.removeItem(VOCATIONS_KEY);
         currentNavItems = [...DEFAULT_NAV_ITEMS];
         currentFeastItems = [...DEFAULT_FEASTS];
         currentHighlightItems = [...DEFAULT_HIGHLIGHTS];
         currentWingItems = JSON.parse(JSON.stringify(DEFAULT_PIOUS_WINGS));
+        currentVicarItems = JSON.parse(JSON.stringify(DEFAULT_FORMER_VICARS));
+        currentVocationItems = JSON.parse(JSON.stringify(DEFAULT_PARISH_VOCATIONS));
         renderWingsTable();
+        renderVicarsTable();
+        renderVocationsTable();
         loadFormValues();
         alert('All fields, highlights, feasts, and menu items reset to original defaults! Click Save & Publish to apply.');
       }
     });
   }
-
-  // Typography & Font Studio Handlers
-  const fontFields = ['cfg_font_heading', 'cfg_font_body', 'cfg_font_nav', 'cfg_font_buttons', 'cfg_font_accent', 'cfg_font_base_size'];
-  
-  const getAdminTypographyValues = () => ({
-    heading: document.getElementById('cfg_font_heading')?.value || 'Marcellus',
-    body: document.getElementById('cfg_font_body')?.value || 'Plus Jakarta Sans',
-    nav: document.getElementById('cfg_font_nav')?.value || 'Plus Jakarta Sans',
-    buttons: document.getElementById('cfg_font_buttons')?.value || 'Plus Jakarta Sans',
-    accent: document.getElementById('cfg_font_accent')?.value || 'Cinzel',
-    baseSize: document.getElementById('cfg_font_base_size')?.value || '100%'
-  });
-
-  fontFields.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('change', () => {
-        const typoCfg = getAdminTypographyValues();
-        if (typeof updateAdminTypographyPreview === 'function') {
-          updateAdminTypographyPreview(typoCfg);
-        }
-        if (typeof applyTypography === 'function') {
-          applyTypography(typoCfg, true);
-        }
-        saveConfig();
-      });
-    }
-  });
-
-  // Admin Preset Buttons
-  document.querySelectorAll('.admin-preset-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const presetId = btn.getAttribute('data-preset');
-      const preset = typeof TYPOGRAPHY_PRESETS !== 'undefined' ? TYPOGRAPHY_PRESETS.find(p => p.id === presetId) : null;
-      if (preset) {
-        const hEl = document.getElementById('cfg_font_heading');
-        const bEl = document.getElementById('cfg_font_body');
-        const nEl = document.getElementById('cfg_font_nav');
-        const btnEl = document.getElementById('cfg_font_buttons');
-        const aEl = document.getElementById('cfg_font_accent');
-        const sEl = document.getElementById('cfg_font_base_size');
-
-        if (hEl) hEl.value = preset.fonts.heading;
-        if (bEl) bEl.value = preset.fonts.body;
-        if (nEl) nEl.value = preset.fonts.nav;
-        if (btnEl) btnEl.value = preset.fonts.buttons;
-        if (aEl) aEl.value = preset.fonts.accent;
-        if (sEl) sEl.value = preset.fonts.baseSize || '100%';
-
-        if (typeof updateAdminTypographyPreview === 'function') {
-          updateAdminTypographyPreview(preset.fonts);
-        }
-        if (typeof applyTypography === 'function') {
-          applyTypography(preset.fonts, true);
-        }
-        saveConfig();
-      }
-    });
-  });
-
-  const adminResetTypoBtn = document.getElementById('adminResetTypographyBtn');
-  if (adminResetTypoBtn) {
-    adminResetTypoBtn.addEventListener('click', () => {
-      const defaultTypo = {
-        heading: 'Marcellus',
-        body: 'Plus Jakarta Sans',
-        nav: 'Plus Jakarta Sans',
-        buttons: 'Plus Jakarta Sans',
-        accent: 'Cinzel',
-        baseSize: '100%'
-      };
-      const hEl = document.getElementById('cfg_font_heading');
-      const bEl = document.getElementById('cfg_font_body');
-      const nEl = document.getElementById('cfg_font_nav');
-      const btnEl = document.getElementById('cfg_font_buttons');
-      const aEl = document.getElementById('cfg_font_accent');
-      const sEl = document.getElementById('cfg_font_base_size');
-
-      if (hEl) hEl.value = defaultTypo.heading;
-      if (bEl) bEl.value = defaultTypo.body;
-      if (nEl) nEl.value = defaultTypo.nav;
-      if (btnEl) btnEl.value = defaultTypo.buttons;
-      if (aEl) aEl.value = defaultTypo.accent;
-      if (sEl) sEl.value = defaultTypo.baseSize;
-
-      if (typeof updateAdminTypographyPreview === 'function') {
-        updateAdminTypographyPreview(defaultTypo);
-      }
-      if (typeof applyTypography === 'function') {
-        applyTypography(defaultTypo, true);
-      }
-      saveConfig();
-    });
-  }
-
-  const adminSaveTypoBtn = document.getElementById('adminSaveTypographyBtn');
-  const saveTypoBottomBtn = document.getElementById('saveTypographyBottomBtn');
-  if (adminSaveTypoBtn) adminSaveTypoBtn.addEventListener('click', saveConfig);
-  if (saveTypoBottomBtn) saveTypoBottomBtn.addEventListener('click', saveConfig);
-
-  // Initialize
-  loadFormValues();
 });
+
+

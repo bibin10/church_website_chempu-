@@ -28,14 +28,14 @@
   --radius-lg: 24px;
   --radius-full: 9999px;
 
-  /* Curated Multi-Field Typography System */
-  --font-serif: 'Cinzel Decorative', 'Cinzel', serif;
+  /* Curated Multi-Field Typography System - Locked per User Rule */
+  --font-serif: 'Cinzel', serif;
   --font-heading: 'Marcellus', 'Cinzel', serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-nav: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-buttons: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-accent: 'Cinzel', 'Marcellus', serif;
-  --font-sans: var(--font-body);
+  --font-body: 'Cinzel', 'Marcellus', serif;
+  --font-nav: 'Cinzel', serif;
+  --font-buttons: 'Cinzel', serif;
+  --font-accent: 'Cinzel', serif;
+  --font-sans: 'Cinzel', serif;
   --font-malayalam: 'Manjari', sans-serif;
 
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -209,22 +209,24 @@ img {
   transition: var(--transition-smooth);
 }
 
-.header-inner {
+.main-header .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 0;
+  padding: 0.85rem 1.8rem 0.85rem calc(1.8rem + 1in);
+  max-width: 100%;
+  width: 100%;
 }
 
 .church-brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .church-emblem {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   background: linear-gradient(135deg, var(--primary-deep), var(--primary));
   border: 2px solid var(--gold-primary);
   border-radius: 50%;
@@ -232,12 +234,13 @@ img {
   align-items: center;
   justify-content: center;
   color: var(--gold-glow);
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   box-shadow: 0 4px 15px rgba(212, 163, 75, 0.25);
+  flex-shrink: 0;
 }
 
 .brand-text h1 {
-  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
   font-weight: 700;
   line-height: 1.2;
   color: var(--primary-deep);
@@ -263,11 +266,14 @@ img {
 }
 
 .nav-links a {
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--text-main);
   position: relative;
   padding: 0.4rem 0;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+  transform: none !important;
 }
 
 .nav-links a::after {
@@ -389,7 +395,7 @@ img {
   z-index: 2;
   text-align: center;
   max-width: 900px;
-  padding: 4rem 1.5rem 5rem;
+  padding: 2.5rem 1.5rem 7.5rem;
 }
 
 .hero-subtitle-badge {
@@ -530,9 +536,9 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 3.5rem;
-  margin-bottom: 1.5rem;
-  padding-top: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -567,8 +573,8 @@ img {
   background: #ffffff;
   border-radius: var(--radius-lg, 18px);
   box-shadow: 0 24px 50px rgba(10, 20, 47, 0.16), 0 8px 24px rgba(212, 163, 75, 0.12);
-  margin-top: -3.5rem;
-  margin-bottom: 2.5rem;
+  margin-top: calc(-3.5rem - 1in);
+  margin-bottom: calc(2.5rem + 1in);
   position: relative;
   z-index: 10;
   border: 1.5px solid rgba(212, 163, 75, 0.35);
@@ -583,18 +589,16 @@ img {
   box-shadow: 0 32px 65px rgba(10, 20, 47, 0.24), 0 12px 30px rgba(212, 163, 75, 0.22);
 }
 
-.next-mass-ribbon-glare {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 15;
-  border-radius: inherit;
-  opacity: 0;
-  mix-blend-mode: overlay;
-  transition: opacity 0.3s ease;
+.next-mass-ribbon-glare,
+.history-3d-glare,
+.kandathil-3d-glare,
+.mass-card-glare,
+.featured-festival-card-glare,
+.devotional-hymn-glare {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 .ribbon-grid {
@@ -700,11 +704,14 @@ img {
 }
 
 .section-lead {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  color: #0b1530 !important;
+  font-size: 1.12rem;
+  font-weight: 700 !important;
+  line-height: 1.85;
+  letter-spacing: 0.03em;
   text-wrap: balance;
   word-break: normal;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 12px rgba(255, 255, 255, 0.75);
 }
 
 .title-ornament {
@@ -799,44 +806,63 @@ img {
 }
 
 .history-text p {
-  color: var(--text-muted);
-  margin-bottom: 1.2rem;
-  font-size: 1.02rem;
+  color: #081126 !important;
+  margin-bottom: 1.3rem;
+  font-size: 1.06rem;
+  line-height: 1.85;
+  font-weight: 650 !important;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 12px rgba(255, 255, 255, 0.75);
 }
 
+/* Milestones Timeline */
 .history-milestones {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.25rem;
 }
 
 .milestone-item {
   display: flex;
-  gap: 1.2rem;
-  align-items: flex-start;
+  gap: 1.4rem;
+  align-items: center;
 }
 
 .milestone-year {
-  background: var(--gold-subtle);
-  color: var(--gold-dark);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--primary-deep, #0f1c3f);
   font-weight: 700;
   font-family: var(--font-heading);
-  padding: 0.35rem 0.8rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.95rem;
-  flex-shrink: 0;
-  border: 1px solid var(--border-gold);
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 0.92rem;
+  line-height: 1.2;
+  flex: 0 0 118px;
+  width: 118px;
+  text-align: center;
+  border: 1.5px solid var(--border-gold, rgba(212, 163, 75, 0.45));
+  box-shadow: 0 4px 12px rgba(15, 28, 63, 0.08);
+  white-space: nowrap;
+}
+
+.milestone-info {
+  flex: 1;
 }
 
 .milestone-info h5 {
   font-size: 1.05rem;
   color: var(--primary-deep);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
 }
 
 .milestone-info p {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #0b1530;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.7);
   margin-bottom: 0;
 }
 
@@ -845,16 +871,18 @@ img {
    ========================================================================== */
 .kandathil-section {
   padding: 4.5rem 0;
-  background: var(--bg-card-subtle, #f7f5ee);
+  background: transparent !important;
 }
 
 .kandathil-square-showcase {
   max-width: 980px;
   margin: 0 auto;
-  background: #ffffff;
+  background-color: rgba(255, 255, 255, 0.38) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: var(--radius-lg, 24px);
-  border: 1.5px solid var(--border-gold, rgba(212, 163, 75, 0.35));
-  box-shadow: 0 10px 35px rgba(11, 21, 48, 0.08);
+  box-shadow: 0 16px 40px rgba(11, 21, 48, 0.12), 0 0 20px rgba(212, 163, 75, 0.12);
   display: grid;
   grid-template-columns: 290px 1fr;
   align-items: stretch;
@@ -873,11 +901,11 @@ img {
   z-index: 3;
 }
 
-/* Left Side: Photo Area with Warm Light Background */
+/* Left Side: Photo Area with Transparent Background */
 .kandathil-photo-side {
   position: relative;
-  background: linear-gradient(150deg, #fcfbf8 0%, #f6f0e4 100%);
-  border-right: 1px solid rgba(212, 163, 75, 0.25);
+  background: transparent !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1011,19 +1039,21 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: transparent !important;
 }
 
 .kandathil-title {
   font-size: clamp(1.8rem, 3vw, 2.2rem);
   font-family: var(--font-heading);
-  color: var(--primary-deep);
+  color: var(--primary-deep, #0f1c3f);
   line-height: 1.2;
   margin-bottom: 0.35rem;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
 }
 
 .kandathil-subtitle {
   font-size: 0.92rem;
-  color: var(--gold-dark);
+  color: #9a6d1a;
   font-weight: 700;
   margin-bottom: 1.2rem;
   letter-spacing: 0.02em;
@@ -1031,9 +1061,10 @@ img {
 
 .kandathil-description {
   font-size: 0.96rem;
-  color: var(--text-muted);
+  color: #1e293b;
   line-height: 1.7;
   margin-bottom: 1.3rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .kandathil-milestone-chips {
@@ -1047,31 +1078,35 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: var(--gold-subtle);
-  color: var(--gold-dark);
-  border: 1px solid var(--border-gold);
+  background: rgba(255, 255, 255, 0.75);
+  color: #0f1c3f;
+  border: 1px solid rgba(212, 163, 75, 0.45);
   padding: 0.35rem 0.8rem;
   border-radius: var(--radius-full);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(11, 21, 48, 0.05);
 }
 
 .kandathil-chip i {
-  color: var(--maroon);
+  color: var(--maroon, #800020);
 }
 
 .kandathil-quote-box {
-  background: #f8fafc;
-  border-left: 3px solid var(--gold-primary);
+  background: rgba(255, 255, 255, 0.7);
+  border-left: 3px solid var(--gold-primary, #d4a34b);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-left-width: 3px;
   padding: 0.85rem 1.1rem;
-  border-radius: 0 8px 8px 0;
-  font-size: 0.85rem;
-  color: var(--primary-deep);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.86rem;
+  color: #0f1c3f;
   font-style: italic;
   display: flex;
   align-items: flex-start;
   gap: 0.65rem;
   line-height: 1.5;
+  box-shadow: 0 4px 15px rgba(10, 20, 47, 0.04);
 }
 
 .kandathil-quote-box i {
@@ -1089,7 +1124,7 @@ img {
     height: auto;
     padding: 2.2rem 1.4rem;
     border-right: none;
-    border-bottom: 1px solid rgba(212, 163, 75, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   }
   .kandathil-content-side {
     padding: 2.2rem 1.6rem;
@@ -1725,17 +1760,9 @@ img {
 }
 
 .featured-festival-card-glare {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  display: none !important;
+  opacity: 0 !important;
   pointer-events: none;
-  z-index: 5;
-  border-radius: inherit;
-  opacity: 0;
-  mix-blend-mode: overlay;
-  transition: opacity 0.25s ease;
 }
 
 .featured-festival-wrapper::before {
@@ -1948,6 +1975,8 @@ img {
 }
 
 .gallery-btn {
+  font-family: 'Cinzel', serif !important;
+  letter-spacing: 0.04em;
   background: #ffffff;
   border: 1px solid var(--border-light);
   padding: 0.5rem 1.2rem;
@@ -2468,6 +2497,7 @@ img {
   transition: border-color 0.4s ease;
 }
 
+body.clergy-page .main-footer,
 body.community-page .main-footer,
 body.contact-page .main-footer,
 body.index-page .main-footer {
@@ -3220,6 +3250,7 @@ body.index-page .main-footer {
   }
 }
 
+body.clergy-page,
 body.community-page,
 body.contact-page,
 body.index-page {
@@ -3235,6 +3266,7 @@ body.index-page {
   will-change: background-position;
 }
 
+body.clergy-page .section-wrapper,
 body.community-page .section-wrapper,
 body.contact-page .section-wrapper,
 body.index-page .section-wrapper {
@@ -3243,6 +3275,7 @@ body.index-page .section-wrapper {
   z-index: 1;
 }
 
+body.clergy-page .section-wrapper.bg-alt,
 body.community-page .section-wrapper.bg-alt,
 body.contact-page .section-wrapper.bg-alt,
 body.index-page .section-wrapper.bg-alt {
@@ -3598,7 +3631,7 @@ body.community-page .filial-church-grand-card {
 /* 1. Next Mass Ribbon: 3D Full 360-Degree Rotation & Smooth Landing Physics */
 .anim-ribbon-drop {
   opacity: 0;
-  transform: perspective(1400px) translateY(-120px) rotateX(-360deg) scale(0.82);
+  transform: perspective(1400px) translateY(-110px) rotateX(-360deg) scale(0.82);
   transform-origin: 50% 50%;
   backface-visibility: visible;
   transition: opacity 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), transform 1.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.35s ease;
@@ -3833,14 +3866,14 @@ body.community-page .filial-church-grand-card {
 .devotional-hymn-card {
   position: relative;
   background: 
-    linear-gradient(135deg, rgba(10, 18, 42, 0.88) 0%, rgba(15, 28, 63, 0.78) 50%, rgba(10, 24, 56, 0.92) 100%),
+    linear-gradient(135deg, rgba(8, 16, 38, 0.94) 0%, rgba(13, 24, 54, 0.90) 50%, rgba(8, 20, 48, 0.96) 100%),
     url("images/feast_night_sky.jpg") center center / cover no-repeat;
-  border: 1.5px solid var(--border-gold, rgba(212, 163, 75, 0.45));
+  border: 1.5px solid var(--border-gold, rgba(212, 163, 75, 0.55));
   border-radius: var(--radius-lg, 24px);
   padding: 3.2rem 2.5rem;
   color: #ffffff;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(10, 18, 40, 0.35);
+  box-shadow: 0 20px 50px rgba(10, 18, 40, 0.45), 0 0 25px rgba(212, 163, 75, 0.15);
   transform-style: preserve-3d;
   perspective: 1000px;
   transition: box-shadow 0.35s ease, border-color 0.35s ease;
@@ -3849,7 +3882,7 @@ body.community-page .filial-church-grand-card {
 
 .devotional-hymn-card:hover {
   border-color: var(--gold-primary, #d4a34b);
-  box-shadow: 0 25px 60px rgba(212, 163, 75, 0.2), 0 15px 35px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 60px rgba(212, 163, 75, 0.3), 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
 .devotional-hymn-glare {
@@ -4021,11 +4054,11 @@ body.community-page .filial-church-grand-card {
 
 /* Custom Sleek Ecclesiastical Audio Player Control Bar */
 .devotional-player-controls {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(212, 163, 75, 0.28);
+  background: rgba(11, 21, 48, 0.75);
+  border: 1.5px solid rgba(212, 163, 75, 0.55);
   border-radius: 16px;
-  padding: 1.2rem 1.6rem;
-  backdrop-filter: blur(10px);
+  padding: 1.3rem 1.6rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35), 0 0 15px rgba(212, 163, 75, 0.15);
 }
 
 .devotional-play-row {
@@ -4036,25 +4069,25 @@ body.community-page .filial-church-grand-card {
 }
 
 .devotional-play-btn {
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: none;
   background: linear-gradient(135deg, var(--gold-primary, #d4a34b), var(--gold-dark, #9a6d1a));
   color: #0f1c3f;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(212, 163, 75, 0.45);
+  box-shadow: 0 4px 20px rgba(212, 163, 75, 0.55);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   flex-shrink: 0;
 }
 
 .devotional-play-btn:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 24px rgba(212, 163, 75, 0.6);
+  box-shadow: 0 6px 26px rgba(212, 163, 75, 0.75);
 }
 
 .devotional-track-meta {
@@ -4062,15 +4095,19 @@ body.community-page .filial-church-grand-card {
 }
 
 .devotional-track-meta h5 {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: #ffffff;
-  margin: 0 0 0.2rem;
+  margin: 0 0 0.3rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .devotional-track-meta span {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.88rem;
+  color: var(--gold-glow, #f3d48b);
+  font-weight: 600;
+  letter-spacing: 0.03em;
 }
 
 .devotional-progress-wrapper {
@@ -4364,5 +4401,542 @@ body.community-page .filial-church-grand-card {
   }
   .devotional-player-controls {
     padding: 1rem 1.1rem;
+  }
+}
+
+
+/* ==========================================================================
+   FORMER PARISH VICARS 3-IN-A-ROW CAROUSEL
+   ========================================================================== */
+#former-vicars {
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 110px;
+}
+
+.vicars-carousel-wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 2.5rem auto 1.5rem;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vicars-trio-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  perspective: 1200px;
+}
+
+/* Base Card */
+.vicar-trio-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: var(--radius-lg, 18px);
+  padding: 1.8rem 1.4rem;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(10, 20, 47, 0.08);
+  border: 1.5px solid rgba(212, 163, 75, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Side Cards (Left & Right) */
+.vicar-trio-card.vicar-prev {
+  flex: 0 0 280px;
+  opacity: 0.72;
+  transform: scale(0.86) rotateY(12deg) translateX(15px);
+  filter: grayscale(15%);
+  z-index: 2;
+}
+
+.vicar-trio-card.vicar-next {
+  flex: 0 0 280px;
+  opacity: 0.72;
+  transform: scale(0.86) rotateY(-12deg) translateX(-15px);
+  filter: grayscale(15%);
+  z-index: 2;
+}
+
+.vicar-trio-card.vicar-prev:hover,
+.vicar-trio-card.vicar-next:hover {
+  opacity: 0.92;
+  transform: scale(0.90);
+  border-color: rgba(212, 163, 75, 0.6);
+  filter: grayscale(0%);
+}
+
+/* Highlighted Center Card */
+.vicar-trio-card.vicar-center {
+  flex: 0 0 350px;
+  opacity: 1;
+  transform: scale(1.08) translateZ(30px);
+  z-index: 10;
+  border-color: var(--gold-primary, #d4a34b);
+  box-shadow: 0 24px 50px rgba(10, 20, 47, 0.18), 0 0 28px rgba(212, 163, 75, 0.25);
+  background: #ffffff;
+  cursor: default;
+}
+
+/* Photo Wrapper */
+.vicar-photo-wrap {
+  position: relative;
+  width: 130px;
+  height: 155px;
+  margin: 0 auto 1.2rem;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(10, 20, 47, 0.15);
+  border: 2px solid var(--gold-primary, #d4a34b);
+  background: #f1f5f9;
+}
+
+.vicar-center .vicar-photo-wrap {
+  width: 150px;
+  height: 180px;
+  border-width: 2.5px;
+  box-shadow: 0 12px 28px rgba(10, 20, 47, 0.22);
+}
+
+.vicar-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.vicar-trio-card:hover .vicar-photo-wrap img {
+  transform: scale(1.04);
+}
+
+.vicar-center-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, var(--gold-primary, #d4a34b), #b37d26);
+  color: #0b1530;
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.vicar-center-badge.vicar-badge-present {
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: #ffffff;
+}
+
+.vicar-years-pill.pill-present {
+  background: rgba(16, 185, 129, 0.12);
+  color: #065f46;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Vicar Info */
+.vicar-name {
+  font-family: var(--font-heading, 'Marcellus', serif);
+  font-size: 1.15rem;
+  color: var(--primary-deep, #0b1530);
+  margin-bottom: 0.45rem;
+  line-height: 1.3;
+}
+
+.vicar-center .vicar-name {
+  font-size: 1.35rem;
+  color: #081126;
+}
+
+.vicar-years-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.vicar-center .vicar-years-pill {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+  font-size: 0.9rem;
+}
+
+.vicar-note {
+  font-family: var(--font-body, 'Cinzel', serif);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #334155;
+  margin: 0;
+}
+
+.vicar-prev .vicar-note,
+.vicar-next .vicar-note {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Navigation Buttons */
+.vicar-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid var(--gold-primary, #d4a34b);
+  color: var(--primary-deep, #0b1530);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(10, 20, 47, 0.15);
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.vicar-nav-btn:hover {
+  background: var(--gold-primary, #d4a34b);
+  color: #0b1530;
+  box-shadow: 0 12px 30px rgba(212, 163, 75, 0.35);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.vicar-nav-btn.prev-btn {
+  left: -20px;
+}
+
+.vicar-nav-btn.next-btn {
+  right: -20px;
+}
+
+/* Dots Indicator */
+.vicar-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.vicar-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(212, 163, 75, 0.3);
+  border: 1px solid var(--gold-primary, #d4a34b);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.vicar-dot.active {
+  background: var(--gold-primary, #d4a34b);
+  width: 28px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(212, 163, 75, 0.5);
+}
+
+@media (max-width: 900px) {
+  .vicars-trio-stage {
+    gap: 1rem;
+  }
+  .vicar-trio-card.vicar-prev,
+  .vicar-trio-card.vicar-next {
+    flex: 0 0 220px;
+  }
+  .vicar-trio-card.vicar-center {
+    flex: 0 0 280px;
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 680px) {
+  .vicar-trio-card.vicar-prev,
+  .vicar-trio-card.vicar-next {
+    display: none;
+  }
+  .vicar-trio-card.vicar-center {
+    flex: 1 1 100%;
+    max-width: 340px;
+    transform: none;
+  }
+  .vicar-nav-btn.prev-btn { left: 5px; }
+  .vicar-nav-btn.next-btn { right: 5px; }
+}
+
+/* ==========================================================================
+   PRIESTS & RELIGIOUS SISTERS FROM PARISH (VOCATIONS SECTION)
+   ========================================================================== */
+#vocations {
+  position: relative;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  scroll-margin-top: 110px;
+}
+
+body.clergy-page #vocations.section-wrapper.bg-alt {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.vocations-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin: 1.5rem auto 2.8rem;
+  flex-wrap: wrap;
+}
+
+.vocations-filter-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid rgba(212, 163, 75, 0.4);
+  color: #0b1530;
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  box-shadow: 0 4px 15px rgba(10, 20, 47, 0.08);
+}
+
+.vocations-filter-btn:hover {
+  background: #ffffff;
+  border-color: var(--gold-primary, #d4a34b);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(212, 163, 75, 0.25);
+}
+
+.vocations-filter-btn.active {
+  background: linear-gradient(135deg, #d4a34b 0%, #b88628 100%);
+  color: #0b1530;
+  border-color: #b88628;
+  box-shadow: 0 8px 24px rgba(212, 163, 75, 0.4);
+}
+
+.vocations-filter-btn span {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(11, 21, 48, 0.08);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.vocations-filter-btn.active span {
+  background: rgba(11, 21, 48, 0.22);
+  color: #0b1530;
+}
+
+.vocations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.vocation-member-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 22px;
+  padding: 2.2rem 1.6rem 1.8rem;
+  border: 1.5px solid rgba(212, 163, 75, 0.35);
+  box-shadow: 0 14px 35px rgba(10, 20, 47, 0.08), 0 0 15px rgba(212, 163, 75, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.vocation-member-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-primary, #d4a34b);
+  box-shadow: 0 22px 45px rgba(10, 20, 47, 0.15), 0 0 30px rgba(212, 163, 75, 0.28);
+}
+
+.vocation-card-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  gap: 0.5rem;
+}
+
+.vocation-type-tag {
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.04);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  padding: 0.22rem 0.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  line-height: 1;
+}
+
+.vocation-type-tag.tag-priest {
+  color: #1d4ed8;
+  border-color: rgba(59, 130, 246, 0.35);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.vocation-type-tag.tag-sister {
+  color: #1d4ed8;
+  border-color: rgba(59, 130, 246, 0.35);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.vocation-year-chip {
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.vocation-photo-frame {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid var(--gold-primary, #d4a34b);
+  box-shadow: 0 8px 24px rgba(10, 20, 47, 0.14);
+  margin: 0 auto 1.4rem;
+  background: #f8fafc;
+}
+
+.vocation-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.vocation-member-card:hover .vocation-photo-frame img {
+  transform: scale(1.05);
+}
+
+.vocation-name {
+  font-family: var(--font-heading, 'Marcellus', serif);
+  font-size: 1.28rem;
+  color: #0b1530;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.vocation-congregation {
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #b45309;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.45rem;
+  line-height: 1.5;
+  text-align: center;
+  width: 100%;
+}
+
+.vocation-congregation i {
+  color: #b45309;
+  margin-right: 0.4rem;
+  font-size: 0.82rem;
+  vertical-align: -1px;
+  display: inline-block;
+}
+
+.vocation-house {
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.78rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  width: 100%;
+}
+
+.vocation-house i {
+  color: #64748b;
+  margin-right: 0.4rem;
+  font-size: 0.8rem;
+  vertical-align: -1px;
+  display: inline-block;
+}
+
+.vocation-note {
+  font-family: var(--font-accent, 'Cinzel', serif);
+  font-size: 0.78rem;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 0.85rem;
+  border-top: 1px dashed rgba(212, 163, 75, 0.35);
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .vocations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .vocations-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
 }

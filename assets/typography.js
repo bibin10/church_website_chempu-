@@ -121,9 +121,9 @@ const TYPOGRAPHY_PRESETS = [
 
 const DEFAULT_TYPOGRAPHY = {
   heading: 'Marcellus',
-  body: 'Plus Jakarta Sans',
-  nav: 'Plus Jakarta Sans',
-  buttons: 'Plus Jakarta Sans',
+  body: 'Cinzel',
+  nav: 'Cinzel',
+  buttons: 'Cinzel',
   accent: 'Cinzel',
   baseSize: '100%'
 };
@@ -187,29 +187,6 @@ function applyTypography(config, saveToStorage = true) {
  * Read current typography configuration
  */
 function getTypographyConfig() {
-  try {
-    // 1. Check dedicated typography storage
-    const saved = localStorage.getItem(TYPOGRAPHY_STORAGE_KEY);
-    if (saved) return { ...DEFAULT_TYPOGRAPHY, ...JSON.parse(saved) };
-
-    // 2. Check CMS main storage
-    const cmsSaved = localStorage.getItem(CMS_STORAGE_KEY);
-    if (cmsSaved) {
-      const cms = JSON.parse(cmsSaved);
-      if (cms.font_heading || cms.font_body) {
-        return {
-          heading: cms.font_heading || DEFAULT_TYPOGRAPHY.heading,
-          body: cms.font_body || DEFAULT_TYPOGRAPHY.body,
-          nav: cms.font_nav || DEFAULT_TYPOGRAPHY.nav,
-          buttons: cms.font_buttons || DEFAULT_TYPOGRAPHY.buttons,
-          accent: cms.font_accent || DEFAULT_TYPOGRAPHY.accent,
-          baseSize: cms.font_base_size || DEFAULT_TYPOGRAPHY.baseSize
-        };
-      }
-    }
-  } catch (e) {
-    console.warn('Error reading typography config:', e);
-  }
   return { ...DEFAULT_TYPOGRAPHY };
 }
 
@@ -481,12 +458,12 @@ function initTypographyEngine() {
   const currentCfg = getTypographyConfig();
   applyTypography(currentCfg, false);
 
-  // If live site, inject drawer
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectLiveSiteFontDrawer);
-  } else {
-    injectLiveSiteFontDrawer();
-  }
+  // Font drawer removed from live index page per request (managed via Admin Panel)
+  // if (document.readyState === 'loading') {
+  //   document.addEventListener('DOMContentLoaded', injectLiveSiteFontDrawer);
+  // } else {
+  //   injectLiveSiteFontDrawer();
+  // }
 }
 
 // Auto-run immediately so CSS variables are active before page paint

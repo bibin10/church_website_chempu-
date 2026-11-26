@@ -1,0 +1,76 @@
+      <div class="history-layout" style="align-items: start;">
+        <!-- Left Column: Intro Heading, Text, and Main Historic Image -->
+        <div class="history-left-col scroll-reveal anim-history-image">
+          <div class="history-intro-header" style="margin-bottom: 1.5rem;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 0.85rem; color: var(--primary-deep); font-family: var(--font-heading);">Centuries of Faith in Central Travancore</h3>
+            <p id="live_history_p1" style="font-size: 0.98rem; line-height: 1.7; color: var(--text-dark); margin-bottom: 0.8rem;">
+              Established in early fourteenth century (1307 AD), St. Thomas Church Chempu is one of the revered historical churches under the Syro-Malabar Major Archiepiscopal Archdiocese of Ernakulam-Angamaly.
+            </p>
+            <p id="live_history_p2" style="font-size: 0.98rem; line-height: 1.7; color: var(--text-dark); margin-bottom: 0;">
+              Surrounded by coconut groves and picturesque backwaters of the Vembanad region near Vaikom, the parish has nurtured generations of devoted families, preserved authentic East-Syriac liturgical customs, and sustained community welfare for centuries.
+            </p>
+          </div>
+
+          <div class="history-image-composition" id="history3dCard">
+            <div class="history-3d-card-inner">
+              <img src="assets/images/st_thomas_chempu_church_vertical.jpg" alt="Venerable white architectural pediment of St Thomas Church Chempu" class="history-main-img" id="live_history_img" loading="eager" decoding="async">
+              <div class="history-3d-glare"></div>
+              <div class="history-overlay-card">
+                <h4>1307 AD</h4>
+                <p>Recognized as one of the ancient parishes along the Vaikom waterways in central Kerala.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Historical Chronology & Milestones -->
+        <div class="history-text scroll-reveal anim-history-text" style="padding-top: 0.2rem;">
+          <div class="history-milestones" style="margin-top: 0;">
+            <div class="milestone-item">
+              <span class="milestone-year">1307 AD</span>
+              <div class="milestone-info">
+                <h5>Church Established</h5>
+                <p>Earliest historical foundation and sanctuary established at Chempu; rebuilt in 1339 AD.</p>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-year">1866 May 20</span>
+              <div class="milestone-info">
+                <h5>Rebuilt &amp; Blessed (Pentecost Sunday)</h5>
+                <p>Solemn blessing of the venerable stone church rebuilt by Parayi Avira Tharakan.</p>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-year">1981 Mar 22</span>
+              <div class="milestone-info">
+                <h5>Renovation &amp; Dedication</h5>
+                <p>Renovation done by Rev. Fr. Sebastian Thottappally; blessed and dedicated by Vicar Rev. Fr. Joseph Chakiath.</p>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-year">2007 Mar 24</span>
+              <div class="milestone-info">
+                <h5>Cardinal Re-dedication &amp; New Portico</h5>
+                <p>Re-dedicated by His Grace Cardinal Mar Varkey Vithayathil. Renovation by Rev. Fr. Xavier Avallil with new front portico (mondalam).</p>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <span class="milestone-year">2018 Jan 14</span>
+              <div class="milestone-info">
+                <h5>Episcopal Re-dedication</h5>
+                <p>Re-dedicated by Mar Jacob Manathodath (Bishop of Palakkad &amp; Former Vicar). Renovation executed by Rev. Fr. Varghese Mampilly.</p>
+              </div>
+            </div>
+            <div class="milestone-item" style="border-left: 2px solid var(--gold-primary); padding-left: 1rem; margin-top: 1rem; background: rgba(212, 163, 75, 0.08); border-radius: 8px; padding: 0.8rem 1rem;">
+              <span class="milestone-year" style="color: var(--gold-primary); font-weight: 700;">Legacy</span>
+              <div class="milestone-info">
+                <h5>Native Parish of Mar Augustine Kandathil</h5>
+                <p style="margin-bottom: 0.4rem;">Birthplace and spiritual cradle of India's first indigenous Metropolitan Archbishop (1874&ndash;1956).</p>
+                <a href="clergy.html#archbishop" style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--primary-deep); font-weight: 700; font-size: 0.82rem; text-decoration: none;">
+                  Read Sacred Archival Biography <i class="fas fa-arrow-right" style="color: var(--gold-primary);"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

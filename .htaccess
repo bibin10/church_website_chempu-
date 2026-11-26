@@ -1,0 +1,82 @@
+# ==============================================================================
+# St. Thomas Syro-Malabar Catholic Church, Chempu
+# Production Apache Security & Clean URLs Configuration (.htaccess)
+# ==============================================================================
+
+# 1. Enable Rewrite Engine for Clean URLs
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Force HTTPS if SSL is available
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Redirect /index.html or /index to root /
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index(\.html)?\ HTTP/ [NC]
+  RewriteRule ^index(\.html)?$ / [R=301,L]
+
+  # Redirect direct request from /page.html to /page
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP/ [NC]
+  RewriteRule ^([^.]+)\.html$ /$1 [R=301,L]
+
+  # Internal rewrite: map clean /page to /page.html
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^([^/]+)/?$ $1.html [L,QSA]
+</IfModule>
+
+# 2. Comprehensive Security Headers
+<IfModule mod_headers.c>
+  # Prevent Clickjacking
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # Prevent MIME-sniffing
+  Header set X-Content-Type-Options "nosniff"
+
+  # XSS Filter Protection
+  Header set X-XSS-Protection "1; mode=block"
+
+  # Referrer Policy
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Permissions Policy (Restrict camera, microphone, geolocation)
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+  # Strict Transport Security (HSTS)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+
+  # Content Security Policy (Allows Google Fonts, CDNs, Web3Forms, Google Maps)
+  Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com https://api.web3forms.com https://www.google.com https://maps.google.com https://www.google-analytics.com https://www.googletagmanager.com; img-src 'self' data: https:; media-src 'self' data: https:; frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com;"
+</IfModule>
+
+# 3. Block Sensitive Files and Hidden Dotfiles
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<FilesMatch "(^#.*#|\.(bak|backup|locked|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|py|md))$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# 4. Prevent Directory Browsing
+Options -Indexes
+
+# 5. Caching & Performance for Assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType audio/mpeg "access plus 1 month"
+</IfModule>

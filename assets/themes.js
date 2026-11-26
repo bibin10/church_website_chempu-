@@ -1316,10 +1316,10 @@ function initThemeEngine() {
 
   applyChurchTheme(initialTheme, false);
 
-  // If this is index.html, inject the floating launcher and theme drawer
-  if (document.querySelector('.main-header')) {
-    buildThemeDrawer();
-  }
+  // Theme drawer removed from live index page per request (managed via Admin Panel)
+  // if (document.querySelector('.main-header')) {
+  //   buildThemeDrawer();
+  // }
 }
 
 /**

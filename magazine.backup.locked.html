@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santhom Maria - Parish Magazine | St. Thomas RC Church Chempu</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700&family=Marcellus&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Security & Anti-Cache Meta Headers -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Core Design Styles -->
+  <link rel="stylesheet" href="assets/style.css?v=29">
+  
+  <!-- Full-View Reading Stage Styles -->
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #091124;
+    }
+
+    /* Fixed Compact Top Navigation Bar */
+    .mag-top-bar {
+      height: 56px;
+      background: rgba(10, 18, 42, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1.5px solid rgba(212, 163, 75, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      z-index: 100;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .mag-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .mag-emblem {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary-deep, #0f1c3f), var(--primary, #182e66));
+      border: 1.5px solid var(--gold-primary, #d4a34b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary, #d4a34b);
+      font-size: 0.95rem;
+    }
+
+    .mag-brand-title {
+      font-family: var(--font-heading, 'Cinzel', serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .mag-brand-title span {
+      color: var(--gold-primary, #d4a34b);
+    }
+
+    .mag-center-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 163, 75, 0.3);
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+    }
+
+    .mag-btn {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .mag-btn:hover:not(:disabled) {
+      background: var(--gold-primary, #d4a34b);
+      color: #0f1c3f;
+      transform: scale(1.08);
+    }
+
+    .mag-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .mag-page-counter {
+      font-family: var(--font-accent, serif);
+      color: var(--gold-glow, #f3d18c);
+      font-size: 0.88rem;
+      font-weight: 700;
+      min-width: 100px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .mag-action-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mag-action-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(212, 163, 75, 0.3);
+      color: #ffffff;
+      height: 34px;
+      padding: 0 0.85rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mag-action-btn:hover {
+      background: var(--gold-primary, #d4a34b);
+      color: #0f1c3f;
+      border-color: var(--gold-primary, #d4a34b);
+    }
+
+    /* Maximum Viewport Flipbook Arena */
+    .mag-viewport {
+      height: calc(100vh - 56px);
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0.6rem 2.8rem;
+      background: radial-gradient(circle at 50% 45%, #132448 0%, #081024 100%);
+    }
+
+    .mag-stage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 3000px;
+      position: relative;
+    }
+
+    /* Double-Page Spread: Auto-scales to fill 100% of height and width */
+    .mag-book {
+      position: relative;
+      height: 96%;
+      max-height: 98vh;
+      aspect-ratio: 1.295 / 1; /* 2 * 0.6476 for 2-page spread */
+      max-width: 98vw;
+      display: flex;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(10, 20, 45, 0.5);
+      border-radius: 6px;
+      background: #111b33;
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease;
+      user-select: none;
+    }
+
+    .mag-spine {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(255,255,255,0.18) 50%, rgba(0,0,0,0.6) 100%);
+      z-index: 30;
+      pointer-events: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    }
+
+    .mag-page-pane {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mag-page-pane.left-pane {
+      border-radius: 6px 0 0 6px;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      box-shadow: inset -22px 0 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .mag-page-pane.right-pane {
+      border-radius: 0 6px 6px 0;
+      border-left: 1px solid rgba(0,0,0,0.1);
+      box-shadow: inset 22px 0 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .mag-page-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #ffffff;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    /* Huge Floating Screen Nav Arrows */
+    .mag-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 58px;
+      background: rgba(10, 18, 42, 0.85);
+      border: 2px solid var(--gold-primary, #d4a34b);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      cursor: pointer;
+      z-index: 50;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mag-arrow:hover {
+      background: var(--gold-primary, #d4a34b);
+      color: #0f1c3f;
+      transform: translateY(-50%) scale(1.15);
+      box-shadow: 0 12px 35px rgba(212, 163, 75, 0.5);
+    }
+
+    .mag-arrow.arrow-prev {
+      left: 12px;
+    }
+
+    .mag-arrow.arrow-next {
+      right: 12px;
+    }
+
+    /* Mobile Single Page Full View Mode */
+    @media (max-width: 860px) {
+      .mag-top-bar {
+        padding: 0 0.8rem;
+      }
+      .mag-brand-title {
+        display: none;
+      }
+      .mag-viewport {
+        padding: 0.4rem 0.5rem;
+      }
+      .mag-book {
+        height: 98%;
+        aspect-ratio: 0.648 / 1; /* Single page aspect ratio */
+        width: auto;
+        max-width: 98vw;
+      }
+      .mag-spine {
+        display: none;
+      }
+      .mag-page-pane.left-pane {
+        display: none;
+      }
+      .mag-page-pane.right-pane {
+        border-radius: 6px;
+        box-shadow: none;
+      }
+      .mag-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+        background: rgba(10, 18, 42, 0.7);
+      }
+      .mag-arrow.arrow-prev {
+        left: 6px;
+      }
+      .mag-arrow.arrow-next {
+        right: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="mag-top-bar">
+    <a href="./" class="mag-brand-group" title="Back to Homepage">
+      <div class="mag-emblem">
+        <i class="fas fa-cross"></i>
+      </div>
+      <div class="mag-brand-title">
+        ST. THOMAS RC CHURCH &bull; <span>SANTHOM MARIA</span>
+      </div>
+    </a>
+
+    <!-- Center Page Switcher -->
+    <div class="mag-center-controls">
+      <button class="mag-btn" id="btnPrev" title="Previous Page (Left Arrow Key)" aria-label="Previous Page">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <span class="mag-page-counter" id="pageCounter">Loading...</span>
+      <button class="mag-btn" id="btnNext" title="Next Page (Right Arrow Key)" aria-label="Next Page">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Right Controls: Zoom, Fullscreen, Download, Exit -->
+    <div class="mag-action-group">
+      <button class="mag-btn" id="btnZoomIn" title="Zoom In">
+        <i class="fas fa-search-plus"></i>
+      </button>
+      <button class="mag-btn" id="btnZoomOut" title="Zoom Out">
+        <i class="fas fa-search-minus"></i>
+      </button>
+      <button class="mag-btn" id="btnFullscreen" title="Toggle Maximum Fullscreen">
+        <i class="fas fa-expand"></i>
+      </button>
+      <a href="assets/magazine/santhom_maria_compressed.pdf" class="mag-action-btn" download title="Download Compressed PDF (13.1 MB)">
+        <i class="fas fa-download"></i> <span class="hide-mobile">PDF</span>
+      </a>
+      <a href="./" class="mag-action-btn" style="background: rgba(212, 163, 75, 0.2); border-color: var(--gold-primary);" title="Exit to Website">
+        <i class="fas fa-times"></i> <span class="hide-mobile">Exit</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Maximum Reading Viewport -->
+  <main class="mag-viewport">
+    
+    <!-- Floating Previous Arrow -->
+    <button class="mag-arrow arrow-prev" id="arrowPrev" title="Previous Page" aria-label="Previous Page">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <!-- Reading Stage -->
+    <div class="mag-stage" id="magStage">
+      <div class="mag-book" id="magBook">
+        <div class="mag-spine"></div>
+        
+        <!-- Left Page Pane -->
+        <div class="mag-page-pane left-pane" id="leftPane" title="Click to Flip Previous">
+          <img src="assets/magazine/pages/page_1.webp" alt="Page 1" class="mag-page-img" id="leftImg">
+        </div>
+
+        <!-- Right Page Pane -->
+        <div class="mag-page-pane right-pane" id="rightPane" title="Click to Flip Next">
+          <img src="assets/magazine/pages/page_2.webp" alt="Page 2" class="mag-page-img" id="rightImg">
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Next Arrow -->
+    <button class="mag-arrow arrow-next" id="arrowNext" title="Next Page" aria-label="Next Page">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+  </main>
+
+  <!-- Reader JavaScript Engine -->
+  <script>
+    (function() {
+      let totalPages = 48;
+      let currentPage = 1;
+      let currentZoom = 1.0;
+      let isSinglePage = window.innerWidth <= 860;
+
+      const leftImg = document.getElementById('leftImg');
+      const rightImg = document.getElementById('rightImg');
+      const leftPane = document.getElementById('leftPane');
+      const rightPane = document.getElementById('rightPane');
+      const pageCounter = document.getElementById('pageCounter');
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const arrowPrev = document.getElementById('arrowPrev');
+      const arrowNext = document.getElementById('arrowNext');
+      const magBook = document.getElementById('magBook');
+
+      // Load metadata
+      fetch('assets/magazine/magazine_meta.json')
+        .then(r => r.json())
+        .then(d => {
+          if (d && d.totalPages) {
+            totalPages = d.totalPages;
+            renderPages();
+          }
+        })
+        .catch(() => {});
+
+      function pagePath(n) {
+        return `assets/magazine/pages/page_${n}.webp`;
+      }
+
+      function renderPages() {
+        isSinglePage = window.innerWidth <= 860;
+
+        if (isSinglePage) {
+          if (currentPage < 1) currentPage = 1;
+          if (currentPage > totalPages) currentPage = totalPages;
+
+          rightImg.src = pagePath(currentPage);
+          pageCounter.textContent = `Page ${currentPage} of ${totalPages}`;
+
+          btnPrev.disabled = (currentPage <= 1);
+          btnNext.disabled = (currentPage >= totalPages);
+          arrowPrev.style.display = (currentPage <= 1) ? 'none' : 'flex';
+          arrowNext.style.display = (currentPage >= totalPages) ? 'none' : 'flex';
+        } else {
+          // Double spread: Cover page (Page 1) is displayed as single right page or spread
+          if (currentPage === 1) {
+            leftImg.style.visibility = 'hidden';
+            rightImg.src = pagePath(1);
+            rightImg.style.visibility = 'visible';
+            pageCounter.textContent = `Cover Page (1 of ${totalPages})`;
+            btnPrev.disabled = true;
+            btnNext.disabled = false;
+            arrowPrev.style.display = 'none';
+            arrowNext.style.display = 'flex';
+          } else {
+            // Even pages on left, odd on right (e.g. 2-3, 4-5)
+            let leftNum = (currentPage % 2 === 0) ? currentPage : currentPage - 1;
+            let rightNum = leftNum + 1;
+
+            leftImg.src = pagePath(leftNum);
+            leftImg.style.visibility = 'visible';
+
+            if (rightNum <= totalPages) {
+              rightImg.src = pagePath(rightNum);
+              rightImg.style.visibility = 'visible';
+              pageCounter.textContent = `Pages ${leftNum} - ${rightNum} of ${totalPages}`;
+              btnNext.disabled = (rightNum >= totalPages);
+              arrowNext.style.display = (rightNum >= totalPages) ? 'none' : 'flex';
+            } else {
+              rightImg.style.visibility = 'hidden';
+              pageCounter.textContent = `Page ${leftNum} of ${totalPages}`;
+              btnNext.disabled = true;
+              arrowNext.style.display = 'none';
+            }
+
+            btnPrev.disabled = false;
+            arrowPrev.style.display = 'flex';
+          }
+        }
+      }
+
+      function flipNext() {
+        if (isSinglePage) {
+          if (currentPage < totalPages) {
+            currentPage++;
+            triggerAnimation('next');
+            renderPages();
+          }
+        } else {
+          if (currentPage === 1) {
+            currentPage = 2;
+          } else if (currentPage + 2 <= totalPages) {
+            currentPage += 2;
+          } else if (currentPage + 1 <= totalPages) {
+            currentPage += 1;
+          }
+          triggerAnimation('next');
+          renderPages();
+        }
+      }
+
+      function flipPrev() {
+        if (isSinglePage) {
+          if (currentPage > 1) {
+            currentPage--;
+            triggerAnimation('prev');
+            renderPages();
+          }
+        } else {
+          if (currentPage === 2) {
+            currentPage = 1;
+          } else if (currentPage > 2) {
+            currentPage -= 2;
+          }
+          triggerAnimation('prev');
+          renderPages();
+        }
+      }
+
+      function triggerAnimation(dir) {
+        const tilt = (dir === 'next') ? -1.5 : 1.5;
+        magBook.style.transform = `scale(${currentZoom}) rotateY(${tilt}deg)`;
+        setTimeout(() => {
+          magBook.style.transform = `scale(${currentZoom}) rotateY(0deg)`;
+        }, 180);
+      }
+
+      // Click to Flip
+      btnNext.addEventListener('click', flipNext);
+      arrowNext.addEventListener('click', flipNext);
+      rightPane.addEventListener('click', flipNext);
+
+      btnPrev.addEventListener('click', flipPrev);
+      arrowPrev.addEventListener('click', flipPrev);
+      leftPane.addEventListener('click', flipPrev);
+
+      // Keyboard arrow navigation
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          flipNext();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          flipPrev();
+        }
+      });
+
+      // Zoom Controls
+      document.getElementById('btnZoomIn').addEventListener('click', () => {
+        if (currentZoom < 1.8) {
+          currentZoom += 0.2;
+          magBook.style.transform = `scale(${currentZoom})`;
+        }
+      });
+
+      document.getElementById('btnZoomOut').addEventListener('click', () => {
+        if (currentZoom > 0.8) {
+          currentZoom -= 0.2;
+          magBook.style.transform = `scale(${currentZoom})`;
+        }
+      });
+
+      // Fullscreen Toggle
+      document.getElementById('btnFullscreen').addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      });
+
+      window.addEventListener('resize', renderPages);
+      renderPages();
+    })();
+  </script>
+</body>
+</html>
