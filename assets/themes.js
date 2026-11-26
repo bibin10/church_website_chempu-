@@ -1391,7 +1391,7 @@ function buildThemeDrawer() {
 
       <div class="theme-drawer-footer">
         <span><i class="fas fa-check-circle" style="color:#10b981;"></i> Theme preferences auto-save for your browser.</span>
-        <a href="admin.html" class="theme-admin-link"><i class="fas fa-cog"></i> Set Site Default in CMS</a>
+        <a href="terminal" class="theme-admin-link"><i class="fas fa-cog"></i> Set Site Default in CMS</a>
       </div>
     </aside>
   `;

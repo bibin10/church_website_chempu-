@@ -5,11 +5,13 @@
 /history.html  /history       301!
 /magazine.html /magazine      301!
 /contact.html  /contact       301!
-/admin.html    /admin         301!
+/admin.html    /terminal.html 301!
+/admin         /terminal.html 301!
+/terminal.html /terminal      301!
 
 /clergy        /clergy.html   200
 /community     /community.html 200
 /history       /history.html  200
 /magazine      /magazine.html 200
 /contact       /contact.html  200
-/admin         /admin.html    200
+/terminal      /terminal.html 200
