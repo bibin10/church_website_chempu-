@@ -23,7 +23,7 @@
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <link rel="stylesheet" href="assets/admin.css?v=5">
+  <link rel="stylesheet" href="assets/admin.css?v=1795766600">
 </head>
 <body class="admin-body">
 
@@ -74,6 +74,10 @@
       <button class="nav-item" data-section="contact-panel">
         <i class="fas fa-address-book"></i> <span>Rectory &amp; Contact</span>
       </button>
+      <div class="nav-section-label">SYSTEM &amp; SECURITY</div>
+      <button class="nav-item" data-section="security-panel">
+        <i class="fas fa-shield-alt"></i> <span>Security &amp; Password</span>
+      </button>
     </nav>
 
     <div class="sidebar-footer">
@@ -101,6 +105,9 @@
         <a href="./" target="_blank" rel="noopener noreferrer" class="btn-secondary">
           <i class="fas fa-eye"></i> Preview
         </a>
+        <button class="btn-secondary" id="adminLogoutBtn" type="button" title="Log out from Admin CMS">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
         <button class="btn-primary" id="saveAllChangesBtn">
           <i class="fas fa-save"></i> Save &amp; Publish
         </button>
@@ -1517,11 +1524,122 @@
         </div>
       </section>
 
+      <!-- ===================================================================
+           11. SECURITY & ADMIN PASSWORD CHANGE
+           =================================================================== -->
+      <section class="admin-panel" id="security-panel">
+        <div class="panel-card" style="max-width: 680px;">
+          <div class="panel-card-header">
+            <h3><i class="fas fa-key" style="color:var(--gold-accent, #c9933e); margin-right:8px;"></i> Administrator Credentials &amp; Password</h3>
+            <p>Change your Admin CMS login username and password. Changes take effect immediately.</p>
+          </div>
+          <div class="panel-card-body">
+            <form id="adminPasswordChangeForm" onsubmit="return false;">
+              <div class="form-group">
+                <label for="adminUsernameInput">Username</label>
+                <div style="position:relative;">
+                  <input type="text" id="adminUsernameInput" required style="padding-left: 2.6rem;" autocomplete="username">
+                  <i class="fas fa-user" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#94a3b8;"></i>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top:1.2rem;">
+                <label for="currentPasswordInput">Current Password</label>
+                <div style="position:relative;">
+                  <input type="password" id="currentPasswordInput" required placeholder="Enter current password" style="padding-left: 2.6rem; padding-right: 2.6rem;" autocomplete="current-password">
+                  <i class="fas fa-lock" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#94a3b8;"></i>
+                  <button type="button" class="btn-toggle-pwd" data-target="currentPasswordInput" style="position:absolute; right:0.8rem; top:50%; transform:translateY(-50%); background:none; border:none; color:#64748b; cursor:pointer; padding:4px;">
+                    <i class="far fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top:1.2rem;">
+                <label for="newPasswordInput">New Password</label>
+                <div style="position:relative;">
+                  <input type="password" id="newPasswordInput" required placeholder="Enter new password" style="padding-left: 2.6rem; padding-right: 2.6rem;" autocomplete="new-password">
+                  <i class="fas fa-shield-alt" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#94a3b8;"></i>
+                  <button type="button" class="btn-toggle-pwd" data-target="newPasswordInput" style="position:absolute; right:0.8rem; top:50%; transform:translateY(-50%); background:none; border:none; color:#64748b; cursor:pointer; padding:4px;">
+                    <i class="far fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top:1.2rem;">
+                <label for="confirmPasswordInput">Confirm New Password</label>
+                <div style="position:relative;">
+                  <input type="password" id="confirmPasswordInput" required placeholder="Re-enter new password" style="padding-left: 2.6rem; padding-right: 2.6rem;" autocomplete="new-password">
+                  <i class="fas fa-check-double" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#94a3b8;"></i>
+                  <button type="button" class="btn-toggle-pwd" data-target="confirmPasswordInput" style="position:absolute; right:0.8rem; top:50%; transform:translateY(-50%); background:none; border:none; color:#64748b; cursor:pointer; padding:4px;">
+                    <i class="far fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div id="pwdChangeMsg" style="display:none; margin-top:1.2rem; padding:0.85rem 1rem; border-radius:8px; font-size:0.9rem; font-weight:600;"></div>
+
+              <div style="margin-top: 1.8rem; display:flex; gap:1rem; align-items:center;">
+                <button type="button" class="btn-primary" id="updatePasswordBtn" style="padding:0.75rem 1.6rem;">
+                  <i class="fas fa-save"></i> Update Credentials
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
 
     </div>
   </main>
 
+  <!-- Login Modal Overlay -->
+  <div id="adminLoginOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:rgba(7, 13, 31, 0.92); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:1.5rem;">
+    <div style="background:#ffffff; width:100%; max-width:420px; border-radius:18px; box-shadow:0 25px 60px rgba(0,0,0,0.4); overflow:hidden; border:1px solid rgba(212,163,75,0.3); animation:adminFadeUp 0.3s ease;">
+      <div style="background:linear-gradient(135deg, #0b1530 0%, #16244f 100%); color:#ffffff; padding:2rem 1.8rem; text-align:center; border-bottom:3px solid #d4a34b;">
+        <div style="width:56px; height:56px; margin:0 auto 1rem; border-radius:50%; background:rgba(212,163,75,0.15); border:2px solid #d4a34b; display:flex; align-items:center; justify-content:center; color:#d4a34b; font-size:1.5rem;">
+          <i class="fas fa-lock"></i>
+        </div>
+        <h3 style="font-family:'Cinzel', serif; font-size:1.35rem; margin:0 0 0.35rem; color:#ffffff;">Parish CMS Portal</h3>
+        <span style="font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; color:#d4a34b; font-weight:600;">St. Thomas Church Chempu</span>
+      </div>
+
+      <div style="padding:2rem 1.8rem;">
+        <form id="adminLoginForm" onsubmit="return false;">
+          <div class="form-group" style="margin-bottom:1.2rem;">
+            <label for="loginUsername">Username</label>
+            <div style="position:relative;">
+              <input type="text" id="loginUsername" required placeholder="admin" style="width:100%; padding:0.75rem 1rem 0.75rem 2.6rem; border:1px solid #cbd5e1; border-radius:8px; font-size:0.95rem;" autocomplete="username">
+              <i class="fas fa-user" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#94a3b8;"></i>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:1.5rem;">
+            <label for="loginPassword">Password</label>
+            <div style="position:relative;">
+              <input type="password" id="loginPassword" required placeholder="••••••••" style="width:100%; padding:0.75rem 2.6rem; border:1px solid #cbd5e1; border-radius:8px; font-size:0.95rem;" autocomplete="current-password">
+              <i class="fas fa-key" style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:#94a3b8;"></i>
+              <button type="button" class="btn-toggle-pwd" data-target="loginPassword" style="position:absolute; right:0.8rem; top:50%; transform:translateY(-50%); background:none; border:none; color:#64748b; cursor:pointer; padding:4px;">
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="loginErrorMsg" style="display:none; margin-bottom:1.2rem; padding:0.75rem 1rem; border-radius:8px; background:#fef2f2; border:1px solid #fecaca; color:#b91c1c; font-size:0.85rem; font-weight:600;"></div>
+
+          <button type="submit" id="loginSubmitBtn" style="width:100%; padding:0.85rem; background:linear-gradient(135deg, #0b1530 0%, #16244f 100%); color:#ffffff; border:none; border-radius:8px; font-size:1rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:transform 0.2s, box-shadow 0.2s;">
+            <i class="fas fa-sign-in-alt"></i> Login to CMS
+          </button>
+
+          <div style="margin-top:1.4rem; text-align:center;">
+            <a href="./" style="color:#64748b; font-size:0.85rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.35rem;">
+              <i class="fas fa-arrow-left"></i> Return to Main Website
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/typography.js?v=15"></script>
-  <script src="assets/admin.js?v=31"></script>
+  <script src="assets/admin.js?v=1795766200"></script>
 </body>
 </html>

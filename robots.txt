@@ -1,0 +1,53 @@
+# robots.txt for St. Thomas Syro-Malabar Catholic Church, Chempu
+# Domain: https://stthomasrcchurchchempu.in
+
+User-agent: *
+Allow: /
+Disallow: /terminal
+Disallow: /terminal.html
+Disallow: /admin
+Disallow: /admin.html
+
+# AI Crawlers & LLM Search Agents Explicitly Allowed
+User-agent: GPTBot
+Allow: /
+Disallow: /terminal
+Disallow: /terminal.html
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /terminal
+Disallow: /terminal.html
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Canonical Sitemaps and AI Documentation
+Sitemap: https://stthomasrcchurchchempu.in/sitemap.xml

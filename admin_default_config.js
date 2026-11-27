@@ -87,7 +87,7 @@ const DEFAULT_CONFIG = {
   vice_chairman_malayalam: 'Family Units Vice Chairman',
   vice_chairman_role: 'Pastoral Council Vice Chairman',
   vice_chairman_phone: '+91 86060 40293',
-  vice_chairman_photo: 'assets/images/vice_chairman_avatar.svg',
+  vice_chairman_photo: 'assets/images/siju_jose_kandathil.jpg',
   vice_chairman_desc: 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.',
 
   admin_vicar_desc: 'Oversees liturgical celebrations, spiritual welfare, sacraments, and pastoral guidance of all parishioners.',

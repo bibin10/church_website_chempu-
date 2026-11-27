@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setText('live_vice_chairman_role', 'Vice Chairman');
       setText('live_vice_chairman_desc', cfg.vice_chairman_desc || cfg.admin_council_desc, 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.');
       setContactPhone('live_vice_chairman_phone_wrap', 'live_vice_chairman_phone', cfg.vice_chairman_phone, '+91 94470 00000');
-      setImage('live_vice_chairman_photo', cfg.vice_chairman_photo, 'assets/images/vice_chairman_avatar.svg');
+      setImage('live_vice_chairman_photo', (cfg.vice_chairman_photo && !cfg.vice_chairman_photo.includes('vice_chairman_avatar.svg')) ? cfg.vice_chairman_photo : 'assets/images/siju_jose_kandathil.jpg', 'assets/images/siju_jose_kandathil.jpg');
 
       // 7.5. SD Sisters & Convent
       setText('live_sd_title', cfg.sd_title, 'Sisters of the Destitute (SD Convent, Chempu)');
@@ -518,25 +518,75 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 0.6. Dynamic Other Feasts Hydration from Admin CMS LocalStorage
   // =========================================================================
+  function computeGregorianEaster(year) {
+    const a = year % 19;
+    const b = Math.floor(year / 100);
+    const c = year % 100;
+    const d = Math.floor(b / 4);
+    const e = b % 4;
+    const f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4);
+    const k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const month = Math.floor((h + l - 7 * m + 114) / 31);
+    const day = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(year, month - 1, day);
+  }
+
+  function getUpcomingHolyWeekDates() {
+    const now = new Date();
+    let yr = now.getFullYear();
+    let easter = computeGregorianEaster(yr);
+    if (now > easter) {
+      yr += 1;
+      easter = computeGregorianEaster(yr);
+    }
+    const palmSunday = new Date(easter.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let monthLabel = '';
+    let dayLabel = '';
+    const pad = n => (n < 10 ? '0' + n : '' + n);
+
+    if (palmSunday.getMonth() === easter.getMonth()) {
+      monthLabel = monthNames[easter.getMonth()];
+      dayLabel = `${pad(palmSunday.getDate())}-${pad(easter.getDate())}`;
+    } else {
+      monthLabel = `${monthNames[palmSunday.getMonth()]}/${monthNames[easter.getMonth()]}`;
+      dayLabel = `${palmSunday.getDate()}-${pad(easter.getDate())}`;
+    }
+    return {
+      year: yr,
+      month: monthLabel,
+      day: dayLabel,
+      palmDateStr: `${palmSunday.getDate()} ${monthNames[palmSunday.getMonth()]} ${yr}`,
+      easterDateStr: `${easter.getDate()} ${monthNames[easter.getMonth()]} ${yr}`
+    };
+  }
+
+  const upcomingHolyWeek = getUpcomingHolyWeekDates();
+
   const FEASTS_KEY = 'st_thomas_parish_feasts';
   const DEFAULT_FEASTS = [
     {
       month: 'Jan',
-      day: '06',
-      title: 'Danaha Thirunal (Epiphany / Rakkuli)',
-      desc: 'Commemoration of the Baptism of Jesus with water blessing and festive prayers.'
+      day: 'Sun*',
+      title: 'Feast of St. Sebastian (അമ്പു തിരുനാൾ)',
+      desc: 'Celebrated on the Sunday following January 20th. Features the solemn Ambu Pradakshinam (arrow procession) traversing all 12 parish ward units, followed by solemn Holy Mass in the morning.'
     },
     {
-      month: 'Apr',
-      day: 'Pass',
+      month: 'Mar',
+      day: '19',
+      title: 'Feast of St. Joseph (ഊട്ടുനേർച്ച)',
+      desc: 'Solemn Feast of St. Joseph featuring festive Holy Mass and the traditional grand Oottu Nercha fellowship banquet served lovingly to over 1,500+ faithful and pilgrims every year.'
+    },
+    {
+      month: upcomingHolyWeek.month,
+      day: upcomingHolyWeek.day,
       title: 'Holy Week & Easter',
-      desc: 'Solemn liturgical services of Pesaha, Passion Friday, and Glorious Easter Resurrection.'
-    },
-    {
-      month: 'Sep',
-      day: '08',
-      title: 'Nativity of Mother Mary (8 Days Lent)',
-      desc: 'Eight days of devotion, harvest offerings (Puthari), and Marian prayers.'
+      desc: `Solemn liturgical services of Palm Sunday (${upcomingHolyWeek.palmDateStr}), Pesaha Holy Thursday, Good Friday, and the Glorious Resurrection of Easter (${upcomingHolyWeek.easterDateStr}).`
     },
     {
       month: 'Dec',
@@ -553,7 +603,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let items = DEFAULT_FEASTS;
     try {
       const saved = localStorage.getItem(FEASTS_KEY);
-      if (saved) items = JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Only use saved if it's an array and doesn't contain obsolete Danaha entry
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const hasObsoleteDanaha = parsed.some(it => it && it.title && it.title.toLowerCase().includes('danaha'));
+          if (hasObsoleteDanaha) {
+            localStorage.removeItem(FEASTS_KEY);
+            items = DEFAULT_FEASTS;
+          } else {
+            items = parsed;
+          }
+        }
+      }
     } catch (e) {
       console.warn('Feasts config error', e);
     }

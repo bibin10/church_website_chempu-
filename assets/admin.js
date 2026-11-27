@@ -791,7 +791,7 @@ const DEFAULT_CONFIG = {
   vice_chairman_malayalam: 'Family Units Vice Chairman',
   vice_chairman_role: 'Pastoral Council Vice Chairman',
   vice_chairman_phone: '+91 86060 40293',
-  vice_chairman_photo: 'assets/images/vice_chairman_avatar.svg',
+  vice_chairman_photo: 'assets/images/siju_jose_kandathil.jpg',
   vice_chairman_desc: 'Coordinating 12+ Kudumba Kootayma (Family Units), monthly ward prayer meetings, and parish fellowship.',
 
   admin_vicar_desc: 'Oversees liturgical celebrations, spiritual welfare, sacraments, and pastoral guidance of all parishioners.',
@@ -1259,7 +1259,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!file) return;
 
       try {
-        const result = await processImageWithSmartHDCompression(file, { maxDim: 2560 });
+        const result = await processImageWithSmartHDCompression(file, { maxDim: 2560, targetMaxBytes: 1500 * 1024, initialQuality: 0.94 });
         if (cfgHeroImageInput) cfgHeroImageInput.value = result.dataUrl;
         if (heroCoverPreview) {
           heroCoverPreview.src = result.dataUrl;
@@ -1425,7 +1425,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLeaderImageUploader('vicarFileInput', 'vicarPhotoPreview', 'cfg_vicar_photo', 'resetVicarPhotoBtn', 'vicarCompressionNotice', 'assets/images/vicar_avatar.svg');
   setupLeaderImageUploader('trustee1FileInput', 'trustee1PhotoPreview', 'cfg_trustee1_photo', 'resetTrustee1PhotoBtn', 'trustee1CompressionNotice', 'assets/images/trustee1_avatar.svg');
   setupLeaderImageUploader('trustee2FileInput', 'trustee2PhotoPreview', 'cfg_trustee2_photo', 'resetTrustee2PhotoBtn', 'trustee2CompressionNotice', 'assets/images/trustee2_avatar.svg');
-  setupLeaderImageUploader('viceChairmanFileInput', 'viceChairmanPhotoPreview', 'cfg_vice_chairman_photo', 'resetViceChairmanPhotoBtn', 'viceChairmanCompressionNotice', 'assets/images/vice_chairman_avatar.svg');
+  setupLeaderImageUploader('viceChairmanFileInput', 'viceChairmanPhotoPreview', 'cfg_vice_chairman_photo', 'resetViceChairmanPhotoBtn', 'viceChairmanCompressionNotice', 'assets/images/siju_jose_kandathil.jpg');
 
   // Community Establishments & Facilities Image Uploaders
   setupLeaderImageUploader('sdImgFileInput', 'sdImgPreview', 'cfg_sd_img', 'resetSdImgBtn', 'sdImgCompressionNotice', 'assets/images/sd_convent_chempu.jpg');
@@ -3173,6 +3173,222 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // =========================================================================
+  // 5. ADMIN AUTHENTICATION & PASSWORD MANAGER
+  // =========================================================================
+  const AUTH_KEY = 'st_thomas_admin_auth';
+  const SESSION_KEY = 'st_thomas_admin_session';
+
+  // Default credentials: username 'admin', password 'bibin'
+  const DEFAULT_CREDENTIALS = {
+    username: 'admin',
+    password: 'bibin'
+  };
+
+  function getCredentials() {
+    try {
+      const stored = localStorage.getItem(AUTH_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed && parsed.username && parsed.password) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('Error reading admin credentials', e);
+    }
+    // Initialize defaults if not present
+    localStorage.setItem(AUTH_KEY, JSON.stringify(DEFAULT_CREDENTIALS));
+    return DEFAULT_CREDENTIALS;
+  }
+
+  function setCredentials(username, password) {
+    const creds = { username: username.trim(), password: password };
+    localStorage.setItem(AUTH_KEY, JSON.stringify(creds));
+    return creds;
+  }
+
+  function isAuthenticated() {
+    return sessionStorage.getItem(SESSION_KEY) === 'authenticated';
+  }
+
+  function setAuthenticated(status) {
+    if (status) {
+      sessionStorage.setItem(SESSION_KEY, 'authenticated');
+    } else {
+      sessionStorage.removeItem(SESSION_KEY);
+    }
+  }
+
+  const loginOverlay = document.getElementById('adminLoginOverlay');
+  const loginForm = document.getElementById('adminLoginForm');
+  const loginUsernameInput = document.getElementById('loginUsername');
+  const loginPasswordInput = document.getElementById('loginPassword');
+  const loginErrorMsg = document.getElementById('loginErrorMsg');
+  const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+
+  function checkAuthAndPrompt() {
+    if (!isAuthenticated()) {
+      if (loginOverlay) {
+        loginOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        if (loginUsernameInput) loginUsernameInput.focus();
+      }
+    } else {
+      if (loginOverlay) {
+        loginOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+  }
+
+  // Handle Login submission
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userVal = loginUsernameInput ? loginUsernameInput.value.trim() : '';
+      const passVal = loginPasswordInput ? loginPasswordInput.value : '';
+      const creds = getCredentials();
+
+      if (userVal === creds.username && passVal === creds.password) {
+        setAuthenticated(true);
+        if (loginErrorMsg) loginErrorMsg.style.display = 'none';
+        if (loginOverlay) {
+          loginOverlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+        if (loginPasswordInput) loginPasswordInput.value = '';
+      } else {
+        if (loginErrorMsg) {
+          loginErrorMsg.textContent = 'Invalid username or password. Please try again.';
+          loginErrorMsg.style.display = 'block';
+        }
+        if (loginPasswordInput) {
+          loginPasswordInput.value = '';
+          loginPasswordInput.focus();
+        }
+      }
+    });
+  }
+
+  // Handle Logout
+  if (adminLogoutBtn) {
+    adminLogoutBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to log out from the CMS Portal?')) {
+        setAuthenticated(false);
+        checkAuthAndPrompt();
+      }
+    });
+  }
+
+  // Password Visibility Toggles
+  document.querySelectorAll('.btn-toggle-pwd').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const input = document.getElementById(targetId);
+      const icon = btn.querySelector('i');
+      if (input) {
+        if (input.type === 'password') {
+          input.type = 'text';
+          if (icon) {
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+          }
+        } else {
+          input.type = 'password';
+          if (icon) {
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+          }
+        }
+      }
+    });
+  });
+
+  // Password & Username Change Management Panel
+  const adminUsernameInput = document.getElementById('adminUsernameInput');
+  const currentPasswordInput = document.getElementById('currentPasswordInput');
+  const newPasswordInput = document.getElementById('newPasswordInput');
+  const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+  const updatePasswordBtn = document.getElementById('updatePasswordBtn');
+  const pwdChangeMsg = document.getElementById('pwdChangeMsg');
+
+  function initSecurityPanel() {
+    const creds = getCredentials();
+    if (adminUsernameInput) {
+      adminUsernameInput.value = creds.username;
+    }
+  }
+
+  if (updatePasswordBtn) {
+    updatePasswordBtn.addEventListener('click', () => {
+      const creds = getCredentials();
+      const enteredUser = adminUsernameInput ? adminUsernameInput.value.trim() : '';
+      const enteredCurrent = currentPasswordInput ? currentPasswordInput.value : '';
+      const enteredNew = newPasswordInput ? newPasswordInput.value : '';
+      const enteredConfirm = confirmPasswordInput ? confirmPasswordInput.value : '';
+
+      const showNotice = (text, isSuccess) => {
+        if (!pwdChangeMsg) return;
+        pwdChangeMsg.textContent = text;
+        pwdChangeMsg.style.display = 'block';
+        if (isSuccess) {
+          pwdChangeMsg.style.background = '#f0fdf4';
+          pwdChangeMsg.style.border = '1px solid #bbf7d0';
+          pwdChangeMsg.style.color = '#15803d';
+        } else {
+          pwdChangeMsg.style.background = '#fef2f2';
+          pwdChangeMsg.style.border = '1px solid #fecaca';
+          pwdChangeMsg.style.color = '#b91c1c';
+        }
+      };
+
+      if (!enteredUser) {
+        showNotice('Username cannot be empty.', false);
+        adminUsernameInput.focus();
+        return;
+      }
+
+      if (enteredCurrent !== creds.password) {
+        showNotice('Current password does not match.', false);
+        currentPasswordInput.focus();
+        return;
+      }
+
+      if (!enteredNew) {
+        showNotice('Please enter a new password.', false);
+        newPasswordInput.focus();
+        return;
+      }
+
+      if (enteredNew.length < 4) {
+        showNotice('New password must be at least 4 characters long.', false);
+        newPasswordInput.focus();
+        return;
+      }
+
+      if (enteredNew !== enteredConfirm) {
+        showNotice('New password and confirmation do not match.', false);
+        confirmPasswordInput.focus();
+        return;
+      }
+
+      // Save updated credentials
+      setCredentials(enteredUser, enteredNew);
+      showNotice('Credentials successfully updated! Your new password is now active.', true);
+
+      // Clear password fields
+      if (currentPasswordInput) currentPasswordInput.value = '';
+      if (newPasswordInput) newPasswordInput.value = '';
+      if (confirmPasswordInput) confirmPasswordInput.value = '';
+    });
+  }
+
+  // Run security checks
+  getCredentials();
+  initSecurityPanel();
+  checkAuthAndPrompt();
 });
 
 
