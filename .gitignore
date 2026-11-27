@@ -2,6 +2,11 @@
 Santhom_Maria.pdf
 *.backup.pdf
 
+# Redundant backup and locked duplicate files
+*.backup.*
+*.locked.*
+*.bak
+
 # Python caches
 __pycache__/
 *.pyc
@@ -9,3 +14,4 @@ __pycache__/
 # OS & Editor artifacts
 .DS_Store
 Thumbs.db
+*.tmp
