@@ -777,7 +777,7 @@ const DEFAULT_CONFIG = {
   trustee1_malayalam: 'Parish Trustee',
   trustee1_role: 'Church Trustee',
   trustee1_phone: '+91 94463 04922',
-  trustee1_photo: 'assets/images/trustee1_avatar.svg',
+  trustee1_photo: 'assets/images/thomas_mathai_maniyela.jpg',
   trustee1_desc: 'Managing temporal administration, church assets, accounts, and festive celebrations.',
 
   trustee2_name: 'Paul Thomas Kunnathu',
@@ -1423,7 +1423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setupLeaderImageUploader('vicarFileInput', 'vicarPhotoPreview', 'cfg_vicar_photo', 'resetVicarPhotoBtn', 'vicarCompressionNotice', 'assets/images/vicar_avatar.svg');
-  setupLeaderImageUploader('trustee1FileInput', 'trustee1PhotoPreview', 'cfg_trustee1_photo', 'resetTrustee1PhotoBtn', 'trustee1CompressionNotice', 'assets/images/trustee1_avatar.svg');
+  setupLeaderImageUploader('trustee1FileInput', 'trustee1PhotoPreview', 'cfg_trustee1_photo', 'resetTrustee1PhotoBtn', 'trustee1CompressionNotice', 'assets/images/thomas_mathai_maniyela.jpg');
   setupLeaderImageUploader('trustee2FileInput', 'trustee2PhotoPreview', 'cfg_trustee2_photo', 'resetTrustee2PhotoBtn', 'trustee2CompressionNotice', 'assets/images/trustee2_avatar.svg');
   setupLeaderImageUploader('viceChairmanFileInput', 'viceChairmanPhotoPreview', 'cfg_vice_chairman_photo', 'resetViceChairmanPhotoBtn', 'viceChairmanCompressionNotice', 'assets/images/siju_jose_kandathil.jpg');
 

@@ -411,7 +411,7 @@ img {
   z-index: 2;
   text-align: center;
   max-width: 900px;
-  padding: 2.5rem 1.5rem 8.5rem;
+  padding: 3rem 1.5rem 6.5rem;
 }
 
 .hero-subtitle-badge {
@@ -585,19 +585,21 @@ img {
   }
 }
 
-/* Mass Schedule Banner Float & 3D Stage */
+/* Mass Schedule Banner Float & 3D Stage - Exactly straddling hero bottom edge */
 .next-mass-ribbon-stage {
   perspective: 1200px;
   position: relative;
   z-index: 25;
+  margin-top: 0;
 }
 
 .next-mass-ribbon {
   background: #ffffff;
   border-radius: var(--radius-lg, 18px);
   box-shadow: 0 24px 50px rgba(10, 20, 47, 0.16), 0 8px 24px rgba(212, 163, 75, 0.12);
-  margin-top: -3.5rem;
-  margin-bottom: 2.5rem;
+  margin-top: 0;
+  transform: translateY(-50%);
+  margin-bottom: calc(-50px + 2.5rem);
   position: relative;
   z-index: 10;
   border: 1.5px solid rgba(212, 163, 75, 0.35);
@@ -2963,7 +2965,9 @@ body.index-page .main-footer {
     margin-bottom: 2rem;
   }
   .next-mass-ribbon {
-    margin-top: 1rem;
+    margin-top: 0;
+    transform: translateY(-35%);
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -3392,11 +3396,65 @@ body.community-page .institution-card,
 body.community-page .pious-wing-card,
 body.community-page .sd-convent-card-enhanced,
 body.community-page .filial-church-grand-card {
-  background: transparent !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.42) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 12px 35px rgba(20, 50, 100, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+/* Sharp, high-contrast typography for Community descriptions & details */
+body.community-page .institution-desc,
+body.community-page .sd-desc,
+body.community-page .filial-grand-content p,
+body.community-page .section-lead {
+  color: #101c38 !important;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+body.community-page .institution-features span,
+body.community-page .sd-features-list span {
+  color: #111e3b !important;
+  font-weight: 550;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+body.community-page .institution-card strong,
+body.community-page .sd-convent-card-enhanced strong,
+body.community-page .filial-church-grand-card strong {
+  color: #081126;
+  font-weight: 700;
+}
+
+/* Sharp, high-contrast footer notes for Parish Institutions cards */
+body.community-page .institution-card > div[style*="margin-top: auto"] {
+  color: #101c38 !important;
+  font-size: 0.88rem !important;
+  font-weight: 550;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+  border-top-color: rgba(212, 163, 75, 0.45) !important;
+}
+
+body.community-page .institution-card > div[style*="margin-top: auto"] span {
+  color: #101c38 !important;
+}
+
+body.community-page .institution-card > div[style*="margin-top: auto"] strong {
+  color: #060e20 !important;
+  font-weight: 700;
+}
+
+body.community-page .institution-card > div[style*="margin-top: auto"] i {
+  color: #b38128 !important;
+  font-size: 0.95rem;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
 }
 
 .subpage-hero {
@@ -3733,7 +3791,7 @@ body.community-page .filial-church-grand-card {
 /* 1. Next Mass Ribbon: 3D Full 360-Degree Rotation & Smooth Landing Physics */
 .anim-ribbon-drop {
   opacity: 0;
-  transform: perspective(1400px) translateY(20px) rotateX(-360deg) scale(0.92);
+  transform: perspective(1400px) translateY(calc(-50% + 20px)) rotateX(-360deg) scale(0.92);
   transform-origin: 50% 50%;
   backface-visibility: visible;
   transition: opacity 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), transform 1.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.35s ease;
@@ -3741,7 +3799,7 @@ body.community-page .filial-church-grand-card {
 
 .anim-ribbon-drop.is-revealed {
   opacity: 1;
-  transform: perspective(1400px) translateY(0) rotateX(0deg) scale(1) !important;
+  transform: perspective(1400px) translateY(-50%) rotateX(0deg) scale(1) !important;
   box-shadow: 0 24px 50px rgba(10, 20, 47, 0.16), 0 8px 24px rgba(212, 163, 75, 0.12);
 }
 

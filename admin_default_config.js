@@ -73,7 +73,7 @@ const DEFAULT_CONFIG = {
   trustee1_malayalam: 'Parish Trustee',
   trustee1_role: 'Church Trustee',
   trustee1_phone: '+91 94463 04922',
-  trustee1_photo: 'assets/images/trustee1_avatar.svg',
+  trustee1_photo: 'assets/images/thomas_mathai_maniyela.jpg',
   trustee1_desc: 'Managing temporal administration, church assets, accounts, and festive celebrations.',
 
   trustee2_name: 'Paul Thomas Kunnathu',

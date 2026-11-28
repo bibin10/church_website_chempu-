@@ -79,7 +79,7 @@ const DEFAULT_ADMIN_CONFIG = {
   trustee1_malayalam: 'Parish Trustee',
   trustee1_role: 'Church Trustee',
   trustee1_phone: '+91 94463 04922',
-  trustee1_photo: 'assets/images/trustee1_avatar.svg',
+  trustee1_photo: 'assets/images/thomas_mathai_maniyela.jpg',
   trustee1_desc: 'Managing temporal administration, church assets, accounts, and festive celebrations.',
 
   trustee2_name: 'Paul Thomas<br>Kunnathu',
@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setText('live_trustee1_role', cfg.trustee1_role, 'Church Trustee');
       setText('live_trustee1_desc', cfg.trustee1_desc || cfg.admin_trustees_desc, 'Managing temporal administration, church assets, accounts, and festive celebrations.');
       setContactPhone('live_trustee1_phone_wrap', 'live_trustee1_phone', cfg.trustee1_phone, '+91 94470 00000');
-      setImage('live_trustee1_photo', cfg.trustee1_photo, 'assets/images/trustee1_avatar.svg');
+      setImage('live_trustee1_photo', cfg.trustee1_photo, 'assets/images/thomas_mathai_maniyela.jpg');
 
       setHTML('live_trustee2_name', cfg.trustee2_name ? (cfg.trustee2_name.includes('<br>') ? cfg.trustee2_name : cfg.trustee2_name.replace('Kunnathu', '<br>Kunnathu')) : 'Paul Thomas<br>Kunnathu');
       setText('live_trustee2_malayalam', cfg.trustee2_malayalam, 'Parish Trustee');
